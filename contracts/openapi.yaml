@@ -1,0 +1,2574 @@
+openapi: 3.1.0
+info:
+  title: MOATA API
+  description: MOATA 그룹 이동 기록·정산 API. 정산은 참고용 추정치이며 결제·송금 기능은 없습니다.
+  version: 1.0.0
+paths:
+  /api/v1/health:
+    get:
+      tags:
+      - health
+      summary: Health
+      operationId: health_api_v1_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /api/v1/auth/guest:
+    post:
+      tags:
+      - auth
+      summary: Guest
+      operationId: guest_api_v1_auth_guest_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GuestAuthIn'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/auth/logout:
+    post:
+      tags:
+      - auth
+      summary: Logout
+      description: Revokes the token presented on this request.
+      operationId: logout_api_v1_auth_logout_post
+      parameters:
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/groups:
+    post:
+      tags:
+      - groups
+      summary: Create Group
+      operationId: create_group_api_v1_groups_post
+      parameters:
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupCreateIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - groups
+      summary: My Groups
+      operationId: my_groups_api_v1_groups_get
+      parameters:
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupOut'
+                title: Response My Groups Api V1 Groups Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/groups/{group_id}/me:
+    get:
+      tags:
+      - groups
+      summary: My Membership
+      description: Only the caller's own row, in any status, so a waiting or rejected
+        passenger can be told apart.
+      operationId: my_membership_api_v1_groups__group_id__me_get
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Group Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembershipOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/groups/{group_id}:
+    get:
+      tags:
+      - groups
+      summary: Get Group
+      operationId: get_group_api_v1_groups__group_id__get
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Group Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - groups
+      summary: Delete Group
+      operationId: delete_group_api_v1_groups__group_id__delete
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Group Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/groups/{group_id}/invites:
+    post:
+      tags:
+      - invites
+      summary: Create Invite
+      operationId: create_invite_api_v1_groups__group_id__invites_post
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Group Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteCreateIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/groups/{group_id}/invites/{invite_id}:
+    delete:
+      tags:
+      - invites
+      summary: Revoke Invite
+      description: A leaked QR can be killed immediately.
+      operationId: revoke_invite_api_v1_groups__group_id__invites__invite_id__delete
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Group Id
+      - name: invite_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Invite Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/invites/preview:
+    post:
+      tags:
+      - invites
+      summary: Preview Invite
+      operationId: preview_invite_api_v1_invites_preview_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteTokenIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvitePreviewOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/invites/accept:
+    post:
+      tags:
+      - invites
+      summary: Accept Invite
+      operationId: accept_invite_api_v1_invites_accept_post
+      parameters:
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteAcceptIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteAcceptOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/groups/{group_id}/members/{user_id}/decision:
+    post:
+      tags:
+      - groups
+      summary: Decide Member
+      operationId: decide_member_api_v1_groups__group_id__members__user_id__decision_post
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Group Id
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: User Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberDecisionIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/groups/{group_id}/character:
+    get:
+      tags:
+      - character
+      summary: Character
+      operationId: character_api_v1_groups__group_id__character_get
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Group Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CharacterOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/groups/{group_id}/rewards:
+    get:
+      tags:
+      - character
+      summary: Coupons
+      operationId: coupons_api_v1_groups__group_id__rewards_get
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Group Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CouponOut'
+                title: Response Coupons Api V1 Groups  Group Id  Rewards Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/groups/{group_id}/history:
+    get:
+      tags:
+      - character
+      summary: History
+      operationId: history_api_v1_groups__group_id__history_get
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Group Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoryItem'
+                title: Response History Api V1 Groups  Group Id  History Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips:
+    post:
+      tags:
+      - trips
+      summary: Create Trip
+      operationId: create_trip_api_v1_trips_post
+      parameters:
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripCreateIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/summary:
+    get:
+      tags:
+      - trips
+      summary: Summary
+      operationId: summary_api_v1_trips__trip_id__summary_get
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/cost-rule:
+    put:
+      tags:
+      - trips
+      summary: Put Cost Rule
+      operationId: put_cost_rule_api_v1_trips__trip_id__cost_rule_put
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CostRuleIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/ready:
+    post:
+      tags:
+      - trips
+      summary: Ready
+      operationId: ready_api_v1_trips__trip_id__ready_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/start:
+    post:
+      tags:
+      - trips
+      summary: Start
+      operationId: start_api_v1_trips__trip_id__start_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripStartIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/end:
+    post:
+      tags:
+      - trips
+      summary: End
+      operationId: end_api_v1_trips__trip_id__end_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripEndIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/cancel:
+    post:
+      tags:
+      - trips
+      summary: Cancel
+      operationId: cancel_api_v1_trips__trip_id__cancel_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/readings/batch:
+    post:
+      tags:
+      - trips
+      summary: Readings
+      operationId: readings_api_v1_trips__trip_id__readings_batch_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadingBatchIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadingBatchOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/participants/{user_id}/board:
+    post:
+      tags:
+      - trips
+      summary: Board
+      operationId: board_api_v1_trips__trip_id__participants__user_id__board_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: User Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/BoardingIn'
+              - type: 'null'
+              title: Body
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/participants/{user_id}/alight:
+    post:
+      tags:
+      - trips
+      summary: Alight
+      operationId: alight_api_v1_trips__trip_id__participants__user_id__alight_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: User Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/BoardingIn'
+              - type: 'null'
+              title: Body
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/intervals/{interval_id}:
+    patch:
+      tags:
+      - trips
+      summary: Correct Interval
+      operationId: correct_interval_api_v1_trips__trip_id__intervals__interval_id__patch
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: interval_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Interval Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntervalCorrectionIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/cost-items:
+    post:
+      tags:
+      - trips
+      summary: Add Item
+      operationId: add_item_api_v1_trips__trip_id__cost_items_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CostItemIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/cost-items/{item_id}:
+    delete:
+      tags:
+      - trips
+      summary: Delete Item
+      operationId: delete_item_api_v1_trips__trip_id__cost_items__item_id__delete
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Item Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/readings/{event_id}:
+    delete:
+      tags:
+      - trips
+      summary: Void Reading
+      description: The driver removes a mistyped reading from every computation (kept,
+        flagged and audited).
+      operationId: void_reading_api_v1_trips__trip_id__readings__event_id__delete
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: event_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Event Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripSummary'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/settlements/preview:
+    post:
+      tags:
+      - settlements
+      summary: Preview
+      operationId: preview_api_v1_trips__trip_id__settlements_preview_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/settlements/{settlement_id}/approvals:
+    post:
+      tags:
+      - settlements
+      summary: Approve
+      operationId: approve_api_v1_settlements__settlement_id__approvals_post
+      parameters:
+      - name: settlement_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Settlement Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApprovalIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Allocation:
+      type: string
+      enum:
+      - EQUAL
+      - DISTANCE_WEIGHTED
+      - DRIVER_ONLY
+      title: Allocation
+    ApprovalIn:
+      properties:
+        decision:
+          $ref: '#/components/schemas/Decision'
+        comment:
+          type: string
+          maxLength: 100
+          title: Comment
+          default: ''
+      additionalProperties: false
+      type: object
+      required:
+      - decision
+      title: ApprovalIn
+    ApprovalState:
+      type: string
+      enum:
+      - PENDING
+      - APPROVED
+      - DISPUTED
+      title: ApprovalState
+    AuthOut:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        nickname:
+          type: string
+          title: Nickname
+        token:
+          type: string
+          title: Token
+          description: Opaque bearer token. Shown once; only its hash is stored.
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+      additionalProperties: false
+      type: object
+      required:
+      - user_id
+      - nickname
+      - token
+      - expires_at
+      title: AuthOut
+    BadgeOut:
+      properties:
+        id:
+          type: string
+          title: Id
+        name_ko:
+          type: string
+          title: Name Ko
+        description_ko:
+          type: string
+          title: Description Ko
+        earned_at:
+          type: string
+          format: date-time
+          title: Earned At
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - name_ko
+      - description_ko
+      - earned_at
+      title: BadgeOut
+    BoardingIn:
+      properties:
+        odometer_km:
+          anyOf:
+          - type: number
+            maximum: 9999999.0
+            minimum: 0.0
+          - type: string
+          - type: 'null'
+          title: Odometer Km
+          description: Driver-only override; passengers use the server's latest reading.
+        reason:
+          type: string
+          maxLength: 60
+          title: Reason
+          default: ''
+        undo:
+          type: boolean
+          title: Undo
+          description: 'Alight only: the rider''s ''잘못 눌렀어요''. Forgets the boarding
+            if the car has not moved since it began.'
+          default: false
+      additionalProperties: false
+      type: object
+      title: BoardingIn
+    CharacterOut:
+      properties:
+        group_id:
+          type: string
+          title: Group Id
+        name:
+          type: string
+          title: Name
+          default: 모아
+        xp:
+          type: integer
+          title: Xp
+        level:
+          type: integer
+          title: Level
+        level_xp_start:
+          type: integer
+          title: Level Xp Start
+        next_level_xp:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Next Level Xp
+        skin_id:
+          type: string
+          title: Skin Id
+        mood:
+          type: string
+          enum:
+          - SLEEPY
+          - HAPPY
+          - PROUD
+          title: Mood
+        badges:
+          items:
+            $ref: '#/components/schemas/BadgeOut'
+          type: array
+          title: Badges
+        completed_trips:
+          type: integer
+          title: Completed Trips
+        note_ko:
+          type: string
+          title: Note Ko
+          default: 모아는 함께 정산을 마친 이동 기록으로만 자랍니다. 거리·속도와는 관계없어요.
+      additionalProperties: false
+      type: object
+      required:
+      - group_id
+      - xp
+      - level
+      - level_xp_start
+      - next_level_xp
+      - skin_id
+      - mood
+      - badges
+      - completed_trips
+      title: CharacterOut
+    CostItemIn:
+      properties:
+        id:
+          type: string
+          maxLength: 64
+          minLength: 8
+          pattern: ^[A-Za-z0-9_-]+$
+          title: Id
+        kind:
+          $ref: '#/components/schemas/ItemKind'
+        amount_krw:
+          type: integer
+          maximum: 100000000.0
+          minimum: 0.0
+          title: Amount Krw
+        allocation:
+          $ref: '#/components/schemas/Allocation'
+          default: EQUAL
+        note:
+          type: string
+          maxLength: 60
+          title: Note
+          default: ''
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - kind
+      - amount_krw
+      title: CostItemIn
+    CostItemOut:
+      properties:
+        id:
+          type: string
+          title: Id
+        kind:
+          $ref: '#/components/schemas/ItemKind'
+        amount_krw:
+          type: integer
+          title: Amount Krw
+        allocation:
+          $ref: '#/components/schemas/Allocation'
+        note:
+          type: string
+          title: Note
+        input_source:
+          type: string
+          const: MANUAL
+          title: Input Source
+          default: MANUAL
+        created_by:
+          type: string
+          title: Created By
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - kind
+      - amount_krw
+      - allocation
+      - note
+      - created_by
+      title: CostItemOut
+    CostRuleIn:
+      properties:
+        vehicle_type:
+          $ref: '#/components/schemas/VehicleType'
+        efficiency_value:
+          anyOf:
+          - type: number
+            maximum: 100000.0
+            exclusiveMinimum: 0.0
+          - type: string
+          - type: 'null'
+          title: Efficiency Value
+          description: Number in `efficiency_unit`.
+        efficiency_unit:
+          anyOf:
+          - type: string
+            enum:
+            - km/L
+            - L/100km
+            - km/kWh
+            - Wh/km
+            - kWh/100km
+          - type: 'null'
+          title: Efficiency Unit
+        efficiency_source:
+          $ref: '#/components/schemas/DataSource'
+          default: MANUAL
+        unit_price_krw:
+          anyOf:
+          - type: number
+            maximum: 100000.0
+            minimum: 0.0
+          - type: string
+          - type: 'null'
+          title: Unit Price Krw
+          description: KRW per litre (ICE) or per kWh (EV).
+        driver_included:
+          type: boolean
+          title: Driver Included
+          default: true
+        energy_policy:
+          $ref: '#/components/schemas/EnergyPolicy'
+          default: SEGMENT_SHARED
+      additionalProperties: false
+      type: object
+      required:
+      - vehicle_type
+      title: CostRuleIn
+    CostRuleOut:
+      properties:
+        vehicle_type:
+          $ref: '#/components/schemas/VehicleType'
+        efficiency_value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Efficiency Value
+        efficiency_unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Efficiency Unit
+        efficiency_km_per_unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Efficiency Km Per Unit
+          description: Normalised km/L (ICE) or km/kWh (EV) actually used.
+        efficiency_source:
+          $ref: '#/components/schemas/DataSource'
+        unit_price_krw:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unit Price Krw
+        driver_included:
+          type: boolean
+          title: Driver Included
+        energy_policy:
+          $ref: '#/components/schemas/EnergyPolicy'
+      additionalProperties: false
+      type: object
+      required:
+      - vehicle_type
+      - efficiency_value
+      - efficiency_unit
+      - efficiency_km_per_unit
+      - efficiency_source
+      - unit_price_krw
+      - driver_included
+      - energy_policy
+      title: CostRuleOut
+    CouponOut:
+      properties:
+        id:
+          type: string
+          title: Id
+        brand_label:
+          type: string
+          title: Brand Label
+        status:
+          type: string
+          const: DEMO_AVAILABLE
+          title: Status
+        exchangeable:
+          type: boolean
+          const: false
+          title: Exchangeable
+          default: false
+        disclaimer_ko:
+          type: string
+          title: Disclaimer Ko
+          default: 시연용 쿠폰입니다. 실제로 교환하거나 사용할 수 없습니다.
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - brand_label
+      - status
+      title: CouponOut
+    DataSource:
+      type: string
+      enum:
+      - PLEOS
+      - MANUAL
+      - DEMO
+      title: DataSource
+    Decision:
+      type: string
+      enum:
+      - APPROVE
+      - DISPUTE
+      title: Decision
+    EnergyPolicy:
+      type: string
+      enum:
+      - SEGMENT_SHARED
+      - EQUAL_SPLIT
+      title: EnergyPolicy
+    GroupCreateIn:
+      properties:
+        id:
+          anyOf:
+          - type: string
+            maxLength: 64
+            minLength: 8
+            pattern: ^[A-Za-z0-9_-]+$
+          - type: 'null'
+          title: Id
+          description: Client-generated id makes the call idempotent.
+        name:
+          type: string
+          maxLength: 30
+          minLength: 1
+          title: Name
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      title: GroupCreateIn
+    GroupOut:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        owner_user_id:
+          type: string
+          title: Owner User Id
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        members:
+          items:
+            $ref: '#/components/schemas/MemberOut'
+          type: array
+          title: Members
+          default: []
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - name
+      - owner_user_id
+      - created_at
+      title: GroupOut
+    GuestAuthIn:
+      properties:
+        nickname:
+          type: string
+          maxLength: 20
+          minLength: 1
+          title: Nickname
+        consent_version:
+          type: string
+          maxLength: 20
+          minLength: 1
+          title: Consent Version
+      additionalProperties: false
+      type: object
+      required:
+      - nickname
+      - consent_version
+      title: GuestAuthIn
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    HistoryItem:
+      properties:
+        trip_id:
+          type: string
+          title: Trip Id
+        started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Started At
+        state:
+          $ref: '#/components/schemas/TripState'
+        data_mode:
+          $ref: '#/components/schemas/DataSource'
+        distance_km:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Distance Km
+        total_krw:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total Krw
+        participant_count:
+          type: integer
+          title: Participant Count
+        xp_gained:
+          type: integer
+          title: Xp Gained
+      additionalProperties: false
+      type: object
+      required:
+      - trip_id
+      - started_at
+      - state
+      - data_mode
+      - distance_km
+      - total_krw
+      - participant_count
+      - xp_gained
+      title: HistoryItem
+    IntervalCorrectionIn:
+      properties:
+        odometer_on_km:
+          anyOf:
+          - type: number
+            maximum: 9999999.0
+            minimum: 0.0
+          - type: string
+          - type: 'null'
+          title: Odometer On Km
+        odometer_off_km:
+          anyOf:
+          - type: number
+            maximum: 9999999.0
+            minimum: 0.0
+          - type: string
+          - type: 'null'
+          title: Odometer Off Km
+        reason:
+          type: string
+          maxLength: 60
+          minLength: 2
+          title: Reason
+      additionalProperties: false
+      type: object
+      required:
+      - reason
+      title: IntervalCorrectionIn
+    IntervalOut:
+      properties:
+        id:
+          type: string
+          title: Id
+        user_id:
+          type: string
+          title: User Id
+        onboard_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Onboard At
+        offboard_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Offboard At
+        odometer_on_km:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Odometer On Km
+        odometer_off_km:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Odometer Off Km
+        boundary_quality:
+          $ref: '#/components/schemas/Quality'
+        closed_by:
+          anyOf:
+          - type: string
+            enum:
+            - USER
+            - DRIVER
+            - TRIP_END
+          - type: 'null'
+          title: Closed By
+        opened_by:
+          anyOf:
+          - type: string
+            enum:
+            - USER
+            - DRIVER
+          - type: 'null'
+          title: Opened By
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - user_id
+      - onboard_at
+      - offboard_at
+      - odometer_on_km
+      - odometer_off_km
+      - boundary_quality
+      - closed_by
+      title: IntervalOut
+    InviteAcceptIn:
+      properties:
+        token:
+          type: string
+          maxLength: 128
+          minLength: 16
+          title: Token
+        nickname:
+          anyOf:
+          - type: string
+            maxLength: 20
+            minLength: 1
+          - type: 'null'
+          title: Nickname
+          description: Required when the caller is not signed in.
+        consent_version:
+          type: string
+          maxLength: 20
+          minLength: 1
+          title: Consent Version
+        rules_ack:
+          type: boolean
+          title: Rules Ack
+          description: 'Must be true: the joiner saw and accepted the cost rules.'
+      additionalProperties: false
+      type: object
+      required:
+      - token
+      - consent_version
+      - rules_ack
+      title: InviteAcceptIn
+    InviteAcceptOut:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Token
+          description: Bearer token for a newly created guest; null when the caller
+            was already signed in.
+        group_id:
+          type: string
+          title: Group Id
+        trip_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trip Id
+        member_status:
+          $ref: '#/components/schemas/MemberStatus'
+      additionalProperties: false
+      type: object
+      required:
+      - user_id
+      - group_id
+      - trip_id
+      - member_status
+      title: InviteAcceptOut
+    InviteCreateIn:
+      properties:
+        trip_id:
+          anyOf:
+          - type: string
+            maxLength: 64
+            minLength: 8
+            pattern: ^[A-Za-z0-9_-]+$
+          - type: 'null'
+          title: Trip Id
+        ttl_minutes:
+          type: integer
+          maximum: 1440.0
+          minimum: 1.0
+          title: Ttl Minutes
+          default: 30
+        max_uses:
+          type: integer
+          maximum: 20.0
+          minimum: 1.0
+          title: Max Uses
+          default: 5
+      additionalProperties: false
+      type: object
+      title: InviteCreateIn
+    InviteOut:
+      properties:
+        invite_id:
+          type: string
+          title: Invite Id
+        token:
+          type: string
+          title: Token
+          description: Plain token, returned only at creation. Put it in the URL fragment
+            (#), not the query.
+        join_path:
+          type: string
+          title: Join Path
+          description: Path for the passenger web, e.g. /join#<token>
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+        max_uses:
+          type: integer
+          title: Max Uses
+      additionalProperties: false
+      type: object
+      required:
+      - invite_id
+      - token
+      - join_path
+      - expires_at
+      - max_uses
+      title: InviteOut
+    InvitePreviewOut:
+      properties:
+        group_name:
+          type: string
+          title: Group Name
+        driver_nickname:
+          type: string
+          title: Driver Nickname
+        trip_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trip Id
+        rules_ko:
+          items:
+            type: string
+          type: array
+          title: Rules Ko
+          description: Cost-sharing rules the joiner must acknowledge.
+        disclaimers:
+          items:
+            type: string
+          type: array
+          title: Disclaimers
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+      additionalProperties: false
+      type: object
+      required:
+      - group_name
+      - driver_nickname
+      - trip_id
+      - rules_ko
+      - disclaimers
+      - expires_at
+      title: InvitePreviewOut
+    InviteTokenIn:
+      properties:
+        token:
+          type: string
+          maxLength: 128
+          minLength: 16
+          title: Token
+      additionalProperties: false
+      type: object
+      required:
+      - token
+      title: InviteTokenIn
+    Issue:
+      properties:
+        code:
+          type: string
+          title: Code
+        message_ko:
+          type: string
+          title: Message Ko
+      additionalProperties: false
+      type: object
+      required:
+      - code
+      - message_ko
+      title: Issue
+    ItemKind:
+      type: string
+      enum:
+      - TOLL
+      - PARKING
+      - OTHER
+      title: ItemKind
+    LatestOdometerOut:
+      properties:
+        km:
+          type: string
+          title: Km
+        captured_at:
+          type: string
+          format: date-time
+          title: Captured At
+        source:
+          $ref: '#/components/schemas/DataSource'
+        quality:
+          $ref: '#/components/schemas/Quality'
+        age_seconds:
+          type: integer
+          title: Age Seconds
+      additionalProperties: false
+      type: object
+      required:
+      - km
+      - captured_at
+      - source
+      - quality
+      - age_seconds
+      title: LatestOdometerOut
+    MemberDecisionIn:
+      properties:
+        decision:
+          type: string
+          enum:
+          - APPROVE
+          - REJECT
+          title: Decision
+      additionalProperties: false
+      type: object
+      required:
+      - decision
+      title: MemberDecisionIn
+    MemberOut:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        nickname:
+          type: string
+          title: Nickname
+        role:
+          type: string
+          enum:
+          - OWNER
+          - MEMBER
+          title: Role
+        status:
+          $ref: '#/components/schemas/MemberStatus'
+      additionalProperties: false
+      type: object
+      required:
+      - user_id
+      - nickname
+      - role
+      - status
+      title: MemberOut
+    MemberStatus:
+      type: string
+      enum:
+      - PENDING
+      - ACTIVE
+      - REJECTED
+      - LEFT
+      title: MemberStatus
+    MembershipOut:
+      properties:
+        group_id:
+          type: string
+          title: Group Id
+        user_id:
+          type: string
+          title: User Id
+        role:
+          type: string
+          enum:
+          - OWNER
+          - MEMBER
+          title: Role
+        status:
+          $ref: '#/components/schemas/MemberStatus'
+        current_trip_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Current Trip Id
+          description: 'The group''s newest trip that is not finished (ACTIVE members
+            only): where a returning rider belongs today.'
+      additionalProperties: false
+      type: object
+      required:
+      - group_id
+      - user_id
+      - role
+      - status
+      title: MembershipOut
+    ParticipantOut:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        nickname:
+          type: string
+          title: Nickname
+        is_driver:
+          type: boolean
+          title: Is Driver
+        member_status:
+          $ref: '#/components/schemas/MemberStatus'
+        on_board:
+          type: boolean
+          title: On Board
+        intervals:
+          items:
+            $ref: '#/components/schemas/IntervalOut'
+          type: array
+          title: Intervals
+      additionalProperties: false
+      type: object
+      required:
+      - user_id
+      - nickname
+      - is_driver
+      - member_status
+      - on_board
+      - intervals
+      title: ParticipantOut
+    Quality:
+      type: string
+      enum:
+      - VERIFIED
+      - ESTIMATED
+      - UNAVAILABLE
+      - INVALID
+      title: Quality
+    ReadingBatchIn:
+      properties:
+        readings:
+          items:
+            $ref: '#/components/schemas/ReadingIn'
+          type: array
+          maxItems: 500
+          minItems: 1
+          title: Readings
+      additionalProperties: false
+      type: object
+      required:
+      - readings
+      title: ReadingBatchIn
+    ReadingBatchOut:
+      properties:
+        accepted:
+          type: integer
+          title: Accepted
+        duplicates:
+          type: integer
+          title: Duplicates
+        rejected:
+          items:
+            $ref: '#/components/schemas/ReadingRejected'
+          type: array
+          title: Rejected
+      additionalProperties: false
+      type: object
+      required:
+      - accepted
+      - duplicates
+      - rejected
+      title: ReadingBatchOut
+    ReadingIn:
+      properties:
+        event_id:
+          type: string
+          maxLength: 64
+          minLength: 8
+          pattern: ^[A-Za-z0-9_-]+$
+          title: Event Id
+          description: Client-generated; repeating it never creates a second record.
+        type:
+          $ref: '#/components/schemas/ReadingType'
+        value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value
+          description: null when the signal was unavailable.
+        unit:
+          type: string
+          maxLength: 12
+          title: Unit
+        captured_at:
+          type: string
+          format: date-time
+          title: Captured At
+        source:
+          $ref: '#/components/schemas/DataSource'
+        quality:
+          $ref: '#/components/schemas/Quality'
+        sdk_version:
+          anyOf:
+          - type: string
+            maxLength: 20
+          - type: 'null'
+          title: Sdk Version
+        error:
+          anyOf:
+          - type: string
+            maxLength: 200
+          - type: 'null'
+          title: Error
+          description: SDK onFailed text, if any.
+      additionalProperties: false
+      type: object
+      required:
+      - event_id
+      - type
+      - unit
+      - captured_at
+      - source
+      - quality
+      title: ReadingIn
+    ReadingRejected:
+      properties:
+        event_id:
+          type: string
+          title: Event Id
+        code:
+          type: string
+          title: Code
+        message_ko:
+          type: string
+          title: Message Ko
+      additionalProperties: false
+      type: object
+      required:
+      - event_id
+      - code
+      - message_ko
+      title: ReadingRejected
+    ReadingType:
+      type: string
+      enum:
+      - ODOMETER
+      - FUEL_ECONOMY
+      - EV_EFFICIENCY
+      - EV_SOC
+      title: ReadingType
+    SegmentOut:
+      properties:
+        index:
+          type: integer
+          title: Index
+        start_km:
+          type: string
+          title: Start Km
+        end_km:
+          type: string
+          title: End Km
+        length_km:
+          type: string
+          title: Length Km
+        payers:
+          items:
+            type: string
+          type: array
+          title: Payers
+        energy_krw:
+          type: integer
+          title: Energy Krw
+      additionalProperties: false
+      type: object
+      required:
+      - index
+      - start_km
+      - end_km
+      - length_km
+      - payers
+      - energy_krw
+      title: SegmentOut
+    SettlementOut:
+      properties:
+        id:
+          type: string
+          title: Id
+        trip_id:
+          type: string
+          title: Trip Id
+        revision:
+          type: integer
+          title: Revision
+        state:
+          $ref: '#/components/schemas/SettlementState'
+        total_krw:
+          type: integer
+          title: Total Krw
+        energy_total_krw:
+          type: integer
+          title: Energy Total Krw
+        items_total_krw:
+          type: integer
+          title: Items Total Krw
+        distance_km:
+          type: string
+          title: Distance Km
+        consumption:
+          type: string
+          title: Consumption
+        consumption_unit:
+          type: string
+          enum:
+          - L
+          - kWh
+          title: Consumption Unit
+        equation:
+          type: string
+          title: Equation
+        efficiency_source:
+          $ref: '#/components/schemas/DataSource'
+        driver_included:
+          type: boolean
+          title: Driver Included
+        energy_policy:
+          $ref: '#/components/schemas/EnergyPolicy'
+        segments:
+          items:
+            $ref: '#/components/schemas/SegmentOut'
+          type: array
+          title: Segments
+        shares:
+          items:
+            $ref: '#/components/schemas/ShareOut'
+          type: array
+          title: Shares
+        warnings:
+          items:
+            $ref: '#/components/schemas/Issue'
+          type: array
+          title: Warnings
+        disclaimers:
+          items:
+            type: string
+          type: array
+          title: Disclaimers
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        engine_version:
+          type: string
+          title: Engine Version
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - trip_id
+      - revision
+      - state
+      - total_krw
+      - energy_total_krw
+      - items_total_krw
+      - distance_km
+      - consumption
+      - consumption_unit
+      - equation
+      - efficiency_source
+      - driver_included
+      - energy_policy
+      - segments
+      - shares
+      - warnings
+      - disclaimers
+      - created_at
+      - engine_version
+      title: SettlementOut
+    SettlementState:
+      type: string
+      enum:
+      - PROPOSED
+      - CONFIRMED
+      - DISPUTED
+      - SUPERSEDED
+      title: SettlementState
+    ShareLineOut:
+      properties:
+        item_id:
+          type: string
+          title: Item Id
+        label:
+          type: string
+          title: Label
+        amount_krw:
+          type: integer
+          title: Amount Krw
+      additionalProperties: false
+      type: object
+      required:
+      - item_id
+      - label
+      - amount_krw
+      title: ShareLineOut
+    ShareOut:
+      properties:
+        user_id:
+          type: string
+          title: User Id
+        nickname:
+          type: string
+          title: Nickname
+        is_driver:
+          type: boolean
+          title: Is Driver
+        total_krw:
+          type: integer
+          title: Total Krw
+        energy_krw:
+          type: integer
+          title: Energy Krw
+        items:
+          items:
+            $ref: '#/components/schemas/ShareLineOut'
+          type: array
+          title: Items
+        ridden_km:
+          type: string
+          title: Ridden Km
+        owed_to_driver_krw:
+          type: integer
+          title: Owed To Driver Krw
+        approval:
+          $ref: '#/components/schemas/ApprovalState'
+        comment:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Comment
+      additionalProperties: false
+      type: object
+      required:
+      - user_id
+      - nickname
+      - is_driver
+      - total_krw
+      - energy_krw
+      - items
+      - ridden_km
+      - owed_to_driver_krw
+      - approval
+      title: ShareOut
+    TripCreateIn:
+      properties:
+        id:
+          type: string
+          maxLength: 64
+          minLength: 8
+          pattern: ^[A-Za-z0-9_-]+$
+          title: Id
+        group_id:
+          type: string
+          maxLength: 64
+          minLength: 8
+          pattern: ^[A-Za-z0-9_-]+$
+          title: Group Id
+        vehicle_alias:
+          type: string
+          maxLength: 20
+          title: Vehicle Alias
+          default: ''
+        data_mode:
+          $ref: '#/components/schemas/DataSource'
+          description: PLEOS = values read from the vehicle SDK, MANUAL = typed in,
+            DEMO = simulated.
+        cost_rule:
+          $ref: '#/components/schemas/CostRuleIn'
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - group_id
+      - data_mode
+      - cost_rule
+      title: TripCreateIn
+    TripEndIn:
+      properties:
+        odometer:
+          $ref: '#/components/schemas/ReadingIn'
+          description: Last ODOMETER snapshot (type must be ODOMETER).
+      additionalProperties: false
+      type: object
+      required:
+      - odometer
+      title: TripEndIn
+    TripStartIn:
+      properties:
+        odometer:
+          $ref: '#/components/schemas/ReadingIn'
+          description: First ODOMETER snapshot (type must be ODOMETER).
+      additionalProperties: false
+      type: object
+      required:
+      - odometer
+      title: TripStartIn
+    TripState:
+      type: string
+      enum:
+      - DRAFT
+      - INVITING
+      - READY
+      - IN_PROGRESS
+      - ENDED
+      - REVIEW
+      - CONFIRMED
+      - INTERRUPTED
+      - CANCELLED
+      - DISPUTED
+      title: TripState
+    TripSummary:
+      properties:
+        id:
+          type: string
+          title: Id
+        group_id:
+          type: string
+          title: Group Id
+        group_name:
+          type: string
+          title: Group Name
+        state:
+          $ref: '#/components/schemas/TripState'
+        data_mode:
+          $ref: '#/components/schemas/DataSource'
+        vehicle_alias:
+          type: string
+          title: Vehicle Alias
+        driver_user_id:
+          type: string
+          title: Driver User Id
+        revision:
+          type: integer
+          title: Revision
+          description: Increases on every change; also used as the ETag.
+        started_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Started At
+        ended_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Ended At
+        odometer_start_km:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Odometer Start Km
+        odometer_end_km:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Odometer End Km
+        distance_km:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Distance Km
+        latest_odometer:
+          anyOf:
+          - $ref: '#/components/schemas/LatestOdometerOut'
+          - type: 'null'
+        cost_rule:
+          anyOf:
+          - $ref: '#/components/schemas/CostRuleOut'
+          - type: 'null'
+        cost_items:
+          items:
+            $ref: '#/components/schemas/CostItemOut'
+          type: array
+          title: Cost Items
+        participants:
+          items:
+            $ref: '#/components/schemas/ParticipantOut'
+          type: array
+          title: Participants
+        settlement:
+          anyOf:
+          - $ref: '#/components/schemas/SettlementOut'
+          - type: 'null'
+        issues:
+          items:
+            $ref: '#/components/schemas/Issue'
+          type: array
+          title: Issues
+          description: Warnings and blocking problems with the recorded data.
+        disclaimers:
+          items:
+            type: string
+          type: array
+          title: Disclaimers
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - group_id
+      - group_name
+      - state
+      - data_mode
+      - vehicle_alias
+      - driver_user_id
+      - revision
+      - started_at
+      - ended_at
+      - odometer_start_km
+      - odometer_end_km
+      - distance_km
+      - latest_odometer
+      - cost_rule
+      - cost_items
+      - participants
+      - settlement
+      - issues
+      - disclaimers
+      title: TripSummary
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    VehicleType:
+      type: string
+      enum:
+      - ICE
+      - EV
+      title: VehicleType

@@ -1,0 +1,6 @@
+-r requirements.in
+pytest
+httpx
+hypothesis
+openapi-spec-validator
+pyyaml

@@ -1,0 +1,13 @@
+{
+  "01-home": 853,
+  "02-join-ready": 915,
+  "03-waiting": 915,
+  "04-trip-inviting-board": 915,
+  "04b-trip-boarded-parked": 969,
+  "05-trip-driving-strip": 915,
+  "06-trip-alighted": 964,
+  "07-bill-top": 1169,
+  "07-bill-fullpage": 1169,
+  "08-bill-confirmed-copy": 1500,
+  "09-group": 1242
+}

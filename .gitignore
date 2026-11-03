@@ -1,0 +1,32 @@
+# secrets / local state
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+local.properties
+moata.db
+# python
+backend/.venv/
+__pycache__/
+.pytest_cache/
+.hypothesis/
+# node
+passenger-web/node_modules/
+passenger-web/.next/
+passenger-web/.next-e2e/
+passenger-web/playwright-report/
+passenger-web/test-results/
+# android
+car-app/.gradle/
+car-app/build/
+car-app/app/build/
+car-app/.kotlin/
+*.apk
+!apk/.gitkeep
+# local data
+*.db
+*.sqlite
+*.sqlite3
+.DS_Store
+.ruff_cache/

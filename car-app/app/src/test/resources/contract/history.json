@@ -1,0 +1,2 @@
+[{"trip_id":"44444444-4444-4444-8444-444444444444","started_at":"2026-11-02T02:00:00Z","state":"CONFIRMED","data_mode":"DEMO","distance_km":"24","total_krw":6000,"participant_count":3,"xp_gained":10},
+ {"trip_id":"55555555-5555-4555-8555-555555555555","started_at":null,"state":"CANCELLED","data_mode":"PLEOS","distance_km":null,"total_krw":null,"participant_count":1,"xp_gained":0}]
