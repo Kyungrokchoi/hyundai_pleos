@@ -5,7 +5,7 @@ type Tone = "info" | "warn" | "alert" | "ok" | "offline";
 const ICON = { info: IconInfo, warn: IconAlert, alert: IconAlert, ok: IconCheck, offline: IconOffline } as const;
 const CLASS = { info: "", warn: "", alert: " banner--alert", ok: " banner--ok", offline: "" } as const;
 
-// Status is never colour-only. `alert` is announced assertively.
+
 export function Notice({ tone = "info", title, children }: { tone?: Tone; title?: string; children?: ReactNode }) {
   const Icon = ICON[tone];
   return (

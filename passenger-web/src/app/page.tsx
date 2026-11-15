@@ -13,7 +13,7 @@ const STEPS = [
   ["내 몫을 확인해요", "얼마인지, 왜 그런지 보고 승인하거나 이의를 남겨요."],
 ] as const;
 
-// App copy only; the server's legal notices appear on the trip and bill screens.
+
 const NOTES = [
   "정산 금액은 거리와 연비·전비로 계산한 추정치예요. 실제 연료비나 전기요금과 다를 수 있어요.",
   "이 앱은 결제나 송금을 하지 않아요. 계산 결과만 보여 줘요.",

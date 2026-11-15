@@ -2,15 +2,17 @@ import type { Lane, Strip } from "@/lib/ride";
 import { pct } from "@/lib/ride";
 import { formatKm } from "@/lib/format";
 
-// The bars are aria-hidden; this text carries the same information.
+
 export function laneText(l: Lane, live: boolean): string {
   const first = l.spans[0];
   const last = l.spans[l.spans.length - 1];
   if (!first || !last) return "탄 구간이 없어요";
-  if (l.isDriver) return `${formatKm(0)}–${formatKm(first.to)}km 운전`;
-  const parts = l.spans.map((s) => `${formatKm(s.from)}–${formatKm(s.to)}km`);
-  const tail = last.exited ? ` · ${formatKm(last.to)}km에서 내림` : last.open && live ? " · 타는 중" : "";
-  return `${parts.join(", ")} 탑승${tail}${l.byDriver ? " · 운전자가 기록" : ""}`;
+  const length = l.spans.reduce((sum, s) => sum + Math.max(s.to - s.from, 0), 0);
+  if (l.isDriver) return `${formatKm(length)}km 운전`;
+
+  const gotOffLate = last.exited && (first.from > 0 || l.spans.length > 1);
+  const tail = gotOffLate ? ` · ${formatKm(last.to)}km에서 내림` : !last.exited && last.open && live ? " · 타는 중" : "";
+  return `${formatKm(length)}km 탑승${tail}${l.byDriver ? " · 운전자가 기록" : ""}`;
 }
 
 export function RideStrip({ strip, ticks = [], testId = "ride-strip" }: { strip: Strip; ticks?: number[]; testId?: string }) {

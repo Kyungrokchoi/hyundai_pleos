@@ -1,4 +1,3 @@
-"""Authentication, authorisation, invites, privacy and contract drift."""
 from datetime import timedelta
 from pathlib import Path
 
@@ -22,7 +21,7 @@ def test_outsider_and_pending_member_cannot_read_trip_or_group(client):
     t = Trip(client, passengers=("B",))
     outsider = Actor(client, "Eve")
     for path in (f"/trips/{t.trip_id}/summary", f"/groups/{t.group_id}", f"/groups/{t.group_id}/character", f"/groups/{t.group_id}/history"):
-        assert outsider.get(path).status_code == 404, path          # 404, not 403: existence is not revealed
+        assert outsider.get(path).status_code == 404, path
     pending = t.join("Pat", approve=False)
     assert pending.get(f"/trips/{t.trip_id}/summary").status_code == 404
     assert pending.post(f"/trips/{t.trip_id}/participants/me/board").status_code == 404
@@ -53,7 +52,7 @@ def test_passenger_cannot_board_for_others_or_pick_the_odometer(client):
     cid = t.riders["C"].id
     assert t.riders["B"].post(f"/trips/{t.trip_id}/participants/{cid}/board").status_code == 403
     assert t.riders["B"].post(f"/trips/{t.trip_id}/participants/me/board", {"odometer_km": 1}).status_code == 403
-    # the driver may act for a passenger (audited)
+
     assert t.driver.post(f"/trips/{t.trip_id}/participants/{cid}/board", {"odometer_km": 1000}).status_code == 200
 
 
@@ -63,7 +62,7 @@ def test_cannot_approve_someone_elses_settlement(client):
     sid = t.preview().json()["id"]
     eve = Actor(client, "Eve")
     assert eve.post(f"/settlements/{sid}/approvals", {"decision": "APPROVE"}).status_code == 404
-    other = Trip(client, passengers=("Z",))                     # member of ANOTHER group
+    other = Trip(client, passengers=("Z",))
     assert other.riders["Z"].post(f"/settlements/{sid}/approvals", {"decision": "APPROVE"}).status_code == 404
 
 
@@ -71,16 +70,16 @@ def test_it02_invite_expired_tampered_overused_and_unacknowledged(client, clock)
     t = Trip(client, passengers=())
     inv = t.invite(ttl_minutes=10, max_uses=1)
     body = {"nickname": "D", "consent_version": "v1", "rules_ack": True}
-    assert client.post(f"{P}/invites/accept", json={**body, "token": inv["token"][:-2] + "xx"}).status_code == 404   # tampered
+    assert client.post(f"{P}/invites/accept", json={**body, "token": inv["token"][:-2] + "xx"}).status_code == 404
     assert client.post(f"{P}/invites/accept", json={**body, "token": inv["token"], "rules_ack": False}).status_code == 422
     assert client.post(f"{P}/invites/accept", json={**body, "token": inv["token"]}).status_code == 201
     over = client.post(f"{P}/invites/accept", json={**body, "nickname": "E", "token": inv["token"]})
-    assert over.status_code == 410 and over.json()["code"] == "INVITE_EXPIRED"                                       # max_uses=1
+    assert over.status_code == 410 and over.json()["code"] == "INVITE_EXPIRED"
     fresh = t.invite(ttl_minutes=10)
     clock.advance(11 * 60)
     gone = client.post(f"{P}/invites/preview", json={"token": fresh["token"]})
     assert gone.status_code == 410 and "새 QR" in gone.json()["message_ko"]
-    # raw tokens are never stored
+
     with SessionLocal() as db:
         hashes = set(db.scalars(select(m.Invite.token_hash)))
         assert inv["token"] not in hashes and all(len(h) == 64 for h in hashes)
@@ -92,8 +91,8 @@ def test_invite_for_one_group_cannot_join_another_or_reach_trip(client):
     tok = a.invite()["token"]
     r = client.post(f"{P}/invites/accept", json={"token": tok, "nickname": "X", "consent_version": "v1", "rules_ack": True}).json()
     x = Actor.__new__(Actor); x.c, x.id, x.token = client, r["user_id"], r["token"]
-    assert x.get(f"/trips/{a.trip_id}/summary").status_code == 404      # still PENDING until the driver approves
-    assert x.get(f"/trips/{b.trip_id}/summary").status_code == 404      # never any access to the other group
+    assert x.get(f"/trips/{a.trip_id}/summary").status_code == 404
+    assert x.get(f"/trips/{b.trip_id}/summary").status_code == 404
 
 
 def test_rejected_member_cannot_rejoin(client):
@@ -109,12 +108,12 @@ def test_input_validation_and_limits(client):
     big = {"readings": [odo(1, "MANUAL") for _ in range(501)]}
     assert t.driver.post(f"/trips/{t.trip_id}/readings/batch", big).status_code == 422
     assert t.driver.post(f"/trips/{t.trip_id}/cost-items", {"id": uid(), "kind": "TOLL", "amount_krw": -5, "allocation": "EQUAL"}).status_code == 422
-    assert t.driver.post(f"/trips/{t.trip_id}/cost-items", {"id": uid(), "kind": "TOLL", "amount_krw": 10, "allocation": "EQUAL", "total_krw": 1}).status_code == 422  # unknown field
+    assert t.driver.post(f"/trips/{t.trip_id}/cost-items", {"id": uid(), "kind": "TOLL", "amount_krw": 10, "allocation": "EQUAL", "total_krw": 1}).status_code == 422
     assert client.post(f"{P}/auth/guest", json={"nickname": "", "consent_version": "v1"}).status_code == 422
     huge = client.post(f"{P}/auth/guest", content=b"x" * (300 * 1024), headers={"Content-Type": "application/json", "Content-Length": str(300 * 1024)})
     assert huge.status_code == 413
     t.ready_and_start()
-    # raw NaN from a client: rejected per reading, never a 500
+
     from app.db import models as m
     raw = ('{"readings":[{"event_id":"nan-event-001","type":"ODOMETER","value":NaN,"unit":"km",'
            f'"captured_at":"{m.utcnow().isoformat()}","source":"MANUAL","quality":"VERIFIED"}}]}}')
@@ -125,11 +124,10 @@ def test_input_validation_and_limits(client):
 
 
 def test_client_cannot_inject_totals_or_user_ids(client):
-    """Totals are computed from stored data; unknown fields are rejected outright."""
     t = Trip(client, passengers=("B",))
     t.ready_and_start(); t.board("B"); t.end(1024)
     r = t.driver.post(f"/trips/{t.trip_id}/settlements/preview", {"total_krw": 1})
-    assert r.status_code == 200 and r.json()["total_krw"] == 3600       # body ignored: nothing to inject
+    assert r.status_code == 200 and r.json()["total_krw"] == 3600
     bad = t.riders["B"].post(f"/trips/{t.trip_id}/participants/{t.driver.id}/board")
     assert bad.status_code in (403, 409)
 
@@ -138,7 +136,7 @@ def test_delete_group_removes_all_user_data(client):
     t = Trip(client, passengers=("B",))
     t.ready_and_start(); t.board("B"); t.drive(1010); t.toll(); t.end(1024)
     t.approve_all(t.preview().json()["id"])
-    assert t.riders["B"].delete(f"/groups/{t.group_id}").status_code == 403           # only the owner
+    assert t.riders["B"].delete(f"/groups/{t.group_id}").status_code == 403
     assert t.driver.delete(f"/groups/{t.group_id}").status_code == 204
     with SessionLocal() as db:
         for model in (m.Group, m.Trip, m.GroupMember, m.VehicleReading, m.Settlement, m.SettlementApproval, m.CostItem, m.RewardEvent,
@@ -151,7 +149,7 @@ def test_retention_purges_old_trips_only(client, clock):
     from app.services.privacy import purge_expired
     old = Trip(client, passengers=("B",))
     fresh = Trip(client, passengers=())
-    with SessionLocal() as db:   # column defaults ignore the patched clock, so set the ages explicitly
+    with SessionLocal() as db:
         db.get(m.Trip, old.trip_id).created_at = clock.now - timedelta(days=100)
         db.get(m.Trip, fresh.trip_id).created_at = clock.now - timedelta(days=1)
         db.commit()

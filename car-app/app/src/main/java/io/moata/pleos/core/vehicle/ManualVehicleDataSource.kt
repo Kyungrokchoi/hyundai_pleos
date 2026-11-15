@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 
-/** Dashboard values typed by the driver when the SDK is unavailable. Labelled MANUAL. */
+
 class ManualVehicleDataSource(private val now: () -> Long = System::currentTimeMillis) : VehicleDataSource {
     override val source = DataSource.MANUAL
     private val odometerKm = MutableStateFlow<Double?>(null)
@@ -31,7 +31,7 @@ class ManualVehicleDataSource(private val now: () -> Long = System::currentTimeM
     private fun from(type: SignalType, v: Double?, unit: String): VehicleSample {
         if (v == null) return VehicleSample(type, null, unit, now(), DataSource.MANUAL, Quality.UNAVAILABLE, null, "NOT_ENTERED: 아직 입력되지 않았어요")
         val (q, err) = SampleRules.classify(type, v)
-        val quality = if (q == Quality.VERIFIED) Quality.ESTIMATED else q // typed by a person, so never VERIFIED
+        val quality = if (q == Quality.VERIFIED) Quality.ESTIMATED else q
         return VehicleSample(type, v, unit, now(), DataSource.MANUAL, quality, null, err)
     }
 }

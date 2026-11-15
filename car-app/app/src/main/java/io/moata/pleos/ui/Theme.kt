@@ -20,11 +20,12 @@ val MoaYellow = Color(Tokens.MOA_YELLOW)
 val RouteTeal = Color(Tokens.ROUTE_TEAL)
 val TealText = Color(Tokens.TEAL_TEXT)
 val CoralText = Color(Tokens.CORAL_TEXT)
+val OkGreen = Color(Tokens.OK_GREEN)
 
-/** Spacing scale (dp). */
+
 object Space { val xs = 6.dp; val s = 12.dp; val m = 24.dp; val l = 36.dp; val xl = 56.dp; val touch = Tokens.MIN_TOUCH_DP.dp }
 
-// 160 dpi in-car display: body 28 sp, nothing below 26 sp, glanced-at numbers are huge.
+
 private val Type = Typography(
     displayLarge = TextStyle(fontSize = 120.sp, lineHeight = 128.sp, fontWeight = FontWeight.ExtraBold),
     headlineLarge = TextStyle(fontSize = 56.sp, lineHeight = 64.sp, fontWeight = FontWeight.Bold),
@@ -50,9 +51,9 @@ private val Scheme = darkColorScheme(
     outline = Muted,
 )
 
-/** The car UI is always high-contrast dark. */
+
 @Composable
 fun MoataTheme(content: @Composable () -> Unit) {
-    @Suppress("UNUSED_VARIABLE") val system = isSystemInDarkTheme() // ignored; the car UI is always dark
+    @Suppress("UNUSED_VARIABLE") val system = isSystemInDarkTheme()
     MaterialTheme(colorScheme = Scheme, typography = Type, content = content)
 }

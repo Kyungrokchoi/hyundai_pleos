@@ -4,7 +4,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-/** Fixed demo trip: 24 km at 12 km/L. */
+
 data class DemoFixture(
     val startKm: Double = 12_345.0,
     val totalKm: Double = 24.0,
@@ -13,7 +13,7 @@ data class DemoFixture(
     val kmPerKwh: Double = 5.0,
 )
 
-/** Simulated vehicle, used only when the driver picks DEMO. Samples are DEMO / ESTIMATED, never VERIFIED. */
+
 class DemoVehicleDataSource(
     private val fixture: DemoFixture = DemoFixture(),
     private val now: () -> Long = System::currentTimeMillis,
@@ -30,7 +30,7 @@ class DemoVehicleDataSource(
 
     override suspend fun read(type: SignalType): VehicleSample = when (type) {
         SignalType.ODOMETER -> demo(type, fixture.startKm + travelledKm)
-        // km/L, not the SDK's L/100km; the unit travels with the value
+
         SignalType.FUEL_ECONOMY -> demo(type, fixture.kmPerLiter, "km/L")
         SignalType.EV_EFFICIENCY -> demo(type, fixture.kmPerKwh)
         SignalType.EV_SOC -> VehicleSample(type, null, type.unit, now(), DataSource.DEMO, Quality.UNAVAILABLE, null, "NOT_SIMULATED")

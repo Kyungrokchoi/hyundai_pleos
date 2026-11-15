@@ -58,7 +58,7 @@ describe("visual rules", () => {
   });
   it("uses the yellow token only for the primary action", () => {
     const uses = [...css.matchAll(/var\(--moa\)/g)].length;
-    expect(uses).toBe(1); // .btn--primary
+    expect(uses).toBe(1);
   });
   it("action bar is sticky, safe-area aware, and the only elevation", () => {
     expect(css).toMatch(/\.action-bar\s*\{[^}]*position:\s*sticky[^}]*safe-area-inset-bottom/s);

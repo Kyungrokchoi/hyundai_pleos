@@ -2,7 +2,7 @@ import type { CostItemOut, Issue } from "@/api/types";
 import { formatKm, formatKrw, kmBetween } from "./format";
 import { ITEM_KIND } from "./labels";
 
-// Source-only warnings: the DEMO bar and source line already cover them, so no banner (text stays in the notices).
+
 const INFO_CODES = new Set(["DEMO_DATA", "MANUAL_DATA"]);
 
 export function splitIssues(issues: readonly Issue[]): { attention: Issue[]; info: Issue[] } {
@@ -22,20 +22,39 @@ export function ridingSentence(totalKm: string, riddenKm: string, isDriver: bool
   return `${formatKm(totalKm)}km 중 ${formatKm(riddenKm)}km를 함께 탔어요.`;
 }
 
-// Passengers see distance since the start, never raw odometer readings.
+
 export function sinceStart(startKm: string | null, km: string | null): string | null {
   if (km === null) return null;
   const d = kmBetween(startKm, km);
   return d === null ? null : formatKm(d);
 }
 
-// "통행료 · 고속도로": kind, then the driver's note.
-export function itemLabel(item: Pick<CostItemOut, "kind" | "note"> | undefined, fallback: string): string {
-  if (!item) return fallback || "추가 비용";
-  return item.note ? `${ITEM_KIND[item.kind]} · ${item.note}` : ITEM_KIND[item.kind];
+
+export const stripEstimate = (label: string): string => label.replace(/\s*·\s*추정\s*$/, "");
+
+
+export function itemLabel(item: Pick<CostItemOut, "kind" | "note" | "road_name"> | undefined, fallback: string): string {
+  if (!item) return stripEstimate(fallback) || "추가 비용";
+  return [ITEM_KIND[item.kind], item.road_name, item.note].filter(Boolean).join(" · ");
 }
 
-// Explains the split only; amounts and `payers` come from the server's shares.
+export interface BillFact { id: "distance" | "economy" | "price" | "toll"; label: string; value: string }
+
+
+export function billFacts(i: {
+  distanceKm: string | null | undefined; ev: boolean; efficiencyKmPerUnit: string | null | undefined;
+  unitPriceKrw: string | null | undefined; items: ReadonlyArray<Pick<CostItemOut, "kind" | "amount_krw">>;
+}): BillFact[] {
+  const tolls = i.items.filter((c) => c.kind === "TOLL");
+  return [
+    { id: "distance", label: "거리", value: i.distanceKm ? `${formatKm(i.distanceKm)}km` : "-" },
+    { id: "economy", label: "연비", value: i.efficiencyKmPerUnit ? `${formatKm(i.efficiencyKmPerUnit)} ${i.ev ? "km/kWh" : "km/L"}` : "-" },
+    { id: "price", label: "유가", value: i.unitPriceKrw ? `${formatKm(i.unitPriceKrw)}원/${i.ev ? "kWh" : "L"}` : "-" },
+    { id: "toll", label: "통행료", value: tolls.length > 0 ? formatKrw(tolls.reduce((sum, c) => sum + c.amount_krw, 0)) : "없음" },
+  ];
+}
+
+
 export function itemReason(item: Pick<CostItemOut, "allocation" | "amount_krw"> | undefined, payers: number): string | null {
   if (!item) return null;
   switch (item.allocation) {

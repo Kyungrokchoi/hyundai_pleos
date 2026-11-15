@@ -34,15 +34,15 @@ describe("rideStrip (display-only geometry of who rode where)", () => {
     const s = rideStrip(t, "b")!;
     expect(s.totalKm).toBe(16);
     expect(s.live).toBe(true);
-    expect(s.lanes.map((l) => l.nickname)).toEqual(["하늘", "별이", "달이"]); // pending members are not on the strip
+    expect(s.lanes.map((l) => l.nickname)).toEqual(["하늘", "별이", "달이"]);
     const [driver, me, other] = s.lanes;
     expect(driver!.spans).toEqual([{ from: 0, to: 16, open: true, exited: false }]);
     expect(me!.mine && me!.riddenKm).toBe(13);
     expect(me!.spans[0]!.exited).toBe(true);
     expect(other!.spans[0]).toMatchObject({ from: 0, to: 16, open: true });
-    expect(laneText(me!, true)).toBe("0–13km 탑승 · 13km에서 내림");
-    expect(laneText(other!, true)).toBe("0–16km 탑승 · 타는 중");
-    expect(laneText(driver!, true)).toBe("0–16km 운전");
+    expect(laneText(me!, true)).toBe("13km 탑승");
+    expect(laneText(other!, true)).toBe("16km 탑승 · 타는 중");
+    expect(laneText(driver!, true)).toBe("16km 운전");
   });
 
   it("alight then reboard gives two spans and sums only the ridden part", () => {
@@ -50,7 +50,7 @@ describe("rideStrip (display-only geometry of who rode where)", () => {
     const me = rideStrip(t, "b")!.lanes[0]!;
     expect(me.spans.map((x) => [x.from, x.to, x.exited])).toEqual([[0, 10, true], [15, 24, false]]);
     expect(me.riddenKm).toBe(19);
-    expect(laneText(me, false)).toBe("0–10km, 15–24km 탑승");
+    expect(laneText(me, false)).toBe("19km 탑승");
   });
 
   it("a pre-departure boarding with no on-odometer starts at 0; values are clamped to the trip", () => {
@@ -71,8 +71,8 @@ describe("rideStrip (display-only geometry of who rode where)", () => {
     const s = rideStrip(t, "b")!;
     const b = s.lanes.find((l) => l.userId === "b")!, c = s.lanes.find((l) => l.userId === "c")!;
     expect([b.byDriver, c.byDriver, s.lanes[0]!.byDriver]).toEqual([true, false, false]);
-    expect(laneText(b, true)).toBe("0–16km 탑승 · 타는 중 · 운전자가 기록");
-    expect(laneText(c, true)).toBe("0–16km 탑승 · 타는 중");
+    expect(laneText(b, true)).toBe("16km 탑승 · 타는 중 · 운전자가 기록");
+    expect(laneText(c, true)).toBe("16km 탑승 · 타는 중");
     expect(boardedByDriver(t.participants[1])).toBe(true);
     expect(boardedByDriver(t.participants[2])).toBe(false);
     expect(boardedByDriver(undefined)).toBe(false);
@@ -102,12 +102,23 @@ describe("mySegments (the plain division behind my fuel share)", () => {
   });
 });
 
-describe("groupSources (bill source line)", () => {
-  it("a car-read distance gets its own PLEOS row; typed values share the MANUAL row", async () => {
-    const { groupSources } = await import("@/lib/sources");
-    expect(groupSources([["거리", "PLEOS"], ["연비", "MANUAL"], ["유가", "MANUAL"], ["통행료·주차비", "MANUAL"]])).toEqual([
-      { source: "PLEOS", what: ["거리"] },
-      { source: "MANUAL", what: ["연비", "유가", "통행료·주차비"] },
-    ]);
+describe("laneText shows how long, never a km range", () => {
+  const lane = (spans: Array<[number, number, boolean?, boolean?]>, extra: Partial<{ isDriver: boolean; byDriver: boolean }> = {}) => ({
+    userId: "u", nickname: "별이", isDriver: false, mine: false, riddenKm: 0, byDriver: false, ...extra,
+    spans: spans.map(([from, to, exited = false, open = false]) => ({ from, to, exited, open })),
+  });
+  it("driver and rider over the whole trip: 24km 운전 / 24km 탑승", () => {
+    expect(laneText(lane([[0, 24]], { isDriver: true }), false)).toBe("24km 운전");
+    expect(laneText(lane([[0, 24]]), false)).toBe("24km 탑승");
+  });
+  it("a rider who got off midway shows their length; a late boarding also says where they got off", () => {
+    expect(laneText(lane([[0, 16, true]]), false)).toBe("16km 탑승");
+    expect(laneText(lane([[5, 13, true]]), false)).toBe("8km 탑승 · 13km에서 내림");
+  });
+  it("the driver-recorded suffix stays", () => {
+    expect(laneText(lane([[0, 24]], { byDriver: true }), false)).toBe("24km 탑승 · 운전자가 기록");
+  });
+  it("no km range (a dash between numbers) ever appears", () => {
+    for (const l of [lane([[0, 24]], { isDriver: true }), lane([[0, 10, true], [15, 24]]), lane([[3, 9, true]])]) expect(laneText(l, true)).not.toMatch(/\d–\d/);
   });
 });

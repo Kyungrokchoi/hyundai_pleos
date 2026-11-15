@@ -20,11 +20,11 @@ class RideLanesTest {
     @Test fun driverRidesEverythingPassengersTheirSpans() {
         val (total, lanes) = lanesFrom(trip(p("B", false, iv("1000", "1016")), p("A", true), p("C", false, iv("1000", "1024"))))!!
         assertEquals(24.0, total, 0.0)
-        assertEquals(listOf("A", "B", "C"), lanes.map { it.name })              // driver first
+        assertEquals(listOf("A", "B", "C"), lanes.map { it.name })
         assertEquals(listOf(0.0 to 24.0), lanes[0].spans)
         assertEquals(16.0, lanes[1].km, 1e-9)
         assertEquals(16.0, lanes[1].exitBefore(total)!!, 1e-9)
-        assertNull(lanes[2].exitBefore(total))                                // rode to the end: no exit marker
+        assertNull(lanes[2].exitBefore(total))
     }
 
     @Test fun reboardingGivesTwoSpansAndTheSum() {
@@ -60,7 +60,7 @@ class RideLanesTest {
     }
 }
 
-/** The Pleos emulator returns 0 from getCurrentDistanceDriven right after an app restart. */
+
 class ImplausibleOdometerTest {
     @Test fun zeroIsNeverAStartOrEnd() {
         org.junit.Assert.assertTrue(io.moata.pleos.core.vehicle.SampleRules.implausibleOdometer(0.0, null))
@@ -68,8 +68,8 @@ class ImplausibleOdometerTest {
     }
     @Test fun goingBackwardsBelowWhatThisCarReportedIsRejected() {
         org.junit.Assert.assertTrue(io.moata.pleos.core.vehicle.SampleRules.implausibleOdometer(50100.0, 50224.0))
-        assertFalse(io.moata.pleos.core.vehicle.SampleRules.implausibleOdometer(50224.2, 50224.5))   // sensor jitter within 0.5 km
+        assertFalse(io.moata.pleos.core.vehicle.SampleRules.implausibleOdometer(50224.2, 50224.5))
         assertFalse(io.moata.pleos.core.vehicle.SampleRules.implausibleOdometer(50230.0, 50224.0))
-        assertFalse(io.moata.pleos.core.vehicle.SampleRules.implausibleOdometer(12.0, null))         // a nearly new car is fine
+        assertFalse(io.moata.pleos.core.vehicle.SampleRules.implausibleOdometer(12.0, null))
     }
 }

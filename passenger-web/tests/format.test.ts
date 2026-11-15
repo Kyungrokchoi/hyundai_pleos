@@ -20,7 +20,7 @@ describe("formatters", () => {
   it("computes display-only distance between odometer readings", () => {
     expect(kmBetween("100", "124")).toBe("24");
     expect(kmBetween("100.2", "110.7")).toBe("10.5");
-    expect(kmBetween("124", "100")).toBeNull(); // odometer never goes backwards: show nothing, not a negative
+    expect(kmBetween("124", "100")).toBeNull();
     expect(kmBetween(null, "100")).toBeNull();
   });
   it("formats ages in Korean", () => {

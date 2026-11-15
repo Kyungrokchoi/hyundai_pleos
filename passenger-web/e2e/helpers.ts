@@ -15,7 +15,7 @@ export async function myUserId(page: Page): Promise<string> {
   return page.evaluate((k) => JSON.parse(window.localStorage.getItem(k) ?? "{}").userId as string, SESSION_KEY);
 }
 
-// The page redirects to /trip/<id> on its own after approval.
+
 export async function joinApproved(page: Page, driver: Driver, nickname: string) {
   await joinAs(page, await driver.invite(), nickname);
   await page.getByTestId("waiting").waitFor();
@@ -27,7 +27,7 @@ export function plantSession(page: Page, s: { userId: string; token: string; nic
   return page.addInitScript(([k, v]) => window.localStorage.setItem(k as string, v as string), [SESSION_KEY, JSON.stringify(s)]);
 }
 
-// Tap the summary like a user instead of setting [open].
+
 export async function openAccordion(page: Page, title: string | RegExp) {
   const summary = page.locator("summary", { hasText: title }).first();
   await summary.click();

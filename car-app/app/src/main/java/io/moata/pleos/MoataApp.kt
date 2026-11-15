@@ -15,11 +15,17 @@ import io.moata.pleos.data.local.MoataDatabase
 import io.moata.pleos.data.local.Session
 import io.moata.pleos.data.remote.ApiClient
 import io.moata.pleos.data.remote.DrainReport
+import io.moata.pleos.data.remote.OsmTileSource
 import io.moata.pleos.data.remote.OutboxProcessor
+import io.moata.pleos.domain.AndroidLocationSource
+import io.moata.pleos.domain.AutoTollLedger
 import io.moata.pleos.domain.CarUxStateSource
 import io.moata.pleos.domain.DrivingState
+import io.moata.pleos.domain.TileSource
+import io.moata.pleos.domain.TrackStore
 import io.moata.pleos.domain.TripRecorder
 import io.moata.pleos.domain.TripRepository
+import io.moata.pleos.domain.TripTracker
 import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -51,15 +57,18 @@ class AppContainer(val app: Application) {
     val outbox = OutboxProcessor(db.outbox(), api)
     val repo = TripRepository(db.trips(), db.outbox())
     val recorder = TripRecorder(repo, scope)
+    val tracker = TripTracker(TrackStore(File(app.filesDir, "tracks")), scope, AndroidLocationSource(app))
+    val tollLedger = AutoTollLedger(File(app.filesDir, "tolls"))
+    val tiles: TileSource = OsmTileSource(ApiClient.defaultClient(), File(app.cacheDir, "osm-tiles"))
     val ux = CarUxStateSource(app)
 
-    // The trip's data mode picks exactly one source; never substitute another.
+
     val pleos: PleosVehicleDataSource by lazy { PleosVehicleDataSource(RealPleosApis(app)) }
     val demo = DemoVehicleDataSource()
     val manual = ManualVehicleDataSource()
     fun source(mode: String): VehicleDataSource = when (mode) { "DEMO" -> demo; "MANUAL" -> manual; else -> pleos }
 
-    /** Debug-only parked/driving override for non-car images. Null uses the car's state. */
+
     val uxOverride = MutableStateFlow<DrivingState?>(null)
     val drivingState: StateFlow<DrivingState> =
         combine(ux.state, uxOverride) { real, o -> if (BuildConfig.DEMO_TOOLS) o ?: real else real }
@@ -69,7 +78,7 @@ class AppContainer(val app: Application) {
 
     fun start() {
         ux.start()
-        scope.launch { // cheap when the outbox is empty
+        scope.launch {
             while (true) {
                 if (session.signedIn) lastDrain.value = runCatching { outbox.drain() }.getOrNull()
                 delay(5_000)

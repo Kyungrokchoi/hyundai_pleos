@@ -1,4 +1,3 @@
-"""Builds the single read model (TripSummary) every client renders."""
 from __future__ import annotations
 
 from sqlalchemy import select
@@ -27,14 +26,14 @@ def build_summary(db: Session, trip: m.Trip, now, viewer_id: str) -> s.TripSumma
         ivs.setdefault(iv.user_id, []).append(iv)
 
     participants = []
-    for mem in sorted(members, key=lambda x: x.user_id != trip.driver_user_id):  # driver first
+    for mem in sorted(members, key=lambda x: x.user_id != trip.driver_user_id):
         if mem.status == "PENDING" and viewer_id not in (trip.driver_user_id, mem.user_id):
             continue
         mine = ivs.get(mem.user_id, [])
         participants.append(s.ParticipantOut(
             user_id=mem.user_id, nickname=mem.user.nickname, is_driver=mem.user_id == trip.driver_user_id,
             member_status=s.MemberStatus(mem.status),
-            on_board=trip.state in RIDING_STATES and any(i.onboard_at and not i.offboard_at for i in mine),  # a cancelled trip has nobody aboard
+            on_board=trip.state in RIDING_STATES and any(i.onboard_at and not i.offboard_at for i in mine),
             intervals=[s.IntervalOut(
                 id=i.id, user_id=i.user_id, onboard_at=i.onboard_at, offboard_at=i.offboard_at, odometer_on_km=nz(i.odometer_on_km),
                 odometer_off_km=nz(i.odometer_off_km), boundary_quality=s.Quality(i.boundary_quality),
@@ -49,12 +48,12 @@ def build_summary(db: Session, trip: m.Trip, now, viewer_id: str) -> s.TripSumma
     cr = trip.cost_rule
     rule_out = None
     if cr is not None:
-        eff, _ = effective_efficiency(db, trip)
+        eff, eff_source = effective_efficiency(db, trip)
         rule_out = s.CostRuleOut(
             vehicle_type=ce.VehicleType(cr.vehicle_type), efficiency_value=nz(cr.efficiency_value), efficiency_unit=cr.efficiency_unit,
             efficiency_km_per_unit=nz(eff.quantize(ce.Decimal("0.001"))) if eff is not None else None,
-            efficiency_source=ce.DataSource(cr.efficiency_source), unit_price_krw=nz(cr.unit_price_krw),
-            driver_included=cr.driver_included, energy_policy=ce.EnergyPolicy(cr.energy_policy))
+            efficiency_source=eff_source or ce.EfficiencySource(cr.efficiency_source), fuel_type=cr.fuel_type, unit_price_krw=nz(cr.unit_price_krw),
+            unit_price_source=cr.unit_price_source, driver_included=cr.driver_included, energy_policy=ce.EnergyPolicy(cr.energy_policy))
 
     settlement = st.latest_settlement(db, trip.id)
     distance = None
@@ -68,7 +67,8 @@ def build_summary(db: Session, trip: m.Trip, now, viewer_id: str) -> s.TripSumma
         ended_at=trip.ended_at, odometer_start_km=nz(trip.odometer_start_km), odometer_end_km=nz(trip.odometer_end_km),
         distance_km=distance, latest_odometer=latest, cost_rule=rule_out,
         cost_items=[s.CostItemOut(id=i.id, kind=s.ItemKind(i.kind), amount_krw=i.amount_krw, allocation=ce.Allocation(i.allocation),
-                                  note=i.note, created_by=i.created_by) for i in trip.items],
+                                  note=i.note, road_name=i.road_name, estimated=i.estimated,
+                                  input_source="ESTIMATE" if i.estimated else "MANUAL", created_by=i.created_by) for i in trip.items],
         participants=participants, settlement=st.to_out(settlement) if settlement else None,
         issues=_issues(db, trip, latest, settlement), disclaimers=[*DISCLAIMERS, *([MODE_NOTICE[trip.data_mode]])])
 

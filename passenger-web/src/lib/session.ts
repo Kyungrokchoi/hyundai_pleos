@@ -1,13 +1,13 @@
-// Bearer token in localStorage: no cookies means no CSRF, and the app has no third-party scripts or raw HTML.
-// The invite token only ever sits in sessionStorage (tab scoped) while the join form is open.
+
+
 export interface Session {
   userId: string;
   token: string;
   nickname: string;
-  /** Last joined group/trip, so a reload resumes the right screen. */
+
   groupId?: string;
   tripId?: string | null;
-  /** Waiting for the driver's approval. */
+
   pending?: boolean;
 }
 
@@ -27,7 +27,7 @@ export function loadSession(): Session | null {
   try {
     const s = JSON.parse(raw) as Partial<Session>;
     if (typeof s.userId === "string" && typeof s.token === "string" && typeof s.nickname === "string") return s as Session;
-  } catch { /* corrupt entry: treat as signed out */ }
+  } catch {  }
   return null;
 }
 export const SESSION_EVENT = "moata:session";
@@ -37,7 +37,7 @@ function notify(): void {
   if (typeof window !== "undefined") window.dispatchEvent(new Event(SESSION_EVENT));
 }
 export function saveSession(s: Session): void {
-  try { ls()?.setItem(KEY, JSON.stringify(s)); } catch { /* storage full or blocked */ }
+  try { ls()?.setItem(KEY, JSON.stringify(s)); } catch {  }
   notify();
 }
 export function updateSession(patch: Partial<Session>): Session | null {
@@ -48,7 +48,7 @@ export function updateSession(patch: Partial<Session>): Session | null {
   return next;
 }
 export function clearSession(): void {
-  try { ls()?.removeItem(KEY); } catch { /* ignore */ }
+  try { ls()?.removeItem(KEY); } catch {  }
   notify();
 }
 
@@ -57,13 +57,13 @@ function notifyInvite(): void {
   if (typeof window !== "undefined") window.dispatchEvent(new Event(INVITE_EVENT));
 }
 export function stashInviteToken(token: string): void {
-  try { ss()?.setItem(INVITE_KEY, token); } catch { /* ignore */ }
+  try { ss()?.setItem(INVITE_KEY, token); } catch {  }
   notifyInvite();
 }
 export function readInviteToken(): string | null {
   return ss()?.getItem(INVITE_KEY) ?? null;
 }
 export function dropInviteToken(): void {
-  try { ss()?.removeItem(INVITE_KEY); } catch { /* ignore */ }
+  try { ss()?.removeItem(INVITE_KEY); } catch {  }
   notifyInvite();
 }

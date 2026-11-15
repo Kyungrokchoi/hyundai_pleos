@@ -1,5 +1,5 @@
-// Re-exports of the generated schema.d.ts (`npm run gen:api`). Import API types from here only.
-// Decimals (km, prices, litres/kWh) arrive as strings.
+
+
 import type { components } from "./schema";
 
 type S = components["schemas"];

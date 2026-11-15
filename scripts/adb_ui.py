@@ -1,15 +1,4 @@
 #!/usr/bin/env python3
-"""Tiny adb UI driver for the emulator demo (stdlib only). Finds on-screen text via `uiautomator dump`.
-
-  adb_ui.py texts                 list visible text + bounds
-  adb_ui.py tap "동의하고"         tap the first node whose text contains the substring
-  adb_ui.py tapx "1"              tap the node whose text EXACTLY equals the argument (keypad keys)
-  adb_ui.py xy 1200 800           tap raw screen coordinates (px)
-  adb_ui.py type "Minjun"         `input text` (ASCII only: adb cannot type Hangul)
-  adb_ui.py shot out.png          screenshot
-  adb_ui.py key BACK|HOME|ENTER   key event
-Env: ADB (path), SERIAL (default emulator-5554).
-"""
 import os
 import re
 import subprocess

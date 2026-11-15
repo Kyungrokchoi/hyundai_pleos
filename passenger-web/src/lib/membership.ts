@@ -4,7 +4,7 @@ import type { MembershipOut, MemberStatus } from "@/api/types";
 import { updateSession, type Session } from "@/lib/session";
 import { useLoad } from "@/lib/useLoad";
 
-// A PENDING passenger polls this to learn the driver's decision.
+
 export async function fetchMyMembership(token: string, groupId: string, signal?: AbortSignal): Promise<MembershipOut> {
   return api.myMembership(token, groupId, signal);
 }
@@ -13,8 +13,8 @@ export async function fetchMyStatus(token: string, groupId: string, signal?: Abo
   return (await fetchMyMembership(token, groupId, signal)).status;
 }
 
-// The saved session may still point at an old trip, so re-point it at the group's open trip.
-// Returns null when no trip is open, undefined while loading.
+
+
 export function useCurrentTrip(session: Session | null | undefined): string | null | undefined {
   const groupId = session && !session.pending ? session.groupId ?? null : null;
   const res = useLoad<MembershipOut>(

@@ -9,17 +9,17 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-/**
- * One-shot diagnostic of the real Vehicle SDK, run from the debug screen or via `--ez moata.probe true`.
- * Each step ends as COMPLETE / FAILED / TIMEOUT / THREW; a COMPLETE with a null value is reported as null.
- */
+
+
+
+
 @Serializable
 data class ProbeStep(
     val id: String,
     val api: String,
     val documentedUnit: String? = null,
-    val outcome: String,            // COMPLETE | FAILED | TIMEOUT | THREW | SKIPPED
-    val value: String? = null,      // raw SDK value; null if COMPLETE with null
+    val outcome: String,
+    val value: String? = null,
     val valueIsNull: Boolean = false,
     val error: String? = null,
     val elapsedMs: Long = 0,
@@ -29,9 +29,9 @@ data class ProbeStep(
 data class ProbeListenerResult(
     val registered: Boolean,
     val registerError: String? = null,
-    val updates: List<String> = emptyList(),       // "<ms since register>:<value km>"
+    val updates: List<String> = emptyList(),
     val failures: List<String> = emptyList(),
-    val polledGetter: List<String> = emptyList(),   // getCurrentDistanceDriven polled each second in the same window
+    val polledGetter: List<String> = emptyList(),
     val windowMs: Long = 0,
     val unregistered: Boolean = false,
 )
@@ -46,7 +46,7 @@ data class ProbeReport(
     val steps: List<ProbeStep> = emptyList(),
     val listener: ProbeListenerResult? = null,
     val release: ProbeStep? = null,
-    /** Ordered event log; `release:*` must come after every `*:callback`. */
+
     val order: List<String> = emptyList(),
     val counts: Map<String, Int> = emptyMap(),
     val verdict: String = "NOT_RUN",
@@ -93,7 +93,7 @@ class PleosProbe(
         var listener: ProbeListenerResult? = null
         var release: ProbeStep? = null
         try {
-            // initialize() returns void; all we can prove is that it did not throw
+
             mark("initialize:call")
             val is0 = now()
             init = try {
@@ -117,7 +117,7 @@ class PleosProbe(
                 )
                 plan.forEach { steps += it() }
 
-                // units as documented in the SDK KDoc
+
                 steps += step<Float?>("get.odometer.current", "Odometer.getCurrentDistanceDriven", "km") { a, b -> apis.odometer.getCurrentDistanceDriven(a, b) }
                 steps += step<Float?>("get.odometer.trip.current", "Odometer.getTripCurrentDrivingDistance", "m") { a, b -> apis.odometer.getTripCurrentDrivingDistance(a, b) }
                 steps += step<Float?>("get.odometer.trip.cumulative", "Odometer.getTripCumulativeDrivingDistance", "m") { a, b -> apis.odometer.getTripCumulativeDrivingDistance(a, b) }
@@ -128,11 +128,11 @@ class PleosProbe(
                 steps += step<Float?>("get.ev.efficiency.cumulative", "EvBattery.getCumulativeEvEfficiency", "km/kWh") { a, b -> apis.evBattery.getCumulativeEvEfficiency(a, b) }
                 steps += step<Int?>("get.ev.soc", "EvBattery.getEvBatteryStateOfCharge", "%") { a, b -> apis.evBattery.getEvBatteryStateOfCharge(a, b) }
 
-                // change the distance in the Virtual Console during this window
+
                 listener = listen()
             }
         } finally {
-            // release only after every callback above has finished
+
             mark("release:call")
             val r0 = now()
             release = try {

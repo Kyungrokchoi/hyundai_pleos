@@ -11,7 +11,7 @@ describe("invite token fragment", () => {
     expect(parseTokenFragment("#")).toBeNull();
     expect(parseTokenFragment("#short")).toBeNull();
     expect(parseTokenFragment(`#${TOKEN}<script>`)).toBeNull();
-    expect(parseTokenFragment("#%E0%A4%A")).toBeNull(); // malformed percent-encoding must not throw
+    expect(parseTokenFragment("#%E0%A4%A")).toBeNull();
   });
   it("never accepts query-string style input", () => {
     expect(parseTokenFragment(`?t=${TOKEN}`)).toBeNull();

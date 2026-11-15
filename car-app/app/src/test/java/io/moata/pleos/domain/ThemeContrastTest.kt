@@ -5,7 +5,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-/** Every text/background pair the UI uses must reach WCAG AA (4.5:1). */
+
 class ThemeContrastTest {
     private fun ok(name: String, fg: Long, bg: Long, min: Double = 4.5) {
         val r = Tokens.contrast(fg, bg)
@@ -35,19 +35,37 @@ class ThemeContrastTest {
     }
 
     @Test fun messageBarButtonsUseInkOnTheColouredBar() {
-        // "다시 시도"/"닫기" on the coral or teal bar use ink text and outline; paper there is ~2:1
+
         ok("banner button ink on coral", Tokens.INK, Tokens.CORAL_TEXT)
         ok("banner button ink on teal", Tokens.INK, Tokens.TEAL_TEXT)
         assertTrue(Tokens.contrast(Tokens.PAPER, Tokens.CORAL_TEXT) < 3.0)
     }
 
     @Test fun rideLaneSpansAreVisibleNonText() {
-        // WCAG 1.4.11 non-text contrast (3:1); the km text carries the value anyway
+
         ok("lane span tealText on surfaceHi track", Tokens.TEAL_TEXT, Tokens.SURFACE_HI, min = 3.0)
     }
 
+    @Test fun earnedBadgeGreenIsReadableAndVisible() {
+
+        ok("green on surface card", Tokens.OK_GREEN, Tokens.SURFACE, min = 3.0)
+        ok("green on surfaceHi", Tokens.OK_GREEN, Tokens.SURFACE_HI, min = 3.0)
+        ok("green as text on surface", Tokens.OK_GREEN, Tokens.SURFACE)
+        ok("ink on green fill", Tokens.INK, Tokens.OK_GREEN)
+        ok("muted empty-box frame on surface", Tokens.MUTED, Tokens.SURFACE, min = 3.0)
+    }
+
+    @Test fun xpGaugeYellowStandsOutFromItsTrack() {
+        ok("gauge fill yellow on track", Tokens.MOA_YELLOW, Tokens.SURFACE_HI, min = 3.0)
+    }
+
+    @Test fun circuitGlyphRoadIsVisibleOnTheRowCard() {
+        ok("light road on row card", Tokens.PAPER, Tokens.SURFACE_HI, min = 3.0)
+        ok("dark road edge against the light road", Tokens.INK, Tokens.PAPER, min = 3.0)
+    }
+
     @Test fun documentsWhyBrandCoralIsNotUsedForText() {
-        // brand coral is 4.08:1 on ink, below AA, so it is decorative only
+
         assertTrue(Tokens.contrast(Tokens.ALERT_CORAL, Tokens.INK) < 4.5)
     }
 

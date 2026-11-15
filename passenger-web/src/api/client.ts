@@ -1,4 +1,4 @@
-// Typed fetch wrapper for the MOATA API; the only module that calls fetch().
+
 import { ApiError, NetworkError, parseErrorBody } from "@/lib/errors";
 import type {
   ApprovalIn, AuthOut, BoardingIn, CharacterOut, CouponOut, GroupOut, HistoryItem, InviteAcceptIn,
@@ -7,7 +7,7 @@ import type {
 
 const DEFAULT_PORT = 8000;
 
-// Falls back to <page host>:8000 so a phone on the LAN reaches the PC's API.
+
 export function getApiBase(): string {
   const env = process.env.NEXT_PUBLIC_API_BASE;
   if (env && env.trim()) return env.trim().replace(/\/+$/, "");
@@ -76,11 +76,11 @@ export const api = {
   logout: (token: string) => data<unknown>("/auth/logout", { method: "POST", token }),
 
   listGroups: (token: string, signal?: AbortSignal) => data<GroupOut[]>("/groups", { token, signal }),
-  // Own membership in any status, including PENDING and REJECTED.
+
   myMembership: (token: string, groupId: string, signal?: AbortSignal) => data<MembershipOut>(`/groups/${enc(groupId)}/me`, { token, signal }),
   getGroup: (token: string, id: string, signal?: AbortSignal) => data<GroupOut>(`/groups/${enc(id)}`, { token, signal }),
 
-  // Conditional GET; 304 resolves to { status: "not-modified" }.
+
   tripSummary: (token: string, id: string, etag: string | null, signal?: AbortSignal) =>
     request<TripSummary>(`/trips/${enc(id)}/summary`, { token, etag, signal }),
 

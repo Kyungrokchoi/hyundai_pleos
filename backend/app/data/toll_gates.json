@@ -1,0 +1,8525 @@
+[
+ {
+  "id": "276379770",
+  "name": "유성",
+  "lat": 36.3644282,
+  "lon": 127.3285729,
+  "kind": "toll_booth",
+  "unit_code": "152",
+  "ambiguous": false
+ },
+ {
+  "id": "277839298",
+  "name": "남청주요금소",
+  "lat": 36.5340598,
+  "lon": 127.423643,
+  "kind": "toll_booth",
+  "unit_code": "112",
+  "ambiguous": false
+ },
+ {
+  "id": "281009444",
+  "name": "남상주요금소",
+  "lat": 36.3720052,
+  "lon": 128.1425523,
+  "kind": "toll_booth",
+  "unit_code": "536",
+  "ambiguous": false
+ },
+ {
+  "id": "304240922",
+  "name": "신탄진요금소",
+  "lat": 36.4394785,
+  "lon": 127.4221783,
+  "kind": "toll_booth",
+  "unit_code": "113",
+  "ambiguous": false
+ },
+ {
+  "id": "306416749",
+  "name": "논산",
+  "lat": 36.1235036,
+  "lon": 127.1324591,
+  "kind": "toll_booth",
+  "unit_code": "155",
+  "ambiguous": false
+ },
+ {
+  "id": "306416924",
+  "name": "연무강경",
+  "lat": 36.144404,
+  "lon": 127.0576956,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "313729598",
+  "name": "서상",
+  "lat": 35.6666228,
+  "lon": 127.6796033,
+  "kind": "toll_booth",
+  "unit_code": "170",
+  "ambiguous": false
+ },
+ {
+  "id": "367859927",
+  "name": "의성 요금소",
+  "lat": 36.2882202,
+  "lon": 128.5780032,
+  "kind": "toll_booth",
+  "unit_code": "206",
+  "ambiguous": false
+ },
+ {
+  "id": "369765582",
+  "name": "북대구",
+  "lat": 35.9115684,
+  "lon": 128.5838355,
+  "kind": "toll_booth",
+  "unit_code": "129",
+  "ambiguous": false
+ },
+ {
+  "id": "369765620",
+  "name": "북대구",
+  "lat": 35.9117273,
+  "lon": 128.58374,
+  "kind": "toll_booth",
+  "unit_code": "129",
+  "ambiguous": false
+ },
+ {
+  "id": "387773250",
+  "name": "단성 출구",
+  "lat": 35.2932497,
+  "lon": 127.9540079,
+  "kind": "toll_booth",
+  "unit_code": "223",
+  "ambiguous": false
+ },
+ {
+  "id": "390313203",
+  "name": "통영",
+  "lat": 34.8688865,
+  "lon": 128.4328288,
+  "kind": "toll_booth",
+  "unit_code": "516",
+  "ambiguous": false
+ },
+ {
+  "id": "390313269",
+  "name": "통영",
+  "lat": 34.8690772,
+  "lon": 128.4329514,
+  "kind": "toll_booth",
+  "unit_code": "516",
+  "ambiguous": false
+ },
+ {
+  "id": "405407281",
+  "name": "서안동 요금소",
+  "lat": 36.5884692,
+  "lon": 128.6212816,
+  "kind": "toll_booth",
+  "unit_code": "208",
+  "ambiguous": false
+ },
+ {
+  "id": "414675839",
+  "name": "대화요금소",
+  "lat": 36.3744665,
+  "lon": 127.4036945,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "414679878",
+  "name": "평창요금소",
+  "lat": 37.5870366,
+  "lon": 128.4126615,
+  "kind": "toll_booth",
+  "unit_code": "185",
+  "ambiguous": false
+ },
+ {
+  "id": "414679969",
+  "name": "홍성요금소",
+  "lat": 36.5954625,
+  "lon": 126.5617638,
+  "kind": "toll_booth",
+  "unit_code": "257",
+  "ambiguous": false
+ },
+ {
+  "id": "414679977",
+  "name": "해미요금소",
+  "lat": 36.708366,
+  "lon": 126.5572121,
+  "kind": "toll_booth",
+  "unit_code": "299",
+  "ambiguous": false
+ },
+ {
+  "id": "414680001",
+  "name": "서산요금소",
+  "lat": 36.8098421,
+  "lon": 126.5690307,
+  "kind": "toll_booth",
+  "unit_code": "298",
+  "ambiguous": false
+ },
+ {
+  "id": "414680015",
+  "name": "당진요금소",
+  "lat": 36.8952342,
+  "lon": 126.702376,
+  "kind": "toll_booth",
+  "unit_code": "288",
+  "ambiguous": false
+ },
+ {
+  "id": "414680021",
+  "name": "송악요금소",
+  "lat": 36.9345991,
+  "lon": 126.7853754,
+  "kind": "toll_booth",
+  "unit_code": "287",
+  "ambiguous": false
+ },
+ {
+  "id": "414680032",
+  "name": "제천요금소",
+  "lat": 37.1314652,
+  "lon": 128.1381551,
+  "kind": "toll_booth",
+  "unit_code": "240",
+  "ambiguous": false
+ },
+ {
+  "id": "414680069",
+  "name": "괴산요금소",
+  "lat": 36.8632353,
+  "lon": 127.9240894,
+  "kind": "toll_booth",
+  "unit_code": "563",
+  "ambiguous": false
+ },
+ {
+  "id": "414680072",
+  "name": "충주요금소",
+  "lat": 36.9729283,
+  "lon": 127.8400601,
+  "kind": "toll_booth",
+  "unit_code": "562",
+  "ambiguous": false
+ },
+ {
+  "id": "414680184",
+  "name": "서논산요금소",
+  "lat": 36.2211887,
+  "lon": 127.0580049,
+  "kind": "toll_booth",
+  "unit_code": "606",
+  "ambiguous": false
+ },
+ {
+  "id": "414680195",
+  "name": "남공주",
+  "lat": 36.423531,
+  "lon": 127.0864903,
+  "kind": "toll_booth",
+  "unit_code": "604",
+  "ambiguous": false
+ },
+ {
+  "id": "414680206",
+  "name": "탄천요금소",
+  "lat": 36.3011184,
+  "lon": 127.0699926,
+  "kind": "toll_booth",
+  "unit_code": "605",
+  "ambiguous": false
+ },
+ {
+  "id": "414680811",
+  "name": "청통와촌 요금소",
+  "lat": 35.96606,
+  "lon": 128.83007,
+  "kind": "toll_booth",
+  "unit_code": "524",
+  "ambiguous": false
+ },
+ {
+  "id": "414680826",
+  "name": "지수 요금소",
+  "lat": 35.2280022,
+  "lon": 128.2669108,
+  "kind": "toll_booth",
+  "unit_code": "296",
+  "ambiguous": false
+ },
+ {
+  "id": "414680877",
+  "name": "북창원",
+  "lat": 35.2929531,
+  "lon": 128.6080842,
+  "kind": "toll_booth",
+  "unit_code": "294",
+  "ambiguous": false
+ },
+ {
+  "id": "414680892",
+  "name": "영산",
+  "lat": 35.4514536,
+  "lon": 128.5097658,
+  "kind": "toll_booth",
+  "unit_code": "236",
+  "ambiguous": false
+ },
+ {
+  "id": "414680938",
+  "name": "부안요금소",
+  "lat": 35.7273194,
+  "lon": 126.7731488,
+  "kind": "toll_booth",
+  "unit_code": "502",
+  "ambiguous": false
+ },
+ {
+  "id": "414681026",
+  "name": "대동 요금소",
+  "lat": 35.2559237,
+  "lon": 128.9835488,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "414691300",
+  "name": "비봉",
+  "lat": 37.2440582,
+  "lon": 126.8868007,
+  "kind": "toll_booth",
+  "unit_code": "282",
+  "ambiguous": false
+ },
+ {
+  "id": "414691370",
+  "name": "발안요금소",
+  "lat": 37.1215046,
+  "lon": 126.8873399,
+  "kind": "toll_booth",
+  "unit_code": "283",
+  "ambiguous": false
+ },
+ {
+  "id": "414691638",
+  "name": "토평",
+  "lat": 37.5812854,
+  "lon": 127.1575335,
+  "kind": "toll_booth",
+  "unit_code": "063",
+  "ambiguous": false
+ },
+ {
+  "id": "414691935",
+  "name": "서울",
+  "lat": 37.3652627,
+  "lon": 127.1038655,
+  "kind": "toll_booth",
+  "unit_code": "101",
+  "ambiguous": false
+ },
+ {
+  "id": "414692107",
+  "name": "청북 요금소",
+  "lat": 37.05131,
+  "lon": 126.92524,
+  "kind": "toll_booth",
+  "unit_code": "540",
+  "ambiguous": false
+ },
+ {
+  "id": "414692560",
+  "name": "마성톨게이트",
+  "lat": 37.2850807,
+  "lon": 127.1769582,
+  "kind": "toll_booth",
+  "unit_code": "171",
+  "ambiguous": false
+ },
+ {
+  "id": "414692594",
+  "name": "군자요금소",
+  "lat": 37.3578199,
+  "lon": 126.7803207,
+  "kind": "toll_booth",
+  "unit_code": "254",
+  "ambiguous": false
+ },
+ {
+  "id": "414692650",
+  "name": "인천",
+  "lat": 37.5235337,
+  "lon": 126.7483969,
+  "kind": "toll_booth",
+  "unit_code": "011",
+  "ambiguous": false
+ },
+ {
+  "id": "414692651",
+  "name": "시흥",
+  "lat": 37.4513232,
+  "lon": 126.8037648,
+  "kind": "toll_booth",
+  "unit_code": "067",
+  "ambiguous": false
+ },
+ {
+  "id": "414692655",
+  "name": "서서울TG",
+  "lat": 37.3557877,
+  "lon": 126.8635987,
+  "kind": "toll_booth",
+  "unit_code": "253",
+  "ambiguous": false
+ },
+ {
+  "id": "414721894",
+  "name": "무주",
+  "lat": 35.9762487,
+  "lon": 127.6526213,
+  "kind": "toll_booth",
+  "unit_code": "164",
+  "ambiguous": false
+ },
+ {
+  "id": "414871329",
+  "name": "원적산터널요금소",
+  "lat": 37.5093066,
+  "lon": 126.6964868,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "414885716",
+  "name": "불암산요금소",
+  "lat": 37.6521722,
+  "lon": 127.1219515,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "414945983",
+  "name": "보은요금소",
+  "lat": 36.4534587,
+  "lon": 127.7227959,
+  "kind": "toll_booth",
+  "unit_code": "533",
+  "ambiguous": false
+ },
+ {
+  "id": "414946005",
+  "name": "진안",
+  "lat": 35.7691401,
+  "lon": 127.4387335,
+  "kind": "toll_booth",
+  "unit_code": "546",
+  "ambiguous": false
+ },
+ {
+  "id": "414946434",
+  "name": "남성주요금소",
+  "lat": 35.8391636,
+  "lon": 128.3277221,
+  "kind": "toll_booth",
+  "unit_code": "539",
+  "ambiguous": false
+ },
+ {
+  "id": "414946441",
+  "name": "남안성요금소",
+  "lat": 36.9771165,
+  "lon": 127.2480987,
+  "kind": "toll_booth",
+  "unit_code": "543",
+  "ambiguous": false
+ },
+ {
+  "id": "414946449",
+  "name": "남강릉요금소",
+  "lat": 37.6968502,
+  "lon": 128.8966154,
+  "kind": "toll_booth",
+  "unit_code": "584",
+  "ambiguous": false
+ },
+ {
+  "id": "436202155",
+  "name": "남원",
+  "lat": 35.4274164,
+  "lon": 127.3990908,
+  "kind": "toll_booth",
+  "unit_code": "247",
+  "ambiguous": false
+ },
+ {
+  "id": "436228303",
+  "name": "서부산",
+  "lat": 35.1725721,
+  "lon": 128.8723309,
+  "kind": "toll_gantry",
+  "unit_code": "244",
+  "ambiguous": false
+ },
+ {
+  "id": "436228614",
+  "name": "서부산",
+  "lat": 35.1723765,
+  "lon": 128.8729856,
+  "kind": "toll_gantry",
+  "unit_code": "244",
+  "ambiguous": false
+ },
+ {
+  "id": "436240589",
+  "name": "남양양요금소",
+  "lat": 37.9181238,
+  "lon": 128.7959151,
+  "kind": "toll_booth",
+  "unit_code": "284",
+  "ambiguous": false
+ },
+ {
+  "id": "436240753",
+  "name": "남양양요금소",
+  "lat": 37.9179787,
+  "lon": 128.7962295,
+  "kind": "toll_booth",
+  "unit_code": "284",
+  "ambiguous": false
+ },
+ {
+  "id": "436242635",
+  "name": "동해",
+  "lat": 37.5118231,
+  "lon": 129.0994567,
+  "kind": "toll_booth",
+  "unit_code": "583",
+  "ambiguous": false
+ },
+ {
+  "id": "436242694",
+  "name": "동해",
+  "lat": 37.512071,
+  "lon": 129.0993908,
+  "kind": "toll_booth",
+  "unit_code": "583",
+  "ambiguous": false
+ },
+ {
+  "id": "436244643",
+  "name": "강릉",
+  "lat": 37.7467692,
+  "lon": 128.8474851,
+  "kind": "toll_booth",
+  "unit_code": "189",
+  "ambiguous": false
+ },
+ {
+  "id": "436244746",
+  "name": "옥계요금소",
+  "lat": 37.6160721,
+  "lon": 129.0348207,
+  "kind": "toll_booth",
+  "unit_code": "581",
+  "ambiguous": false
+ },
+ {
+  "id": "436244858",
+  "name": "옥계요금소",
+  "lat": 37.6161785,
+  "lon": 129.0350318,
+  "kind": "toll_booth",
+  "unit_code": "581",
+  "ambiguous": false
+ },
+ {
+  "id": "436246973",
+  "name": "온양",
+  "lat": 35.41872,
+  "lon": 129.26144,
+  "kind": "toll_booth",
+  "unit_code": "644",
+  "ambiguous": false
+ },
+ {
+  "id": "436247079",
+  "name": "장안",
+  "lat": 35.3288278,
+  "lon": 129.2413513,
+  "kind": "toll_booth",
+  "unit_code": "645",
+  "ambiguous": false
+ },
+ {
+  "id": "436247184",
+  "name": "온양",
+  "lat": 35.41865,
+  "lon": 129.26158,
+  "kind": "toll_booth",
+  "unit_code": "644",
+  "ambiguous": false
+ },
+ {
+  "id": "436247407",
+  "name": "장안",
+  "lat": 35.3289249,
+  "lon": 129.2412956,
+  "kind": "toll_booth",
+  "unit_code": "645",
+  "ambiguous": false
+ },
+ {
+  "id": "436247974",
+  "name": "조양",
+  "lat": 37.7572012,
+  "lon": 127.7822082,
+  "kind": "toll_booth",
+  "unit_code": "658",
+  "ambiguous": false
+ },
+ {
+  "id": "436248010",
+  "name": "조양",
+  "lat": 37.7583919,
+  "lon": 127.780232,
+  "kind": "toll_booth",
+  "unit_code": "658",
+  "ambiguous": false
+ },
+ {
+  "id": "436248032",
+  "name": "남춘천",
+  "lat": 37.7509316,
+  "lon": 127.7263759,
+  "kind": "toll_booth",
+  "unit_code": "656",
+  "ambiguous": false
+ },
+ {
+  "id": "436248259",
+  "name": "강촌",
+  "lat": 37.7379317,
+  "lon": 127.6268911,
+  "kind": "toll_booth",
+  "unit_code": "655",
+  "ambiguous": false
+ },
+ {
+  "id": "436248398",
+  "name": "남춘천",
+  "lat": 37.7508589,
+  "lon": 127.726449,
+  "kind": "toll_booth",
+  "unit_code": "656",
+  "ambiguous": false
+ },
+ {
+  "id": "436292013",
+  "name": "북영천 요금소",
+  "lat": 36.0302519,
+  "lon": 128.9222928,
+  "kind": "toll_booth",
+  "unit_code": "525",
+  "ambiguous": false
+ },
+ {
+  "id": "436292800",
+  "name": "북영천 요금소",
+  "lat": 36.0303872,
+  "lon": 128.9221881,
+  "kind": "toll_booth",
+  "unit_code": "525",
+  "ambiguous": false
+ },
+ {
+  "id": "436294773",
+  "name": "서이천요금소",
+  "lat": 37.279132,
+  "lon": 127.3963617,
+  "kind": "toll_booth",
+  "unit_code": "194",
+  "ambiguous": false
+ },
+ {
+  "id": "436295787",
+  "name": "동서울",
+  "lat": 37.5171508,
+  "lon": 127.221754,
+  "kind": "toll_gantry",
+  "unit_code": "190",
+  "ambiguous": false
+ },
+ {
+  "id": "436296492",
+  "name": "동서울",
+  "lat": 37.5175154,
+  "lon": 127.2213345,
+  "kind": "toll_gantry",
+  "unit_code": "190",
+  "ambiguous": false
+ },
+ {
+  "id": "436298155",
+  "name": "서상",
+  "lat": 35.6665431,
+  "lon": 127.6795983,
+  "kind": "toll_booth",
+  "unit_code": "170",
+  "ambiguous": false
+ },
+ {
+  "id": "436298173",
+  "name": "생초",
+  "lat": 35.4851661,
+  "lon": 127.8291411,
+  "kind": "toll_booth",
+  "unit_code": "221",
+  "ambiguous": false
+ },
+ {
+  "id": "436309020",
+  "name": "상주요금소",
+  "lat": 36.4217781,
+  "lon": 128.2066757,
+  "kind": "toll_booth",
+  "unit_code": "124",
+  "ambiguous": false
+ },
+ {
+  "id": "436314467",
+  "name": "상주요금소",
+  "lat": 36.4216516,
+  "lon": 128.2067247,
+  "kind": "toll_booth",
+  "unit_code": "124",
+  "ambiguous": false
+ },
+ {
+  "id": "436315940",
+  "name": "칠서",
+  "lat": 35.3234007,
+  "lon": 128.5097188,
+  "kind": "toll_booth",
+  "unit_code": "238",
+  "ambiguous": false
+ },
+ {
+  "id": "436315954",
+  "name": "창녕",
+  "lat": 35.5406943,
+  "lon": 128.4788753,
+  "kind": "toll_booth",
+  "unit_code": "235",
+  "ambiguous": false
+ },
+ {
+  "id": "436315961",
+  "name": "창녕",
+  "lat": 35.5406982,
+  "lon": 128.4789766,
+  "kind": "toll_booth",
+  "unit_code": "235",
+  "ambiguous": false
+ },
+ {
+  "id": "436316013",
+  "name": "칠서",
+  "lat": 35.3233673,
+  "lon": 128.5095981,
+  "kind": "toll_booth",
+  "unit_code": "238",
+  "ambiguous": false
+ },
+ {
+  "id": "436316172",
+  "name": "칠원",
+  "lat": 35.2804324,
+  "lon": 128.5136147,
+  "kind": "toll_booth",
+  "unit_code": "239",
+  "ambiguous": false
+ },
+ {
+  "id": "436326233",
+  "name": "서대구TG",
+  "lat": 35.8845012,
+  "lon": 128.5259135,
+  "kind": "toll_booth",
+  "unit_code": "127",
+  "ambiguous": false
+ },
+ {
+  "id": "436332451",
+  "name": "군위 요금소",
+  "lat": 36.2003986,
+  "lon": 128.5630167,
+  "kind": "toll_booth",
+  "unit_code": "205",
+  "ambiguous": false
+ },
+ {
+  "id": "436332503",
+  "name": "군위 요금소",
+  "lat": 36.200401,
+  "lon": 128.5631728,
+  "kind": "toll_booth",
+  "unit_code": "205",
+  "ambiguous": false
+ },
+ {
+  "id": "436332606",
+  "name": "의성 요금소",
+  "lat": 36.2882934,
+  "lon": 128.5781814,
+  "kind": "toll_booth",
+  "unit_code": "206",
+  "ambiguous": false
+ },
+ {
+  "id": "436335408",
+  "name": "가산 요금소",
+  "lat": 36.0923812,
+  "lon": 128.535901,
+  "kind": "toll_booth",
+  "unit_code": "203",
+  "ambiguous": false
+ },
+ {
+  "id": "436340105",
+  "name": "대동 요금소",
+  "lat": 35.255867,
+  "lon": 128.9829561,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "436342183",
+  "name": "남논산",
+  "lat": 36.1072647,
+  "lon": 127.0786406,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "436347506",
+  "name": "화서요금소",
+  "lat": 36.4444279,
+  "lon": 127.9586971,
+  "kind": "toll_booth",
+  "unit_code": "535",
+  "ambiguous": false
+ },
+ {
+  "id": "436347593",
+  "name": "화서요금소",
+  "lat": 36.4446249,
+  "lon": 127.9586866,
+  "kind": "toll_booth",
+  "unit_code": "535",
+  "ambiguous": false
+ },
+ {
+  "id": "436349509",
+  "name": "남안성요금소",
+  "lat": 36.9769871,
+  "lon": 127.2481469,
+  "kind": "toll_booth",
+  "unit_code": "543",
+  "ambiguous": false
+ },
+ {
+  "id": "436353465",
+  "name": "동광주 TG",
+  "lat": 35.2076278,
+  "lon": 126.9393893,
+  "kind": "toll_booth",
+  "unit_code": "261",
+  "ambiguous": false
+ },
+ {
+  "id": "436830835",
+  "name": "남산1호터널",
+  "lat": 37.5557438,
+  "lon": 126.9928117,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "444287705",
+  "name": "남대전",
+  "lat": 36.2686315,
+  "lon": 127.4754708,
+  "kind": "toll_booth",
+  "unit_code": "114",
+  "ambiguous": false
+ },
+ {
+  "id": "444287706",
+  "name": "남대전",
+  "lat": 36.2685753,
+  "lon": 127.4756669,
+  "kind": "toll_booth",
+  "unit_code": "114",
+  "ambiguous": false
+ },
+ {
+  "id": "444288036",
+  "name": "판암",
+  "lat": 36.317847,
+  "lon": 127.4683572,
+  "kind": "toll_booth",
+  "unit_code": "119",
+  "ambiguous": false
+ },
+ {
+  "id": "444288056",
+  "name": "판암",
+  "lat": 36.3177731,
+  "lon": 127.468306,
+  "kind": "toll_booth",
+  "unit_code": "119",
+  "ambiguous": false
+ },
+ {
+  "id": "452377633",
+  "name": "풍기 요금소",
+  "lat": 36.8498112,
+  "lon": 128.5293242,
+  "kind": "toll_booth",
+  "unit_code": "211",
+  "ambiguous": false
+ },
+ {
+  "id": "452377739",
+  "name": "예천 요금소",
+  "lat": 36.6687201,
+  "lon": 128.5386501,
+  "kind": "toll_booth",
+  "unit_code": "209",
+  "ambiguous": false
+ },
+ {
+  "id": "452377746",
+  "name": "예천 요금소",
+  "lat": 36.6685862,
+  "lon": 128.5386419,
+  "kind": "toll_booth",
+  "unit_code": "209",
+  "ambiguous": false
+ },
+ {
+  "id": "452398870",
+  "name": "남안동 TG",
+  "lat": 36.4760518,
+  "lon": 128.6261308,
+  "kind": "toll_booth",
+  "unit_code": "207",
+  "ambiguous": false
+ },
+ {
+  "id": "454747271",
+  "name": "속리산요금소",
+  "lat": 36.4591533,
+  "lon": 127.7898058,
+  "kind": "toll_booth",
+  "unit_code": "534",
+  "ambiguous": false
+ },
+ {
+  "id": "457333015",
+  "name": "함양",
+  "lat": 35.5297659,
+  "lon": 127.7511678,
+  "kind": "toll_booth",
+  "unit_code": "224",
+  "ambiguous": false
+ },
+ {
+  "id": "457333016",
+  "name": "함양",
+  "lat": 35.5297891,
+  "lon": 127.751246,
+  "kind": "toll_booth",
+  "unit_code": "224",
+  "ambiguous": false
+ },
+ {
+  "id": "460359122",
+  "name": "논산",
+  "lat": 36.1236601,
+  "lon": 127.1325236,
+  "kind": "toll_booth",
+  "unit_code": "155",
+  "ambiguous": false
+ },
+ {
+  "id": "465187566",
+  "name": "남천안요금소",
+  "lat": 36.751652,
+  "lon": 127.1681164,
+  "kind": "toll_booth",
+  "unit_code": "601",
+  "ambiguous": false
+ },
+ {
+  "id": "465187616",
+  "name": "정안요금소",
+  "lat": 36.6218369,
+  "lon": 127.1225184,
+  "kind": "toll_booth",
+  "unit_code": "603",
+  "ambiguous": false
+ },
+ {
+  "id": "465189648",
+  "name": "연무강경",
+  "lat": 36.1443786,
+  "lon": 127.0578026,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "558899164",
+  "name": "서울",
+  "lat": 37.3652553,
+  "lon": 127.1028903,
+  "kind": "toll_booth",
+  "unit_code": "101",
+  "ambiguous": false
+ },
+ {
+  "id": "564577384",
+  "name": "지리산",
+  "lat": 35.4825126,
+  "lon": 127.5900135,
+  "kind": "toll_booth",
+  "unit_code": "269",
+  "ambiguous": false
+ },
+ {
+  "id": "564577389",
+  "name": "지리산",
+  "lat": 35.4825487,
+  "lon": 127.5901182,
+  "kind": "toll_booth",
+  "unit_code": "269",
+  "ambiguous": false
+ },
+ {
+  "id": "566471538",
+  "name": "성산",
+  "lat": 35.7530531,
+  "lon": 128.3654319,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "566969452",
+  "name": "노포",
+  "lat": 35.2852063,
+  "lon": 129.10042,
+  "kind": "toll_booth",
+  "unit_code": "529",
+  "ambiguous": false
+ },
+ {
+  "id": "566969460",
+  "name": "노포",
+  "lat": 35.2888177,
+  "lon": 129.1020041,
+  "kind": "toll_booth",
+  "unit_code": "529",
+  "ambiguous": false
+ },
+ {
+  "id": "580529247",
+  "name": "비봉",
+  "lat": 37.2443799,
+  "lon": 126.8867258,
+  "kind": "toll_booth",
+  "unit_code": "282",
+  "ambiguous": false
+ },
+ {
+  "id": "599854846",
+  "name": "남원",
+  "lat": 35.4274699,
+  "lon": 127.3992338,
+  "kind": "toll_booth",
+  "unit_code": "247",
+  "ambiguous": false
+ },
+ {
+  "id": "599951167",
+  "name": "동광주 TG",
+  "lat": 35.2077081,
+  "lon": 126.9393079,
+  "kind": "toll_booth",
+  "unit_code": "261",
+  "ambiguous": false
+ },
+ {
+  "id": "602056748",
+  "name": "서영암TG",
+  "lat": 34.7369304,
+  "lon": 126.5709868,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "602056994",
+  "name": "서영암TG",
+  "lat": 34.7371481,
+  "lon": 126.5710113,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "603367788",
+  "name": "남양주",
+  "lat": 37.5973454,
+  "lon": 127.241305,
+  "kind": "toll_booth",
+  "unit_code": "651",
+  "ambiguous": false
+ },
+ {
+  "id": "603367833",
+  "name": "남양주",
+  "lat": 37.5975168,
+  "lon": 127.241219,
+  "kind": "toll_booth",
+  "unit_code": "651",
+  "ambiguous": false
+ },
+ {
+  "id": "608347845",
+  "name": "시흥",
+  "lat": 37.4511664,
+  "lon": 126.803492,
+  "kind": "toll_gantry",
+  "unit_code": "067",
+  "ambiguous": false
+ },
+ {
+  "id": "618690982",
+  "name": "인천대교TG",
+  "lat": 37.4701986,
+  "lon": 126.5130778,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "627488398",
+  "name": "인천대교TG",
+  "lat": 37.4699979,
+  "lon": 126.5127524,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "670129001",
+  "name": "달성 요금소",
+  "lat": 35.7650587,
+  "lon": 128.4772838,
+  "kind": "toll_booth",
+  "unit_code": "232",
+  "ambiguous": false
+ },
+ {
+  "id": "670200481",
+  "name": "남지",
+  "lat": 35.3979123,
+  "lon": 128.4873576,
+  "kind": "toll_booth",
+  "unit_code": "237",
+  "ambiguous": false
+ },
+ {
+  "id": "670257553",
+  "name": "칠원",
+  "lat": 35.2803567,
+  "lon": 128.5135178,
+  "kind": "toll_booth",
+  "unit_code": "239",
+  "ambiguous": false
+ },
+ {
+  "id": "670266859",
+  "name": "횡성 요금소",
+  "lat": 37.5016316,
+  "lon": 127.9704586,
+  "kind": "toll_booth",
+  "unit_code": "216",
+  "ambiguous": false
+ },
+ {
+  "id": "670266860",
+  "name": "횡성 요금소",
+  "lat": 37.5016663,
+  "lon": 127.9708132,
+  "kind": "toll_booth",
+  "unit_code": "216",
+  "ambiguous": false
+ },
+ {
+  "id": "671870647",
+  "name": "밀양 요금소",
+  "lat": 35.5065728,
+  "lon": 128.7836404,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "671870650",
+  "name": "밀양 요금소",
+  "lat": 35.5064504,
+  "lon": 128.7834788,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "671996462",
+  "name": "산인",
+  "lat": 35.271615,
+  "lon": 128.4714866,
+  "kind": "toll_booth",
+  "unit_code": "145",
+  "ambiguous": false
+ },
+ {
+  "id": "672663678",
+  "name": "북창원",
+  "lat": 35.2928607,
+  "lon": 128.6077855,
+  "kind": "toll_booth",
+  "unit_code": "294",
+  "ambiguous": false
+ },
+ {
+  "id": "672691390",
+  "name": "문산",
+  "lat": 35.1744702,
+  "lon": 128.1575765,
+  "kind": "toll_booth",
+  "unit_code": "293",
+  "ambiguous": false
+ },
+ {
+  "id": "672691394",
+  "name": "문산",
+  "lat": 35.1745881,
+  "lon": 128.1577074,
+  "kind": "toll_booth",
+  "unit_code": "293",
+  "ambiguous": false
+ },
+ {
+  "id": "673977068",
+  "name": "북통영",
+  "lat": 34.8939424,
+  "lon": 128.4066491,
+  "kind": "toll_booth",
+  "unit_code": "515",
+  "ambiguous": false
+ },
+ {
+  "id": "673977070",
+  "name": "북통영",
+  "lat": 34.8941142,
+  "lon": 128.4067519,
+  "kind": "toll_booth",
+  "unit_code": "515",
+  "ambiguous": false
+ },
+ {
+  "id": "675449837",
+  "name": "면온요금소",
+  "lat": 37.560916,
+  "lon": 128.3627679,
+  "kind": "toll_booth",
+  "unit_code": "183",
+  "ambiguous": false
+ },
+ {
+  "id": "675449848",
+  "name": "면온요금소",
+  "lat": 37.5608609,
+  "lon": 128.3627347,
+  "kind": "toll_booth",
+  "unit_code": "183",
+  "ambiguous": false
+ },
+ {
+  "id": "679784171",
+  "name": "동창원",
+  "lat": 35.2838955,
+  "lon": 128.7014431,
+  "kind": "toll_booth",
+  "unit_code": "146",
+  "ambiguous": false
+ },
+ {
+  "id": "679784172",
+  "name": "동창원",
+  "lat": 35.283582,
+  "lon": 128.7019503,
+  "kind": "toll_booth",
+  "unit_code": "146",
+  "ambiguous": false
+ },
+ {
+  "id": "683831483",
+  "name": "남대구",
+  "lat": 35.8314305,
+  "lon": 128.5217009,
+  "kind": "toll_booth",
+  "unit_code": "519",
+  "ambiguous": false
+ },
+ {
+  "id": "683831484",
+  "name": "남대구",
+  "lat": 35.8315378,
+  "lon": 128.5215482,
+  "kind": "toll_booth",
+  "unit_code": "519",
+  "ambiguous": false
+ },
+ {
+  "id": "686309847",
+  "name": "북원주",
+  "lat": 37.4240556,
+  "lon": 127.9229454,
+  "kind": "toll_booth",
+  "unit_code": "217",
+  "ambiguous": false
+ },
+ {
+  "id": "686309871",
+  "name": "새말톨게이트",
+  "lat": 37.4499703,
+  "lon": 128.0704684,
+  "kind": "toll_booth",
+  "unit_code": "181",
+  "ambiguous": false
+ },
+ {
+  "id": "686310551",
+  "name": "북원주",
+  "lat": 37.4240303,
+  "lon": 127.9233517,
+  "kind": "toll_booth",
+  "unit_code": "217",
+  "ambiguous": false
+ },
+ {
+  "id": "686368464",
+  "name": "남원주",
+  "lat": 37.3237053,
+  "lon": 127.9247402,
+  "kind": "toll_booth",
+  "unit_code": "218",
+  "ambiguous": false
+ },
+ {
+  "id": "686368578",
+  "name": "남원주",
+  "lat": 37.3234282,
+  "lon": 127.9247468,
+  "kind": "toll_booth",
+  "unit_code": "218",
+  "ambiguous": false
+ },
+ {
+  "id": "686440312",
+  "name": "양지",
+  "lat": 37.2363855,
+  "lon": 127.296288,
+  "kind": "toll_booth",
+  "unit_code": "173",
+  "ambiguous": false
+ },
+ {
+  "id": "686440355",
+  "name": "덕평",
+  "lat": 37.2393432,
+  "lon": 127.3649986,
+  "kind": "toll_booth",
+  "unit_code": "175",
+  "ambiguous": false
+ },
+ {
+  "id": "686440431",
+  "name": "양지",
+  "lat": 37.236329,
+  "lon": 127.2961542,
+  "kind": "toll_booth",
+  "unit_code": "173",
+  "ambiguous": false
+ },
+ {
+  "id": "686440554",
+  "name": "덕평요금소",
+  "lat": 37.2393303,
+  "lon": 127.3652316,
+  "kind": "toll_booth",
+  "unit_code": "175",
+  "ambiguous": false
+ },
+ {
+  "id": "686460807",
+  "name": "용인요금소",
+  "lat": 37.2597984,
+  "lon": 127.2109765,
+  "kind": "toll_booth",
+  "unit_code": "172",
+  "ambiguous": false
+ },
+ {
+  "id": "686460919",
+  "name": "용인요금소",
+  "lat": 37.2598206,
+  "lon": 127.2108614,
+  "kind": "toll_booth",
+  "unit_code": "172",
+  "ambiguous": false
+ },
+ {
+  "id": "686460938",
+  "name": "이천요금소",
+  "lat": 37.2511645,
+  "lon": 127.4942828,
+  "kind": "toll_booth",
+  "unit_code": "176",
+  "ambiguous": false
+ },
+ {
+  "id": "686460948",
+  "name": "이천요금소",
+  "lat": 37.2511769,
+  "lon": 127.4944854,
+  "kind": "toll_booth",
+  "unit_code": "176",
+  "ambiguous": false
+ },
+ {
+  "id": "688362506",
+  "name": "문막",
+  "lat": 37.3133719,
+  "lon": 127.8253555,
+  "kind": "toll_booth",
+  "unit_code": "178",
+  "ambiguous": false
+ },
+ {
+  "id": "688362550",
+  "name": "문막",
+  "lat": 37.3135049,
+  "lon": 127.8255843,
+  "kind": "toll_booth",
+  "unit_code": "178",
+  "ambiguous": false
+ },
+ {
+  "id": "688459054",
+  "name": "북단양 요금소",
+  "lat": 37.0205661,
+  "lon": 128.2886428,
+  "kind": "toll_booth",
+  "unit_code": "522",
+  "ambiguous": false
+ },
+ {
+  "id": "696359560",
+  "name": "칠곡요금소(진입)",
+  "lat": 35.9340908,
+  "lon": 128.5392094,
+  "kind": "toll_booth",
+  "unit_code": "201",
+  "ambiguous": false
+ },
+ {
+  "id": "696359563",
+  "name": "칠곡요금소(진출)",
+  "lat": 35.9339631,
+  "lon": 128.539203,
+  "kind": "toll_booth",
+  "unit_code": "201",
+  "ambiguous": false
+ },
+ {
+  "id": "726036936",
+  "name": "선산요금소",
+  "lat": 36.2379235,
+  "lon": 128.2689473,
+  "kind": "toll_booth",
+  "unit_code": "134",
+  "ambiguous": false
+ },
+ {
+  "id": "726089031",
+  "name": "매송 요금소",
+  "lat": 37.2814036,
+  "lon": 126.8901726,
+  "kind": "toll_booth",
+  "unit_code": "281",
+  "ambiguous": false
+ },
+ {
+  "id": "726089088",
+  "name": "매송 요금소",
+  "lat": 37.2810888,
+  "lon": 126.8901365,
+  "kind": "toll_booth",
+  "unit_code": "281",
+  "ambiguous": false
+ },
+ {
+  "id": "731794156",
+  "name": "삼랑진요금소",
+  "lat": 35.3999001,
+  "lon": 128.8262538,
+  "kind": "toll_booth",
+  "unit_code": "627",
+  "ambiguous": false
+ },
+ {
+  "id": "731794172",
+  "name": "삼랑진요금소",
+  "lat": 35.3997951,
+  "lon": 128.826168,
+  "kind": "toll_booth",
+  "unit_code": "627",
+  "ambiguous": false
+ },
+ {
+  "id": "731809309",
+  "name": "장유",
+  "lat": 35.1988249,
+  "lon": 128.8081168,
+  "kind": "toll_booth",
+  "unit_code": "245",
+  "ambiguous": false
+ },
+ {
+  "id": "731809395",
+  "name": "장유",
+  "lat": 35.1982617,
+  "lon": 128.8055148,
+  "kind": "toll_booth",
+  "unit_code": "245",
+  "ambiguous": false
+ },
+ {
+  "id": "734816282",
+  "name": "성남",
+  "lat": 37.435581,
+  "lon": 127.1234437,
+  "kind": "toll_booth",
+  "unit_code": "061",
+  "ambiguous": false
+ },
+ {
+  "id": "734816401",
+  "name": "성남",
+  "lat": 37.4355236,
+  "lon": 127.1226192,
+  "kind": "toll_booth",
+  "unit_code": "061",
+  "ambiguous": false
+ },
+ {
+  "id": "736051893",
+  "name": "청도 요금소",
+  "lat": 35.6552717,
+  "lon": 128.744886,
+  "kind": "toll_booth",
+  "unit_code": "624",
+  "ambiguous": false
+ },
+ {
+  "id": "736051963",
+  "name": "청도 요금소",
+  "lat": 35.6553012,
+  "lon": 128.7446271,
+  "kind": "toll_booth",
+  "unit_code": "624",
+  "ambiguous": false
+ },
+ {
+  "id": "748738205",
+  "name": "남강릉요금소",
+  "lat": 37.696769,
+  "lon": 128.8967789,
+  "kind": "toll_booth",
+  "unit_code": "584",
+  "ambiguous": false
+ },
+ {
+  "id": "748749619",
+  "name": "망상요금소",
+  "lat": 37.5827393,
+  "lon": 129.0964516,
+  "kind": "toll_booth",
+  "unit_code": "582",
+  "ambiguous": false
+ },
+ {
+  "id": "748749640",
+  "name": "망상요금소",
+  "lat": 37.5828229,
+  "lon": 129.0965318,
+  "kind": "toll_booth",
+  "unit_code": "582",
+  "ambiguous": false
+ },
+ {
+  "id": "763034847",
+  "name": "진안",
+  "lat": 35.7690211,
+  "lon": 127.4387338,
+  "kind": "toll_booth",
+  "unit_code": "546",
+  "ambiguous": false
+ },
+ {
+  "id": "778216028",
+  "name": "서진주 출구",
+  "lat": 35.1856641,
+  "lon": 128.0449002,
+  "kind": "toll_booth",
+  "unit_code": "225",
+  "ambiguous": false
+ },
+ {
+  "id": "778216208",
+  "name": "서진주 입구",
+  "lat": 35.1855489,
+  "lon": 128.0450142,
+  "kind": "toll_booth",
+  "unit_code": "225",
+  "ambiguous": false
+ },
+ {
+  "id": "814531887",
+  "name": "영산",
+  "lat": 35.4514291,
+  "lon": 128.5098355,
+  "kind": "toll_booth",
+  "unit_code": "236",
+  "ambiguous": false
+ },
+ {
+  "id": "817250029",
+  "name": "남대구",
+  "lat": 35.8308432,
+  "lon": 128.5226098,
+  "kind": "toll_booth",
+  "unit_code": "519",
+  "ambiguous": false
+ },
+ {
+  "id": "843344242",
+  "name": "마성톨게이트",
+  "lat": 37.2849802,
+  "lon": 127.1772072,
+  "kind": "toll_booth",
+  "unit_code": "171",
+  "ambiguous": false
+ },
+ {
+  "id": "850576672",
+  "name": "인천",
+  "lat": 37.5245648,
+  "lon": 126.7483813,
+  "kind": "toll_booth",
+  "unit_code": "011",
+  "ambiguous": false
+ },
+ {
+  "id": "852493182",
+  "name": "북평택요금소",
+  "lat": 37.0665136,
+  "lon": 126.9922649,
+  "kind": "toll_booth",
+  "unit_code": "677",
+  "ambiguous": false
+ },
+ {
+  "id": "854413342",
+  "name": "무주 (Muju)",
+  "lat": 35.9762822,
+  "lon": 127.6528003,
+  "kind": "toll_booth",
+  "unit_code": "164",
+  "ambiguous": false
+ },
+ {
+  "id": "860802566",
+  "name": "성산",
+  "lat": 35.7530913,
+  "lon": 128.3656525,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "862883064",
+  "name": "남대구",
+  "lat": 35.8312167,
+  "lon": 128.5220744,
+  "kind": "toll_booth",
+  "unit_code": "519",
+  "ambiguous": false
+ },
+ {
+  "id": "918030816",
+  "name": "동홍천",
+  "lat": 37.7623182,
+  "lon": 127.9595982,
+  "kind": "toll_booth",
+  "unit_code": "554",
+  "ambiguous": false
+ },
+ {
+  "id": "918030938",
+  "name": "동홍천",
+  "lat": 37.7622345,
+  "lon": 127.9596546,
+  "kind": "toll_booth",
+  "unit_code": "554",
+  "ambiguous": false
+ },
+ {
+  "id": "921222751",
+  "name": "춘천",
+  "lat": 37.8392552,
+  "lon": 127.7760225,
+  "kind": "toll_booth",
+  "unit_code": "174",
+  "ambiguous": false
+ },
+ {
+  "id": "921222756",
+  "name": "춘천",
+  "lat": 37.8393744,
+  "lon": 127.7760715,
+  "kind": "toll_booth",
+  "unit_code": "174",
+  "ambiguous": false
+ },
+ {
+  "id": "971867816",
+  "name": "미시령",
+  "lat": 38.2065272,
+  "lon": 128.4935025,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "995700069",
+  "name": "하동",
+  "lat": 34.9989484,
+  "lon": 127.8134322,
+  "kind": "toll_booth",
+  "unit_code": "277",
+  "ambiguous": false
+ },
+ {
+  "id": "995700112",
+  "name": "하동",
+  "lat": 34.9990711,
+  "lon": 127.8131686,
+  "kind": "toll_booth",
+  "unit_code": "277",
+  "ambiguous": false
+ },
+ {
+  "id": "995717236",
+  "name": "진교",
+  "lat": 35.0386474,
+  "lon": 127.90476,
+  "kind": "toll_booth",
+  "unit_code": "278",
+  "ambiguous": false
+ },
+ {
+  "id": "995717262",
+  "name": "진교",
+  "lat": 35.0386393,
+  "lon": 127.9048893,
+  "kind": "toll_booth",
+  "unit_code": "278",
+  "ambiguous": false
+ },
+ {
+  "id": "1013382620",
+  "name": "남청주요금소",
+  "lat": 36.5339646,
+  "lon": 127.4236264,
+  "kind": "toll_booth",
+  "unit_code": "112",
+  "ambiguous": false
+ },
+ {
+  "id": "1037263656",
+  "name": "대화요금소",
+  "lat": 36.3742486,
+  "lon": 127.4037718,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "1051432474",
+  "name": "금산",
+  "lat": 36.105291,
+  "lon": 127.5252612,
+  "kind": "toll_booth",
+  "unit_code": "200",
+  "ambiguous": false
+ },
+ {
+  "id": "1051432498",
+  "name": "금산",
+  "lat": 36.1055531,
+  "lon": 127.5251161,
+  "kind": "toll_booth",
+  "unit_code": "200",
+  "ambiguous": false
+ },
+ {
+  "id": "1142439455",
+  "name": "의왕",
+  "lat": 37.3475504,
+  "lon": 126.9843089,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "1142439460",
+  "name": "의왕",
+  "lat": 37.3474504,
+  "lon": 126.9845019,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "1155689107",
+  "name": "장수",
+  "lat": 35.7127847,
+  "lon": 127.5877654,
+  "kind": "toll_booth",
+  "unit_code": "169",
+  "ambiguous": false
+ },
+ {
+  "id": "1273830263",
+  "name": "상관TG",
+  "lat": 35.7564597,
+  "lon": 127.2161297,
+  "kind": "toll_booth",
+  "unit_code": "589",
+  "ambiguous": false
+ },
+ {
+  "id": "1314046245",
+  "name": "북여주요금소",
+  "lat": 37.3732266,
+  "lon": 127.5222647,
+  "kind": "toll_booth",
+  "unit_code": "598",
+  "ambiguous": false
+ },
+ {
+  "id": "1328343244",
+  "name": "탄천요금소",
+  "lat": 36.3010234,
+  "lon": 127.0704668,
+  "kind": "toll_booth",
+  "unit_code": "605",
+  "ambiguous": false
+ },
+ {
+  "id": "1329337704",
+  "name": "남공주",
+  "lat": 36.4235085,
+  "lon": 127.0864235,
+  "kind": "toll_booth",
+  "unit_code": "604",
+  "ambiguous": false
+ },
+ {
+  "id": "1334318815",
+  "name": "공주",
+  "lat": 36.4854982,
+  "lon": 127.1283667,
+  "kind": "toll_booth",
+  "unit_code": "577",
+  "ambiguous": false
+ },
+ {
+  "id": "1334318816",
+  "name": "공주",
+  "lat": 36.4855269,
+  "lon": 127.1285504,
+  "kind": "toll_booth",
+  "unit_code": "577",
+  "ambiguous": false
+ },
+ {
+  "id": "1341180254",
+  "name": "정안요금소",
+  "lat": 36.6218335,
+  "lon": 127.1223971,
+  "kind": "toll_booth",
+  "unit_code": "603",
+  "ambiguous": false
+ },
+ {
+  "id": "1393362993",
+  "name": "서안동 요금소",
+  "lat": 36.5883417,
+  "lon": 128.6212484,
+  "kind": "toll_booth",
+  "unit_code": "208",
+  "ambiguous": false
+ },
+ {
+  "id": "1423978152",
+  "name": "생초",
+  "lat": 35.485253,
+  "lon": 127.8289699,
+  "kind": "toll_booth",
+  "unit_code": "221",
+  "ambiguous": false
+ },
+ {
+  "id": "1426913563",
+  "name": "가덕",
+  "lat": 35.0263732,
+  "lon": 128.8183057,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "1439062913",
+  "name": "원주",
+  "lat": 37.3990374,
+  "lon": 127.9505354,
+  "kind": "toll_booth",
+  "unit_code": "180",
+  "ambiguous": false
+ },
+ {
+  "id": "1439063000",
+  "name": "원주",
+  "lat": 37.3990268,
+  "lon": 127.950349,
+  "kind": "toll_booth",
+  "unit_code": "180",
+  "ambiguous": false
+ },
+ {
+  "id": "1484324012",
+  "name": "남산1호터널",
+  "lat": 37.5558049,
+  "lon": 126.9930249,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "1507087133",
+  "name": "고창TG",
+  "lat": 35.4377689,
+  "lon": 126.6708938,
+  "kind": "toll_booth",
+  "unit_code": "505",
+  "ambiguous": false
+ },
+ {
+  "id": "1507087138",
+  "name": "고창TG",
+  "lat": 35.4378585,
+  "lon": 126.6708968,
+  "kind": "toll_booth",
+  "unit_code": "505",
+  "ambiguous": false
+ },
+ {
+  "id": "1565173751",
+  "name": "유성",
+  "lat": 36.3642409,
+  "lon": 127.328567,
+  "kind": "toll_booth",
+  "unit_code": "152",
+  "ambiguous": false
+ },
+ {
+  "id": "1566994227",
+  "name": "신탄진요금소",
+  "lat": 36.4393135,
+  "lon": 127.4221709,
+  "kind": "toll_booth",
+  "unit_code": "113",
+  "ambiguous": false
+ },
+ {
+  "id": "1567057669",
+  "name": "문의청남대",
+  "lat": 36.5273677,
+  "lon": 127.5050863,
+  "kind": "toll_booth",
+  "unit_code": "531",
+  "ambiguous": false
+ },
+ {
+  "id": "1567057680",
+  "name": "문의청남대",
+  "lat": 36.5274301,
+  "lon": 127.5049478,
+  "kind": "toll_booth",
+  "unit_code": "531",
+  "ambiguous": false
+ },
+ {
+  "id": "1567097020",
+  "name": "추부요금소",
+  "lat": 36.1962175,
+  "lon": 127.4808891,
+  "kind": "toll_booth",
+  "unit_code": "204",
+  "ambiguous": false
+ },
+ {
+  "id": "1567097027",
+  "name": "추부요금소",
+  "lat": 36.1963227,
+  "lon": 127.4810036,
+  "kind": "toll_booth",
+  "unit_code": "204",
+  "ambiguous": false
+ },
+ {
+  "id": "1702309402",
+  "name": "명지",
+  "lat": 35.0913965,
+  "lon": 128.9180481,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "1702309412",
+  "name": "명지",
+  "lat": 35.0916695,
+  "lon": 128.917924,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "1793224802",
+  "name": "서울대학교 후문",
+  "lat": 37.464359,
+  "lon": 126.9579711,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "1804025173",
+  "name": "하조대",
+  "lat": 38.0300086,
+  "lon": 128.6923432,
+  "kind": "toll_booth",
+  "unit_code": "585",
+  "ambiguous": false
+ },
+ {
+  "id": "1805142003",
+  "name": "화도",
+  "lat": 37.6367584,
+  "lon": 127.3111363,
+  "kind": "toll_booth",
+  "unit_code": "652",
+  "ambiguous": false
+ },
+ {
+  "id": "1805142006",
+  "name": "화도",
+  "lat": 37.6366511,
+  "lon": 127.3108359,
+  "kind": "toll_booth",
+  "unit_code": "652",
+  "ambiguous": false
+ },
+ {
+  "id": "1814821448",
+  "name": "수원신갈요금소",
+  "lat": 37.2656246,
+  "lon": 127.1027408,
+  "kind": "toll_booth",
+  "unit_code": "103",
+  "ambiguous": false
+ },
+ {
+  "id": "1814821468",
+  "name": "수원신갈요금소",
+  "lat": 37.2688873,
+  "lon": 127.1007567,
+  "kind": "toll_booth",
+  "unit_code": "103",
+  "ambiguous": false
+ },
+ {
+  "id": "1828605905",
+  "name": "하조대",
+  "lat": 38.0300671,
+  "lon": 128.6925617,
+  "kind": "toll_booth",
+  "unit_code": "585",
+  "ambiguous": false
+ },
+ {
+  "id": "1828605909",
+  "name": "하조대",
+  "lat": 38.0300321,
+  "lon": 128.6923997,
+  "kind": "toll_booth",
+  "unit_code": "585",
+  "ambiguous": false
+ },
+ {
+  "id": "1828605910",
+  "name": "하조대",
+  "lat": 38.030036,
+  "lon": 128.6924481,
+  "kind": "toll_booth",
+  "unit_code": "585",
+  "ambiguous": false
+ },
+ {
+  "id": "1828605919",
+  "name": "하조대",
+  "lat": 38.0300973,
+  "lon": 128.6925985,
+  "kind": "toll_booth",
+  "unit_code": "585",
+  "ambiguous": false
+ },
+ {
+  "id": "1828605928",
+  "name": "하조대",
+  "lat": 38.0301274,
+  "lon": 128.6927182,
+  "kind": "toll_booth",
+  "unit_code": "585",
+  "ambiguous": false
+ },
+ {
+  "id": "1828605929",
+  "name": "하조대",
+  "lat": 38.0300561,
+  "lon": 128.6925107,
+  "kind": "toll_booth",
+  "unit_code": "585",
+  "ambiguous": false
+ },
+ {
+  "id": "1828605939",
+  "name": "하조대",
+  "lat": 38.030115,
+  "lon": 128.6926667,
+  "kind": "toll_booth",
+  "unit_code": "585",
+  "ambiguous": false
+ },
+ {
+  "id": "1845007815",
+  "name": "서논산요금소",
+  "lat": 36.2211326,
+  "lon": 127.0579152,
+  "kind": "toll_booth",
+  "unit_code": "606",
+  "ambiguous": false
+ },
+ {
+  "id": "1855309404",
+  "name": "마창대교 TG",
+  "lat": 35.167417,
+  "lon": 128.6084354,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "1911704925",
+  "name": "북천안TG",
+  "lat": 36.8983929,
+  "lon": 127.1838292,
+  "kind": "toll_booth",
+  "unit_code": "229",
+  "ambiguous": false
+ },
+ {
+  "id": "1911705054",
+  "name": "북천안TG",
+  "lat": 36.8983112,
+  "lon": 127.1837291,
+  "kind": "toll_booth",
+  "unit_code": "229",
+  "ambiguous": false
+ },
+ {
+  "id": "1916536984",
+  "name": "증평",
+  "lat": 36.7692742,
+  "lon": 127.5034208,
+  "kind": "toll_booth",
+  "unit_code": "197",
+  "ambiguous": false
+ },
+ {
+  "id": "1916536985",
+  "name": "증평",
+  "lat": 36.7692945,
+  "lon": 127.5034865,
+  "kind": "toll_booth",
+  "unit_code": "197",
+  "ambiguous": false
+ },
+ {
+  "id": "1963432296",
+  "name": "북여주요금소",
+  "lat": 37.3731237,
+  "lon": 127.5222853,
+  "kind": "toll_booth",
+  "unit_code": "598",
+  "ambiguous": false
+ },
+ {
+  "id": "1963432307",
+  "name": "서여주",
+  "lat": 37.3018782,
+  "lon": 127.5863481,
+  "kind": "toll_booth",
+  "unit_code": "597",
+  "ambiguous": false
+ },
+ {
+  "id": "1963432312",
+  "name": "서여주",
+  "lat": 37.3018705,
+  "lon": 127.5864431,
+  "kind": "toll_booth",
+  "unit_code": "597",
+  "ambiguous": false
+ },
+ {
+  "id": "1965733070",
+  "name": "강릉",
+  "lat": 37.7466776,
+  "lon": 128.8472649,
+  "kind": "toll_booth",
+  "unit_code": "189",
+  "ambiguous": false
+ },
+ {
+  "id": "1965733085",
+  "name": "북강릉요금소",
+  "lat": 37.8361124,
+  "lon": 128.8211872,
+  "kind": "toll_booth",
+  "unit_code": "580",
+  "ambiguous": false
+ },
+ {
+  "id": "1965733096",
+  "name": "북강릉요금소",
+  "lat": 37.8363233,
+  "lon": 128.8211703,
+  "kind": "toll_booth",
+  "unit_code": "580",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737420",
+  "name": "덕소삼패",
+  "lat": 37.5912109,
+  "lon": 127.2110325,
+  "kind": "toll_booth",
+  "unit_code": "074",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737424",
+  "name": "덕소삼패",
+  "lat": 37.59132,
+  "lon": 127.211021,
+  "kind": "toll_booth",
+  "unit_code": "074",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737427",
+  "name": "동수원",
+  "lat": 37.2975509,
+  "lon": 127.0475883,
+  "kind": "toll_booth",
+  "unit_code": "102",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737431",
+  "name": "동수원",
+  "lat": 37.2977248,
+  "lon": 127.0474859,
+  "kind": "toll_booth",
+  "unit_code": "102",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737435",
+  "name": "강촌",
+  "lat": 37.7380524,
+  "lon": 127.6268581,
+  "kind": "toll_booth",
+  "unit_code": "655",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737439",
+  "name": "홍천",
+  "lat": 37.675503,
+  "lon": 127.8552031,
+  "kind": "toll_booth",
+  "unit_code": "179",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737443",
+  "name": "홍천",
+  "lat": 37.6755347,
+  "lon": 127.8550857,
+  "kind": "toll_booth",
+  "unit_code": "179",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737446",
+  "name": "서종",
+  "lat": 37.6343821,
+  "lon": 127.3659267,
+  "kind": "toll_booth",
+  "unit_code": "653",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737450",
+  "name": "서종",
+  "lat": 37.6344896,
+  "lon": 127.3659633,
+  "kind": "toll_booth",
+  "unit_code": "653",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737454",
+  "name": "설악",
+  "lat": 37.6690529,
+  "lon": 127.4919167,
+  "kind": "toll_booth",
+  "unit_code": "654",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737457",
+  "name": "설악",
+  "lat": 37.6691459,
+  "lon": 127.4918862,
+  "kind": "toll_booth",
+  "unit_code": "654",
+  "ambiguous": false
+ },
+ {
+  "id": "1968737480",
+  "name": "덕소삼패",
+  "lat": 37.5911311,
+  "lon": 127.2110653,
+  "kind": "toll_booth",
+  "unit_code": "074",
+  "ambiguous": false
+ },
+ {
+  "id": "1986206725",
+  "name": "평택요금소",
+  "lat": 37.0323825,
+  "lon": 126.9775962,
+  "kind": "toll_booth",
+  "unit_code": "520",
+  "ambiguous": false
+ },
+ {
+  "id": "1986206726",
+  "name": "평택요금소",
+  "lat": 37.032536,
+  "lon": 126.9775934,
+  "kind": "toll_booth",
+  "unit_code": "520",
+  "ambiguous": false
+ },
+ {
+  "id": "1986689711",
+  "name": "서오산요금소",
+  "lat": 37.1887584,
+  "lon": 127.0102016,
+  "kind": "toll_booth",
+  "unit_code": "675",
+  "ambiguous": false
+ },
+ {
+  "id": "1986689722",
+  "name": "서오산요금소",
+  "lat": 37.1889153,
+  "lon": 127.0098605,
+  "kind": "toll_booth",
+  "unit_code": "675",
+  "ambiguous": false
+ },
+ {
+  "id": "2351268131",
+  "name": "인천공항 TG",
+  "lat": 37.5692843,
+  "lon": 126.6681379,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "2351268180",
+  "name": "인천공항 TG",
+  "lat": 37.5704068,
+  "lon": 126.6680633,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "2351268187",
+  "name": "인천공항 TG",
+  "lat": 37.5697468,
+  "lon": 126.6681176,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "2351268260",
+  "name": "인천공항 TG",
+  "lat": 37.5699102,
+  "lon": 126.6681068,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "2367683113",
+  "name": "청라요금소",
+  "lat": 37.5675168,
+  "lon": 126.6632935,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "2372179689",
+  "name": "인천",
+  "lat": 37.5239492,
+  "lon": 126.7483906,
+  "kind": "toll_booth",
+  "unit_code": "011",
+  "ambiguous": false
+ },
+ {
+  "id": "2372179692",
+  "name": "인천",
+  "lat": 37.524131,
+  "lon": 126.7483879,
+  "kind": "toll_booth",
+  "unit_code": "011",
+  "ambiguous": false
+ },
+ {
+  "id": "2463902963",
+  "name": "앞산",
+  "lat": 35.8092204,
+  "lon": 128.6138647,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "2463903009",
+  "name": "앞산",
+  "lat": 35.8095266,
+  "lon": 128.6131499,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "2997117506",
+  "name": "학운TG",
+  "lat": 35.1352494,
+  "lon": 126.9392981,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "2997117906",
+  "name": "학운TG",
+  "lat": 35.1303558,
+  "lon": 126.9393039,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "3106595117",
+  "name": "김해부산",
+  "lat": 35.3063217,
+  "lon": 128.9707074,
+  "kind": "toll_gantry",
+  "unit_code": "629",
+  "ambiguous": false
+ },
+ {
+  "id": "3200324812",
+  "name": "물왕",
+  "lat": 37.3913658,
+  "lon": 126.8290377,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "3200324813",
+  "name": "물왕",
+  "lat": 37.3911791,
+  "lon": 126.8290951,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "3204660280",
+  "name": "고잔TG",
+  "lat": 37.382065,
+  "lon": 126.7141778,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "3204660281",
+  "name": "고잔TG",
+  "lat": 37.3825223,
+  "lon": 126.714339,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "3243900267",
+  "name": "동충주TG",
+  "lat": 37.0659456,
+  "lon": 127.92577,
+  "kind": "toll_booth",
+  "unit_code": "297",
+  "ambiguous": false
+ },
+ {
+  "id": "3243900268",
+  "name": "동충주TG",
+  "lat": 37.0660794,
+  "lon": 127.9258187,
+  "kind": "toll_booth",
+  "unit_code": "297",
+  "ambiguous": false
+ },
+ {
+  "id": "3445856768",
+  "name": "가조",
+  "lat": 35.704163,
+  "lon": 128.0237525,
+  "kind": "toll_booth",
+  "unit_code": "274",
+  "ambiguous": false
+ },
+ {
+  "id": "3445856769",
+  "name": "가조",
+  "lat": 35.7042476,
+  "lon": 128.0237318,
+  "kind": "toll_booth",
+  "unit_code": "274",
+  "ambiguous": false
+ },
+ {
+  "id": "3506905642",
+  "name": "남여주요금소",
+  "lat": 37.2513144,
+  "lon": 127.5928483,
+  "kind": "toll_booth",
+  "unit_code": "500",
+  "ambiguous": false
+ },
+ {
+  "id": "3509939317",
+  "name": "남여주요금소",
+  "lat": 37.2512054,
+  "lon": 127.5927917,
+  "kind": "toll_booth",
+  "unit_code": "500",
+  "ambiguous": false
+ },
+ {
+  "id": "3604363958",
+  "name": "안성요금소",
+  "lat": 36.9961079,
+  "lon": 127.1506899,
+  "kind": "toll_booth",
+  "unit_code": "107",
+  "ambiguous": false
+ },
+ {
+  "id": "3607613160",
+  "name": "서충주요금소",
+  "lat": 37.0070216,
+  "lon": 127.673429,
+  "kind": "toll_booth",
+  "unit_code": "188",
+  "ambiguous": false
+ },
+ {
+  "id": "3607613397",
+  "name": "서충주요금소",
+  "lat": 37.0070374,
+  "lon": 127.6734903,
+  "kind": "toll_booth",
+  "unit_code": "188",
+  "ambiguous": false
+ },
+ {
+  "id": "3763690370",
+  "name": "양주요금소",
+  "lat": 37.679648,
+  "lon": 126.9179387,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "3802226694",
+  "name": "가락",
+  "lat": 35.168286,
+  "lon": 128.8941577,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "3802226736",
+  "name": "가락",
+  "lat": 35.1683607,
+  "lon": 128.8940421,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "3836670272",
+  "name": "거창",
+  "lat": 35.6793089,
+  "lon": 127.9293653,
+  "kind": "toll_booth",
+  "unit_code": "280",
+  "ambiguous": false
+ },
+ {
+  "id": "3836670273",
+  "name": "거창",
+  "lat": 35.6793561,
+  "lon": 127.9293115,
+  "kind": "toll_booth",
+  "unit_code": "280",
+  "ambiguous": false
+ },
+ {
+  "id": "3836772771",
+  "name": "해인사",
+  "lat": 35.7114768,
+  "lon": 128.1739868,
+  "kind": "toll_booth",
+  "unit_code": "243",
+  "ambiguous": false
+ },
+ {
+  "id": "3836772772",
+  "name": "해인사",
+  "lat": 35.7115447,
+  "lon": 128.1741099,
+  "kind": "toll_booth",
+  "unit_code": "243",
+  "ambiguous": false
+ },
+ {
+  "id": "3885848787",
+  "name": "동남원",
+  "lat": 35.4795455,
+  "lon": 127.479051,
+  "kind": "toll_booth",
+  "unit_code": "264",
+  "ambiguous": false
+ },
+ {
+  "id": "3885848798",
+  "name": "동남원",
+  "lat": 35.4796081,
+  "lon": 127.4789481,
+  "kind": "toll_booth",
+  "unit_code": "264",
+  "ambiguous": false
+ },
+ {
+  "id": "4054868347",
+  "name": "풍세",
+  "lat": 36.7430223,
+  "lon": 127.1611707,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4154700411",
+  "name": "봉담",
+  "lat": 37.2240779,
+  "lon": 126.959459,
+  "kind": "toll_booth",
+  "unit_code": "671",
+  "ambiguous": false
+ },
+ {
+  "id": "4154700412",
+  "name": "봉담",
+  "lat": 37.2243994,
+  "lon": 126.9597345,
+  "kind": "toll_booth",
+  "unit_code": "671",
+  "ambiguous": false
+ },
+ {
+  "id": "4169129745",
+  "name": "장유",
+  "lat": 35.196207,
+  "lon": 128.8070127,
+  "kind": "toll_booth",
+  "unit_code": "245",
+  "ambiguous": false
+ },
+ {
+  "id": "4225591826",
+  "name": "동시흥",
+  "lat": 37.3936576,
+  "lon": 126.8601191,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4225591872",
+  "name": "동시흥",
+  "lat": 37.393545,
+  "lon": 126.8600365,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4270901996",
+  "name": "순창TG",
+  "lat": 35.3674153,
+  "lon": 127.1360084,
+  "kind": "toll_booth",
+  "unit_code": "248",
+  "ambiguous": false
+ },
+ {
+  "id": "4309636686",
+  "name": "대왕판교",
+  "lat": 37.4086793,
+  "lon": 127.0931822,
+  "kind": "toll_booth",
+  "unit_code": "069",
+  "ambiguous": false
+ },
+ {
+  "id": "4309664842",
+  "name": "대왕판교",
+  "lat": 37.4086639,
+  "lon": 127.0934077,
+  "kind": "toll_booth",
+  "unit_code": "069",
+  "ambiguous": false
+ },
+ {
+  "id": "4340329006",
+  "name": "의왕청계요금소",
+  "lat": 37.3929284,
+  "lon": 127.0249929,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4340329007",
+  "name": "의왕청계요금소",
+  "lat": 37.3927667,
+  "lon": 127.0249983,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4416429877",
+  "name": "오산",
+  "lat": 37.1429741,
+  "lon": 127.0807558,
+  "kind": "toll_booth",
+  "unit_code": "106",
+  "ambiguous": false
+ },
+ {
+  "id": "4416429880",
+  "name": "오산",
+  "lat": 37.1432002,
+  "lon": 127.0807249,
+  "kind": "toll_booth",
+  "unit_code": "106",
+  "ambiguous": false
+ },
+ {
+  "id": "4524247934",
+  "name": "초월요금소",
+  "lat": 37.3734216,
+  "lon": 127.3248976,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4524248793",
+  "name": "초월요금소",
+  "lat": 37.3731818,
+  "lon": 127.3256468,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4524553972",
+  "name": "동곤지암TG",
+  "lat": 37.383965,
+  "lon": 127.4037576,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4618689511",
+  "name": "동상주톨게이트",
+  "lat": 36.3779518,
+  "lon": 128.2925705,
+  "kind": "toll_booth",
+  "unit_code": "712",
+  "ambiguous": false
+ },
+ {
+  "id": "4627743006",
+  "name": "부곡요금소",
+  "lat": 37.3266807,
+  "lon": 126.9594265,
+  "kind": "toll_booth",
+  "unit_code": "213",
+  "ambiguous": false
+ },
+ {
+  "id": "4627743007",
+  "name": "부곡요금소",
+  "lat": 37.3264514,
+  "lon": 126.9592613,
+  "kind": "toll_booth",
+  "unit_code": "213",
+  "ambiguous": false
+ },
+ {
+  "id": "4627960445",
+  "name": "팔공산",
+  "lat": 35.9100404,
+  "lon": 128.6536553,
+  "kind": "toll_booth",
+  "unit_code": "230",
+  "ambiguous": false
+ },
+ {
+  "id": "4627960447",
+  "name": "팔공산",
+  "lat": 35.9097039,
+  "lon": 128.6540182,
+  "kind": "toll_booth",
+  "unit_code": "230",
+  "ambiguous": false
+ },
+ {
+  "id": "4631063499",
+  "name": "대청TG",
+  "lat": 35.1793529,
+  "lon": 128.7832385,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4631132000",
+  "name": "금천",
+  "lat": 37.4382735,
+  "lon": 126.9062118,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4643428013",
+  "name": "금천",
+  "lat": 37.4379919,
+  "lon": 126.9061982,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4684708254",
+  "name": "금곡",
+  "lat": 37.2872477,
+  "lon": 126.9493293,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4685066813",
+  "name": "태인TG",
+  "lat": 35.6639189,
+  "lon": 126.9279367,
+  "kind": "toll_booth",
+  "unit_code": "162",
+  "ambiguous": false
+ },
+ {
+  "id": "4685066816",
+  "name": "태인TG",
+  "lat": 35.6639424,
+  "lon": 126.9278386,
+  "kind": "toll_booth",
+  "unit_code": "162",
+  "ambiguous": false
+ },
+ {
+  "id": "4688255167",
+  "name": "남양산",
+  "lat": 35.3235584,
+  "lon": 129.0280946,
+  "kind": "toll_booth",
+  "unit_code": "250",
+  "ambiguous": false
+ },
+ {
+  "id": "4688255168",
+  "name": "남양산",
+  "lat": 35.3234227,
+  "lon": 129.0279568,
+  "kind": "toll_booth",
+  "unit_code": "250",
+  "ambiguous": false
+ },
+ {
+  "id": "4689734161",
+  "name": "물금",
+  "lat": 35.3083278,
+  "lon": 129.0150065,
+  "kind": "toll_booth",
+  "unit_code": "251",
+  "ambiguous": false
+ },
+ {
+  "id": "4689734162",
+  "name": "물금",
+  "lat": 35.3082016,
+  "lon": 129.0149894,
+  "kind": "toll_booth",
+  "unit_code": "251",
+  "ambiguous": false
+ },
+ {
+  "id": "4689858119",
+  "name": "진주",
+  "lat": 35.1584577,
+  "lon": 128.1225254,
+  "kind": "toll_booth",
+  "unit_code": "292",
+  "ambiguous": false
+ },
+ {
+  "id": "4689858120",
+  "name": "진주",
+  "lat": 35.1586139,
+  "lon": 128.1224763,
+  "kind": "toll_booth",
+  "unit_code": "292",
+  "ambiguous": false
+ },
+ {
+  "id": "4689858121",
+  "name": "진주",
+  "lat": 35.1587386,
+  "lon": 128.1224371,
+  "kind": "toll_booth",
+  "unit_code": "292",
+  "ambiguous": false
+ },
+ {
+  "id": "4694709372",
+  "name": "수성 요금소",
+  "lat": 35.8365916,
+  "lon": 128.6879755,
+  "kind": "toll_booth",
+  "unit_code": "623",
+  "ambiguous": false
+ },
+ {
+  "id": "4694709373",
+  "name": "수성 요금소",
+  "lat": 35.8364183,
+  "lon": 128.6879242,
+  "kind": "toll_booth",
+  "unit_code": "623",
+  "ambiguous": false
+ },
+ {
+  "id": "4694709374",
+  "name": "수성 요금소",
+  "lat": 35.8363075,
+  "lon": 128.6879033,
+  "kind": "toll_booth",
+  "unit_code": "623",
+  "ambiguous": false
+ },
+ {
+  "id": "4696728390",
+  "name": "파동C",
+  "lat": 35.8088894,
+  "lon": 128.6140875,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4696728395",
+  "name": "파동B",
+  "lat": 35.8103749,
+  "lon": 128.6127217,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4706236481",
+  "name": "양양TG",
+  "lat": 38.0714439,
+  "lon": 128.597573,
+  "kind": "toll_booth",
+  "unit_code": "510",
+  "ambiguous": false
+ },
+ {
+  "id": "4717774317",
+  "name": "서서울TG",
+  "lat": 37.3559132,
+  "lon": 126.8632273,
+  "kind": "toll_booth",
+  "unit_code": "253",
+  "ambiguous": false
+ },
+ {
+  "id": "4717774318",
+  "name": "의왕",
+  "lat": 37.3481369,
+  "lon": 126.98583,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4721891581",
+  "name": "선암",
+  "lat": 37.4611399,
+  "lon": 127.022029,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4721891582",
+  "name": "선암",
+  "lat": 37.4609978,
+  "lon": 127.0219641,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4811119156",
+  "name": "동안산·당수 요금소",
+  "lat": 37.2980357,
+  "lon": 126.9359793,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4811119157",
+  "name": "동안산·당수 요금소",
+  "lat": 37.2980097,
+  "lon": 126.9360801,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4822074339",
+  "name": "남청라",
+  "lat": 37.514077,
+  "lon": 126.6204965,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4878439232",
+  "name": "금곡",
+  "lat": 37.2872115,
+  "lon": 126.9488547,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4883755564",
+  "name": "진부TG",
+  "lat": 37.6483212,
+  "lon": 128.5619838,
+  "kind": "toll_booth",
+  "unit_code": "187",
+  "ambiguous": false
+ },
+ {
+  "id": "4894643894",
+  "name": "남광명",
+  "lat": 37.4147749,
+  "lon": 126.862095,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4894643895",
+  "name": "남광명",
+  "lat": 37.414602,
+  "lon": 126.8620727,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4920566660",
+  "name": "의왕",
+  "lat": 37.3477577,
+  "lon": 126.9838958,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4945444564",
+  "name": "화성비봉",
+  "lat": 37.2326964,
+  "lon": 126.9041569,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4957983722",
+  "name": "아천",
+  "lat": 37.5753628,
+  "lon": 127.125773,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "4957983727",
+  "name": "아천",
+  "lat": 37.5752282,
+  "lon": 127.1255725,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5004959259",
+  "name": "북판교TG",
+  "lat": 37.400393,
+  "lon": 127.0782307,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5025684109",
+  "name": "서원주",
+  "lat": 37.3906414,
+  "lon": 127.858438,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5025685321",
+  "name": "서원주",
+  "lat": 37.3906529,
+  "lon": 127.8583383,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5030139069",
+  "name": "갈매동구릉",
+  "lat": 37.6325665,
+  "lon": 127.1249179,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5030139070",
+  "name": "갈매동구릉",
+  "lat": 37.6324701,
+  "lon": 127.1251228,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5030139103",
+  "name": "북중랑",
+  "lat": 37.6323579,
+  "lon": 127.1254346,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5030139123",
+  "name": "북중랑",
+  "lat": 37.6327034,
+  "lon": 127.1245974,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5030139136",
+  "name": "중랑",
+  "lat": 37.6114648,
+  "lon": 127.1141713,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5030139138",
+  "name": "중랑",
+  "lat": 37.6129666,
+  "lon": 127.1098157,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5105216861",
+  "name": "북청계TG",
+  "lat": 37.3961354,
+  "lon": 127.0078525,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5105216862",
+  "name": "북청계TG",
+  "lat": 37.3962101,
+  "lon": 127.0080123,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5110639720",
+  "name": "북의왕TG",
+  "lat": 37.4068426,
+  "lon": 126.9911091,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5110646347",
+  "name": "북의왕TG",
+  "lat": 37.4068014,
+  "lon": 126.9910728,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5110646390",
+  "name": "안양과천요금소",
+  "lat": 37.4142792,
+  "lon": 126.9737783,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5129892278",
+  "name": "토평",
+  "lat": 37.5822645,
+  "lon": 127.1591474,
+  "kind": "toll_booth",
+  "unit_code": "063",
+  "ambiguous": false
+ },
+ {
+  "id": "5167495734",
+  "name": "장유",
+  "lat": 35.1983108,
+  "lon": 128.809429,
+  "kind": "toll_booth",
+  "unit_code": "245",
+  "ambiguous": false
+ },
+ {
+  "id": "5169073188",
+  "name": "보성톨게이트",
+  "lat": 34.811846,
+  "lon": 127.1032048,
+  "kind": "toll_booth",
+  "unit_code": "984",
+  "ambiguous": false
+ },
+ {
+  "id": "5170778194",
+  "name": "서대구",
+  "lat": 35.8805162,
+  "lon": 128.5297774,
+  "kind": "toll_booth",
+  "unit_code": "127",
+  "ambiguous": false
+ },
+ {
+  "id": "5197165493",
+  "name": "율암",
+  "lat": 35.8882461,
+  "lon": 128.7022731,
+  "kind": "toll_booth",
+  "unit_code": "779",
+  "ambiguous": false
+ },
+ {
+  "id": "5197165494",
+  "name": "율암",
+  "lat": 35.8884749,
+  "lon": 128.702362,
+  "kind": "toll_booth",
+  "unit_code": "779",
+  "ambiguous": false
+ },
+ {
+  "id": "5197165586",
+  "name": "파동A",
+  "lat": 35.8106235,
+  "lon": 128.6150766,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5235882414",
+  "name": "남제천 요금소",
+  "lat": 37.0748591,
+  "lon": 128.1851841,
+  "kind": "toll_booth",
+  "unit_code": "523",
+  "ambiguous": false
+ },
+ {
+  "id": "5235882415",
+  "name": "남제천 요금소",
+  "lat": 37.074905,
+  "lon": 128.1853687,
+  "kind": "toll_booth",
+  "unit_code": "523",
+  "ambiguous": false
+ },
+ {
+  "id": "5257075103",
+  "name": "서별내TG",
+  "lat": 37.6797895,
+  "lon": 127.11492,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5257075113",
+  "name": "서별내TG",
+  "lat": 37.6796273,
+  "lon": 127.1148369,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5257144073",
+  "name": "동별내",
+  "lat": 37.6821287,
+  "lon": 127.1329057,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5257144074",
+  "name": "동별내",
+  "lat": 37.6821475,
+  "lon": 127.1327468,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5257156132",
+  "name": "남별내",
+  "lat": 37.6762862,
+  "lon": 127.1365694,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5257156133",
+  "name": "남별내",
+  "lat": 37.6762983,
+  "lon": 127.1364354,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5285209580",
+  "name": "진부TG",
+  "lat": 37.648285,
+  "lon": 128.5623318,
+  "kind": "toll_booth",
+  "unit_code": "187",
+  "ambiguous": false
+ },
+ {
+  "id": "5298963269",
+  "name": "TG인제",
+  "lat": 37.9209789,
+  "lon": 128.289105,
+  "kind": "toll_booth",
+  "unit_code": "766",
+  "ambiguous": false
+ },
+ {
+  "id": "5299446724",
+  "name": "화성비봉",
+  "lat": 37.2326285,
+  "lon": 126.9042354,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5312774786",
+  "name": "송산마도요금소",
+  "lat": 37.2093242,
+  "lon": 126.7547034,
+  "kind": "toll_booth",
+  "unit_code": "683",
+  "ambiguous": false
+ },
+ {
+  "id": "5312774788",
+  "name": "송산마도요금소",
+  "lat": 37.2094499,
+  "lon": 126.7546827,
+  "kind": "toll_booth",
+  "unit_code": "683",
+  "ambiguous": false
+ },
+ {
+  "id": "5312774802",
+  "name": "조암요금소",
+  "lat": 37.1211599,
+  "lon": 126.823842,
+  "kind": "toll_booth",
+  "unit_code": "682",
+  "ambiguous": false
+ },
+ {
+  "id": "5338499735",
+  "name": "구리남양주",
+  "lat": 37.5897428,
+  "lon": 127.1567753,
+  "kind": "toll_gantry",
+  "unit_code": "062",
+  "ambiguous": false
+ },
+ {
+  "id": "5338499736",
+  "name": "구리남양주",
+  "lat": 37.5897184,
+  "lon": 127.1574529,
+  "kind": "toll_booth",
+  "unit_code": "062",
+  "ambiguous": false
+ },
+ {
+  "id": "5340244118",
+  "name": "기장일광",
+  "lat": 35.2781677,
+  "lon": 129.2267826,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "5341849165",
+  "name": "기장일광",
+  "lat": 35.2782081,
+  "lon": 129.2278604,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "5341849166",
+  "name": "기장일광",
+  "lat": 35.2782812,
+  "lon": 129.2280075,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "5341853431",
+  "name": "기장철마",
+  "lat": 35.2871999,
+  "lon": 129.1535744,
+  "kind": "toll_booth",
+  "unit_code": "752",
+  "ambiguous": false
+ },
+ {
+  "id": "5341853506",
+  "name": "기장철마",
+  "lat": 35.2872655,
+  "lon": 129.1536047,
+  "kind": "toll_booth",
+  "unit_code": "752",
+  "ambiguous": false
+ },
+ {
+  "id": "5348875048",
+  "name": "군위 (하행선) TG",
+  "lat": 36.1554962,
+  "lon": 128.5591194,
+  "kind": "toll_gantry",
+  "unit_code": "205",
+  "ambiguous": false
+ },
+ {
+  "id": "5352126648",
+  "name": "청라요금소",
+  "lat": 37.5669262,
+  "lon": 126.6644993,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5379880559",
+  "name": "흥천이포요금소",
+  "lat": 37.3753389,
+  "lon": 127.5160847,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5379880560",
+  "name": "흥천이포요금소",
+  "lat": 37.3753389,
+  "lon": 127.51626,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5379908290",
+  "name": "대신요금소",
+  "lat": 37.382689,
+  "lon": 127.5792808,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5379908291",
+  "name": "대신요금소",
+  "lat": 37.3826243,
+  "lon": 127.5792881,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5385133153",
+  "name": "남이천TG",
+  "lat": 37.1817063,
+  "lon": 127.4436117,
+  "kind": "toll_booth",
+  "unit_code": "705",
+  "ambiguous": false
+ },
+ {
+  "id": "5385133176",
+  "name": "남이천TG",
+  "lat": 37.1817425,
+  "lon": 127.4434544,
+  "kind": "toll_booth",
+  "unit_code": "705",
+  "ambiguous": false
+ },
+ {
+  "id": "5397507535",
+  "name": "진영",
+  "lat": 35.3010855,
+  "lon": 128.7612879,
+  "kind": "toll_booth",
+  "unit_code": "757",
+  "ambiguous": false
+ },
+ {
+  "id": "5397507554",
+  "name": "진영",
+  "lat": 35.3010242,
+  "lon": 128.7613076,
+  "kind": "toll_booth",
+  "unit_code": "757",
+  "ambiguous": false
+ },
+ {
+  "id": "5397507771",
+  "name": "진영휴게소TG",
+  "lat": 35.2765715,
+  "lon": 128.7169724,
+  "kind": "toll_gantry",
+  "unit_code": "758",
+  "ambiguous": false
+ },
+ {
+  "id": "5603257725",
+  "name": "서울",
+  "lat": 37.3652593,
+  "lon": 127.1026061,
+  "kind": "toll_gantry",
+  "unit_code": "101",
+  "ambiguous": false
+ },
+ {
+  "id": "5635283393",
+  "name": "경북대학교 정문 요금소",
+  "lat": 35.8855559,
+  "lon": 128.6144658,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "5880456874",
+  "name": "양감요금소",
+  "lat": 37.1009873,
+  "lon": 126.9919844,
+  "kind": "toll_booth",
+  "unit_code": "876",
+  "ambiguous": false
+ },
+ {
+  "id": "5880457569",
+  "name": "양감요금소",
+  "lat": 37.1009932,
+  "lon": 126.9920744,
+  "kind": "toll_booth",
+  "unit_code": "876",
+  "ambiguous": false
+ },
+ {
+  "id": "6220669850",
+  "name": "일로TG",
+  "lat": 34.8580255,
+  "lon": 126.4803947,
+  "kind": "toll_booth",
+  "unit_code": "056",
+  "ambiguous": false
+ },
+ {
+  "id": "6220669851",
+  "name": "일로TG",
+  "lat": 34.8586498,
+  "lon": 126.4805093,
+  "kind": "toll_booth",
+  "unit_code": "056",
+  "ambiguous": false
+ },
+ {
+  "id": "6246677114",
+  "name": "남포항 요금소",
+  "lat": 35.9237095,
+  "lon": 129.3943572,
+  "kind": "toll_booth",
+  "unit_code": "707",
+  "ambiguous": false
+ },
+ {
+  "id": "6259825943",
+  "name": "동문",
+  "lat": 37.2802913,
+  "lon": 127.0493008,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6261640505",
+  "name": "학운TG",
+  "lat": 35.1348302,
+  "lon": 126.9395671,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6265645444",
+  "name": "학운TG",
+  "lat": 35.1303608,
+  "lon": 126.9395914,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6265949008",
+  "name": "소태TG",
+  "lat": 35.126305,
+  "lon": 126.9393358,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6265949009",
+  "name": "소태TG",
+  "lat": 35.1262774,
+  "lon": 126.9394924,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6267867446",
+  "name": "송암",
+  "lat": 35.1153306,
+  "lon": 126.8749831,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6367278087",
+  "name": "천마요금소",
+  "lat": 35.079999,
+  "lon": 129.0222194,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6367278088",
+  "name": "천마요금소",
+  "lat": 35.0797118,
+  "lon": 129.0220228,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6442331260",
+  "name": "진례TG",
+  "lat": 35.2670763,
+  "lon": 128.7581884,
+  "kind": "toll_booth",
+  "unit_code": "147",
+  "ambiguous": false
+ },
+ {
+  "id": "6442331261",
+  "name": "진례TG",
+  "lat": 35.2670347,
+  "lon": 128.7586247,
+  "kind": "toll_booth",
+  "unit_code": "147",
+  "ambiguous": false
+ },
+ {
+  "id": "6443164498",
+  "name": "남광산",
+  "lat": 35.1910618,
+  "lon": 126.7556329,
+  "kind": "toll_gantry",
+  "unit_code": "718",
+  "ambiguous": false
+ },
+ {
+  "id": "6637059820",
+  "name": "남양주",
+  "lat": 37.5970958,
+  "lon": 127.2414034,
+  "kind": "toll_booth",
+  "unit_code": "651",
+  "ambiguous": false
+ },
+ {
+  "id": "6637059823",
+  "name": "남양주",
+  "lat": 37.5980461,
+  "lon": 127.2409847,
+  "kind": "toll_booth",
+  "unit_code": "651",
+  "ambiguous": false
+ },
+ {
+  "id": "6641039142",
+  "name": "서수지",
+  "lat": 37.3236167,
+  "lon": 127.0557421,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6654721343",
+  "name": "송암",
+  "lat": 35.1150893,
+  "lon": 126.8749819,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6661455983",
+  "name": "단양 요금소",
+  "lat": 36.9202347,
+  "lon": 128.3698529,
+  "kind": "toll_booth",
+  "unit_code": "521",
+  "ambiguous": false
+ },
+ {
+  "id": "6661455984",
+  "name": "단양 요금소",
+  "lat": 36.919956,
+  "lon": 128.3697644,
+  "kind": "toll_booth",
+  "unit_code": "521",
+  "ambiguous": false
+ },
+ {
+  "id": "6694211833",
+  "name": "모래내공영주차장",
+  "lat": 35.8337382,
+  "lon": 127.1435463,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6694211834",
+  "name": "모래내공영주차장",
+  "lat": 35.8337272,
+  "lon": 127.1433833,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "6962920583",
+  "name": "북광주TG",
+  "lat": 35.2565839,
+  "lon": 126.8938461,
+  "kind": "toll_booth",
+  "unit_code": "569",
+  "ambiguous": false
+ },
+ {
+  "id": "6962920584",
+  "name": "북광주TG",
+  "lat": 35.2564821,
+  "lon": 126.8941233,
+  "kind": "toll_booth",
+  "unit_code": "569",
+  "ambiguous": false
+ },
+ {
+  "id": "7041737597",
+  "name": "시흥",
+  "lat": 37.4508785,
+  "lon": 126.8031105,
+  "kind": "toll_booth",
+  "unit_code": "067",
+  "ambiguous": false
+ },
+ {
+  "id": "7099743720",
+  "name": "신북",
+  "lat": 37.9016624,
+  "lon": 127.2249585,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7099743721",
+  "name": "신북",
+  "lat": 37.9015915,
+  "lon": 127.2247457,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7100165435",
+  "name": "대청TG",
+  "lat": 35.1797615,
+  "lon": 128.7836357,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7105501229",
+  "name": "문수",
+  "lat": 35.5170074,
+  "lon": 129.2454973,
+  "kind": "toll_booth",
+  "unit_code": "642",
+  "ambiguous": false
+ },
+ {
+  "id": "7105501230",
+  "name": "문수",
+  "lat": 35.5168959,
+  "lon": 129.245506,
+  "kind": "toll_booth",
+  "unit_code": "642",
+  "ambiguous": false
+ },
+ {
+  "id": "7126346324",
+  "name": "부안요금소",
+  "lat": 35.7272207,
+  "lon": 126.7732568,
+  "kind": "toll_booth",
+  "unit_code": "502",
+  "ambiguous": false
+ },
+ {
+  "id": "7126470830",
+  "name": "강진무위사TG",
+  "lat": 34.6936513,
+  "lon": 126.715496,
+  "kind": "toll_booth",
+  "unit_code": "982",
+  "ambiguous": false
+ },
+ {
+  "id": "7264861140",
+  "name": "녹산",
+  "lat": 35.1523453,
+  "lon": 128.8449398,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7264861141",
+  "name": "녹산",
+  "lat": 35.1524771,
+  "lon": 128.8449557,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7394339088",
+  "name": "김포",
+  "lat": 37.5928045,
+  "lon": 126.7675364,
+  "kind": "toll_gantry",
+  "unit_code": "068",
+  "ambiguous": false
+ },
+ {
+  "id": "7394339089",
+  "name": "김포",
+  "lat": 37.5927025,
+  "lon": 126.7676618,
+  "kind": "toll_gantry",
+  "unit_code": "068",
+  "ambiguous": false
+ },
+ {
+  "id": "7440924410",
+  "name": "서안산TG(하이패스)",
+  "lat": 37.346803,
+  "lon": 126.7967957,
+  "kind": "toll_booth",
+  "unit_code": "255",
+  "ambiguous": false
+ },
+ {
+  "id": "7448947957",
+  "name": "산성",
+  "lat": 35.2412454,
+  "lon": 129.0256482,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7511697077",
+  "name": "동서울, 원주방면",
+  "lat": 37.3990597,
+  "lon": 127.6725028,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7538918768",
+  "name": "서수지",
+  "lat": 37.3232139,
+  "lon": 127.0567182,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7564460262",
+  "name": "평택고덕요금소",
+  "lat": 37.022703,
+  "lon": 127.0356818,
+  "kind": "toll_booth",
+  "unit_code": "741",
+  "ambiguous": false
+ },
+ {
+  "id": "7564460263",
+  "name": "평택고덕요금소",
+  "lat": 37.0225886,
+  "lon": 127.0356157,
+  "kind": "toll_booth",
+  "unit_code": "741",
+  "ambiguous": false
+ },
+ {
+  "id": "7805151533",
+  "name": "월정매표소",
+  "lat": 37.7242615,
+  "lon": 128.5989776,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7871959608",
+  "name": "양주요금소",
+  "lat": 37.8408183,
+  "lon": 127.0817251,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7903644412",
+  "name": "조원TG",
+  "lat": 37.3123613,
+  "lon": 127.0165484,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "7977101189",
+  "name": "안성요금소",
+  "lat": 36.9959336,
+  "lon": 127.1504384,
+  "kind": "toll_booth",
+  "unit_code": "107",
+  "ambiguous": false
+ },
+ {
+  "id": "7981145727",
+  "name": "판교",
+  "lat": 37.3955856,
+  "lon": 127.1026342,
+  "kind": "toll_booth",
+  "unit_code": "065",
+  "ambiguous": false
+ },
+ {
+  "id": "7981145730",
+  "name": "판교",
+  "lat": 37.3956994,
+  "lon": 127.1027376,
+  "kind": "toll_gantry",
+  "unit_code": "065",
+  "ambiguous": false
+ },
+ {
+  "id": "7981145735",
+  "name": "판교",
+  "lat": 37.3957662,
+  "lon": 127.1030728,
+  "kind": "toll_gantry",
+  "unit_code": "065",
+  "ambiguous": false
+ },
+ {
+  "id": "8018369564",
+  "name": "서함양요금소(하이패스)",
+  "lat": 35.5432954,
+  "lon": 127.7105072,
+  "kind": "toll_booth",
+  "unit_code": "724",
+  "ambiguous": false
+ },
+ {
+  "id": "8018369565",
+  "name": "서함양요금소(하이패스)",
+  "lat": 35.5405373,
+  "lon": 127.7091273,
+  "kind": "toll_booth",
+  "unit_code": "724",
+  "ambiguous": false
+ },
+ {
+  "id": "8032611960",
+  "name": "남포항 요금소",
+  "lat": 35.923814,
+  "lon": 129.3944729,
+  "kind": "toll_booth",
+  "unit_code": "707",
+  "ambiguous": false
+ },
+ {
+  "id": "8032612086",
+  "name": "동경주",
+  "lat": 35.7782213,
+  "lon": 129.4353917,
+  "kind": "toll_booth",
+  "unit_code": "708",
+  "ambiguous": false
+ },
+ {
+  "id": "8032612087",
+  "name": "동경주",
+  "lat": 35.7783592,
+  "lon": 129.4354499,
+  "kind": "toll_booth",
+  "unit_code": "708",
+  "ambiguous": false
+ },
+ {
+  "id": "8032612091",
+  "name": "청량",
+  "lat": 35.4796884,
+  "lon": 129.2880401,
+  "kind": "toll_booth",
+  "unit_code": "643",
+  "ambiguous": false
+ },
+ {
+  "id": "8032612092",
+  "name": "청량",
+  "lat": 35.479613,
+  "lon": 129.2880415,
+  "kind": "toll_booth",
+  "unit_code": "643",
+  "ambiguous": false
+ },
+ {
+  "id": "8032612095",
+  "name": "해운대송정",
+  "lat": 35.2166184,
+  "lon": 129.2063197,
+  "kind": "toll_booth",
+  "unit_code": "647",
+  "ambiguous": false
+ },
+ {
+  "id": "8032612096",
+  "name": "해운대송정",
+  "lat": 35.2165258,
+  "lon": 129.2066487,
+  "kind": "toll_booth",
+  "unit_code": "647",
+  "ambiguous": false
+ },
+ {
+  "id": "8032612097",
+  "name": "해운대송정",
+  "lat": 35.2164746,
+  "lon": 129.2068487,
+  "kind": "toll_booth",
+  "unit_code": "647",
+  "ambiguous": false
+ },
+ {
+  "id": "8032612098",
+  "name": "해운대송정",
+  "lat": 35.2164259,
+  "lon": 129.2070123,
+  "kind": "toll_booth",
+  "unit_code": "647",
+  "ambiguous": false
+ },
+ {
+  "id": "8037517424",
+  "name": "영덕요금소",
+  "lat": 36.3817461,
+  "lon": 129.3650783,
+  "kind": "toll_booth",
+  "unit_code": "749",
+  "ambiguous": false
+ },
+ {
+  "id": "8037517425",
+  "name": "영덕요금소",
+  "lat": 36.3815351,
+  "lon": 129.3644954,
+  "kind": "toll_booth",
+  "unit_code": "749",
+  "ambiguous": false
+ },
+ {
+  "id": "8037522589",
+  "name": "동청송영양",
+  "lat": 36.4972232,
+  "lon": 129.122018,
+  "kind": "toll_booth",
+  "unit_code": "748",
+  "ambiguous": false
+ },
+ {
+  "id": "8062732267",
+  "name": "서울방향 회차로 요금소",
+  "lat": 37.2643854,
+  "lon": 127.4071012,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8077615785",
+  "name": "북오산TG",
+  "lat": 37.1866129,
+  "lon": 127.054945,
+  "kind": "toll_booth",
+  "unit_code": "673",
+  "ambiguous": false
+ },
+ {
+  "id": "8077615786",
+  "name": "북오산TG",
+  "lat": 37.1865362,
+  "lon": 127.0547518,
+  "kind": "toll_booth",
+  "unit_code": "673",
+  "ambiguous": false
+ },
+ {
+  "id": "8079642051",
+  "name": "속초요금소",
+  "lat": 38.2024225,
+  "lon": 128.520074,
+  "kind": "toll_booth",
+  "unit_code": "702",
+  "ambiguous": false
+ },
+ {
+  "id": "8086463012",
+  "name": "고양 (남)",
+  "lat": 37.6628575,
+  "lon": 126.8519757,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8086583709",
+  "name": "고양 (북)",
+  "lat": 37.6727321,
+  "lon": 126.8545395,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8086952906",
+  "name": "사리현",
+  "lat": 37.6907839,
+  "lon": 126.8379036,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8086956124",
+  "name": "사리현",
+  "lat": 37.6907037,
+  "lon": 126.8379118,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8086956235",
+  "name": "월롱",
+  "lat": 37.7927862,
+  "lon": 126.7819942,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8087638572",
+  "name": "남천안요금소",
+  "lat": 36.7514797,
+  "lon": 127.1678684,
+  "kind": "toll_booth",
+  "unit_code": "601",
+  "ambiguous": false
+ },
+ {
+  "id": "8096273205",
+  "name": "서김포·통진 요금소",
+  "lat": 37.671674,
+  "lon": 126.6315996,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096273304",
+  "name": "북청라 TG",
+  "lat": 37.5602251,
+  "lon": 126.6282232,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096273305",
+  "name": "북청라 TG",
+  "lat": 37.5601628,
+  "lon": 126.6282987,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096273310",
+  "name": "검단양촌 TG",
+  "lat": 37.6019444,
+  "lon": 126.6204956,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096273311",
+  "name": "검단양촌 TG",
+  "lat": 37.6019026,
+  "lon": 126.6205378,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096276999",
+  "name": "대곶요금소",
+  "lat": 37.6514359,
+  "lon": 126.6007329,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096277000",
+  "name": "대곶요금소",
+  "lat": 37.6514195,
+  "lon": 126.6006416,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096277001",
+  "name": "대곶요금소",
+  "lat": 37.6513958,
+  "lon": 126.600511,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096277002",
+  "name": "대곶요금소",
+  "lat": 37.6514652,
+  "lon": 126.6009459,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096901355",
+  "name": "남청라",
+  "lat": 37.5142141,
+  "lon": 126.6204805,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096901356",
+  "name": "남청라",
+  "lat": 37.5143675,
+  "lon": 126.6204609,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096901357",
+  "name": "남청라",
+  "lat": 37.5145441,
+  "lon": 126.6204292,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8096925655",
+  "name": "해미요금소",
+  "lat": 36.7085403,
+  "lon": 126.557195,
+  "kind": "toll_booth",
+  "unit_code": "299",
+  "ambiguous": false
+ },
+ {
+  "id": "8100282610",
+  "name": "만월산터널요금소",
+  "lat": 37.4679199,
+  "lon": 126.7233506,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8100282611",
+  "name": "만월산터널요금소",
+  "lat": 37.4677827,
+  "lon": 126.7234967,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8100282612",
+  "name": "만월산터널요금소",
+  "lat": 37.4676926,
+  "lon": 126.7236016,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8100282613",
+  "name": "만월산터널요금소",
+  "lat": 37.4675852,
+  "lon": 126.7237248,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8100445875",
+  "name": "밀양(상)TG",
+  "lat": 35.5174601,
+  "lon": 128.7983197,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "8116548371",
+  "name": "동서울",
+  "lat": 37.5175095,
+  "lon": 127.2219018,
+  "kind": "toll_booth",
+  "unit_code": "190",
+  "ambiguous": false
+ },
+ {
+  "id": "8116548381",
+  "name": "동서울",
+  "lat": 37.5169691,
+  "lon": 127.2204043,
+  "kind": "toll_booth",
+  "unit_code": "190",
+  "ambiguous": false
+ },
+ {
+  "id": "8118609623",
+  "name": "고양TG",
+  "lat": 37.6572728,
+  "lon": 126.8220926,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8118609624",
+  "name": "고양TG",
+  "lat": 37.6571774,
+  "lon": 126.8221193,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8118609625",
+  "name": "고양TG",
+  "lat": 37.6573572,
+  "lon": 126.8192904,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8118609626",
+  "name": "고양TG",
+  "lat": 37.657286,
+  "lon": 126.8192578,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8118609627",
+  "name": "고양TG",
+  "lat": 37.6572208,
+  "lon": 126.8192309,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8120223114",
+  "name": "강진무위사TG",
+  "lat": 34.6936374,
+  "lon": 126.7153581,
+  "kind": "toll_booth",
+  "unit_code": "982",
+  "ambiguous": false
+ },
+ {
+  "id": "8120223115",
+  "name": "강진무위사TG",
+  "lat": 34.6936629,
+  "lon": 126.7155988,
+  "kind": "toll_booth",
+  "unit_code": "982",
+  "ambiguous": false
+ },
+ {
+  "id": "8120228291",
+  "name": "강진무위사TG",
+  "lat": 34.6936484,
+  "lon": 126.715427,
+  "kind": "toll_booth",
+  "unit_code": "982",
+  "ambiguous": false
+ },
+ {
+  "id": "8127913514",
+  "name": "서산요금소",
+  "lat": 36.8098266,
+  "lon": 126.569159,
+  "kind": "toll_booth",
+  "unit_code": "298",
+  "ambiguous": false
+ },
+ {
+  "id": "8127913515",
+  "name": "서산요금소",
+  "lat": 36.8098122,
+  "lon": 126.5693367,
+  "kind": "toll_booth",
+  "unit_code": "298",
+  "ambiguous": false
+ },
+ {
+  "id": "8127913516",
+  "name": "서산요금소",
+  "lat": 36.8098555,
+  "lon": 126.5688164,
+  "kind": "toll_booth",
+  "unit_code": "298",
+  "ambiguous": false
+ },
+ {
+  "id": "8141603259",
+  "name": "군자요금소",
+  "lat": 37.3577086,
+  "lon": 126.7802758,
+  "kind": "toll_booth",
+  "unit_code": "254",
+  "ambiguous": false
+ },
+ {
+  "id": "8141603260",
+  "name": "군자요금소",
+  "lat": 37.358071,
+  "lon": 126.7804758,
+  "kind": "toll_booth",
+  "unit_code": "254",
+  "ambiguous": false
+ },
+ {
+  "id": "8141603261",
+  "name": "군자요금소",
+  "lat": 37.357351,
+  "lon": 126.7800638,
+  "kind": "toll_booth",
+  "unit_code": "254",
+  "ambiguous": false
+ },
+ {
+  "id": "8141603273",
+  "name": "TG안산",
+  "lat": 37.3503113,
+  "lon": 126.8429083,
+  "kind": "toll_booth",
+  "unit_code": "256",
+  "ambiguous": false
+ },
+ {
+  "id": "8141603274",
+  "name": "TG안산",
+  "lat": 37.3501966,
+  "lon": 126.8428946,
+  "kind": "toll_booth",
+  "unit_code": "256",
+  "ambiguous": false
+ },
+ {
+  "id": "8141603275",
+  "name": "TG안산",
+  "lat": 37.3501042,
+  "lon": 126.8428821,
+  "kind": "toll_booth",
+  "unit_code": "256",
+  "ambiguous": false
+ },
+ {
+  "id": "8141603276",
+  "name": "TG안산",
+  "lat": 37.3499532,
+  "lon": 126.8428584,
+  "kind": "toll_booth",
+  "unit_code": "256",
+  "ambiguous": false
+ },
+ {
+  "id": "8141644408",
+  "name": "군포TG",
+  "lat": 37.3215261,
+  "lon": 126.9204057,
+  "kind": "toll_booth",
+  "unit_code": "215",
+  "ambiguous": false
+ },
+ {
+  "id": "8141644409",
+  "name": "군포TG",
+  "lat": 37.3217145,
+  "lon": 126.9202333,
+  "kind": "toll_booth",
+  "unit_code": "215",
+  "ambiguous": false
+ },
+ {
+  "id": "8143094907",
+  "name": "서안성요금소",
+  "lat": 37.0384323,
+  "lon": 127.1583217,
+  "kind": "toll_booth",
+  "unit_code": "542",
+  "ambiguous": false
+ },
+ {
+  "id": "8143094908",
+  "name": "서안성요금소",
+  "lat": 37.03831,
+  "lon": 127.158155,
+  "kind": "toll_booth",
+  "unit_code": "542",
+  "ambiguous": false
+ },
+ {
+  "id": "8144373842",
+  "name": "고양 (북)",
+  "lat": 37.6727141,
+  "lon": 126.8540791,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8144380963",
+  "name": "TG인제",
+  "lat": 37.9209778,
+  "lon": 128.2891961,
+  "kind": "toll_booth",
+  "unit_code": "766",
+  "ambiguous": false
+ },
+ {
+  "id": "8144381010",
+  "name": "양양TG",
+  "lat": 38.0715429,
+  "lon": 128.5976184,
+  "kind": "toll_booth",
+  "unit_code": "510",
+  "ambiguous": false
+ },
+ {
+  "id": "8144381011",
+  "name": "양양TG",
+  "lat": 38.0713655,
+  "lon": 128.5975334,
+  "kind": "toll_booth",
+  "unit_code": "510",
+  "ambiguous": false
+ },
+ {
+  "id": "8144381012",
+  "name": "양양TG",
+  "lat": 38.0712799,
+  "lon": 128.5974971,
+  "kind": "toll_booth",
+  "unit_code": "510",
+  "ambiguous": false
+ },
+ {
+  "id": "8144414634",
+  "name": "TG북양양(설악산)",
+  "lat": 38.1549714,
+  "lon": 128.5808225,
+  "kind": "toll_booth",
+  "unit_code": "701",
+  "ambiguous": false
+ },
+ {
+  "id": "8144414635",
+  "name": "TG북양양(설악산)",
+  "lat": 38.154902,
+  "lon": 128.580819,
+  "kind": "toll_booth",
+  "unit_code": "701",
+  "ambiguous": false
+ },
+ {
+  "id": "8144414636",
+  "name": "TG북양양(설악산)",
+  "lat": 38.1548189,
+  "lon": 128.5808163,
+  "kind": "toll_booth",
+  "unit_code": "701",
+  "ambiguous": false
+ },
+ {
+  "id": "8144414637",
+  "name": "TG북양양(설악산)",
+  "lat": 38.154743,
+  "lon": 128.5808129,
+  "kind": "toll_booth",
+  "unit_code": "701",
+  "ambiguous": false
+ },
+ {
+  "id": "8153770264",
+  "name": "문수",
+  "lat": 35.5167067,
+  "lon": 129.2455307,
+  "kind": "toll_booth",
+  "unit_code": "642",
+  "ambiguous": false
+ },
+ {
+  "id": "8153770265",
+  "name": "문수",
+  "lat": 35.5171109,
+  "lon": 129.2454787,
+  "kind": "toll_booth",
+  "unit_code": "642",
+  "ambiguous": false
+ },
+ {
+  "id": "8182629032",
+  "name": "영주 요금소",
+  "lat": 36.7719851,
+  "lon": 128.5736335,
+  "kind": "toll_booth",
+  "unit_code": "210",
+  "ambiguous": false
+ },
+ {
+  "id": "8182629033",
+  "name": "영주 요금소",
+  "lat": 36.771898,
+  "lon": 128.573797,
+  "kind": "toll_booth",
+  "unit_code": "210",
+  "ambiguous": false
+ },
+ {
+  "id": "8182629113",
+  "name": "풍기 요금소",
+  "lat": 36.8498785,
+  "lon": 128.5291486,
+  "kind": "toll_booth",
+  "unit_code": "211",
+  "ambiguous": false
+ },
+ {
+  "id": "8193471620",
+  "name": "상동 요금소",
+  "lat": 35.3166155,
+  "lon": 128.9419778,
+  "kind": "toll_booth",
+  "unit_code": "628",
+  "ambiguous": false
+ },
+ {
+  "id": "8193471621",
+  "name": "상동 요금소",
+  "lat": 35.3166984,
+  "lon": 128.941864,
+  "kind": "toll_booth",
+  "unit_code": "628",
+  "ambiguous": false
+ },
+ {
+  "id": "8195941496",
+  "name": "남밀양 요금소",
+  "lat": 35.4507731,
+  "lon": 128.7632163,
+  "kind": "toll_booth",
+  "unit_code": "626",
+  "ambiguous": false
+ },
+ {
+  "id": "8195941497",
+  "name": "남밀양 요금소",
+  "lat": 35.4509721,
+  "lon": 128.763215,
+  "kind": "toll_booth",
+  "unit_code": "626",
+  "ambiguous": false
+ },
+ {
+  "id": "8222249012",
+  "name": "이패",
+  "lat": 37.6143052,
+  "lon": 127.2051926,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8222249013",
+  "name": "이패",
+  "lat": 37.6141943,
+  "lon": 127.2052449,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8222249014",
+  "name": "이패",
+  "lat": 37.6140469,
+  "lon": 127.2053132,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8222249015",
+  "name": "이패",
+  "lat": 37.6139176,
+  "lon": 127.2053785,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8234390369",
+  "name": "남봉담TG",
+  "lat": 37.1972548,
+  "lon": 126.9520255,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8234390413",
+  "name": "남봉담TG",
+  "lat": 37.1973051,
+  "lon": 126.952027,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8236222188",
+  "name": "연경",
+  "lat": 35.9364365,
+  "lon": 128.6113919,
+  "kind": "toll_booth",
+  "unit_code": "776",
+  "ambiguous": false
+ },
+ {
+  "id": "8236222189",
+  "name": "연경",
+  "lat": 35.9362197,
+  "lon": 128.611595,
+  "kind": "toll_booth",
+  "unit_code": "776",
+  "ambiguous": false
+ },
+ {
+  "id": "8236228940",
+  "name": "남칠곡",
+  "lat": 35.9169097,
+  "lon": 128.5149401,
+  "kind": "toll_gantry",
+  "unit_code": "774",
+  "ambiguous": false
+ },
+ {
+  "id": "8236228941",
+  "name": "남칠곡",
+  "lat": 35.9168493,
+  "lon": 128.5149995,
+  "kind": "toll_gantry",
+  "unit_code": "774",
+  "ambiguous": false
+ },
+ {
+  "id": "8236228951",
+  "name": "북달성",
+  "lat": 35.8711077,
+  "lon": 128.4593471,
+  "kind": "toll_booth",
+  "unit_code": "772",
+  "ambiguous": false
+ },
+ {
+  "id": "8236228952",
+  "name": "북달성",
+  "lat": 35.8709196,
+  "lon": 128.4590188,
+  "kind": "toll_booth",
+  "unit_code": "772",
+  "ambiguous": false
+ },
+ {
+  "id": "8236228955",
+  "name": "파동A",
+  "lat": 35.8102542,
+  "lon": 128.6150854,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8244451478",
+  "name": "통일로 TG",
+  "lat": 37.6749248,
+  "lon": 126.879474,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8244451479",
+  "name": "통일로 TG",
+  "lat": 37.6747704,
+  "lon": 126.879466,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8244451480",
+  "name": "통일로 TG",
+  "lat": 37.6742904,
+  "lon": 126.8798996,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8244451481",
+  "name": "통일로 TG",
+  "lat": 37.6741726,
+  "lon": 126.8798852,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8259165988",
+  "name": "청라원창",
+  "lat": 37.5154604,
+  "lon": 126.6248218,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8259165989",
+  "name": "청라원창",
+  "lat": 37.5155283,
+  "lon": 126.6250336,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8336649333",
+  "name": "청주요금소",
+  "lat": 36.6247003,
+  "lon": 127.3799918,
+  "kind": "toll_booth",
+  "unit_code": "111",
+  "ambiguous": false
+ },
+ {
+  "id": "8336649334",
+  "name": "청주요금소",
+  "lat": 36.6248821,
+  "lon": 127.3800519,
+  "kind": "toll_booth",
+  "unit_code": "111",
+  "ambiguous": false
+ },
+ {
+  "id": "8359418591",
+  "name": "서김해",
+  "lat": 35.2171081,
+  "lon": 128.844557,
+  "kind": "toll_booth",
+  "unit_code": "148",
+  "ambiguous": false
+ },
+ {
+  "id": "8359418592",
+  "name": "서김해",
+  "lat": 35.2168745,
+  "lon": 128.8449852,
+  "kind": "toll_booth",
+  "unit_code": "148",
+  "ambiguous": false
+ },
+ {
+  "id": "8374027460",
+  "name": "강동고덕",
+  "lat": 37.5664676,
+  "lon": 127.1538453,
+  "kind": "toll_gantry",
+  "unit_code": "003",
+  "ambiguous": false
+ },
+ {
+  "id": "8388345223",
+  "name": "가산 요금소",
+  "lat": 36.0923823,
+  "lon": 128.5360584,
+  "kind": "toll_booth",
+  "unit_code": "203",
+  "ambiguous": false
+ },
+ {
+  "id": "8413805109",
+  "name": "풍세",
+  "lat": 36.7426538,
+  "lon": 127.1611121,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8413805110",
+  "name": "남풍세",
+  "lat": 36.7199769,
+  "lon": 127.1407729,
+  "kind": "toll_booth",
+  "unit_code": "613",
+  "ambiguous": false
+ },
+ {
+  "id": "8413805111",
+  "name": "남풍세",
+  "lat": 36.7199535,
+  "lon": 127.1409152,
+  "kind": "toll_booth",
+  "unit_code": "613",
+  "ambiguous": false
+ },
+ {
+  "id": "8425133075",
+  "name": "동양평 TG",
+  "lat": 37.4023781,
+  "lon": 127.7492479,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8425133076",
+  "name": "동양평 TG",
+  "lat": 37.402318,
+  "lon": 127.7492422,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8425133077",
+  "name": "동양평 TG",
+  "lat": 37.4022458,
+  "lon": 127.7492348,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8425133078",
+  "name": "동양평 TG",
+  "lat": 37.4021616,
+  "lon": 127.7492277,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8434062000",
+  "name": "선산요금소",
+  "lat": 36.2378544,
+  "lon": 128.2689395,
+  "kind": "toll_booth",
+  "unit_code": "134",
+  "ambiguous": false
+ },
+ {
+  "id": "8434222049",
+  "name": "새만금",
+  "lat": 35.8506808,
+  "lon": 126.71758,
+  "kind": "toll_booth",
+  "unit_code": "324",
+  "ambiguous": false
+ },
+ {
+  "id": "8434222050",
+  "name": "새만금",
+  "lat": 35.8508004,
+  "lon": 126.7175478,
+  "kind": "toll_booth",
+  "unit_code": "324",
+  "ambiguous": false
+ },
+ {
+  "id": "8455189679",
+  "name": "장유",
+  "lat": 35.1994175,
+  "lon": 128.8117025,
+  "kind": "toll_booth",
+  "unit_code": "245",
+  "ambiguous": false
+ },
+ {
+  "id": "8456595239",
+  "name": "미시령",
+  "lat": 38.2066239,
+  "lon": 128.4934906,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8488013747",
+  "name": "남안동 TG",
+  "lat": 36.4760716,
+  "lon": 128.6260452,
+  "kind": "toll_booth",
+  "unit_code": "207",
+  "ambiguous": false
+ },
+ {
+  "id": "8488013748",
+  "name": "남안동 TG",
+  "lat": 36.4760998,
+  "lon": 128.6259402,
+  "kind": "toll_booth",
+  "unit_code": "207",
+  "ambiguous": false
+ },
+ {
+  "id": "8488013749",
+  "name": "남안동 TG",
+  "lat": 36.4761221,
+  "lon": 128.625872,
+  "kind": "toll_booth",
+  "unit_code": "207",
+  "ambiguous": false
+ },
+ {
+  "id": "8502199786",
+  "name": "건천 TG",
+  "lat": 35.8406504,
+  "lon": 129.0833122,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8502199788",
+  "name": "건천 TG",
+  "lat": 35.8406566,
+  "lon": 129.0834025,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8508707510",
+  "name": "홍성요금소",
+  "lat": 36.5954542,
+  "lon": 126.5616508,
+  "kind": "toll_booth",
+  "unit_code": "257",
+  "ambiguous": false
+ },
+ {
+  "id": "8508707511",
+  "name": "홍성요금소",
+  "lat": 36.5954323,
+  "lon": 126.5615354,
+  "kind": "toll_booth",
+  "unit_code": "257",
+  "ambiguous": false
+ },
+ {
+  "id": "8508707512",
+  "name": "홍성요금소",
+  "lat": 36.5954331,
+  "lon": 126.561489,
+  "kind": "toll_booth",
+  "unit_code": "257",
+  "ambiguous": false
+ },
+ {
+  "id": "8508707513",
+  "name": "홍성요금소",
+  "lat": 36.5954129,
+  "lon": 126.5613785,
+  "kind": "toll_booth",
+  "unit_code": "257",
+  "ambiguous": false
+ },
+ {
+  "id": "8649730542",
+  "name": "서양양 TG",
+  "lat": 37.9906494,
+  "lon": 128.5326388,
+  "kind": "toll_booth",
+  "unit_code": "768",
+  "ambiguous": false
+ },
+ {
+  "id": "8649730543",
+  "name": "서양양 TG",
+  "lat": 37.9906898,
+  "lon": 128.5325725,
+  "kind": "toll_booth",
+  "unit_code": "768",
+  "ambiguous": false
+ },
+ {
+  "id": "8671922810",
+  "name": "마도",
+  "lat": 37.188306,
+  "lon": 126.7880619,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671922811",
+  "name": "마도",
+  "lat": 37.1879151,
+  "lon": 126.7880281,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671922812",
+  "name": "마도(동)",
+  "lat": 37.1880367,
+  "lon": 126.7877551,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671922813",
+  "name": "마도(서)",
+  "lat": 37.1881701,
+  "lon": 126.7883377,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671930005",
+  "name": "영천TG",
+  "lat": 35.9423633,
+  "lon": 129.0185671,
+  "kind": "toll_gantry",
+  "unit_code": "132",
+  "ambiguous": false
+ },
+ {
+  "id": "8671930006",
+  "name": "화산 (상) TG",
+  "lat": 36.024959,
+  "lon": 128.8871027,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671930007",
+  "name": "화산 (하) TG",
+  "lat": 36.0252883,
+  "lon": 128.8863024,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671937918",
+  "name": "남비봉팔탄TG",
+  "lat": 37.2025861,
+  "lon": 126.8819417,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671937919",
+  "name": "남비봉팔탄TG",
+  "lat": 37.2026395,
+  "lon": 126.882049,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671937962",
+  "name": "화성TG",
+  "lat": 37.1869082,
+  "lon": 126.8147469,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671937963",
+  "name": "화성TG",
+  "lat": 37.1870221,
+  "lon": 126.8147495,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8671937999",
+  "name": "장안TG",
+  "lat": 37.0956886,
+  "lon": 126.8435345,
+  "kind": "toll_gantry",
+  "unit_code": "645",
+  "ambiguous": false
+ },
+ {
+  "id": "8704535395",
+  "name": "서김포·통진 요금소",
+  "lat": 37.6717068,
+  "lon": 126.6315321,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8735639156",
+  "name": "남구미TG",
+  "lat": 36.0722832,
+  "lon": 128.3716556,
+  "kind": "toll_booth",
+  "unit_code": "125",
+  "ambiguous": false
+ },
+ {
+  "id": "8735639157",
+  "name": "남구미TG",
+  "lat": 36.0721045,
+  "lon": 128.3717051,
+  "kind": "toll_booth",
+  "unit_code": "125",
+  "ambiguous": false
+ },
+ {
+  "id": "8744362336",
+  "name": "청요(동)",
+  "lat": 37.206196,
+  "lon": 126.9048204,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8744362337",
+  "name": "청요(서)",
+  "lat": 37.2064693,
+  "lon": 126.904767,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8744362340",
+  "name": "서오창(동)",
+  "lat": 36.7277777,
+  "lon": 127.4180478,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8744362341",
+  "name": "서오창(서)",
+  "lat": 36.7280594,
+  "lon": 127.4181824,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8744418834",
+  "name": "남논산",
+  "lat": 36.1073432,
+  "lon": 127.0784842,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8744418835",
+  "name": "대구TG",
+  "lat": 35.852856,
+  "lon": 128.6880194,
+  "kind": "toll_gantry",
+  "unit_code": "622",
+  "ambiguous": false
+ },
+ {
+  "id": "8744418836",
+  "name": "밀양(하)TG",
+  "lat": 35.5178326,
+  "lon": 128.7984263,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "8754971363",
+  "name": "서포항 요금소",
+  "lat": 36.0679549,
+  "lon": 129.222613,
+  "kind": "toll_booth",
+  "unit_code": "526",
+  "ambiguous": false
+ },
+ {
+  "id": "8754971364",
+  "name": "서포항 요금소",
+  "lat": 36.067725,
+  "lon": 129.2225164,
+  "kind": "toll_booth",
+  "unit_code": "526",
+  "ambiguous": false
+ },
+ {
+  "id": "8867200817",
+  "name": "산단톨게이트",
+  "lat": 37.8252651,
+  "lon": 126.77981,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8867200917",
+  "name": "월롱",
+  "lat": 37.7927304,
+  "lon": 126.7820272,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8867202717",
+  "name": "금촌톨게이트",
+  "lat": 37.7517494,
+  "lon": 126.7885602,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "8989182423",
+  "name": "동명동호",
+  "lat": 35.9700948,
+  "lon": 128.5514846,
+  "kind": "toll_gantry",
+  "unit_code": "775",
+  "ambiguous": false
+ },
+ {
+  "id": "9035078204",
+  "name": "도척TG",
+  "lat": 37.288659,
+  "lon": 127.3246581,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9035078205",
+  "name": "도척TG",
+  "lat": 37.2887128,
+  "lon": 127.3247862,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9037161989",
+  "name": "북포항",
+  "lat": 36.2016333,
+  "lon": 129.3646555,
+  "kind": "toll_booth",
+  "unit_code": "332",
+  "ambiguous": false
+ },
+ {
+  "id": "9037208724",
+  "name": "북포항",
+  "lat": 36.2053592,
+  "lon": 129.3626457,
+  "kind": "toll_booth",
+  "unit_code": "332",
+  "ambiguous": false
+ },
+ {
+  "id": "9037208725",
+  "name": "북포항",
+  "lat": 36.2053435,
+  "lon": 129.3627177,
+  "kind": "toll_booth",
+  "unit_code": "332",
+  "ambiguous": false
+ },
+ {
+  "id": "9056306088",
+  "name": "북용인",
+  "lat": 37.3316622,
+  "lon": 127.2158888,
+  "kind": "toll_booth",
+  "unit_code": "785",
+  "ambiguous": false
+ },
+ {
+  "id": "9107625927",
+  "name": "포승요금소",
+  "lat": 36.9465825,
+  "lon": 126.8846477,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9236769080",
+  "name": "임고하이패스TG",
+  "lat": 36.0550669,
+  "lon": 129.0088011,
+  "kind": "toll_booth",
+  "unit_code": "725",
+  "ambiguous": false
+ },
+ {
+  "id": "9236769081",
+  "name": "임고하이패스TG",
+  "lat": 36.0550226,
+  "lon": 129.0088012,
+  "kind": "toll_booth",
+  "unit_code": "725",
+  "ambiguous": false
+ },
+ {
+  "id": "9269926370",
+  "name": "신월여의지하도로TG",
+  "lat": 37.5263028,
+  "lon": 126.8399629,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9269926371",
+  "name": "신월여의지하도로TG",
+  "lat": 37.5265338,
+  "lon": 126.8398988,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9293751154",
+  "name": "금토",
+  "lat": 37.4104979,
+  "lon": 127.0818469,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9293751155",
+  "name": "금토",
+  "lat": 37.4105932,
+  "lon": 127.081667,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9293751156",
+  "name": "금토",
+  "lat": 37.4107534,
+  "lon": 127.0813206,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9293751157",
+  "name": "금토",
+  "lat": 37.4108301,
+  "lon": 127.0811603,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9295696748",
+  "name": "매표소 검문소",
+  "lat": 35.8360047,
+  "lon": 129.2836644,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9295696749",
+  "name": "매표소",
+  "lat": 35.8359187,
+  "lon": 129.2836963,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9344083064",
+  "name": "흥도",
+  "lat": 37.6167878,
+  "lon": 126.8580594,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9344083067",
+  "name": "흥도",
+  "lat": 37.6166238,
+  "lon": 126.8584709,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9344083083",
+  "name": "고양",
+  "lat": 37.6297851,
+  "lon": 126.8524513,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9344083084",
+  "name": "고양",
+  "lat": 37.6296532,
+  "lon": 126.8521851,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9344083085",
+  "name": "고양",
+  "lat": 37.629574,
+  "lon": 126.851992,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9344083086",
+  "name": "고양",
+  "lat": 37.6295124,
+  "lon": 126.8519007,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9344083095",
+  "name": "고양",
+  "lat": 37.6318428,
+  "lon": 126.8509658,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9344083102",
+  "name": "고양 (남)",
+  "lat": 37.6630506,
+  "lon": 126.8515849,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9420394623",
+  "name": "성주",
+  "lat": 35.9160145,
+  "lon": 128.2493885,
+  "kind": "toll_booth",
+  "unit_code": "538",
+  "ambiguous": false
+ },
+ {
+  "id": "9420394624",
+  "name": "성주",
+  "lat": 35.9160337,
+  "lon": 128.249562,
+  "kind": "toll_booth",
+  "unit_code": "538",
+  "ambiguous": false
+ },
+ {
+  "id": "9424930134",
+  "name": "순창TG",
+  "lat": 35.3674874,
+  "lon": 127.1359164,
+  "kind": "toll_booth",
+  "unit_code": "248",
+  "ambiguous": false
+ },
+ {
+  "id": "9468458707",
+  "name": "내서TG",
+  "lat": 35.2567245,
+  "lon": 128.5136828,
+  "kind": "toll_booth",
+  "unit_code": "092",
+  "ambiguous": false
+ },
+ {
+  "id": "9468458708",
+  "name": "내서TG",
+  "lat": 35.2567166,
+  "lon": 128.5137385,
+  "kind": "toll_booth",
+  "unit_code": "092",
+  "ambiguous": false
+ },
+ {
+  "id": "9468458709",
+  "name": "내서TG",
+  "lat": 35.2567095,
+  "lon": 128.5137917,
+  "kind": "toll_booth",
+  "unit_code": "092",
+  "ambiguous": false
+ },
+ {
+  "id": "9468458710",
+  "name": "내서TG",
+  "lat": 35.2569665,
+  "lon": 128.5139603,
+  "kind": "toll_booth",
+  "unit_code": "092",
+  "ambiguous": false
+ },
+ {
+  "id": "9468458711",
+  "name": "내서TG",
+  "lat": 35.2569588,
+  "lon": 128.5140104,
+  "kind": "toll_booth",
+  "unit_code": "092",
+  "ambiguous": false
+ },
+ {
+  "id": "9468458712",
+  "name": "내서TG",
+  "lat": 35.2569507,
+  "lon": 128.5140546,
+  "kind": "toll_booth",
+  "unit_code": "092",
+  "ambiguous": false
+ },
+ {
+  "id": "9502253873",
+  "name": "지수 요금소",
+  "lat": 35.228033,
+  "lon": 128.2669615,
+  "kind": "toll_booth",
+  "unit_code": "296",
+  "ambiguous": false
+ },
+ {
+  "id": "9518985508",
+  "name": "광주 톨게이트 하이패스",
+  "lat": 35.2519193,
+  "lon": 126.8082706,
+  "kind": "toll_gantry",
+  "unit_code": "167",
+  "ambiguous": false
+ },
+ {
+  "id": "9518985509",
+  "name": "광주 톨게이트 하이패스",
+  "lat": 35.2518556,
+  "lon": 126.8081893,
+  "kind": "toll_gantry",
+  "unit_code": "167",
+  "ambiguous": false
+ },
+ {
+  "id": "9520913490",
+  "name": "장지TG",
+  "lat": 35.2940421,
+  "lon": 128.3411716,
+  "kind": "toll_booth",
+  "unit_code": "143",
+  "ambiguous": false
+ },
+ {
+  "id": "9520913491",
+  "name": "장지TG",
+  "lat": 35.2940083,
+  "lon": 128.3412185,
+  "kind": "toll_booth",
+  "unit_code": "143",
+  "ambiguous": false
+ },
+ {
+  "id": "9520913492",
+  "name": "장지TG",
+  "lat": 35.2939543,
+  "lon": 128.3412928,
+  "kind": "toll_booth",
+  "unit_code": "143",
+  "ambiguous": false
+ },
+ {
+  "id": "9520913493",
+  "name": "장지TG",
+  "lat": 35.2938822,
+  "lon": 128.341365,
+  "kind": "toll_booth",
+  "unit_code": "143",
+  "ambiguous": false
+ },
+ {
+  "id": "9533919081",
+  "name": "한림",
+  "lat": 35.2953221,
+  "lon": 128.8116621,
+  "kind": "toll_booth",
+  "unit_code": "756",
+  "ambiguous": false
+ },
+ {
+  "id": "9533919082",
+  "name": "한림",
+  "lat": 35.2956486,
+  "lon": 128.8118471,
+  "kind": "toll_booth",
+  "unit_code": "756",
+  "ambiguous": false
+ },
+ {
+  "id": "9533919083",
+  "name": "한림",
+  "lat": 35.2957019,
+  "lon": 128.811868,
+  "kind": "toll_booth",
+  "unit_code": "756",
+  "ambiguous": false
+ },
+ {
+  "id": "9554088256",
+  "name": "용전",
+  "lat": 35.2784262,
+  "lon": 128.6522158,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9554088257",
+  "name": "용전",
+  "lat": 35.2783609,
+  "lon": 128.6522546,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9554088258",
+  "name": "용전",
+  "lat": 35.2783038,
+  "lon": 128.6522812,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9554088259",
+  "name": "용전",
+  "lat": 35.2782273,
+  "lon": 128.6523222,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9604651640",
+  "name": "율암",
+  "lat": 35.88962,
+  "lon": 128.7004668,
+  "kind": "toll_booth",
+  "unit_code": "779",
+  "ambiguous": false
+ },
+ {
+  "id": "9604707097",
+  "name": "율암",
+  "lat": 35.8882675,
+  "lon": 128.7021247,
+  "kind": "toll_booth",
+  "unit_code": "779",
+  "ambiguous": false
+ },
+ {
+  "id": "9604726551",
+  "name": "율암",
+  "lat": 35.8901257,
+  "lon": 128.7023362,
+  "kind": "toll_booth",
+  "unit_code": "779",
+  "ambiguous": false
+ },
+ {
+  "id": "9631164888",
+  "name": "서용인(동)",
+  "lat": 37.2622052,
+  "lon": 127.1792279,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9631215235",
+  "name": "서용인(서)",
+  "lat": 37.2796369,
+  "lon": 127.210063,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9645147883",
+  "name": "중리톨게이트",
+  "lat": 37.2008173,
+  "lon": 127.129492,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9645309720",
+  "name": "노곡톨게이트",
+  "lat": 37.2979146,
+  "lon": 127.3443429,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "9717312627",
+  "name": "오포(세종)",
+  "lat": 37.3528337,
+  "lon": 127.2213642,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "9717312628",
+  "name": "오포(세종)",
+  "lat": 37.3528394,
+  "lon": 127.2212938,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "9771289669",
+  "name": "군위(상행선) TG",
+  "lat": 36.1552213,
+  "lon": 128.5608775,
+  "kind": "toll_gantry",
+  "unit_code": "205",
+  "ambiguous": false
+ },
+ {
+  "id": "9793950690",
+  "name": "남사진위",
+  "lat": 37.1080498,
+  "lon": 127.1193074,
+  "kind": "toll_booth",
+  "unit_code": "742",
+  "ambiguous": false
+ },
+ {
+  "id": "9793950691",
+  "name": "남사진위",
+  "lat": 37.1079732,
+  "lon": 127.1193576,
+  "kind": "toll_booth",
+  "unit_code": "742",
+  "ambiguous": false
+ },
+ {
+  "id": "10113519437",
+  "name": "화도",
+  "lat": 37.6366015,
+  "lon": 127.3106531,
+  "kind": "toll_booth",
+  "unit_code": "652",
+  "ambiguous": false
+ },
+ {
+  "id": "10196231672",
+  "name": "서서울TG",
+  "lat": 37.3560141,
+  "lon": 126.8628974,
+  "kind": "toll_booth",
+  "unit_code": "253",
+  "ambiguous": false
+ },
+ {
+  "id": "10196231673",
+  "name": "서서울TG",
+  "lat": 37.3556182,
+  "lon": 126.864143,
+  "kind": "toll_booth",
+  "unit_code": "253",
+  "ambiguous": false
+ },
+ {
+  "id": "10197162482",
+  "name": "서시흥요금소",
+  "lat": 37.3494873,
+  "lon": 126.7671935,
+  "kind": "toll_booth",
+  "unit_code": "685",
+  "ambiguous": false
+ },
+ {
+  "id": "10197162483",
+  "name": "서시흥요금소",
+  "lat": 37.3494474,
+  "lon": 126.7674034,
+  "kind": "toll_booth",
+  "unit_code": "685",
+  "ambiguous": false
+ },
+ {
+  "id": "10199766699",
+  "name": "북평택요금소",
+  "lat": 37.0664081,
+  "lon": 126.9928561,
+  "kind": "toll_booth",
+  "unit_code": "677",
+  "ambiguous": false
+ },
+ {
+  "id": "10206969638",
+  "name": "면천요금소",
+  "lat": 36.8236497,
+  "lon": 126.6517111,
+  "kind": "toll_booth",
+  "unit_code": "571",
+  "ambiguous": false
+ },
+ {
+  "id": "10206969639",
+  "name": "면천요금소",
+  "lat": 36.8235602,
+  "lon": 126.6516944,
+  "kind": "toll_booth",
+  "unit_code": "571",
+  "ambiguous": false
+ },
+ {
+  "id": "10207196052",
+  "name": "북충주요금소",
+  "lat": 37.0388021,
+  "lon": 127.7961426,
+  "kind": "toll_booth",
+  "unit_code": "561",
+  "ambiguous": false
+ },
+ {
+  "id": "10207196053",
+  "name": "북충주요금소",
+  "lat": 37.0388382,
+  "lon": 127.7962607,
+  "kind": "toll_booth",
+  "unit_code": "561",
+  "ambiguous": false
+ },
+ {
+  "id": "10207198283",
+  "name": "양주요금소",
+  "lat": 37.8408795,
+  "lon": 127.0816831,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10207198294",
+  "name": "양주요금소",
+  "lat": 37.8409263,
+  "lon": 127.0816382,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10207198295",
+  "name": "양주요금소",
+  "lat": 37.8407767,
+  "lon": 127.0817702,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10207481740",
+  "name": "춘장대TG",
+  "lat": 36.1684582,
+  "lon": 126.60529,
+  "kind": "toll_booth",
+  "unit_code": "260",
+  "ambiguous": false
+ },
+ {
+  "id": "10207481741",
+  "name": "춘장대TG",
+  "lat": 36.1683263,
+  "lon": 126.6053226,
+  "kind": "toll_booth",
+  "unit_code": "260",
+  "ambiguous": false
+ },
+ {
+  "id": "10207487874",
+  "name": "서천TG",
+  "lat": 36.0958455,
+  "lon": 126.6884107,
+  "kind": "toll_booth",
+  "unit_code": "234",
+  "ambiguous": false
+ },
+ {
+  "id": "10207507199",
+  "name": "동서천요금소",
+  "lat": 36.0528171,
+  "lon": 126.7751715,
+  "kind": "toll_booth",
+  "unit_code": "591",
+  "ambiguous": false
+ },
+ {
+  "id": "10207507200",
+  "name": "동서천요금소",
+  "lat": 36.0528623,
+  "lon": 126.7753212,
+  "kind": "toll_booth",
+  "unit_code": "591",
+  "ambiguous": false
+ },
+ {
+  "id": "10212122341",
+  "name": "서울",
+  "lat": 37.3652554,
+  "lon": 127.1034009,
+  "kind": "toll_gantry",
+  "unit_code": "101",
+  "ambiguous": false
+ },
+ {
+  "id": "10212122342",
+  "name": "서울",
+  "lat": 37.365263,
+  "lon": 127.1031546,
+  "kind": "toll_gantry",
+  "unit_code": "101",
+  "ambiguous": false
+ },
+ {
+  "id": "10214983505",
+  "name": "괴산요금소",
+  "lat": 36.8632399,
+  "lon": 127.9241988,
+  "kind": "toll_booth",
+  "unit_code": "563",
+  "ambiguous": false
+ },
+ {
+  "id": "10217136524",
+  "name": "문경새재요금소",
+  "lat": 36.704311,
+  "lon": 128.1137911,
+  "kind": "toll_booth",
+  "unit_code": "565",
+  "ambiguous": false
+ },
+ {
+  "id": "10217136525",
+  "name": "문경새재요금소",
+  "lat": 36.7043407,
+  "lon": 128.1139212,
+  "kind": "toll_booth",
+  "unit_code": "565",
+  "ambiguous": false
+ },
+ {
+  "id": "10222735086",
+  "name": "보은요금소",
+  "lat": 36.4534837,
+  "lon": 127.7228951,
+  "kind": "toll_booth",
+  "unit_code": "533",
+  "ambiguous": false
+ },
+ {
+  "id": "10222770875",
+  "name": "속리산요금소",
+  "lat": 36.4591148,
+  "lon": 127.789863,
+  "kind": "toll_booth",
+  "unit_code": "534",
+  "ambiguous": false
+ },
+ {
+  "id": "10230130037",
+  "name": "남김천요금소",
+  "lat": 36.061649,
+  "lon": 128.2702034,
+  "kind": "toll_booth",
+  "unit_code": "537",
+  "ambiguous": false
+ },
+ {
+  "id": "10230130038",
+  "name": "남김천요금소",
+  "lat": 36.0616105,
+  "lon": 128.2703227,
+  "kind": "toll_booth",
+  "unit_code": "537",
+  "ambiguous": false
+ },
+ {
+  "id": "10237665237",
+  "name": "남성주요금소",
+  "lat": 35.8391609,
+  "lon": 128.3278023,
+  "kind": "toll_booth",
+  "unit_code": "539",
+  "ambiguous": false
+ },
+ {
+  "id": "10243979666",
+  "name": "북안요금소",
+  "lat": 35.9298233,
+  "lon": 129.0116031,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10243979667",
+  "name": "북안요금소",
+  "lat": 35.9289422,
+  "lon": 129.011482,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10267763562",
+  "name": "송악요금소",
+  "lat": 36.934487,
+  "lon": 126.7854782,
+  "kind": "toll_booth",
+  "unit_code": "287",
+  "ambiguous": false
+ },
+ {
+  "id": "10275296150",
+  "name": "남광산",
+  "lat": 35.1911212,
+  "lon": 126.7555592,
+  "kind": "toll_gantry",
+  "unit_code": "718",
+  "ambiguous": false
+ },
+ {
+  "id": "10275296151",
+  "name": "남광산",
+  "lat": 35.1909819,
+  "lon": 126.755729,
+  "kind": "toll_booth",
+  "unit_code": "718",
+  "ambiguous": false
+ },
+ {
+  "id": "10275296152",
+  "name": "남광산",
+  "lat": 35.1912005,
+  "lon": 126.7554754,
+  "kind": "toll_booth",
+  "unit_code": "718",
+  "ambiguous": false
+ },
+ {
+  "id": "10277543060",
+  "name": "남장성요금소",
+  "lat": 35.2223002,
+  "lon": 126.7938412,
+  "kind": "toll_booth",
+  "unit_code": "719",
+  "ambiguous": false
+ },
+ {
+  "id": "10277543066",
+  "name": "남장성요금소",
+  "lat": 35.2224272,
+  "lon": 126.7940334,
+  "kind": "toll_booth",
+  "unit_code": "719",
+  "ambiguous": false
+ },
+ {
+  "id": "10286032502",
+  "name": "남공주",
+  "lat": 36.4235867,
+  "lon": 127.0866933,
+  "kind": "toll_booth",
+  "unit_code": "604",
+  "ambiguous": false
+ },
+ {
+  "id": "10286032503",
+  "name": "남공주",
+  "lat": 36.4234585,
+  "lon": 127.0862402,
+  "kind": "toll_booth",
+  "unit_code": "604",
+  "ambiguous": false
+ },
+ {
+  "id": "10286848898",
+  "name": "탄천요금소",
+  "lat": 36.3010815,
+  "lon": 127.0702524,
+  "kind": "toll_booth",
+  "unit_code": "605",
+  "ambiguous": false
+ },
+ {
+  "id": "10286848899",
+  "name": "탄천요금소",
+  "lat": 36.3011308,
+  "lon": 127.070183,
+  "kind": "toll_booth",
+  "unit_code": "605",
+  "ambiguous": false
+ },
+ {
+  "id": "10286869947",
+  "name": "해미요금소",
+  "lat": 36.7086156,
+  "lon": 126.5569879,
+  "kind": "toll_booth",
+  "unit_code": "299",
+  "ambiguous": false
+ },
+ {
+  "id": "10286869948",
+  "name": "해미요금소",
+  "lat": 36.7083302,
+  "lon": 126.5573104,
+  "kind": "toll_booth",
+  "unit_code": "299",
+  "ambiguous": false
+ },
+ {
+  "id": "10291428247",
+  "name": "부산",
+  "lat": 35.2789272,
+  "lon": 129.106161,
+  "kind": "toll_booth",
+  "unit_code": "140",
+  "ambiguous": false
+ },
+ {
+  "id": "10291428248",
+  "name": "부산",
+  "lat": 35.2791431,
+  "lon": 129.1066968,
+  "kind": "toll_booth",
+  "unit_code": "140",
+  "ambiguous": false
+ },
+ {
+  "id": "10300472133",
+  "name": "조안요금소",
+  "lat": 37.5901004,
+  "lon": 127.3357799,
+  "kind": "toll_gantry",
+  "unit_code": "764",
+  "ambiguous": false
+ },
+ {
+  "id": "10685699843",
+  "name": "구리남양주",
+  "lat": 37.589735,
+  "lon": 127.1569283,
+  "kind": "toll_gantry",
+  "unit_code": "062",
+  "ambiguous": false
+ },
+ {
+  "id": "10685699865",
+  "name": "구리남양주",
+  "lat": 37.5897562,
+  "lon": 127.1564031,
+  "kind": "toll_booth",
+  "unit_code": "062",
+  "ambiguous": false
+ },
+ {
+  "id": "10685699881",
+  "name": "불암산요금소",
+  "lat": 37.6522738,
+  "lon": 127.1221628,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10685699884",
+  "name": "불암산요금소",
+  "lat": 37.6519783,
+  "lon": 127.1215204,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10685699886",
+  "name": "불암산요금소",
+  "lat": 37.6524747,
+  "lon": 127.12264,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10689843208",
+  "name": "서천TG",
+  "lat": 36.0958827,
+  "lon": 126.6882519,
+  "kind": "toll_booth",
+  "unit_code": "234",
+  "ambiguous": false
+ },
+ {
+  "id": "10689843407",
+  "name": "계룡",
+  "lat": 36.2530402,
+  "lon": 127.2763566,
+  "kind": "toll_booth",
+  "unit_code": "109",
+  "ambiguous": false
+ },
+ {
+  "id": "10689844414",
+  "name": "동영천TG",
+  "lat": 35.9931563,
+  "lon": 128.9624114,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10689844419",
+  "name": "금정",
+  "lat": 35.2800255,
+  "lon": 129.1109711,
+  "kind": "toll_booth",
+  "unit_code": "753",
+  "ambiguous": false
+ },
+ {
+  "id": "10689844423",
+  "name": "청송TG",
+  "lat": 36.4530965,
+  "lon": 129.0289571,
+  "kind": "toll_booth",
+  "unit_code": "716",
+  "ambiguous": false
+ },
+ {
+  "id": "10689844424",
+  "name": "왜관TG",
+  "lat": 35.9782769,
+  "lon": 128.4287409,
+  "kind": "toll_booth",
+  "unit_code": "126",
+  "ambiguous": false
+ },
+ {
+  "id": "10689848015",
+  "name": "서울산TG",
+  "lat": 35.5564474,
+  "lon": 129.1236927,
+  "kind": "toll_booth",
+  "unit_code": "139",
+  "ambiguous": false
+ },
+ {
+  "id": "10702083448",
+  "name": "장안TG",
+  "lat": 37.3124671,
+  "lon": 127.0084905,
+  "kind": "toll_booth",
+  "unit_code": "645",
+  "ambiguous": false
+ },
+ {
+  "id": "10702083449",
+  "name": "장안TG",
+  "lat": 37.3123313,
+  "lon": 127.0084368,
+  "kind": "toll_booth",
+  "unit_code": "645",
+  "ambiguous": false
+ },
+ {
+  "id": "10702083451",
+  "name": "조원TG",
+  "lat": 37.3119265,
+  "lon": 127.0167699,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10705706620",
+  "name": "하남요금소",
+  "lat": 37.5284503,
+  "lon": 127.2179637,
+  "kind": "toll_booth",
+  "unit_code": "066",
+  "ambiguous": false
+ },
+ {
+  "id": "10705706625",
+  "name": "하남요금소",
+  "lat": 37.5289878,
+  "lon": 127.2186982,
+  "kind": "toll_booth",
+  "unit_code": "066",
+  "ambiguous": false
+ },
+ {
+  "id": "10748178264",
+  "name": "둔내톨게이트",
+  "lat": 37.4967446,
+  "lon": 128.205452,
+  "kind": "toll_booth",
+  "unit_code": "182",
+  "ambiguous": false
+ },
+ {
+  "id": "10757694661",
+  "name": "기흥",
+  "lat": 37.2239897,
+  "lon": 127.1014289,
+  "kind": "toll_booth",
+  "unit_code": "105",
+  "ambiguous": false
+ },
+ {
+  "id": "10772729671",
+  "name": "기흥",
+  "lat": 37.2235684,
+  "lon": 127.1025047,
+  "kind": "toll_booth",
+  "unit_code": "105",
+  "ambiguous": false
+ },
+ {
+  "id": "10857919432",
+  "name": "남구미TG",
+  "lat": 36.0721949,
+  "lon": 128.3716773,
+  "kind": "toll_booth",
+  "unit_code": "125",
+  "ambiguous": false
+ },
+ {
+  "id": "10857919433",
+  "name": "남구미TG",
+  "lat": 36.0719851,
+  "lon": 128.3717346,
+  "kind": "toll_booth",
+  "unit_code": "125",
+  "ambiguous": false
+ },
+ {
+  "id": "10870584431",
+  "name": "왜관TG",
+  "lat": 35.9783653,
+  "lon": 128.4290001,
+  "kind": "toll_booth",
+  "unit_code": "126",
+  "ambiguous": false
+ },
+ {
+  "id": "10881212891",
+  "name": "북대구",
+  "lat": 35.9114152,
+  "lon": 128.5839801,
+  "kind": "toll_booth",
+  "unit_code": "129",
+  "ambiguous": false
+ },
+ {
+  "id": "10901143468",
+  "name": "팔공산",
+  "lat": 35.9098236,
+  "lon": 128.6538391,
+  "kind": "toll_gantry",
+  "unit_code": "230",
+  "ambiguous": false
+ },
+ {
+  "id": "10924866219",
+  "name": "동순천서광양TG",
+  "lat": 34.9603444,
+  "lon": 127.5540631,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10924866220",
+  "name": "동순천서광양TG",
+  "lat": 34.9603404,
+  "lon": 127.5538814,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "10928130722",
+  "name": "서울산TG",
+  "lat": 35.5562919,
+  "lon": 129.1236489,
+  "kind": "toll_booth",
+  "unit_code": "139",
+  "ambiguous": false
+ },
+ {
+  "id": "10939945476",
+  "name": "두물머리",
+  "lat": 37.5634221,
+  "lon": 127.3821871,
+  "kind": "toll_gantry",
+  "unit_code": "763",
+  "ambiguous": false
+ },
+ {
+  "id": "10939945477",
+  "name": "조안요금소",
+  "lat": 37.5901211,
+  "lon": 127.3357483,
+  "kind": "toll_gantry",
+  "unit_code": "764",
+  "ambiguous": false
+ },
+ {
+  "id": "10941761008",
+  "name": "두물머리",
+  "lat": 37.5641977,
+  "lon": 127.3837612,
+  "kind": "toll_gantry",
+  "unit_code": "763",
+  "ambiguous": false
+ },
+ {
+  "id": "10976689150",
+  "name": "두물머리",
+  "lat": 37.5637312,
+  "lon": 127.3804748,
+  "kind": "toll_gantry",
+  "unit_code": "763",
+  "ambiguous": false
+ },
+ {
+  "id": "10989053928",
+  "name": "달뫼",
+  "lat": 37.6507737,
+  "lon": 127.3260463,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11072288010",
+  "name": "소태TG",
+  "lat": 35.1263214,
+  "lon": 126.9391602,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11116591081",
+  "name": "대곶요금소",
+  "lat": 37.6514088,
+  "lon": 126.6005781,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11116591082",
+  "name": "대곶요금소",
+  "lat": 37.6514476,
+  "lon": 126.6008054,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11116591085",
+  "name": "대곶요금소",
+  "lat": 37.6514533,
+  "lon": 126.6008738,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11135207415",
+  "name": "동영천TG",
+  "lat": 35.9932415,
+  "lon": 128.9625146,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11149644383",
+  "name": "시화요금소",
+  "lat": 37.3093658,
+  "lon": 126.7233941,
+  "kind": "toll_booth",
+  "unit_code": "743",
+  "ambiguous": false
+ },
+ {
+  "id": "11149644388",
+  "name": "시화요금소",
+  "lat": 37.3092486,
+  "lon": 126.7235777,
+  "kind": "toll_gantry",
+  "unit_code": "743",
+  "ambiguous": false
+ },
+ {
+  "id": "11212202648",
+  "name": "조안요금소",
+  "lat": 37.5900829,
+  "lon": 127.3358226,
+  "kind": "toll_booth",
+  "unit_code": "764",
+  "ambiguous": false
+ },
+ {
+  "id": "11212202649",
+  "name": "조안요금소",
+  "lat": 37.5901385,
+  "lon": 127.33571,
+  "kind": "toll_booth",
+  "unit_code": "764",
+  "ambiguous": false
+ },
+ {
+  "id": "11222081017",
+  "name": "시화톨게이트",
+  "lat": 37.3125779,
+  "lon": 126.7212085,
+  "kind": "toll_gantry",
+  "unit_code": "743",
+  "ambiguous": false
+ },
+ {
+  "id": "11222081018",
+  "name": "시화톨게이트",
+  "lat": 37.3124936,
+  "lon": 126.7210647,
+  "kind": "toll_booth",
+  "unit_code": "743",
+  "ambiguous": false
+ },
+ {
+  "id": "11222081019",
+  "name": "시화톨게이트",
+  "lat": 37.3125352,
+  "lon": 126.7209989,
+  "kind": "toll_booth",
+  "unit_code": "743",
+  "ambiguous": false
+ },
+ {
+  "id": "11232794035",
+  "name": "아산톨게이트",
+  "lat": 36.8213993,
+  "lon": 126.9727813,
+  "kind": "toll_gantry",
+  "unit_code": "726",
+  "ambiguous": false
+ },
+ {
+  "id": "11232794036",
+  "name": "아산톨게이트",
+  "lat": 36.8211894,
+  "lon": 126.9730448,
+  "kind": "toll_gantry",
+  "unit_code": "726",
+  "ambiguous": false
+ },
+ {
+  "id": "11232821337",
+  "name": "아산톨게이트",
+  "lat": 36.8210944,
+  "lon": 126.9729917,
+  "kind": "toll_booth",
+  "unit_code": "726",
+  "ambiguous": false
+ },
+ {
+  "id": "11232821338",
+  "name": "아산톨게이트",
+  "lat": 36.821461,
+  "lon": 126.9728484,
+  "kind": "toll_booth",
+  "unit_code": "726",
+  "ambiguous": false
+ },
+ {
+  "id": "11303807242",
+  "name": "서김포·통진 요금소",
+  "lat": 37.6717459,
+  "lon": 126.631489,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11303807244",
+  "name": "서김포·통진 요금소",
+  "lat": 37.6717774,
+  "lon": 126.6314423,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11303807247",
+  "name": "서김포·통진 요금소",
+  "lat": 37.6716419,
+  "lon": 126.6316443,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11303807252",
+  "name": "서김포·통진 요금소",
+  "lat": 37.6716228,
+  "lon": 126.6316948,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11348771051",
+  "name": "북김제",
+  "lat": 35.8417187,
+  "lon": 126.9157523,
+  "kind": "toll_booth",
+  "unit_code": "325",
+  "ambiguous": false
+ },
+ {
+  "id": "11348771061",
+  "name": "북김제",
+  "lat": 35.8418387,
+  "lon": 126.9156912,
+  "kind": "toll_booth",
+  "unit_code": "325",
+  "ambiguous": false
+ },
+ {
+  "id": "11562442244",
+  "name": "북구미TG",
+  "lat": 36.1423353,
+  "lon": 128.3014749,
+  "kind": "toll_gantry",
+  "unit_code": "723",
+  "ambiguous": false
+ },
+ {
+  "id": "11562442245",
+  "name": "북구미TG",
+  "lat": 36.1416477,
+  "lon": 128.3010694,
+  "kind": "toll_gantry",
+  "unit_code": "723",
+  "ambiguous": false
+ },
+ {
+  "id": "11591431934",
+  "name": "달뫼",
+  "lat": 37.6496815,
+  "lon": 127.3256231,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11591562213",
+  "name": "고모",
+  "lat": 37.811046,
+  "lon": 127.1521926,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11591562214",
+  "name": "고모",
+  "lat": 37.8103468,
+  "lon": 127.1548478,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11609954852",
+  "name": "화도",
+  "lat": 37.6293688,
+  "lon": 127.3182669,
+  "kind": "toll_gantry",
+  "unit_code": "652",
+  "ambiguous": false
+ },
+ {
+  "id": "11618401848",
+  "name": "화도",
+  "lat": 37.6301293,
+  "lon": 127.3179532,
+  "kind": "toll_gantry",
+  "unit_code": "652",
+  "ambiguous": false
+ },
+ {
+  "id": "11628648982",
+  "name": "달뫼톨게이트",
+  "lat": 37.655442,
+  "lon": 127.3275738,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11628648983",
+  "name": "수동톨게이트",
+  "lat": 37.6933389,
+  "lon": 127.3337425,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11628648984",
+  "name": "수동톨게이트",
+  "lat": 37.6934303,
+  "lon": 127.3336964,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11628648992",
+  "name": "내촌톨게이트",
+  "lat": 37.770116,
+  "lon": 127.2295744,
+  "kind": "toll_booth",
+  "unit_code": "765",
+  "ambiguous": false
+ },
+ {
+  "id": "11628648993",
+  "name": "내촌톨게이트",
+  "lat": 37.7700601,
+  "lon": 127.2297426,
+  "kind": "toll_booth",
+  "unit_code": "765",
+  "ambiguous": false
+ },
+ {
+  "id": "11628649033",
+  "name": "고모요금소",
+  "lat": 37.8118734,
+  "lon": 127.1598883,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11628649034",
+  "name": "고모요금소",
+  "lat": 37.8118761,
+  "lon": 127.1599649,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11645436058",
+  "name": "검단산 주차장 매표소",
+  "lat": 37.536623,
+  "lon": 127.2291568,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11707539942",
+  "name": "동청송영양",
+  "lat": 36.4972337,
+  "lon": 129.1218956,
+  "kind": "toll_booth",
+  "unit_code": "748",
+  "ambiguous": false
+ },
+ {
+  "id": "11707815236",
+  "name": "북의성TG",
+  "lat": 36.4142141,
+  "lon": 128.6779031,
+  "kind": "toll_booth",
+  "unit_code": "714",
+  "ambiguous": false
+ },
+ {
+  "id": "11707864093",
+  "name": "북의성TG",
+  "lat": 36.4142845,
+  "lon": 128.6779134,
+  "kind": "toll_booth",
+  "unit_code": "714",
+  "ambiguous": false
+ },
+ {
+  "id": "11707932740",
+  "name": "동의성TG",
+  "lat": 36.440313,
+  "lon": 128.8908747,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11707932741",
+  "name": "동의성TG",
+  "lat": 36.4402809,
+  "lon": 128.8909305,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11741418198",
+  "name": "청라방면",
+  "lat": 37.5064726,
+  "lon": 126.5748778,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11741418218",
+  "name": "영종방면",
+  "lat": 37.5065537,
+  "lon": 126.5747659,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "11854209925",
+  "name": "초이",
+  "lat": 37.5316527,
+  "lon": 127.1638791,
+  "kind": "toll_booth",
+  "unit_code": "073",
+  "ambiguous": false
+ },
+ {
+  "id": "12109657256",
+  "name": "새말톨게이트",
+  "lat": 37.4498858,
+  "lon": 128.0705417,
+  "kind": "toll_booth",
+  "unit_code": "181",
+  "ambiguous": false
+ },
+ {
+  "id": "12143997682",
+  "name": "서양주요금소",
+  "lat": 37.8485718,
+  "lon": 126.9872331,
+  "kind": "toll_gantry",
+  "unit_code": "738",
+  "ambiguous": false
+ },
+ {
+  "id": "12154836686",
+  "name": "부여구룡 요금소",
+  "lat": 36.2530066,
+  "lon": 126.8388073,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12154836687",
+  "name": "부여구룡 요금소",
+  "lat": 36.2529678,
+  "lon": 126.8387086,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12160354446",
+  "name": "산성",
+  "lat": 35.2413995,
+  "lon": 129.0254071,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12160354447",
+  "name": "산성",
+  "lat": 35.2413075,
+  "lon": 129.02557,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12313856061",
+  "name": "동상주톨게이트",
+  "lat": 36.3778966,
+  "lon": 128.2925634,
+  "kind": "toll_booth",
+  "unit_code": "712",
+  "ambiguous": false
+ },
+ {
+  "id": "12328273143",
+  "name": "서울",
+  "lat": 37.3652616,
+  "lon": 127.1044032,
+  "kind": "toll_gantry",
+  "unit_code": "101",
+  "ambiguous": false
+ },
+ {
+  "id": "12354228973",
+  "name": "광재",
+  "lat": 35.3055212,
+  "lon": 128.8941308,
+  "kind": "toll_booth",
+  "unit_code": "755",
+  "ambiguous": false
+ },
+ {
+  "id": "12360248241",
+  "name": "남칠곡",
+  "lat": 35.9167758,
+  "lon": 128.5150655,
+  "kind": "toll_booth",
+  "unit_code": "774",
+  "ambiguous": false
+ },
+ {
+  "id": "12363484101",
+  "name": "제천요금소",
+  "lat": 37.1313867,
+  "lon": 128.1381976,
+  "kind": "toll_booth",
+  "unit_code": "240",
+  "ambiguous": false
+ },
+ {
+  "id": "12389295514",
+  "name": "포승요금소",
+  "lat": 36.9465754,
+  "lon": 126.8847986,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12408900100",
+  "name": "안중요금소",
+  "lat": 36.933867,
+  "lon": 126.9262069,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12408910406",
+  "name": "예산추사고택요금소",
+  "lat": 36.7550064,
+  "lon": 126.8179425,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12408910407",
+  "name": "예산추사고택요금소",
+  "lat": 36.7549663,
+  "lon": 126.8180193,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12408910418",
+  "name": "평택호요금소",
+  "lat": 36.9235495,
+  "lon": 126.9191285,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12408910435",
+  "name": "평택호요금소",
+  "lat": 36.9249812,
+  "lon": 126.9193842,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12408973101",
+  "name": "안중요금소",
+  "lat": 36.9337652,
+  "lon": 126.9262514,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12409123702",
+  "name": "예산예당호 요금소",
+  "lat": 36.6287952,
+  "lon": 126.7845455,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12409123703",
+  "name": "예산예당호 요금소",
+  "lat": 36.6288007,
+  "lon": 126.7844601,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12409358458",
+  "name": "영인요금소",
+  "lat": 36.8757307,
+  "lon": 126.926196,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12409358459",
+  "name": "영인요금소",
+  "lat": 36.8758011,
+  "lon": 126.9261402,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12412306736",
+  "name": "평택호요금소",
+  "lat": 36.9235232,
+  "lon": 126.9191843,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12412306749",
+  "name": "평택호요금소",
+  "lat": 36.9250355,
+  "lon": 126.919414,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12469997030",
+  "name": "속초요금소",
+  "lat": 38.2025469,
+  "lon": 128.520147,
+  "kind": "toll_booth",
+  "unit_code": "702",
+  "ambiguous": false
+ },
+ {
+  "id": "12470582365",
+  "name": "오포(포천)",
+  "lat": 37.361624,
+  "lon": 127.2232331,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "12470685616",
+  "name": "오포(포천)",
+  "lat": 37.3616592,
+  "lon": 127.2231843,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "12484207403",
+  "name": "광남",
+  "lat": 37.398064,
+  "lon": 127.1931989,
+  "kind": "toll_booth",
+  "unit_code": "788",
+  "ambiguous": false
+ },
+ {
+  "id": "12484207414",
+  "name": "광남",
+  "lat": 37.3984425,
+  "lon": 127.1933788,
+  "kind": "toll_booth",
+  "unit_code": "788",
+  "ambiguous": false
+ },
+ {
+  "id": "12495684554",
+  "name": "초이",
+  "lat": 37.5315614,
+  "lon": 127.1640819,
+  "kind": "toll_booth",
+  "unit_code": "073",
+  "ambiguous": false
+ },
+ {
+  "id": "12495684566",
+  "name": "하남감북",
+  "lat": 37.5228809,
+  "lon": 127.1654058,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12495684567",
+  "name": "하남감북",
+  "lat": 37.5228164,
+  "lon": 127.1652357,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12495684568",
+  "name": "하남감북",
+  "lat": 37.5226334,
+  "lon": 127.16485,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12495684569",
+  "name": "하남감북",
+  "lat": 37.5226074,
+  "lon": 127.164721,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12495684570",
+  "name": "하남감북",
+  "lat": 37.5229444,
+  "lon": 127.1656554,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12495684571",
+  "name": "하남감북",
+  "lat": 37.5230291,
+  "lon": 127.1658995,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12495684574",
+  "name": "광암",
+  "lat": 37.5119034,
+  "lon": 127.1711583,
+  "kind": "toll_booth",
+  "unit_code": "759",
+  "ambiguous": false
+ },
+ {
+  "id": "12495684575",
+  "name": "광암",
+  "lat": 37.5103215,
+  "lon": 127.1708954,
+  "kind": "toll_booth",
+  "unit_code": "759",
+  "ambiguous": false
+ },
+ {
+  "id": "12504164504",
+  "name": "북양주요금소",
+  "lat": 37.8574772,
+  "lon": 127.0514123,
+  "kind": "toll_gantry",
+  "unit_code": "737",
+  "ambiguous": false
+ },
+ {
+  "id": "12504164508",
+  "name": "북양주요금소",
+  "lat": 37.8575423,
+  "lon": 127.0512157,
+  "kind": "toll_booth",
+  "unit_code": "737",
+  "ambiguous": false
+ },
+ {
+  "id": "12504164517",
+  "name": "북양주요금소",
+  "lat": 37.856925,
+  "lon": 127.0507372,
+  "kind": "toll_gantry",
+  "unit_code": "737",
+  "ambiguous": false
+ },
+ {
+  "id": "12504164523",
+  "name": "북양주요금소",
+  "lat": 37.856872,
+  "lon": 127.0509605,
+  "kind": "toll_booth",
+  "unit_code": "737",
+  "ambiguous": false
+ },
+ {
+  "id": "12504521459",
+  "name": "서양주요금소",
+  "lat": 37.8485226,
+  "lon": 126.9871906,
+  "kind": "toll_gantry",
+  "unit_code": "738",
+  "ambiguous": false
+ },
+ {
+  "id": "12504521462",
+  "name": "서양주요금소",
+  "lat": 37.8484487,
+  "lon": 126.9871874,
+  "kind": "toll_booth",
+  "unit_code": "738",
+  "ambiguous": false
+ },
+ {
+  "id": "12504521480",
+  "name": "서양주요금소",
+  "lat": 37.8486299,
+  "lon": 126.9872763,
+  "kind": "toll_booth",
+  "unit_code": "738",
+  "ambiguous": false
+ },
+ {
+  "id": "12556261962",
+  "name": "법원요금소",
+  "lat": 37.8315811,
+  "lon": 126.8711814,
+  "kind": "toll_booth",
+  "unit_code": "739",
+  "ambiguous": false
+ },
+ {
+  "id": "12556261963",
+  "name": "법원요금소",
+  "lat": 37.8315482,
+  "lon": 126.8711117,
+  "kind": "toll_gantry",
+  "unit_code": "739",
+  "ambiguous": false
+ },
+ {
+  "id": "12556261985",
+  "name": "법원요금소",
+  "lat": 37.8315132,
+  "lon": 126.871051,
+  "kind": "toll_gantry",
+  "unit_code": "739",
+  "ambiguous": false
+ },
+ {
+  "id": "12556261986",
+  "name": "법원요금소",
+  "lat": 37.8314902,
+  "lon": 126.8709804,
+  "kind": "toll_booth",
+  "unit_code": "739",
+  "ambiguous": false
+ },
+ {
+  "id": "12693771566",
+  "name": "남청주요금소",
+  "lat": 36.5341879,
+  "lon": 127.4236571,
+  "kind": "toll_booth",
+  "unit_code": "112",
+  "ambiguous": false
+ },
+ {
+  "id": "12693771567",
+  "name": "남청주요금소",
+  "lat": 36.5338702,
+  "lon": 127.4235967,
+  "kind": "toll_booth",
+  "unit_code": "112",
+  "ambiguous": false
+ },
+ {
+  "id": "12712336208",
+  "name": "청송TG",
+  "lat": 36.4530673,
+  "lon": 129.0289094,
+  "kind": "toll_booth",
+  "unit_code": "716",
+  "ambiguous": false
+ },
+ {
+  "id": "12786147556",
+  "name": "달뫼톨게이트",
+  "lat": 37.6554176,
+  "lon": 127.3276847,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12786298721",
+  "name": "북용인",
+  "lat": 37.3320902,
+  "lon": 127.2146042,
+  "kind": "toll_booth",
+  "unit_code": "785",
+  "ambiguous": false
+ },
+ {
+  "id": "12786298784",
+  "name": "안성맞춤",
+  "lat": 37.0181797,
+  "lon": 127.3074577,
+  "kind": "toll_booth",
+  "unit_code": "781",
+  "ambiguous": false
+ },
+ {
+  "id": "12786298785",
+  "name": "안성맞춤",
+  "lat": 37.0181528,
+  "lon": 127.307327,
+  "kind": "toll_booth",
+  "unit_code": "781",
+  "ambiguous": false
+ },
+ {
+  "id": "12860257367",
+  "name": "고모요금소",
+  "lat": 37.8118706,
+  "lon": 127.15983,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "12860257368",
+  "name": "고모요금소",
+  "lat": 37.8118735,
+  "lon": 127.1600299,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13003585565",
+  "name": "하남감북",
+  "lat": 37.5230192,
+  "lon": 127.1658504,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13005817939",
+  "name": "하남감북",
+  "lat": 37.5226251,
+  "lon": 127.1647666,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13007753109",
+  "name": "강동고덕",
+  "lat": 37.5649898,
+  "lon": 127.1524964,
+  "kind": "toll_gantry",
+  "unit_code": "003",
+  "ambiguous": false
+ },
+ {
+  "id": "13019344042",
+  "name": "금촌톨게이트",
+  "lat": 37.7516927,
+  "lon": 126.788532,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13019396141",
+  "name": "산단톨게이트",
+  "lat": 37.8253859,
+  "lon": 126.7799115,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13019396142",
+  "name": "산단톨게이트",
+  "lat": 37.8252232,
+  "lon": 126.77977,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13019396143",
+  "name": "산단톨게이트",
+  "lat": 37.82519,
+  "lon": 126.7796125,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13020134708",
+  "name": "충주요금소",
+  "lat": 36.9726583,
+  "lon": 127.8402908,
+  "kind": "toll_booth",
+  "unit_code": "562",
+  "ambiguous": false
+ },
+ {
+  "id": "13025954610",
+  "name": "포천",
+  "lat": 37.8832213,
+  "lon": 127.2154771,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13025954611",
+  "name": "포천",
+  "lat": 37.8831698,
+  "lon": 127.2154483,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13025954612",
+  "name": "선단",
+  "lat": 37.8478248,
+  "lon": 127.1667545,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13025954613",
+  "name": "선단",
+  "lat": 37.8477025,
+  "lon": 127.1667325,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13025954614",
+  "name": "소흘",
+  "lat": 37.7949867,
+  "lon": 127.1284572,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13025954615",
+  "name": "소흘",
+  "lat": 37.7949099,
+  "lon": 127.1285721,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13025954616",
+  "name": "동의정부",
+  "lat": 37.7195012,
+  "lon": 127.1074511,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13025954617",
+  "name": "동의정부",
+  "lat": 37.7194001,
+  "lon": 127.1075477,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13057225536",
+  "name": "원곡",
+  "lat": 37.0441914,
+  "lon": 127.112919,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13057225561",
+  "name": "평택",
+  "lat": 37.0637053,
+  "lon": 127.0994663,
+  "kind": "toll_booth",
+  "unit_code": "520",
+  "ambiguous": false
+ },
+ {
+  "id": "13100522354",
+  "name": "하남감북",
+  "lat": 37.5226882,
+  "lon": 127.1650035,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13288476800",
+  "name": "영일만",
+  "lat": 36.1156485,
+  "lon": 129.3883265,
+  "kind": "toll_booth",
+  "unit_code": "331",
+  "ambiguous": false
+ },
+ {
+  "id": "13288481506",
+  "name": "북포항",
+  "lat": 36.2016507,
+  "lon": 129.3647288,
+  "kind": "toll_booth",
+  "unit_code": "332",
+  "ambiguous": false
+ },
+ {
+  "id": "13288486906",
+  "name": "영일만",
+  "lat": 36.1156104,
+  "lon": 129.3881855,
+  "kind": "toll_booth",
+  "unit_code": "331",
+  "ambiguous": false
+ },
+ {
+  "id": "13288934042",
+  "name": "오포(세종)",
+  "lat": 37.3519126,
+  "lon": 127.220701,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "13291358877",
+  "name": "남진례",
+  "lat": 35.2244727,
+  "lon": 128.7759357,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13291358878",
+  "name": "남진례",
+  "lat": 35.2244769,
+  "lon": 128.7759876,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13291358879",
+  "name": "남진례",
+  "lat": 35.2244877,
+  "lon": 128.7760415,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13291358880",
+  "name": "남진례",
+  "lat": 35.2244927,
+  "lon": 128.7761113,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13291551547",
+  "name": "금정",
+  "lat": 35.280068,
+  "lon": 129.110856,
+  "kind": "toll_booth",
+  "unit_code": "753",
+  "ambiguous": false
+ },
+ {
+  "id": "13327541321",
+  "name": "기흥",
+  "lat": 37.2240549,
+  "lon": 127.1013648,
+  "kind": "toll_gantry",
+  "unit_code": "105",
+  "ambiguous": false
+ },
+ {
+  "id": "13336713426",
+  "name": "오포(세종)",
+  "lat": 37.3519117,
+  "lon": 127.2206146,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "13342443109",
+  "name": "시흥",
+  "lat": 37.4510788,
+  "lon": 126.8033936,
+  "kind": "toll_gantry",
+  "unit_code": "067",
+  "ambiguous": false
+ },
+ {
+  "id": "13344151624",
+  "name": "공주",
+  "lat": 36.4855434,
+  "lon": 127.1287157,
+  "kind": "toll_booth",
+  "unit_code": "577",
+  "ambiguous": false
+ },
+ {
+  "id": "13344151625",
+  "name": "공주",
+  "lat": 36.4854613,
+  "lon": 127.1281655,
+  "kind": "toll_booth",
+  "unit_code": "577",
+  "ambiguous": false
+ },
+ {
+  "id": "13423334672",
+  "name": "센텀",
+  "lat": 35.1807059,
+  "lon": 129.1195798,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13423334685",
+  "name": "센텀",
+  "lat": 35.1812558,
+  "lon": 129.1198234,
+  "kind": "toll_gantry",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13456023220",
+  "name": "독립기념관TG",
+  "lat": 36.7652648,
+  "lon": 127.2287569,
+  "kind": "toll_booth",
+  "unit_code": "110",
+  "ambiguous": false
+ },
+ {
+  "id": "13456023221",
+  "name": "독립기념관TG",
+  "lat": 36.7653118,
+  "lon": 127.2286699,
+  "kind": "toll_booth",
+  "unit_code": "110",
+  "ambiguous": false
+ },
+ {
+  "id": "13472825374",
+  "name": "연화산",
+  "lat": 35.0882698,
+  "lon": 128.1931907,
+  "kind": "toll_booth",
+  "unit_code": "512",
+  "ambiguous": false
+ },
+ {
+  "id": "13472825375",
+  "name": "연화산",
+  "lat": 35.0882699,
+  "lon": 128.1930875,
+  "kind": "toll_booth",
+  "unit_code": "512",
+  "ambiguous": false
+ },
+ {
+  "id": "13512579380",
+  "name": "연경",
+  "lat": 35.9363526,
+  "lon": 128.6114722,
+  "kind": "toll_gantry",
+  "unit_code": "776",
+  "ambiguous": false
+ },
+ {
+  "id": "13512579381",
+  "name": "연경",
+  "lat": 35.9362762,
+  "lon": 128.611536,
+  "kind": "toll_gantry",
+  "unit_code": "776",
+  "ambiguous": false
+ },
+ {
+  "id": "13587382156",
+  "name": "남용인",
+  "lat": 37.1530811,
+  "lon": 127.2857277,
+  "kind": "toll_booth",
+  "unit_code": "783",
+  "ambiguous": false
+ },
+ {
+  "id": "13587382157",
+  "name": "남용인",
+  "lat": 37.1529795,
+  "lon": 127.2857336,
+  "kind": "toll_booth",
+  "unit_code": "783",
+  "ambiguous": false
+ },
+ {
+  "id": "13684712897",
+  "name": "동탄TG",
+  "lat": 37.2031387,
+  "lon": 127.1317584,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13721268214",
+  "name": "서이천요금소",
+  "lat": 37.2790606,
+  "lon": 127.3964003,
+  "kind": "toll_booth",
+  "unit_code": "194",
+  "ambiguous": false
+ },
+ {
+  "id": "13727663050",
+  "name": "금산",
+  "lat": 36.1054659,
+  "lon": 127.5251785,
+  "kind": "toll_booth",
+  "unit_code": "200",
+  "ambiguous": false
+ },
+ {
+  "id": "13730228718",
+  "name": "증평",
+  "lat": 36.7693294,
+  "lon": 127.5036087,
+  "kind": "toll_booth",
+  "unit_code": "197",
+  "ambiguous": false
+ },
+ {
+  "id": "13730228725",
+  "name": "증평",
+  "lat": 36.7692323,
+  "lon": 127.5033118,
+  "kind": "toll_booth",
+  "unit_code": "197",
+  "ambiguous": false
+ },
+ {
+  "id": "13737134469",
+  "name": "조암요금소",
+  "lat": 37.1213345,
+  "lon": 126.8236094,
+  "kind": "toll_booth",
+  "unit_code": "682",
+  "ambiguous": false
+ },
+ {
+  "id": "13737134474",
+  "name": "조암요금소",
+  "lat": 37.1212789,
+  "lon": 126.8236945,
+  "kind": "toll_booth",
+  "unit_code": "682",
+  "ambiguous": false
+ },
+ {
+  "id": "13737134480",
+  "name": "조암요금소",
+  "lat": 37.1212159,
+  "lon": 126.8237572,
+  "kind": "toll_booth",
+  "unit_code": "682",
+  "ambiguous": false
+ },
+ {
+  "id": "13751940950",
+  "name": "광재",
+  "lat": 35.3054591,
+  "lon": 128.8941948,
+  "kind": "toll_booth",
+  "unit_code": "755",
+  "ambiguous": false
+ },
+ {
+  "id": "13790832137",
+  "name": "강동고덕",
+  "lat": 37.5663436,
+  "lon": 127.1536788,
+  "kind": "toll_booth",
+  "unit_code": "003",
+  "ambiguous": false
+ },
+ {
+  "id": "13790832161",
+  "name": "강동고덕",
+  "lat": 37.5649308,
+  "lon": 127.1527967,
+  "kind": "toll_booth",
+  "unit_code": "003",
+  "ambiguous": false
+ },
+ {
+  "id": "13844721784",
+  "name": "호원",
+  "lat": 37.7110903,
+  "lon": 127.0402863,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13844721785",
+  "name": "호원",
+  "lat": 37.7109183,
+  "lon": 127.0397864,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13880510517",
+  "name": "동산",
+  "lat": 37.7573422,
+  "lon": 127.741488,
+  "kind": "toll_gantry",
+  "unit_code": "657",
+  "ambiguous": false
+ },
+ {
+  "id": "13891729783",
+  "name": "연성",
+  "lat": 37.3915652,
+  "lon": 126.7979417,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13891729795",
+  "name": "연성",
+  "lat": 37.3915958,
+  "lon": 126.7977176,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "13978082256",
+  "name": "달성 요금소",
+  "lat": 35.7651127,
+  "lon": 128.4773435,
+  "kind": "toll_booth",
+  "unit_code": "232",
+  "ambiguous": false
+ },
+ {
+  "id": "13989188854",
+  "name": "서부산",
+  "lat": 35.1721153,
+  "lon": 128.8723411,
+  "kind": "toll_booth",
+  "unit_code": "244",
+  "ambiguous": false
+ },
+ {
+  "id": "13989188877",
+  "name": "가락",
+  "lat": 35.1684502,
+  "lon": 128.8938732,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": true
+ },
+ {
+  "id": "13989188919",
+  "name": "장유",
+  "lat": 35.1955317,
+  "lon": 128.8072906,
+  "kind": "toll_booth",
+  "unit_code": "245",
+  "ambiguous": false
+ },
+ {
+  "id": "13989189182",
+  "name": "서부산",
+  "lat": 35.172282,
+  "lon": 128.8724447,
+  "kind": "toll_booth",
+  "unit_code": "244",
+  "ambiguous": false
+ },
+ {
+  "id": "13996928059",
+  "name": "동명동호",
+  "lat": 35.9717403,
+  "lon": 128.550878,
+  "kind": "toll_booth",
+  "unit_code": "775",
+  "ambiguous": false
+ },
+ {
+  "id": "13996928072",
+  "name": "북달성",
+  "lat": 35.8709938,
+  "lon": 128.4591448,
+  "kind": "toll_gantry",
+  "unit_code": "772",
+  "ambiguous": false
+ },
+ {
+  "id": "13996928086",
+  "name": "동명동호",
+  "lat": 35.9702654,
+  "lon": 128.5515684,
+  "kind": "toll_booth",
+  "unit_code": "775",
+  "ambiguous": false
+ },
+ {
+  "id": "13996928087",
+  "name": "남칠곡",
+  "lat": 35.9169915,
+  "lon": 128.5148863,
+  "kind": "toll_booth",
+  "unit_code": "774",
+  "ambiguous": false
+ },
+ {
+  "id": "13996936316",
+  "name": "북달성",
+  "lat": 35.8710449,
+  "lon": 128.4592366,
+  "kind": "toll_gantry",
+  "unit_code": "772",
+  "ambiguous": false
+ },
+ {
+  "id": "13996936335",
+  "name": "동명동호",
+  "lat": 35.9718794,
+  "lon": 128.5509774,
+  "kind": "toll_gantry",
+  "unit_code": "775",
+  "ambiguous": false
+ },
+ {
+  "id": "14021371985",
+  "name": "성남",
+  "lat": 37.4355634,
+  "lon": 127.1231507,
+  "kind": "toll_gantry",
+  "unit_code": "061",
+  "ambiguous": false
+ },
+ {
+  "id": "14021371988",
+  "name": "성남",
+  "lat": 37.4355506,
+  "lon": 127.1229908,
+  "kind": "toll_gantry",
+  "unit_code": "061",
+  "ambiguous": false
+ },
+ {
+  "id": "14066028309",
+  "name": "계룡",
+  "lat": 36.2528992,
+  "lon": 127.2763133,
+  "kind": "toll_booth",
+  "unit_code": "109",
+  "ambiguous": false
+ },
+ {
+  "id": "14128702583",
+  "name": "동광주 TG",
+  "lat": 35.2080845,
+  "lon": 126.9390512,
+  "kind": "toll_booth",
+  "unit_code": "261",
+  "ambiguous": false
+ },
+ {
+  "id": "14131073519",
+  "name": "동광주 TG",
+  "lat": 35.2074523,
+  "lon": 126.9394565,
+  "kind": "toll_booth",
+  "unit_code": "261",
+  "ambiguous": false
+ },
+ {
+  "id": "14131073520",
+  "name": "동광주 TG",
+  "lat": 35.2079085,
+  "lon": 126.9391524,
+  "kind": "toll_booth",
+  "unit_code": "261",
+  "ambiguous": false
+ },
+ {
+  "id": "14317191227",
+  "name": "부산항대교",
+  "lat": 35.1084888,
+  "lon": 129.0793839,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "14317191313",
+  "name": "부산항대교",
+  "lat": 35.10872,
+  "lon": 129.0775246,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "14354855041",
+  "name": "애전",
+  "lat": 35.5117148,
+  "lon": 129.4035376,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "14354855049",
+  "name": "염포산",
+  "lat": 35.5088108,
+  "lon": 129.4135107,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "14354855068",
+  "name": "애전",
+  "lat": 35.5117331,
+  "lon": 129.4036093,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ },
+ {
+  "id": "14354855097",
+  "name": "염포산",
+  "lat": 35.5086504,
+  "lon": 129.4134188,
+  "kind": "toll_booth",
+  "unit_code": null,
+  "ambiguous": false
+ }
+]

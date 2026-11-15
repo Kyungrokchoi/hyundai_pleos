@@ -1,7 +1,10 @@
 import os
 
-os.environ.setdefault("MOATA_DATABASE_URL", "sqlite://")  # in-memory by default; CI/dev may point at PostgreSQL
+os.environ.setdefault("MOATA_DATABASE_URL", "sqlite://")
 os.environ["MOATA_ALLOW_GUEST_AUTH"] = "true"
+os.environ["MOATA_OPINET_KEY"] = ""
+os.environ["MOATA_EXCO_KEY"] = ""
+os.environ["MOATA_KAKAO_REST_KEY"] = ""
 
 import pytest  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
@@ -20,12 +23,11 @@ def fresh_db():
 
 @pytest.fixture
 def client():
-    return TestClient(app)  # no context manager, so the init_db startup hook does not run
+    return TestClient(app)
 
 
 @pytest.fixture
 def clock(monkeypatch):
-    """Controllable server clock: clock.advance(seconds)."""
     from datetime import datetime, timedelta, timezone
 
     class Clock:

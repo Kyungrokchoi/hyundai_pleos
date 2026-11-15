@@ -32,7 +32,6 @@ def current_user(user: m.User | None = Depends(optional_user)) -> m.User:
 
 
 def active_member(db: Session, group_id: str, user_id: str) -> m.GroupMember:
-    """404, not 403, so outsiders cannot tell the group exists."""
     mem = db.scalar(select(m.GroupMember).where(m.GroupMember.group_id == group_id, m.GroupMember.user_id == user_id))
     if mem is None or mem.status != "ACTIVE":
         raise not_found()
@@ -59,7 +58,6 @@ def audit(db: Session, actor: str | None, entity: str, entity_id: str, action: s
 
 
 def locked_member_trip(db: Session, trip_id: str, user: m.User) -> m.Trip:
-    """Authorise, then lock and reload the trip (populate_existing discards stale identity-map state)."""
     trip_for_member(db, trip_id, user)
     return lock_trip(db, trip_id)
 

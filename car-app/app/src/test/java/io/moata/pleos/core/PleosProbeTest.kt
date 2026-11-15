@@ -28,10 +28,10 @@ class PleosProbeTest {
         listOf("checkCurrentDistanceDrivenCapabilities", "checkCurrentFuelEconomyCapabilities", "checkCumulativeFuelEconomyCapabilities",
             "checkCurrentEvEfficiencyCapabilities", "checkEvBatteryStateOfChargeCapabilities").forEach { sdk.complete(it, cap) }
         sdk.complete("getCurrentDistanceDriven", 12345.5f)
-        sdk.complete("getTripCurrentDrivingDistance", null)                       // COMPLETE but null
-        sdk.fail("getTripCumulativeDrivingDistance", UnsupportedOperationException("not supported"))   // FAILED
-        sdk.throwing("getCurrentFuelEconomy", IllegalStateException("not bound")) // THREW
-        // no behaviour for getCumulativeFuelEconomy etc., so TIMEOUT
+        sdk.complete("getTripCurrentDrivingDistance", null)
+        sdk.fail("getTripCumulativeDrivingDistance", UnsupportedOperationException("not supported"))
+        sdk.throwing("getCurrentFuelEconomy", IllegalStateException("not bound"))
+
         val report = PleosProbe(sdk, FakeEnv(), timeoutMs = 1_000, listenMs = 0, log = {}).run()
         val byId = report.steps.associateBy { it.id }
         assertEquals("COMPLETE", byId.getValue("get.odometer.current").outcome); assertEquals("12345.5", byId.getValue("get.odometer.current").value)
@@ -55,7 +55,7 @@ class PleosProbeTest {
         assertFalse("a callback arrived after release()", order.drop(releaseAt + 1).any { it.contains(":callback") })
         assertTrue(order.indexOfFirst { it.contains("listener:register") } < order.indexOfFirst { it.contains("listener:unregister") })
         assertEquals(1, sdk.registered.size); assertEquals(sdk.registered, sdk.unregistered)
-        assertTrue(report.verdict.startsWith("BLOCKED"))                          // all timed out: blocked, not success
+        assertTrue(report.verdict.startsWith("BLOCKED"))
     }
 
     @Test fun failedInitializeIsReportedAndStillReleasesSafely() = runTest {

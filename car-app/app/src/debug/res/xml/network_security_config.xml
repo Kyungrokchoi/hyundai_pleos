@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <!-- Debug only. There is no way to allow "any LAN IP", so cleartext is allowed everywhere. -->
+
     <base-config cleartextTrafficPermitted="true" />
 </network-security-config>

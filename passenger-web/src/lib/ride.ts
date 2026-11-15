@@ -1,8 +1,8 @@
 import type { ParticipantOut, SegmentOut, TripSummary } from "@/api/types";
 
-// Ride strip geometry, display only: km strings become numbers just to place bars, never for money.
+
 export interface Span { from: number; to: number; open: boolean; exited: boolean }
-/** `byDriver`: a boarding was recorded by the driver rather than tapped by the rider. */
+
 export interface Lane { userId: string; nickname: string; isDriver: boolean; mine: boolean; spans: Span[]; riddenKm: number; byDriver: boolean }
 export interface Strip { totalKm: number; live: boolean; lanes: Lane[] }
 
@@ -13,7 +13,7 @@ const rel = (startKm: number, km: string | null | undefined): number | null => {
 };
 const round1 = (n: number) => Math.round(n * 10) / 10;
 
-// null before the first odometer snapshot.
+
 export function rideStrip(trip: TripSummary, meId: string | null): Strip | null {
   const start = trip.odometer_start_km === null ? NaN : Number(trip.odometer_start_km);
   if (!Number.isFinite(start)) return null;
@@ -32,7 +32,7 @@ export function rideStrip(trip: TripSummary, meId: string | null): Strip | null 
       spans = p.intervals
         .filter((i) => i.onboard_at)
         .map((i) => {
-          const from = clamp(rel(start, i.odometer_on_km) ?? 0); // boarded before departure: starts at 0
+          const from = clamp(rel(start, i.odometer_on_km) ?? 0);
           const off = rel(start, i.odometer_off_km);
           const open = i.offboard_at === null;
           return { from, to: open || off === null ? total : clamp(off), open, exited: !open && i.closed_by !== "TRIP_END" };
@@ -44,12 +44,12 @@ export function rideStrip(trip: TripSummary, meId: string | null): Strip | null 
     const byDriver = !p.is_driver && p.intervals.some((i) => i.onboard_at && i.opened_by === "DRIVER");
     lanes.push({ userId: p.user_id, nickname: p.nickname, isDriver: p.is_driver, mine: p.user_id === meId, spans, riddenKm: ridden, byDriver });
   }
-  // driver, then me, then the rest in join order (stable sort)
+
   lanes.sort((a, b) => Number(b.isDriver) - Number(a.isDriver) || Number(b.mine) - Number(a.mine));
   return { totalKm: round1(total), live, lanes };
 }
 
-// The rider is told when the driver marked them on board, since that sets where their share starts.
+
 export function boardedByDriver(p: ParticipantOut | undefined): boolean {
   return Boolean(p && !p.is_driver && p.intervals.some((i) => i.onboard_at && i.opened_by === "DRIVER"));
 }
@@ -61,8 +61,8 @@ export function pct(km: number, total: number): number {
 
 export interface MySegment { from: string; to: string; energyKrw: number; payers: number; each: number; exact: boolean }
 
-// Integer division for display ("1,950원 ÷ 2명"). When it isn't exact the server hands out the leftover won,
-// so `each` is only approximate.
+
+
 export function mySegments(segments: readonly SegmentOut[], startKm: string | null, meId: string): MySegment[] {
   const start = startKm === null ? NaN : Number(startKm);
   const km = (v: string) => {
@@ -78,7 +78,7 @@ export function mySegments(segments: readonly SegmentOut[], startKm: string | nu
     });
 }
 
-// Inner segment boundaries, in km since the start.
+
 export function segmentTicks(segments: readonly SegmentOut[], startKm: string | null): number[] {
   const start = startKm === null ? NaN : Number(startKm);
   if (!Number.isFinite(start)) return [];

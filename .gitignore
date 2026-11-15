@@ -23,7 +23,7 @@ car-app/build/
 car-app/app/build/
 car-app/.kotlin/
 *.apk
-!apk/.gitkeep
+!artifacts/MOATA.apk
 # local data
 *.db
 *.sqlite

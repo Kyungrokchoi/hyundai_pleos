@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Demo stack: API on :8000 (fresh SQLite) and passenger web on :3000 (production build).
-# Phones on the same Wi-Fi use http://<LAN IP>:3000; the emulator reaches the API at http://10.0.2.2:8000.
-#   KEEP_DB=1 scripts/run_demo.sh  keeps the previous demo database
+
+
+
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 LAN_IP="$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null || echo 127.0.0.1)"
@@ -15,7 +15,7 @@ trap cleanup EXIT INT TERM
 
 "$ROOT/scripts/run_backend.sh" > "${TMPDIR:-/tmp}/moata-api.log" 2>&1 & PIDS+=($!)
 cd "$ROOT/passenger-web"
-# NEXT_PUBLIC_API_BASE is baked in at build time, so only reuse a build marked as the demo build
+
 unset NEXT_PUBLIC_API_BASE
 [ -f .next/.demo-build ] || { npm run build && touch .next/.demo-build; }
 npx next start -H 0.0.0.0 -p 3000 > "${TMPDIR:-/tmp}/moata-web.log" 2>&1 & PIDS+=($!)

@@ -1,0 +1,1 @@
+{"segments":[{"kind":"HIGHWAY","road_name":"서울TG→수원IC","amount_krw":4800},{"kind":"ZONE","road_name":"남산터널","amount_krw":2000}],"passes":[{"name":"서울TG","lat":37.5,"lon":127.0},{"name":"수원IC","lat":37.26,"lon":127.03}],"total_krw":6800,"unmatched_gates":["대전IC"],"data_available":true,"incomplete":true,"estimated":true,"attribution":"영업소 위치 © OpenStreetMap contributors (ODbL)"}

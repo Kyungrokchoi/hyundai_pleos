@@ -10,13 +10,13 @@ data class DrainReport(val sent: Int, val rejected: Int, val stoppedBecause: Sto
     enum class Stop { OFFLINE, WAITING_BACKOFF, UNAUTHORIZED }
 }
 
-/**
- * Replays the outbox strictly in `seq` order; consecutive READING rows of one trip go as one batch (<=100).
- *  - Retryable: back off and stop, so later events never overtake an earlier one.
- *  - Rejected: mark FAILED and continue.
- *  - Unauthorized: stop without counting an attempt.
- * Resending after a lost response is safe because the server dedupes on client ids.
- */
+
+
+
+
+
+
+
 class OutboxProcessor(
     private val dao: OutboxDao,
     private val transport: Transport,
@@ -42,7 +42,7 @@ class OutboxProcessor(
                 is TransportResult.Success -> {
                     var failedIds = emptySet<String>()
                     if (head.kind == OutboxEvent.KIND_READING) {
-                        // per-reading rejections (e.g. unknown unit) stay FAILED, not retried
+
                         val out = runCatching { ApiJson.decodeFromString<ReadingBatchOut>(result.body.orEmpty()) }.getOrNull()
                         failedIds = out?.rejected?.map { it.eventId }?.toSet().orEmpty()
                         out?.rejected?.forEach { rej ->
@@ -77,7 +77,7 @@ class OutboxProcessor(
     companion object {
         const val PAGE = 200
         const val BATCH = 100
-        /** 1s, 2s, 4s ... capped at 60s. */
+
         fun backoffMs(attempts: Int): Long = min(60_000L, 1_000L shl min(attempts - 1, 6))
     }
 }

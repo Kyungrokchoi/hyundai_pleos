@@ -2,8 +2,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { defineConfig, devices } from "@playwright/test";
 
-// Starts a real backend (:8010, throwaway SQLite) and a production build (:3100) on private ports, so a dev
-// server on :8000 is never touched. E2E_EXTERNAL=1 tests servers you already run (E2E_API_BASE / E2E_WEB_BASE).
+
+
 const API_PORT = 8010;
 const WEB_PORT = 3100;
 const external = process.env.E2E_EXTERNAL === "1";
@@ -31,7 +31,7 @@ export default defineConfig({
     },
     {
       command: `npm run build && npx next start -H 127.0.0.1 -p ${WEB_PORT}`,
-      // separate distDir: NEXT_PUBLIC_API_BASE is baked in at build time
+
       env: { NEXT_PUBLIC_API_BASE: API, NEXT_DIST_DIR: ".next-e2e" },
       url: WEB,
       reuseExistingServer: false,

@@ -1,4 +1,3 @@
-"""Write the OpenAPI contract: python -m app.export_openapi [contracts/openapi.yaml | -]"""
 import sys
 
 import yaml

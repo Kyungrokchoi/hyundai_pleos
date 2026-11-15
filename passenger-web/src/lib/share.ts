@@ -1,7 +1,7 @@
 import type { SettlementOut, TripSummary } from "@/api/types";
 import { formatKm, formatKrw } from "./format";
 
-// Amounts are copied from the server's settlement, never recomputed.
+
 export function buildShareText(trip: TripSummary, s: SettlementOut, opts: { anonymize: boolean }): string {
   const names = new Map<string, string>();
   let n = 0;

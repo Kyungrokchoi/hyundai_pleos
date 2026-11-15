@@ -18,7 +18,7 @@ import okhttp3.Response
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-/** Result of a direct UI call, not through the outbox. */
+
 sealed interface ApiResult<out T> {
     data class Ok<T>(val value: T) : ApiResult<T>
     data class Rejected(val code: Int, val errorCode: String?, val messageKo: String) : ApiResult<Nothing>
@@ -34,7 +34,7 @@ class ApiClient(
     private val root = baseUrl.trimEnd('/') + "/api/v1"
     private val json = "application/json; charset=utf-8".toMediaType()
 
-    // Callers may be on Main and reading the body blocks on the socket (NetworkOnMainThreadException).
+
     override suspend fun send(method: String, path: String, body: String?): TransportResult = withContext(Dispatchers.IO) {
         val response = try {
             execute(method, path, body, null)

@@ -1,4 +1,4 @@
-// Money is integer KRW. Decimal strings are formatted for display and never turned back into money.
+
 
 const KRW = new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 0 });
 
@@ -10,7 +10,7 @@ export function formatInt(n: number): string {
   return KRW.format(n);
 }
 
-/** "24" -> "24", "24.50" -> "24.5", "1234.567" -> "1,234.6"; null/garbage -> "-". */
+
 export function formatKm(value: string | number | null | undefined, maxFraction = 1): string {
   if (value === null || value === undefined || value === "") return "-";
   const n = typeof value === "number" ? value : Number(value);
@@ -18,7 +18,7 @@ export function formatKm(value: string | number | null | undefined, maxFraction 
   return new Intl.NumberFormat("ko-KR", { maximumFractionDigits: maxFraction }).format(n);
 }
 
-// Display only; never used for money.
+
 export function kmBetween(startKm: string | null, endKm: string | null): string | null {
   if (startKm === null || endKm === null) return null;
   const a = Number(startKm);

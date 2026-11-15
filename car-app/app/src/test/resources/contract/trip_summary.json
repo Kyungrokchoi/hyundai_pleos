@@ -3,8 +3,8 @@
  "driver_user_id":"11111111-1111-4111-8111-111111111111","revision":17,"started_at":"2026-11-02T02:00:00Z","ended_at":"2026-11-02T02:30:00Z",
  "odometer_start_km":"12345","odometer_end_km":"12369","distance_km":"24",
  "latest_odometer":{"km":"12369","captured_at":"2026-11-02T02:30:00Z","source":"DEMO","quality":"ESTIMATED","age_seconds":12},
- "cost_rule":{"vehicle_type":"ICE","efficiency_value":"12","efficiency_unit":"km/L","efficiency_km_per_unit":"12","efficiency_source":"DEMO","unit_price_krw":"1800","driver_included":true,"energy_policy":"SEGMENT_SHARED"},
- "cost_items":[{"id":"item-0001-aaaa","kind":"TOLL","amount_krw":2400,"allocation":"EQUAL","note":"","input_source":"MANUAL","created_by":"11111111-1111-4111-8111-111111111111"}],
+ "cost_rule":{"vehicle_type":"ICE","efficiency_value":null,"efficiency_unit":null,"efficiency_km_per_unit":"12","efficiency_source":"ESTIMATE","fuel_type":"GASOLINE","unit_price_krw":"1800","unit_price_source":"OPINET","driver_included":true,"energy_policy":"SEGMENT_SHARED"},
+ "cost_items":[{"id":"item-0001-aaaa","kind":"TOLL","amount_krw":2400,"allocation":"EQUAL","note":"","road_name":"서울TG→수원IC","estimated":true,"input_source":"ESTIMATE","created_by":"11111111-1111-4111-8111-111111111111"}],
  "participants":[
   {"user_id":"11111111-1111-4111-8111-111111111111","nickname":"운전자","is_driver":true,"member_status":"ACTIVE","on_board":true,"intervals":[]},
   {"user_id":"33333333-3333-4333-8333-333333333333","nickname":"민지","is_driver":false,"member_status":"ACTIVE","on_board":false,
@@ -12,7 +12,7 @@
  ],
  "settlement":{
   "id":"66666666-6666-4666-8666-666666666666","trip_id":"44444444-4444-4444-8444-444444444444","revision":1,"state":"PROPOSED","total_krw":6000,"energy_total_krw":3600,"items_total_krw":2400,
-  "distance_km":"24","consumption":"2","consumption_unit":"L","equation":"24km ÷ 12km/L × 1,800원/L = 3,600원 + 통행료·주차비 등 2,400원 = 6,000원","efficiency_source":"DEMO","driver_included":true,"energy_policy":"SEGMENT_SHARED",
+  "distance_km":"24","consumption":"2","consumption_unit":"L","equation":"24km ÷ 12km/L × 1,800원/L = 3,600원 + 통행료·주차비 등 2,400원 = 6,000원","efficiency_source":"ESTIMATE","driver_included":true,"energy_policy":"SEGMENT_SHARED",
   "segments":[{"index":0,"start_km":"12345","end_km":"12355","length_km":"10","payers":["11111111-1111-4111-8111-111111111111","33333333-3333-4333-8333-333333333333"],"energy_krw":1500}],
   "shares":[
    {"user_id":"11111111-1111-4111-8111-111111111111","nickname":"운전자","is_driver":true,"total_krw":4400,"energy_krw":3100,"items":[{"item_id":"item-0001-aaaa","label":"통행료","amount_krw":1200}],"ridden_km":"24","owed_to_driver_krw":0,"approval":"PENDING","comment":null},

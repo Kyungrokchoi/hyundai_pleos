@@ -457,6 +457,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/trips/{trip_id}/tolls/estimate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Estimate Tolls
+         * @description Read-only: turns a GPS track into an estimated toll list. The driver decides which lines to add as cost items.
+         */
+        post: operations["estimate_tolls_api_v1_trips__trip_id__tolls_estimate_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/trips/{trip_id}/cost-items/{item_id}": {
         parameters: {
             query?: never;
@@ -522,6 +542,26 @@ export interface paths {
         put?: never;
         /** Approve */
         post: operations["approve_api_v1_settlements__settlement_id__approvals_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/fuel-price": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Fuel Price Now
+         * @description Average pump price (KRW/L). 503 means the app should fall back to a typed-in price.
+         */
+        get: operations["fuel_price_now_api_v1_fuel_price_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -649,6 +689,18 @@ export interface components {
              * @default
              */
             note?: string;
+            /**
+             * Road Name
+             * @description Road / tunnel the charge belongs to, e.g. `서울→수원`.
+             * @default
+             */
+            road_name?: string;
+            /**
+             * Estimated
+             * @description True when the amount was computed (toll estimate), not read off a receipt.
+             * @default false
+             */
+            estimated?: boolean;
         };
         /** CostItemOut */
         CostItemOut: {
@@ -661,11 +713,21 @@ export interface components {
             /** Note */
             note: string;
             /**
+             * Road Name
+             * @default
+             */
+            road_name?: string;
+            /**
+             * Estimated
+             * @default false
+             */
+            estimated?: boolean;
+            /**
              * Input Source
              * @default MANUAL
-             * @constant
+             * @enum {string}
              */
-            input_source?: "MANUAL";
+            input_source?: "MANUAL" | "ESTIMATE";
             /** Created By */
             created_by: string;
         };
@@ -674,18 +736,33 @@ export interface components {
             vehicle_type: components["schemas"]["VehicleType"];
             /**
              * Efficiency Value
-             * @description Number in `efficiency_unit`.
+             * @description Number in `efficiency_unit`. Only for MANUAL.
              */
             efficiency_value?: number | string | null;
             /** Efficiency Unit */
             efficiency_unit?: ("km/L" | "L/100km" | "km/kWh" | "Wh/km" | "kWh/100km") | null;
-            /** @default MANUAL */
-            efficiency_source?: components["schemas"]["DataSource"];
+            /**
+             * @description ESTIMATE = nothing is typed in: the car's own reading is used if it reports one, otherwise the rated average for `fuel_type`. PLEOS/DEMO = readings only. MANUAL = `efficiency_value` is required.
+             * @default MANUAL
+             */
+            efficiency_source?: components["schemas"]["EfficiencySource"];
+            /**
+             * Fuel Type
+             * @description Required for ESTIMATE; ELECTRIC if and only if vehicle_type is EV.
+             */
+            fuel_type?: ("GASOLINE" | "DIESEL" | "LPG" | "ELECTRIC") | null;
             /**
              * Unit Price Krw
              * @description KRW per litre (ICE) or per kWh (EV).
              */
             unit_price_krw?: number | string | null;
+            /**
+             * Unit Price Source
+             * @description OPINET = filled from GET /fuel-price, MANUAL = typed in.
+             * @default MANUAL
+             * @enum {string}
+             */
+            unit_price_source?: "MANUAL" | "OPINET";
             /**
              * Driver Included
              * @default true
@@ -706,9 +783,18 @@ export interface components {
              * @description Normalised km/L (ICE) or km/kWh (EV) actually used.
              */
             efficiency_km_per_unit: string | null;
-            efficiency_source: components["schemas"]["DataSource"];
+            /** @description Source of the figure actually used (a reading from the car wins over the rated average). */
+            efficiency_source: components["schemas"]["EfficiencySource"];
+            /** Fuel Type */
+            fuel_type?: ("GASOLINE" | "DIESEL" | "LPG" | "ELECTRIC") | null;
             /** Unit Price Krw */
             unit_price_krw: string | null;
+            /**
+             * Unit Price Source
+             * @default MANUAL
+             * @enum {string}
+             */
+            unit_price_source?: "MANUAL" | "OPINET";
             /** Driver Included */
             driver_included: boolean;
             energy_policy: components["schemas"]["EnergyPolicy"];
@@ -747,10 +833,48 @@ export interface components {
          */
         Decision: "APPROVE" | "DISPUTE";
         /**
+         * EfficiencySource
+         * @description Where the economy figure in use came from. ESTIMATE = the car reported none, so the rated average for its fuel is used.
+         * @enum {string}
+         */
+        EfficiencySource: "PLEOS" | "MANUAL" | "DEMO" | "ESTIMATE";
+        /**
          * EnergyPolicy
          * @enum {string}
          */
         EnergyPolicy: "SEGMENT_SHARED" | "EQUAL_SPLIT";
+        /** FuelPriceOut */
+        FuelPriceOut: {
+            /**
+             * Fuel
+             * @enum {string}
+             */
+            fuel: "GASOLINE" | "PREMIUM" | "DIESEL" | "LPG";
+            /** Region */
+            region: string;
+            /** Price Krw */
+            price_krw: number;
+            /** Diff Krw */
+            diff_krw?: number | null;
+            /**
+             * Fetched At
+             * Format: date-time
+             */
+            fetched_at: string;
+            /** Cached */
+            cached: boolean;
+            /**
+             * Source
+             * @default OPINET
+             * @constant
+             */
+            source?: "OPINET";
+            /**
+             * Attribution
+             * @default 유가 정보: 한국석유공사 오피넷
+             */
+            attribution?: string;
+        };
         /** GroupCreateIn */
         GroupCreateIn: {
             /**
@@ -1121,7 +1245,7 @@ export interface components {
             consumption_unit: "L" | "kWh";
             /** Equation */
             equation: string;
-            efficiency_source: components["schemas"]["DataSource"];
+            efficiency_source: components["schemas"]["EfficiencySource"];
             /** Driver Included */
             driver_included: boolean;
             energy_policy: components["schemas"]["EnergyPolicy"];
@@ -1176,6 +1300,80 @@ export interface components {
             approval: components["schemas"]["ApprovalState"];
             /** Comment */
             comment?: string | null;
+        };
+        /** TollEstimateIn */
+        TollEstimateIn: {
+            /**
+             * Points
+             * @description GPS track in time order.
+             */
+            points: components["schemas"]["TollPointIn"][];
+            /**
+             * Vehicle Class
+             * @description Korea Expressway Corp class: 1 = passenger car.
+             * @default 1
+             */
+            vehicle_class?: number;
+            /**
+             * Occupants
+             * @description People in the car; used for occupancy-exempt city zones.
+             */
+            occupants?: number | null;
+        };
+        /** TollEstimateOut */
+        TollEstimateOut: {
+            /** Segments */
+            segments: components["schemas"]["TollSegmentOut"][];
+            /** Total Krw */
+            total_krw: number;
+            /**
+             * Unmatched Gates
+             * @description Gates the track passed that could not be paired with a known fare.
+             */
+            unmatched_gates: string[];
+            /**
+             * Data Available
+             * @description False when no gate data or fare API key is configured on the server.
+             */
+            data_available: boolean;
+            /**
+             * Incomplete
+             * @description True when a fare lookup failed or hit the per-request limit: the total may be too low.
+             * @default false
+             */
+            incomplete?: boolean;
+            /**
+             * Estimated
+             * @default true
+             * @constant
+             */
+            estimated?: true;
+            /** Attribution */
+            attribution: string;
+        };
+        /** TollPointIn */
+        TollPointIn: {
+            /** Lat */
+            lat: number;
+            /** Lon */
+            lon: number;
+            /**
+             * Captured At
+             * Format: date-time
+             */
+            captured_at: string;
+        };
+        /** TollSegmentOut */
+        TollSegmentOut: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "HIGHWAY" | "ZONE";
+            /** Road Name */
+            road_name: string;
+            /** Amount Krw */
+            amount_krw: number;
         };
         /** TripCreateIn */
         TripCreateIn: {
@@ -2230,6 +2428,43 @@ export interface operations {
             };
         };
     };
+    estimate_tolls_api_v1_trips__trip_id__tolls_estimate_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                authorization?: string | null;
+            };
+            path: {
+                trip_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TollEstimateIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TollEstimateOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     delete_item_api_v1_trips__trip_id__cost_items__item_id__delete: {
         parameters: {
             query?: never;
@@ -2355,6 +2590,41 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["SettlementOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    fuel_price_now_api_v1_fuel_price_get: {
+        parameters: {
+            query?: {
+                fuel?: "GASOLINE" | "PREMIUM" | "DIESEL" | "LPG";
+                /** @description 시·도 이름(예: 서울). 비우면 전국 평균. */
+                region?: string | null;
+            };
+            header?: {
+                authorization?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FuelPriceOut"];
                 };
             };
             /** @description Validation Error */

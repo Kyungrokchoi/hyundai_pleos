@@ -4,12 +4,13 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app import schemas as s
-from app.api.deps import active_member, audit, current_user, locked_driver_trip, locked_member_trip, trip_for_member
+from app.api.deps import active_member, audit, current_user, locked_driver_trip, locked_member_trip, trip_for_driver, trip_for_member
 from app.config import get_settings
 from app.db import models as m
 from app.db.session import get_db
 from app.errors import ApiError, conflict, forbidden, not_found
 from app.services import cost_engine as ce
+from app.services import exco, tolls
 from app.services import trips as svc
 from app.services.summary import build_summary
 
@@ -29,7 +30,7 @@ def create_trip(body: s.TripCreateIn, user: m.User = Depends(current_user), db: 
     if existing is not None:
         if existing.group_id != body.group_id or existing.driver_user_id != user.id:
             raise conflict("ID_TAKEN", "이미 사용 중인 운행 ID입니다.")
-        return _out(db, existing, user)  # idempotent retry
+        return _out(db, existing, user)
     busy = db.scalar(select(m.Trip.id).where(m.Trip.group_id == body.group_id, m.Trip.state == "IN_PROGRESS").limit(1))
     if busy:
         raise conflict("TRIP_IN_PROGRESS", "이미 진행 중인 운행이 있습니다.")
@@ -39,7 +40,7 @@ def create_trip(body: s.TripCreateIn, user: m.User = Depends(current_user), db: 
     audit(db, user.id, "trip", trip.id, "CREATE", {"data_mode": trip.data_mode})
     try:
         db.commit()
-    except IntegrityError:  # lost a race with an identical create
+    except IntegrityError:
         db.rollback()
         trip = db.get(m.Trip, body.id)
         if trip is None or trip.group_id != body.group_id or trip.driver_user_id != user.id:
@@ -145,7 +146,7 @@ def board(trip_id: str, user_id: str, body: s.BoardingIn | None = None, user: m.
     mem = _target(trip, user_id, user, db)
     before = len(trip.intervals)
     svc.board(db, trip, mem, user, body or s.BoardingIn(), m.utcnow())
-    if len(trip.intervals) > before:   # an idempotent repeat is not audited
+    if len(trip.intervals) > before:
         audit(db, user.id, "trip", trip.id, "BOARD", {"user_id": mem.user_id, "by_driver": user.id != mem.user_id})
     db.commit()
     return _out(db, trip, user)
@@ -175,7 +176,7 @@ def correct_interval(trip_id: str, interval_id: str, body: s.IntervalCorrectionI
             raise ApiError(422, "INTERVAL_OUT_OF_RANGE", ce.MESSAGES_KO["INTERVAL_OUT_OF_RANGE"])
     diff = {"reason": body.reason, "before": [str(iv.odometer_on_km), str(iv.odometer_off_km)], "after": [str(on), str(off)]}
     iv.odometer_on_km, iv.odometer_off_km = on, off
-    iv.boundary_quality = "ESTIMATED"  # manual corrections are never shown as measured
+    iv.boundary_quality = "ESTIMATED"
     svc.bump(trip)
     audit(db, user.id, "interval", iv.id, "CORRECT", diff)
     db.commit()
@@ -188,19 +189,41 @@ def add_item(trip_id: str, body: s.CostItemIn, user: m.User = Depends(current_us
     svc.require_open(trip)
     old = db.get(m.CostItem, {"id": body.id, "trip_id": trip.id})
     if old is not None:
-        same = (old.kind, old.amount_krw, old.allocation) == (body.kind.value, body.amount_krw, body.allocation.value)
+        same = (old.kind, old.amount_krw, old.allocation, old.road_name, old.estimated) == (
+            body.kind.value, body.amount_krw, body.allocation.value, body.road_name, body.estimated)
         if not same:
             raise conflict("ID_TAKEN", "같은 ID로 다른 비용 항목이 이미 있습니다.")
-        return _out(db, trip, user)  # idempotent retry
+        return _out(db, trip, user)
     if len(trip.items) >= svc.MAX_ITEMS_PER_TRIP:
         raise ApiError(422, "TOO_MANY_ITEMS", "비용 항목이 너무 많습니다.")
     if sum(i.amount_krw for i in trip.items) + body.amount_krw > svc.MAX_ITEMS_TOTAL_KRW:
         raise ApiError(422, "ITEMS_TOTAL_TOO_LARGE", "비용 항목의 합계가 허용 범위를 넘었습니다.")
-    trip.items.append(m.CostItem(id=body.id, kind=body.kind.value, amount_krw=body.amount_krw, allocation=body.allocation.value, note=body.note, created_by=user.id))
+    trip.items.append(m.CostItem(id=body.id, kind=body.kind.value, amount_krw=body.amount_krw, allocation=body.allocation.value, note=body.note,
+                                 road_name=body.road_name, estimated=body.estimated, created_by=user.id))
     svc.bump(trip)
     audit(db, user.id, "cost_item", f"{trip.id}:{body.id}", "ADD", {"kind": body.kind.value, "amount_krw": body.amount_krw, "allocation": body.allocation.value})
     db.commit()
     return _out(db, trip, user)
+
+
+TOLL_ATTRIBUTION = "영업소 위치 © OpenStreetMap contributors (ODbL), 요금: 한국도로공사 오픈API. 추정값이며 실제 하이패스 청구액과 다를 수 있습니다."
+
+
+@router.post("/trips/{trip_id}/tolls/estimate", response_model=s.TollEstimateOut)
+def estimate_tolls(trip_id: str, body: s.TollEstimateIn, user: m.User = Depends(current_user), db: Session = Depends(get_db)):
+    trip_for_driver(db, trip_id, user)
+    cfg = get_settings()
+    data = tolls.get_data(cfg.toll_data_dir)
+    fares = exco.FareLookup(db, cfg.exco_key, body.vehicle_class, cfg.exco_max_lookups_per_estimate)
+    pts = [tolls.Point(p.lat, p.lon, tolls.to_naive_utc(p.captured_at)) for p in body.points]
+    passes = tolls.detect_passes(pts, data.gates, cfg.toll_gate_radius_m)
+    segs, unmatched = tolls.estimate_segments(passes, fares)
+    out = [s.TollSegmentOut(kind="HIGHWAY", road_name=f"{g.entry}→{g.exit}"[:40], amount_krw=g.amount_krw) for g in segs]
+    out += [s.TollSegmentOut(kind="ZONE", road_name=z.name[:40], amount_krw=z.amount_krw) for z in tolls.zone_charges(pts, data.zones, body.occupants)]
+    return s.TollEstimateOut(segments=out, passes=[s.TollPassOut(name=g.name, lat=g.lat, lon=g.lon) for g in passes],
+                             total_krw=sum(o.amount_krw for o in out), unmatched_gates=unmatched,
+                             data_available=bool(data.gates and cfg.exco_key) or bool(data.zones), incomplete=fares.failed,
+                             attribution=TOLL_ATTRIBUTION)
 
 
 @router.delete("/trips/{trip_id}/cost-items/{item_id}", response_model=s.TripSummary)
@@ -218,7 +241,6 @@ def delete_item(trip_id: str, item_id: str, user: m.User = Depends(current_user)
 
 @router.delete("/trips/{trip_id}/readings/{event_id}", response_model=s.TripSummary)
 def void_reading(trip_id: str, event_id: str, user: m.User = Depends(current_user), db: Session = Depends(get_db)):
-    """The driver removes a mistyped reading from every computation (kept, flagged and audited)."""
     trip = locked_driver_trip(db, trip_id, user)
     svc.require_open(trip)
     svc.void_reading(db, trip, event_id, user)

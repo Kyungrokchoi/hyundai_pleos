@@ -7,15 +7,23 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="MOATA_", env_file=".env", extra="ignore")
 
     database_url: str = "sqlite:///./moata.db"
-    cors_origins: str = "http://localhost:3000,http://127.0.0.1:3000"  # comma separated; no wildcard
-    enable_docs: bool = True  # set false in production: hides /docs and /openapi.json
-    allow_guest_auth: bool = True  # temporary guest auth: demo / closed-test environments only
+    cors_origins: str = "http://localhost:3000,http://127.0.0.1:3000"
+    enable_docs: bool = True
+    allow_guest_auth: bool = True
     token_ttl_days: int = 30
     max_body_bytes: int = 256 * 1024
-    stale_reading_seconds: int = 180  # a boarding boundary older than this is flagged
-    retention_days: int = 90  # trips older than this are purged by `python -m app.purge`
+    stale_reading_seconds: int = 180
+    retention_days: int = 90
     xp_per_verified_trip: int = 10
-    # XP at which each level starts (Lv.1 = 0)
+    opinet_key: str = ""
+    opinet_daily_limit: int = 250
+    exco_key: str = ""
+    exco_max_lookups_per_estimate: int = 8
+    kakao_rest_key: str = ""
+    efficiency_data_dir: str = ""
+    toll_data_dir: str = ""
+    toll_gate_radius_m: float = 80
+
     level_thresholds: tuple[int, ...] = (0, 30, 70, 130, 210, 310)
 
     @property

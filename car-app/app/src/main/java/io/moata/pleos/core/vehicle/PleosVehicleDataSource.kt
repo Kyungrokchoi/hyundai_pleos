@@ -7,10 +7,10 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-/**
- * Capability is checked first; AccessType.NONE means UNAVAILABLE without a read. Every failure becomes a sample
- * carrying the SDK error. Never falls back to DEMO.
- */
+
+
+
+
 class PleosVehicleDataSource(
     private val apis: PleosApis,
     private val now: () -> Long = System::currentTimeMillis,
@@ -46,7 +46,7 @@ class PleosVehicleDataSource(
                 AccessType.READ, AccessType.READ_WRITE -> Cap.READABLE to null
                 else -> Cap.NONE to "CAPABILITY_${outcome.value.accessType}: the vehicle does not allow reading this signal"
             }
-            // capability call failed; let the read decide
+
             else -> Cap.UNKNOWN to outcome.describe()
         }
     }

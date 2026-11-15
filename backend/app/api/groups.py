@@ -40,7 +40,6 @@ def guest(body: s.GuestAuthIn, db: Session = Depends(get_db)):
 
 @router.post("/auth/logout", status_code=204, tags=["auth"])
 def logout(authorization: str | None = Header(None), user: m.User = Depends(current_user), db: Session = Depends(get_db)):
-    """Revokes the token presented on this request."""
     row = db.scalar(select(m.AuthToken).where(m.AuthToken.token_hash == hash_token(_bearer(authorization) or "")))
     if row is not None:
         row.revoked_at = m.utcnow()
@@ -61,14 +60,14 @@ def create_group(body: s.GroupCreateIn, user: m.User = Depends(current_user), db
     if g is not None:
         if g.owner_user_id != user.id:
             raise conflict("ID_TAKEN", "이미 사용 중인 그룹 ID입니다.")
-        return _group_out(db, g, True)  # idempotent retry
+        return _group_out(db, g, True)
     g = m.Group(id=gid, name=body.name, owner_user_id=user.id)
     g.members.append(m.GroupMember(user_id=user.id, role="OWNER", status="ACTIVE", rules_accepted_at=m.utcnow()))
     db.add(g)
     audit(db, user.id, "group", gid, "CREATE")
     try:
         db.commit()
-    except IntegrityError:  # lost a race with an identical create
+    except IntegrityError:
         db.rollback()
         g = db.get(m.Group, gid)
         if g is None or g.owner_user_id != user.id:
@@ -85,12 +84,11 @@ def my_groups(user: m.User = Depends(current_user), db: Session = Depends(get_db
 
 @router.get("/groups/{group_id}/me", response_model=s.MembershipOut, tags=["groups"])
 def my_membership(group_id: str, user: m.User = Depends(current_user), db: Session = Depends(get_db)):
-    """Only the caller's own row, in any status, so a waiting or rejected passenger can be told apart."""
     mem = db.scalar(select(m.GroupMember).where(m.GroupMember.group_id == group_id, m.GroupMember.user_id == user.id))
     if mem is None:
         raise not_found()
     current = None
-    if mem.status == "ACTIVE":   # only ACTIVE members are told about trips
+    if mem.status == "ACTIVE":
         current = db.scalar(select(m.Trip.id).where(m.Trip.group_id == group_id, m.Trip.state.not_in(("CONFIRMED", "CANCELLED", "DRAFT")))
                             .order_by(m.Trip.created_at.desc()).limit(1))
     return s.MembershipOut(group_id=group_id, user_id=user.id, role=mem.role, status=s.MemberStatus(mem.status), current_trip_id=current)
@@ -140,7 +138,6 @@ def create_invite(group_id: str, body: s.InviteCreateIn, user: m.User = Depends(
 
 @router.delete("/groups/{group_id}/invites/{invite_id}", status_code=204, tags=["invites"])
 def revoke_invite(group_id: str, invite_id: str, user: m.User = Depends(current_user), db: Session = Depends(get_db)):
-    """A leaked QR can be killed immediately."""
     _owner(db, group_id, user)
     inv = db.get(m.Invite, invite_id)
     if inv is None or inv.group_id != group_id:
@@ -153,7 +150,7 @@ def revoke_invite(group_id: str, invite_id: str, user: m.User = Depends(current_
 
 def _live_invite(db: Session, token: str) -> m.Invite:
     inv = db.scalar(select(m.Invite).where(m.Invite.token_hash == hash_token(token)))
-    if inv is None:  # unknown or tampered token
+    if inv is None:
         raise not_found("초대 링크")
     if inv.revoked_at is not None or inv.expires_at <= m.utcnow() or inv.used_count >= inv.max_uses:
         raise ApiError(410, "INVITE_EXPIRED", "초대 링크가 만료되었거나 더 이상 사용할 수 없습니다. 운전자에게 새 QR을 요청해 주세요.")
@@ -209,7 +206,7 @@ def accept_invite(body: s.InviteAcceptIn, caller: m.User | None = Depends(option
         audit(db, user.id, "group", inv.group_id, "JOIN_REQUEST", {"invite": inv.id})
     try:
         db.commit()
-    except IntegrityError:  # same user double-submitted; the first request created the membership
+    except IntegrityError:
         db.rollback()
         mem = db.scalar(select(m.GroupMember).where(m.GroupMember.group_id == inv.group_id, m.GroupMember.user_id == user.id))
         if mem is None:
@@ -223,14 +220,14 @@ def decide_member(group_id: str, user_id: str, body: s.MemberDecisionIn, user: m
     mem = db.scalar(select(m.GroupMember).where(m.GroupMember.group_id == group_id, m.GroupMember.user_id == user_id))
     if mem is None or mem.role == "OWNER":
         raise not_found()
-    if mem.status != "PENDING":  # decisions are final: no re-admitting rejected users or evicting active riders
+    if mem.status != "PENDING":
         raise conflict("MEMBER_NOT_PENDING", "승인 대기 중인 참가자만 승인하거나 거절할 수 있습니다.")
     mem.status = "ACTIVE" if body.decision == "APPROVE" else "REJECTED"
     if mem.status == "ACTIVE":
         mem.joined_at = m.utcnow()
     audit(db, user.id, "group", group_id, f"MEMBER_{body.decision}", {"user_id": user_id})
     db.execute(update(m.Trip).where(m.Trip.group_id == group_id, m.Trip.state.in_(("INVITING", "READY", "IN_PROGRESS")))
-               .values(revision=m.Trip.revision + 1))  # atomic bump so pollers see the roster change
+               .values(revision=m.Trip.revision + 1))
     db.commit()
     return s.MemberOut(user_id=mem.user_id, nickname=mem.user.nickname, role=mem.role, status=s.MemberStatus(mem.status))
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Prints host, toolchain and device info. Read-only.
+
 echo "== host =="; uname -a; echo "arch: $(uname -m)"
 echo "== java ==";  java -version 2>&1 | head -1; echo "JAVA_HOME=${JAVA_HOME:-}"
 echo "== android =="; echo "ANDROID_HOME=${ANDROID_HOME:-} ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT:-}"

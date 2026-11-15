@@ -60,14 +60,14 @@ class OutboxProcessorTest {
         net.enqueue(TransportResult.Retryable("NETWORK: down"))
         val first = proc.drain()
         assertEquals(DrainReport.Stop.OFFLINE, first.stoppedBecause)
-        assertEquals(listOf("/x/a"), net.sent.map { it.path })             // b did not overtake a
+        assertEquals(listOf("/x/a"), net.sent.map { it.path })
         val a = dao.rows.first { it.eventId == "a" }
         assertEquals(1, a.attempts); assertEquals("NETWORK: down", a.lastError); assertEquals(clock + 1_000, a.nextAttemptAt)
 
-        assertEquals(DrainReport.Stop.WAITING_BACKOFF, proc.drain().stoppedBecause)   // too early: nothing sent
+        assertEquals(DrainReport.Stop.WAITING_BACKOFF, proc.drain().stoppedBecause)
         assertEquals(1, net.sent.size)
 
-        clock += 1_001                                                    // backoff elapsed, network is back
+        clock += 1_001
         val ok = proc.drain()
         assertEquals(2, ok.sent)
         assertEquals(listOf("/x/a", "/x/a", "/x/b"), net.sent.map { it.path })
@@ -120,10 +120,10 @@ class OutboxProcessorTest {
         net.enqueue(TransportResult.Retryable("NETWORK: timeout after server processed it"))
         proc.drain()
         clock += 5_000
-        net.default = TransportResult.Success(200, """{"accepted":0,"duplicates":1,"rejected":[]}""")   // server says: already have it
+        net.default = TransportResult.Success(200, """{"accepted":0,"duplicates":1,"rejected":[]}""")
         proc.drain()
         val ids = net.sent.map { ApiJson.decodeFromString<ReadingBatchIn>(it.body!!).readings.single().eventId }
-        assertEquals(listOf("r1", "r1"), ids)                                  // same event_id both times
+        assertEquals(listOf("r1", "r1"), ids)
         assertEquals("DONE", dao.rows.single().state)
     }
 }
@@ -134,7 +134,7 @@ class TripRepositoryTest {
     private var t = 10_000L
     private var n = 0
     private fun repo(d: FakeTripDao = trips, o: FakeOutboxDao = outbox) = TripRepository(d, o, { t++ }, { "ev-${n++}" })
-    private val rule = CostRuleIn(vehicleType = "ICE", efficiencyValue = "12", efficiencyUnit = "km/L", unitPriceKrw = "1800")
+    private val rule = CostRuleIn(vehicleType = "ICE", fuelType = "GASOLINE", unitPriceKrw = "1800")
     private fun odo(km: Double?, q: Quality = Quality.VERIFIED) =
         VehicleSample(SignalType.ODOMETER, km, "km", t, DataSource.PLEOS, q, "2.3.2", if (km == null) "TIMEOUT" else null)
 
@@ -142,7 +142,7 @@ class TripRepositoryTest {
         val r = repo()
         val a = r.createTrip("trip-1", "g1", "PLEOS", "ICE", rule)
         val again = r.createTrip("trip-1", "g1", "PLEOS", "ICE", rule)
-        val other = r.createTrip("trip-2", "g1", "PLEOS", "ICE", rule)       // e.g. the screen was re-entered after a restart
+        val other = r.createTrip("trip-2", "g1", "PLEOS", "ICE", rule)
         assertEquals(a, again); assertEquals("trip-1", other.id)
         assertEquals(1, trips.trips.size)
         assertEquals(1, outbox.rows.count { it.path == "/trips" })
@@ -150,7 +150,7 @@ class TripRepositoryTest {
 
     @Test fun anActiveTripSurvivesProcessDeathAndIsRecovered() = runTest {
         repo().createTrip("trip-1", "g1", "PLEOS", "ICE", rule)
-        val reborn = repo()                                                   // new process, same database
+        val reborn = repo()
         val rec = reborn.active()
         assertNotNull(rec); assertEquals("trip-1", rec!!.id); assertEquals("INVITING", rec.state)
     }
@@ -170,16 +170,28 @@ class TripRepositoryTest {
     @Test fun readingsAreOnlyStoredWhileInProgressAndKeepFailures() = runTest {
         val r = repo()
         r.createTrip("trip-1", "g1", "PLEOS", "ICE", rule)
-        r.recordReading("trip-1", odo(1.0))                                   // INVITING: ignored
+        r.recordReading("trip-1", odo(1.0))
         assertEquals(0, outbox.readingCount("trip-1"))
         r.markReady("trip-1"); r.start("trip-1", odo(100.0))
         r.recordReading("trip-1", odo(101.5)); r.recordReading("trip-1", odo(null, Quality.UNAVAILABLE))
         assertEquals(2, outbox.readingCount("trip-1"))
-        assertEquals(101.5, trips.trips["trip-1"]!!.lastOdometerKm!!, 0.0)    // a failed read does not move the odometer
+        assertEquals(101.5, trips.trips["trip-1"]!!.lastOdometerKm!!, 0.0)
         val failed = outbox.rows.last { it.kind == "READING" }
         assertTrue(failed.body!!.contains("\"quality\":\"UNAVAILABLE\"") && failed.body!!.contains("TIMEOUT"))
-        r.end("trip-1", odo(110.0)); r.recordReading("trip-1", odo(111.0))    // after END: ignored
+        r.end("trip-1", odo(110.0)); r.recordReading("trip-1", odo(111.0))
         assertEquals(2, outbox.readingCount("trip-1"))
+    }
+
+    @Test fun theCarsEconomyReadingIsQueuedOnlyWhileTheTripIsStillInProgress() = runTest {
+        val r = repo()
+        r.createTrip("trip-1", "g1", "PLEOS", "ICE", rule); r.markReady("trip-1"); r.start("trip-1", odo(100.0))
+        r.recordReading("trip-1", VehicleSample(SignalType.FUEL_ECONOMY, 6.2, "L/100km", t, DataSource.PLEOS, Quality.VERIFIED, "2.3.2"))
+        val queued = outbox.rows.last { it.kind == "READING" }
+        assertTrue(queued.body!!.contains("\"type\":\"FUEL_ECONOMY\"") && queued.body!!.contains("\"value\":6.2") && queued.body!!.contains("L/100km"))
+        assertEquals(100.0, trips.trips["trip-1"]!!.lastOdometerKm!!, 0.0)
+        r.end("trip-1", odo(124.0))
+        r.recordReading("trip-1", VehicleSample(SignalType.FUEL_ECONOMY, 6.0, "L/100km", t, DataSource.PLEOS, Quality.VERIFIED, "2.3.2"))
+        assertEquals(1, outbox.readingCount("trip-1"))
     }
 
     @Test fun uploadedReadingCarriesRawValueUnitSourceAndUtcTime() {
@@ -212,16 +224,16 @@ class RecoveryAndRecorderTest {
     private val trips = FakeTripDao()
     private val outbox = FakeOutboxDao()
     private var t = 10_000L
-    private val rule = CostRuleIn(vehicleType = "ICE", efficiencyValue = "12", efficiencyUnit = "km/L", unitPriceKrw = "1800")
+    private val rule = CostRuleIn(vehicleType = "ICE", fuelType = "GASOLINE", unitPriceKrw = "1800")
     private fun odo(km: Double) = VehicleSample(SignalType.ODOMETER, km, "km", t, DataSource.PLEOS, Quality.VERIFIED, "2.3.2")
 
     @Test fun anEndedTripWaitingForSettlementIsStillRecoveredAfterARestart() = runTest {
         val r = TripRepository(trips, outbox, { t++ }, { "x" })
         r.createTrip("trip-1", "g1", "PLEOS", "ICE", rule); r.markReady("trip-1"); r.start("trip-1", odo(1.0)); r.end("trip-1", odo(25.0))
-        assertNull(r.active())                                               // not recording, so a new trip may be created
-        assertEquals("ENDED", TripRepository(trips, outbox, { t++ }).open()!!.state)   // but the settlement is still reachable
+        assertNull(r.active())
+        assertEquals("ENDED", TripRepository(trips, outbox, { t++ }).open()!!.state)
         r.close("trip-1", confirmed = false)
-        assertNull(r.open())                                                 // closed locally: no longer offered
+        assertNull(r.open())
         assertEquals("CLOSED", trips.trips["trip-1"]!!.state)
     }
 
@@ -229,7 +241,7 @@ class RecoveryAndRecorderTest {
         var now = 0L
         val repo = TripRepository(trips, outbox, { now }, { "ev-$now" })
         repo.createTrip("trip-1", "g1", "PLEOS", "ICE", rule); repo.markReady("trip-1"); repo.start("trip-1", odo(100.0))
-        val silent = object : io.moata.pleos.core.vehicle.VehicleDataSource {          // listener never fires (value unchanged)
+        val silent = object : io.moata.pleos.core.vehicle.VehicleDataSource {
             override val source = DataSource.PLEOS
             override suspend fun connect() = Result.success(Unit)
             override suspend fun read(type: SignalType) = odo(100.0).copy(capturedAtEpochMs = now)
@@ -238,11 +250,11 @@ class RecoveryAndRecorderTest {
         }
         val rec = io.moata.pleos.domain.TripRecorder(repo, backgroundScope, minIntervalMs = 5_000, heartbeatMs = 15_000, now = { now })
         rec.start("trip-1", silent)
-        rec.start("trip-1", silent)                                           // a second start must not double-subscribe
+        rec.start("trip-1", silent)
         for (i in 1..4) { now += 15_000; advanceTimeBy(15_000); runCurrent() }
         assertEquals(4, outbox.readingCount("trip-1"))
         rec.stop()
         advanceTimeBy(60_000); runCurrent()
-        assertEquals(4, outbox.readingCount("trip-1"))                        // nothing recorded after stop()
+        assertEquals(4, outbox.readingCount("trip-1"))
     }
 }

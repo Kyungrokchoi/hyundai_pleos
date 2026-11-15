@@ -1,4 +1,3 @@
-"""Trip lifecycle, vehicle readings and boarding intervals (server-authoritative)."""
 from __future__ import annotations
 
 from datetime import timedelta
@@ -12,17 +11,18 @@ from app.config import get_settings
 from app.db import models as m
 from app.errors import ApiError, conflict, forbidden
 from app.services import cost_engine as ce
+from app.services import efficiency
 
 ACCEPTS_READINGS = {"READY", "IN_PROGRESS", "ENDED", "REVIEW", "DISPUTED"}
-PRE_DEPARTURE = ("INVITING", "READY")  # boarding is recorded while parked, before the first odometer snapshot
+PRE_DEPARTURE = ("INVITING", "READY")
 LOCKED = {"CONFIRMED", "CANCELLED"}
 FUTURE_SKEW = timedelta(minutes=5)
-MAX_READING_AGE = timedelta(days=7)   # offline outbox may sync late; year-1 dates break DB drivers
-MAX_READINGS_PER_TRIP = 50_000   # ~69 h at one sample / 5 s; caps a runaway client
+MAX_READING_AGE = timedelta(days=7)
+MAX_READINGS_PER_TRIP = 50_000
 MAX_ITEMS_PER_TRIP = 50
-MAX_ITEMS_TOTAL_KRW = 1_000_000_000   # keeps every sum far below 2^31
+MAX_ITEMS_TOTAL_KRW = 1_000_000_000
 MAX_BOARDINGS_PER_USER = 20
-# plausibility windows, applied after unit normalisation, to drop sensor glitches
+
 PLAUSIBLE = {"ODOMETER": (Decimal(0), Decimal(9_999_999)), "FUEL_ECONOMY": (Decimal("0.05"), Decimal(500)),
              "EV_EFFICIENCY": (Decimal("0.05"), Decimal(100))}
 
@@ -34,12 +34,12 @@ DISCLAIMERS = [
 MODE_NOTICE = {
     "DEMO": "DEMO / 가상 데이터입니다. 차량에서 측정한 값이 아닙니다.",
     "MANUAL": "직접 입력한 값이 포함되어 있습니다.",
+    "ESTIMATE": "연비는 차량이 알려주지 않아 한국에너지공단 표시연비 평균으로 추정했습니다.",
     "PLEOS": "운전자의 차량 앱이 차량에서 읽어 보고한 값입니다(서버가 차량에서 직접 검증하지는 못합니다).",
 }
 
 
 def nz(d) -> Decimal | None:
-    """Normalise a DB Numeric to a clean Decimal (24.000 -> 24)."""
     if d is None:
         return None
     d = Decimal(d)
@@ -60,7 +60,6 @@ def require_open(trip: m.Trip) -> None:
 
 
 def normalize_reading(r: s.ReadingIn) -> tuple[Decimal | None, str | None]:
-    """Raw value+unit -> normalised value in the engine's unit. Raises CostInputError on bad input."""
     if r.value is None:
         return None, None
     t, u = r.type, r.unit
@@ -88,14 +87,13 @@ def normalize_reading(r: s.ReadingIn) -> tuple[Decimal | None, str | None]:
 
 
 def ingest_reading(db: Session, trip: m.Trip, r: s.ReadingIn, now, exempt_cap: bool = False) -> tuple[str, s.ReadingRejected | None]:
-    """Returns ('accepted'|'duplicate'|'rejected', rejection). The trip's start/end snapshots are exempt from the per-trip cap."""
     def reject(code: str, msg: str):
         return "rejected", s.ReadingRejected(event_id=r.event_id, code=code, message_ko=msg)
 
     if trip.state not in ACCEPTS_READINGS:
         return reject("TRIP_NOT_ACCEPTING", "이 운행은 지금 판독값을 받을 수 없습니다.")
     prior = db.scalar(select(m.VehicleReading).where(m.VehicleReading.trip_id == trip.id, m.VehicleReading.event_id == r.event_id))
-    if prior is not None:  # replay; the same id with a different type is a client bug
+    if prior is not None:
         if prior.type != r.type.value:
             return reject("EVENT_ID_CONFLICT", "같은 ID로 다른 종류의 판독값이 이미 있습니다.")
         return "duplicate", None
@@ -103,7 +101,7 @@ def ingest_reading(db: Session, trip: m.Trip, r: s.ReadingIn, now, exempt_cap: b
         trip._reading_total = reading_count(db, trip.id)
     if trip._reading_total >= MAX_READINGS_PER_TRIP and not exempt_cap:
         return reject("TRIP_READING_LIMIT", "한 운행에 저장할 수 있는 판독값 수를 넘었습니다.")
-    if r.source.value != trip.data_mode:  # never mix simulated and real values in one trip
+    if r.source.value != trip.data_mode:
         return reject("SOURCE_MISMATCH", f"이 운행의 데이터 출처는 {trip.data_mode}입니다. 다른 출처의 값은 받을 수 없습니다.")
     if r.captured_at.tzinfo is None:
         return reject("TIMESTAMP_INVALID", "측정 시각에 시간대(UTC)가 없습니다.")
@@ -121,7 +119,7 @@ def ingest_reading(db: Session, trip: m.Trip, r: s.ReadingIn, now, exempt_cap: b
         quality, error = "UNAVAILABLE", error or "value missing"
     if r.type == s.ReadingType.ODOMETER and norm is not None and quality in ("VERIFIED", "ESTIMATED"):
         prev = _max_odometer(db, trip.id)
-        if prev is not None and norm < prev - Decimal("0.5"):  # odometers never go backwards
+        if prev is not None and norm < prev - Decimal("0.5"):
             quality, error = "INVALID", "ODOMETER_REGRESSION"
     db.add(m.VehicleReading(
         trip_id=trip.id, event_id=r.event_id, type=r.type.value, captured_at=r.captured_at,
@@ -135,7 +133,6 @@ def ingest_reading(db: Session, trip: m.Trip, r: s.ReadingIn, now, exempt_cap: b
 
 
 def void_reading(db: Session, trip: m.Trip, event_id: str, actor: m.User) -> None:
-    """Exclude a reading from every computation; the row stays for the audit trail."""
     rd = db.scalar(select(m.VehicleReading).where(m.VehicleReading.trip_id == trip.id, m.VehicleReading.event_id == event_id))
     if rd is None:
         raise ApiError(404, "NOT_FOUND", "찾을 수 없거나 볼 수 있는 권한이 없습니다.")
@@ -168,8 +165,14 @@ def latest_reading(db: Session, trip_id: str, rtype: str) -> m.VehicleReading | 
 
 
 def set_cost_rule(db: Session, trip: m.Trip, rule: s.CostRuleIn) -> m.CostRule:
-    """PLEOS/DEMO efficiency must come from stored readings, never typed in."""
-    if rule.efficiency_source == ce.DataSource.MANUAL:
+    if rule.efficiency_source == ce.EfficiencySource.ESTIMATE:
+        if rule.efficiency_value is not None or rule.efficiency_unit is not None:
+            raise ApiError(422, "EFFICIENCY_SOURCE_MISMATCH", "추정 연비에는 값을 보낼 수 없습니다. 서버가 계산합니다.")
+        if rule.fuel_type is None:
+            raise ApiError(422, "FUEL_TYPE_REQUIRED", "연료 종류가 필요합니다.")
+        if (rule.fuel_type == "ELECTRIC") != (rule.vehicle_type == ce.VehicleType.EV):
+            raise ApiError(422, "FUEL_TYPE_MISMATCH", "차량 종류와 연료 종류가 맞지 않습니다.")
+    elif rule.efficiency_source == ce.EfficiencySource.MANUAL:
         if rule.efficiency_value is None or rule.efficiency_unit is None:
             raise ApiError(422, "EFFICIENCY_REQUIRED", "직접 입력 방식에서는 연비/전비 값과 단위가 필요합니다.")
         eff = _normalized_efficiency(rule.vehicle_type, rule.efficiency_value, rule.efficiency_unit)
@@ -178,14 +181,16 @@ def set_cost_rule(db: Session, trip: m.Trip, rule: s.CostRuleIn) -> m.CostRule:
             raise ApiError(422, "EFFICIENCY_IMPLAUSIBLE", ce.MESSAGES_KO["EFFICIENCY_IMPLAUSIBLE"])
     elif rule.efficiency_value is not None:
         raise ApiError(422, "EFFICIENCY_SOURCE_MISMATCH", "차량/데모 출처의 연비는 직접 입력할 수 없습니다. 출처를 '직접 입력'으로 바꿔 주세요.")
-    if rule.efficiency_source.value != "MANUAL" and rule.efficiency_source.value != trip.data_mode:
+    if rule.efficiency_source.value not in ("MANUAL", "ESTIMATE") and rule.efficiency_source.value != trip.data_mode:
         raise ApiError(422, "EFFICIENCY_SOURCE_MISMATCH", "연비 출처가 운행의 데이터 출처와 다릅니다.")
     cr = trip.cost_rule or m.CostRule(trip_id=trip.id)
     cr.vehicle_type = rule.vehicle_type.value
     cr.efficiency_value = rule.efficiency_value
     cr.efficiency_unit = rule.efficiency_unit
     cr.efficiency_source = rule.efficiency_source.value
+    cr.fuel_type = rule.fuel_type
     cr.unit_price_krw = rule.unit_price_krw
+    cr.unit_price_source = rule.unit_price_source
     cr.driver_included = rule.driver_included
     cr.energy_policy = rule.energy_policy.value
     trip.cost_rule = cr
@@ -201,20 +206,23 @@ def _normalized_efficiency(vtype, value, unit) -> Decimal:
         raise ApiError(422, e.code, ce.MESSAGES_KO.get(e.code, "연비/전비 단위가 올바르지 않습니다.")) from e
 
 
-def effective_efficiency(db: Session, trip: m.Trip) -> tuple[Decimal | None, ce.DataSource | None]:
-    """Normalised efficiency in use (km/L or km/kWh) and its source."""
+def effective_efficiency(db: Session, trip: m.Trip) -> tuple[Decimal | None, ce.EfficiencySource | None]:
     cr = trip.cost_rule
     if cr is None:
         return None, None
     if cr.efficiency_source == "MANUAL":
         if cr.efficiency_value is None or cr.efficiency_unit is None:
             return None, None
-        return _normalized_efficiency(ce.VehicleType(cr.vehicle_type), Decimal(cr.efficiency_value), cr.efficiency_unit), ce.DataSource.MANUAL
+        return _normalized_efficiency(ce.VehicleType(cr.vehicle_type), Decimal(cr.efficiency_value), cr.efficiency_unit), ce.EfficiencySource.MANUAL
     rtype = "FUEL_ECONOMY" if cr.vehicle_type == "ICE" else "EV_EFFICIENCY"
     rd = latest_reading(db, trip.id, rtype)
-    if rd is None:
-        return None, None
-    return Decimal(rd.normalized_value), ce.DataSource(rd.source)
+    if rd is not None:
+        return Decimal(rd.normalized_value), ce.EfficiencySource(rd.source)
+    if cr.efficiency_source == "ESTIMATE" and cr.fuel_type:
+        rated = efficiency.rated_average(cr.fuel_type, get_settings().efficiency_data_dir)
+        if rated is not None:
+            return rated.value, ce.EfficiencySource.ESTIMATE
+    return None, None
 
 
 def make_ready(db: Session, trip: m.Trip) -> None:
@@ -248,7 +256,7 @@ def _odometer_reading(db: Session, trip: m.Trip, r: s.ReadingIn, now) -> m.Vehic
 
 def start_trip(db: Session, trip: m.Trip, body: s.TripStartIn, now) -> None:
     if trip.state == "IN_PROGRESS" and trip.odometer_start_km is not None and _has_event(db, trip, body.odometer.event_id):
-        return  # idempotent retry
+        return
     if trip.state != "READY":
         raise conflict("INVALID_STATE", "출발 준비가 끝난 운행만 시작할 수 있습니다.")
     if db.scalar(select(m.Trip.id).where(m.Trip.group_id == trip.group_id, m.Trip.state == "IN_PROGRESS", m.Trip.id != trip.id).limit(1)):
@@ -257,7 +265,7 @@ def start_trip(db: Session, trip: m.Trip, body: s.TripStartIn, now) -> None:
     trip.state = "IN_PROGRESS"
     trip.started_at = rd.captured_at
     trip.odometer_start_km = rd.normalized_value
-    for iv in trip.intervals:  # riders who boarded while parked start here
+    for iv in trip.intervals:
         if iv.onboard_at and iv.odometer_on_km is None:
             iv.odometer_on_km, iv.boundary_quality = rd.normalized_value, "VERIFIED"
     bump(trip)
@@ -266,7 +274,7 @@ def start_trip(db: Session, trip: m.Trip, body: s.TripStartIn, now) -> None:
 def end_trip(db: Session, trip: m.Trip, body: s.TripEndIn, now) -> None:
     if trip.state in ("ENDED", "REVIEW", "DISPUTED", "CONFIRMED"):
         if _has_event(db, trip, body.odometer.event_id):
-            return  # idempotent retry
+            return
         raise conflict("ALREADY_ENDED", "이미 종료된 운행입니다.")
     if trip.state != "IN_PROGRESS":
         raise conflict("INVALID_STATE", "진행 중인 운행만 종료할 수 있습니다.")
@@ -282,7 +290,6 @@ def end_trip(db: Session, trip: m.Trip, body: s.TripEndIn, now) -> None:
 
 
 def _has_event(db: Session, trip: m.Trip, event_id: str) -> bool:
-    """Retry check: an ODOMETER reading with this event_id exists (other types do not count)."""
     return db.scalar(select(m.VehicleReading.id).where(m.VehicleReading.trip_id == trip.id, m.VehicleReading.event_id == event_id,
                                                        m.VehicleReading.type == "ODOMETER")) is not None
 
@@ -306,11 +313,11 @@ def board(db: Session, trip: m.Trip, member: m.GroupMember, actor: m.User, body:
     _guard_boarding(trip, member, actor, body)
     open_iv = _open_interval(trip, member.user_id)
     if open_iv:
-        return open_iv  # idempotent
+        return open_iv
     if sum(1 for i in trip.intervals if i.user_id == member.user_id) >= MAX_BOARDINGS_PER_USER:
         raise conflict("TOO_MANY_BOARDINGS", "한 운행에서 탑승·하차를 너무 많이 반복했습니다.")
     by = "USER" if actor.id == member.user_id else "DRIVER"
-    if trip.state in PRE_DEPARTURE:  # odometer_on_km is set at start
+    if trip.state in PRE_DEPARTURE:
         iv = m.ParticipantInterval(trip_id=trip.id, user_id=member.user_id, onboard_at=now, boundary_quality="VERIFIED", opened_by=by)
     else:
         km, q = (Decimal(body.odometer_km), "ESTIMATED") if body.odometer_km is not None else _boundary(db, trip, now)
@@ -325,19 +332,19 @@ def alight(db: Session, trip: m.Trip, member: m.GroupMember, actor: m.User, body
     iv = _open_interval(trip, member.user_id)
     if iv is None:
         raise conflict("NOT_ON_BOARD", "탑승 중이 아닙니다.")
-    if trip.state in PRE_DEPARTURE:  # nothing ridden yet: drop the interval
+    if trip.state in PRE_DEPARTURE:
         trip.intervals.remove(iv)
         bump(trip)
         return None
     km, q = (Decimal(body.odometer_km), "ESTIMATED") if body.odometer_km is not None else _boundary(db, trip, now)
     if body.undo and km is not None and iv.odometer_on_km is not None and Decimal(iv.odometer_on_km) == Decimal(km):
-        # undo before the car moved: they never rode, so no share of tolls.
-        # A plain alight at the same km is kept so the driver can correct it.
+
+
         trip.intervals.remove(iv)
         bump(trip)
         return None
     if km is not None and iv.odometer_on_km is not None and km < Decimal(iv.odometer_on_km):
-        km = Decimal(iv.odometer_on_km)  # clamp jitter within the 0.5 km regression tolerance
+        km = Decimal(iv.odometer_on_km)
     iv.offboard_at, iv.odometer_off_km = now, km
     iv.closed_by = "USER" if actor.id == member.user_id else "DRIVER"
     if q != "VERIFIED":

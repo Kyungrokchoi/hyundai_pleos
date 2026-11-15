@@ -55,11 +55,15 @@ describe("useRideActions: '다시 시도' really sends the failed action again",
   });
 });
 
-describe("SourceBadge shows the literal source code with plain Korean (product rule 1)", () => {
-  it.each([["PLEOS", "PLEOS · 차량에서 읽은 값"], ["MANUAL", "MANUAL · 직접 입력"], ["DEMO", "DEMO · 가상 데이터"]] as const)("%s", (src, text) => {
+describe("SourceBadge: car data gets no chip, other sources are flagged with their code and plain Korean", () => {
+  it.each([["MANUAL", "MANUAL · 직접 입력"], ["DEMO", "DEMO · 가상 데이터"]] as const)("%s", (src, text) => {
     render(<SourceBadge source={src} testId={`b-${src}`} />);
     const el = screen.getByTestId(`b-${src}`);
     expect(el.textContent).toBe(text);
     expect(el.getAttribute("data-source")).toBe(src);
+  });
+  it("PLEOS renders nothing", () => {
+    const { container } = render(<SourceBadge source="PLEOS" testId="b-PLEOS" />);
+    expect(container.innerHTML).toBe("");
   });
 });

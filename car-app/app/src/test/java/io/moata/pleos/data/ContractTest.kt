@@ -9,6 +9,7 @@ import io.moata.pleos.data.remote.CostItemIn
 import io.moata.pleos.data.remote.CostRuleIn
 import io.moata.pleos.data.remote.CouponOut
 import io.moata.pleos.data.remote.ErrorOut
+import io.moata.pleos.data.remote.FuelPriceOut
 import io.moata.pleos.data.remote.GroupCreateIn
 import io.moata.pleos.data.remote.GroupOut
 import io.moata.pleos.data.remote.GuestAuthIn
@@ -18,6 +19,9 @@ import io.moata.pleos.data.remote.InviteOut
 import io.moata.pleos.data.remote.ReadingBatchIn
 import io.moata.pleos.data.remote.ReadingBatchOut
 import io.moata.pleos.data.remote.ReadingIn
+import io.moata.pleos.data.remote.TollEstimateIn
+import io.moata.pleos.data.remote.TollEstimateOut
+import io.moata.pleos.data.remote.TollPointIn
 import io.moata.pleos.data.remote.TripCreateIn
 import io.moata.pleos.data.remote.TripStartIn
 import io.moata.pleos.data.remote.TripSummary
@@ -34,10 +38,10 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-/**
- * Fixtures under src/test/resources/contract mirror backend/app/schemas.py. Decoding is strict, so a server field
- * the DTOs don't know breaks the build instead of being silently ignored.
- */
+
+
+
+
 @OptIn(ExperimentalSerializationApi::class)
 class ContractTest {
     private val strict = Json { namingStrategy = JsonNamingStrategy.SnakeCase; ignoreUnknownKeys = false; explicitNulls = false }
@@ -48,7 +52,7 @@ class ContractTest {
         val g = strict.decodeFromString<GroupOut>(fixture("group_out.json"))
         assertEquals(listOf("ACTIVE", "PENDING"), g.members.map { it.status })
         val inv = strict.decodeFromString<InviteOut>(fixture("invite_out.json"))
-        assertTrue(inv.joinPath.startsWith("/join#"))                 // token travels in the fragment, not the query
+        assertTrue(inv.joinPath.startsWith("/join#"))
         val b = strict.decodeFromString<ReadingBatchOut>(fixture("reading_batch_out.json"))
         assertEquals(1, b.rejected.size); assertEquals("UNIT_UNKNOWN", b.rejected[0].code)
         assertEquals("STATE_CONFLICT", strict.decodeFromString<ErrorOut>(fixture("error_out.json")).code)
@@ -59,12 +63,17 @@ class ContractTest {
         assertEquals("REVIEW", t.state); assertEquals("DEMO", t.dataMode); assertEquals(17, t.revision)
         assertEquals("24", t.distanceKm)
         assertEquals("12", t.costRule!!.efficiencyKmPerUnit)
-        assertEquals(2400, t.costItems.single().amountKrw)
+        assertEquals("ESTIMATE", t.costRule!!.efficiencySource); assertEquals("GASOLINE", t.costRule!!.fuelType)
+        assertNull(t.costRule!!.efficiencyValue)
+        assertEquals("OPINET", t.costRule!!.unitPriceSource)
+        val item = t.costItems.single()
+        assertEquals(2400, item.amountKrw)
+        assertEquals("서울TG→수원IC", item.roadName); assertTrue(item.estimated); assertEquals("ESTIMATE", item.inputSource)
         val iv = t.participants[1].intervals.single()
         assertEquals("VERIFIED", iv.boundaryQuality); assertEquals("USER", iv.closedBy)
         val s = t.settlement!!
         assertEquals(6000, s.totalKrw)
-        assertEquals(s.totalKrw, s.shares.sumOf { it.totalKrw })           // shares conserve the total
+        assertEquals(s.totalKrw, s.shares.sumOf { it.totalKrw })
         assertEquals(s.energyTotalKrw, s.shares.sumOf { it.energyKrw })
         assertEquals("DISPUTED", s.shares[1].approval); assertEquals("하차 위치가 달라요", s.shares[1].comment)
         assertNull(s.shares[0].comment)
@@ -75,10 +84,26 @@ class ContractTest {
     @Test fun characterHistoryCoupons() {
         val c = strict.decodeFromString<CharacterOut>(fixture("character_out.json"))
         assertEquals(2, c.level); assertEquals(70, c.nextLevelXp); assertEquals("PROUD", c.mood)
+        assertEquals(listOf("FIRST_RIDE", "TRIO", "FIVE_TRIPS", "CLEAN_SPLIT"), c.allBadges.map { it.id })
+        assertEquals(listOf(true, false, false, false), c.allBadges.map { it.earned })
+        assertNull(c.allBadges[1].earnedAt); assertEquals("2026-11-02T03:00:00Z", c.allBadges[0].earnedAt)
+        assertEquals(c.badges.map { it.id }, c.allBadges.filter { it.earned }.map { it.id })
         val h = strict.decodeFromString(ListSerializer(HistoryItem.serializer()), fixture("history.json"))
         assertEquals(listOf(6000, null), h.map { it.totalKrw }); assertNull(h[1].startedAt)
         val k = strict.decodeFromString(ListSerializer(CouponOut.serializer()), fixture("coupons.json")).single()
         assertFalse(k.exchangeable); assertTrue(k.disclaimerKo.contains("교환"))
+    }
+
+    @Test fun fuelPriceAndTollEstimateDecodeStrictly() {
+        val p = strict.decodeFromString<FuelPriceOut>(fixture("fuel_price_out.json"))
+        assertEquals(1855, p.priceKrw); assertEquals("OPINET", p.source); assertEquals(-0.04, p.diffKrw!!, 1e-9)
+        val e = strict.decodeFromString<TollEstimateOut>(fixture("toll_estimate_out.json"))
+        assertEquals(listOf("HIGHWAY", "ZONE"), e.segments.map { it.kind })
+        assertEquals(e.totalKrw, e.segments.sumOf { it.amountKrw })
+        assertTrue(e.dataAvailable); assertEquals(listOf("대전IC"), e.unmatchedGates)
+        assertTrue(e.incomplete)
+        assertEquals(listOf("서울TG", "수원IC"), e.passes.map { it.name })
+        assertEquals(37.26, e.passes.last().lat, 1e-9)
     }
 
     @Test fun appToleratesAdditiveServerFields() {
@@ -86,7 +111,7 @@ class ContractTest {
         assertNotNull(ApiJson.decodeFromString<AuthOut>(withExtra))
     }
 
-    // request bodies may only use fields the server model knows (extra="forbid")
+
     private fun keys(json: String) = Json.parseToJsonElement(json).jsonObject.keys
 
     @Test fun requestBodiesUseExactlyTheServerFieldNames() {
@@ -96,10 +121,14 @@ class ContractTest {
         assertEquals(setOf("event_id", "type", "unit", "captured_at", "source", "quality", "sdk_version", "error"), keys(ApiJson.encodeToString(unavailable)))
         assertEquals(setOf("readings"), keys(ApiJson.encodeToString(ReadingBatchIn(listOf(reading)))))
         assertEquals(setOf("odometer"), keys(ApiJson.encodeToString(TripStartIn(reading))))
-        val rule = CostRuleIn("ICE", "6.5", "L/100km", "PLEOS", "1800", true, "SEGMENT_SHARED")
-        assertEquals(setOf("vehicle_type", "efficiency_value", "efficiency_unit", "efficiency_source", "unit_price_krw", "driver_included", "energy_policy"), keys(ApiJson.encodeToString(rule)))
+        val rule = CostRuleIn(vehicleType = "ICE", fuelType = "GASOLINE", unitPriceKrw = "1800")
+        assertEquals(setOf("vehicle_type", "fuel_type", "efficiency_source", "unit_price_krw", "unit_price_source", "driver_included", "energy_policy"), keys(ApiJson.encodeToString(rule)))
         assertEquals(setOf("id", "group_id", "vehicle_alias", "data_mode", "cost_rule"), keys(ApiJson.encodeToString(TripCreateIn("t", "g", "", "PLEOS", rule))))
-        assertEquals(setOf("id", "kind", "amount_krw", "allocation", "note"), keys(ApiJson.encodeToString(CostItemIn("i", "TOLL", 2400, "EQUAL", ""))))
+        assertEquals(setOf("id", "kind", "amount_krw", "allocation", "note", "road_name", "estimated"), keys(ApiJson.encodeToString(CostItemIn("i", "TOLL", 2400, "EQUAL", ""))))
+        val track = TollEstimateIn(listOf(TollPointIn(37.5, 127.0, "2026-11-12T00:00:00Z")), 1, 2)
+        assertEquals(setOf("points", "vehicle_class", "occupants"), keys(ApiJson.encodeToString(track)))
+        assertEquals(setOf("lat", "lon", "captured_at"), keys(ApiJson.encodeToString(track.points.single())))
+        assertEquals(setOf("points", "vehicle_class"), keys(ApiJson.encodeToString(track.copy(occupants = null))))
         assertEquals(setOf("decision", "comment"), keys(ApiJson.encodeToString(ApprovalIn("APPROVE"))))
         assertEquals(setOf("nickname", "consent_version"), keys(ApiJson.encodeToString(GuestAuthIn("a", "v1"))))
         assertEquals(setOf("id", "name"), keys(ApiJson.encodeToString(GroupCreateIn("g", "n"))))
@@ -107,9 +136,11 @@ class ContractTest {
         assertEquals(setOf("reason"), keys(ApiJson.encodeToString(BoardingIn())))
     }
 
-    @Test fun unitPriceAndEfficiencyAreSentAsStringsNotFloats() {
-        val rule = CostRuleIn("ICE", "6.50", "L/100km", "MANUAL", "1799.5")
+    @Test fun unitPriceIsSentAsAStringAndNoEfficiencyNumberIsEverSent() {
+        val rule = CostRuleIn(vehicleType = "ICE", fuelType = "DIESEL", unitPriceKrw = "1799.5")
         val o = Json.parseToJsonElement(ApiJson.encodeToString(rule)).jsonObject
-        assertEquals("\"1799.5\"", o["unit_price_krw"].toString()); assertEquals("\"6.50\"", o["efficiency_value"].toString())
+        assertEquals("\"1799.5\"", o["unit_price_krw"].toString())
+        assertEquals("\"ESTIMATE\"", o["efficiency_source"].toString()); assertEquals("\"DIESEL\"", o["fuel_type"].toString())
+        assertFalse(o.containsKey("efficiency_value")); assertFalse(o.containsKey("efficiency_unit"))
     }
 }

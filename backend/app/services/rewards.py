@@ -1,6 +1,3 @@
-"""Moa growth. XP and badges come only from confirmed group trips, never from distance,
-speed or trip frequency (nothing that rewards driving more).
-"""
 from __future__ import annotations
 
 import bisect
@@ -23,11 +20,10 @@ BADGES = {
 
 
 def level_for(xp: int) -> int:
-    return bisect.bisect_right(get_settings().level_thresholds, xp)  # Lv.1 at 0 XP
+    return bisect.bisect_right(get_settings().level_thresholds, xp)
 
 
 def _once(db: Session, obj) -> bool:
-    """Insert under a unique constraint; False if the row already exists."""
     try:
         with db.begin_nested():
             db.add(obj)
@@ -37,20 +33,19 @@ def _once(db: Session, obj) -> bool:
         return False
 
 
-MIN_RIDDEN_KM = Decimal("1")  # a boarding that lasted under 1 km is not a shared trip
+MIN_RIDDEN_KM = Decimal("1")
 
 
 def award_for_trip(db: Session, trip: m.Trip, riders_km: list[Decimal]) -> int:
-    """XP once per confirmed trip, and only if a passenger rode at least MIN_RIDDEN_KM."""
     distance = (trip.odometer_end_km or 0) - (trip.odometer_start_km or 0)
     riders = [k for k in riders_km if k >= MIN_RIDDEN_KM]
     if not riders or distance <= 0:
         return 0
     people = 1 + len(riders)
-    db.execute(select(m.Group.id).where(m.Group.id == trip.group_id).with_for_update())  # serialise XP changes of one group
+    db.execute(select(m.Group.id).where(m.Group.id == trip.group_id).with_for_update())
     xp = get_settings().xp_per_verified_trip
     if not _once(db, m.RewardEvent(group_id=trip.group_id, trip_id=trip.id, rule_id="TRIP_COMPLETED", xp_delta=xp, data_mode=trip.data_mode)):
-        return 0  # already awarded
+        return 0
     if db.get(m.CharacterProgress, trip.group_id) is None:
         _once(db, m.CharacterProgress(group_id=trip.group_id, xp=0))
     prog = db.scalar(select(m.CharacterProgress).where(m.CharacterProgress.group_id == trip.group_id)
@@ -66,7 +61,7 @@ def award_for_trip(db: Session, trip: m.Trip, riders_km: list[Decimal]) -> int:
     earned += ["CLEAN_SPLIT"] if _revisions(db, trip.id) == 1 and not _had_dispute(db, trip.id) else []
     for b in earned:
         _once(db, m.Badge(group_id=trip.group_id, badge_id=b))
-    for lvl in range(max(before, 1) + 1, level_for(prog.xp) + 1):  # each level-up unlocks a demo coupon
+    for lvl in range(max(before, 1) + 1, level_for(prog.xp) + 1):
         _once(db, m.DemoCoupon(group_id=trip.group_id, level=lvl, brand_label=f"MOATA 시연 쿠폰 · Lv.{lvl}"))
     return xp
 
@@ -87,11 +82,14 @@ def character_out(db: Session, group_id: str) -> s.CharacterOut:
     lvl = level_for(xp)
     badges = db.scalars(select(m.Badge).where(m.Badge.group_id == group_id).order_by(m.Badge.earned_at)).all()
     trips = db.scalar(select(func.count()).select_from(m.RewardEvent).where(m.RewardEvent.group_id == group_id)) or 0
+    earned_at = {b.badge_id: b.earned_at for b in badges}
+    catalogue = [s.BadgeStatusOut(id=bid, name_ko=name, description_ko=desc, earned=bid in earned_at, earned_at=earned_at.get(bid))
+                 for bid, (name, desc) in BADGES.items()]
     return s.CharacterOut(
         group_id=group_id, xp=xp, level=lvl, level_xp_start=th[lvl - 1], next_level_xp=th[lvl] if lvl < len(th) else None,
         skin_id=prog.skin_id if prog else "default", mood="SLEEPY" if xp == 0 else ("PROUD" if lvl >= 3 else "HAPPY"),
         badges=[s.BadgeOut(id=b.badge_id, name_ko=BADGES[b.badge_id][0], description_ko=BADGES[b.badge_id][1], earned_at=b.earned_at) for b in badges],
-        completed_trips=trips)
+        all_badges=catalogue, completed_trips=trips)
 
 
 def coupons_out(db: Session, group_id: str) -> list[s.CouponOut]:

@@ -3,6 +3,7 @@ package io.moata.pleos.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,6 +33,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.moata.pleos.BuildConfig
+import io.moata.pleos.domain.EfficiencyRules
 import io.moata.pleos.domain.Feature
 import io.moata.pleos.domain.UxPolicy
 
@@ -59,13 +61,14 @@ fun SignInScreen(s: UiState, vm: AppViewModel) {
 fun HomeScreen(s: UiState, vm: AppViewModel) {
     val parked = UxPolicy.isAllowed(Feature.TRIP_SETUP, s.drivingState)
     val active = s.trip
+    var showGroups by remember { mutableStateOf(false) }
     Row(ScreenPad, horizontalArrangement = Arrangement.spacedBy(Space.xl), verticalAlignment = Alignment.CenterVertically) {
         Moa(
             size = 360.dp,
             mood = s.character?.let { if (it.mood == "SLEEPY") MoaMood.SLEEPY else if (it.mood == "PROUD") MoaMood.PROUD else MoaMood.HAPPY } ?: MoaMood.HAPPY,
             animate = UxPolicy.isAllowed(Feature.MOA_ANIMATION, s.drivingState),
         )
-        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Space.m)) {
+        Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(Space.m)) {
             Text("오늘도 같이 타요", style = MaterialTheme.typography.headlineLarge, color = Paper)
             when {
                 s.groupId == null -> {
@@ -78,15 +81,47 @@ fun HomeScreen(s: UiState, vm: AppViewModel) {
                         vm.go(when (active.state) { "IN_PROGRESS" -> Screen.DRIVING; "ENDED", "REVIEW", "DISPUTED" -> Screen.SUMMARY; else -> Screen.INVITE })
                     }
                 }
-                else -> HeroButton("함께 타기", enabled = parked) { vm.startFlow() }
+                else -> HeroButton("함께 타기", enabled = parked && !s.busy) { vm.startFlow() }
             }
             if (!parked) Text("정차 후에 시작할 수 있어요.", style = MaterialTheme.typography.bodyMedium, color = Muted)
-            Row(horizontalArrangement = Arrangement.spacedBy(Space.m)) {
-                GhostButton(if (s.groupId == null) "그룹 목록" else "그룹 바꾸기", enabled = parked) { vm.go(Screen.GROUPS) }
-                GhostButton("모아 정원", enabled = UxPolicy.isAllowed(Feature.REWARDS, s.drivingState) && s.groupId != null) { vm.loadGarden(); vm.go(Screen.GARDEN) }
-                if (BuildConfig.DEMO_TOOLS) TextAction("개발자 도구") { vm.go(Screen.DEBUG) }
+            Row(horizontalArrangement = Arrangement.spacedBy(Space.m), verticalAlignment = Alignment.CenterVertically) {
+                GhostButton(if (s.groupId == null) "그룹 목록" else "그룹 바꾸기", enabled = parked) { showGroups = !showGroups }
+                s.groupName?.let { Pill(it, Ink, MoaYellow) }
+                GhostButton("나의 모아", enabled = UxPolicy.isAllowed(Feature.REWARDS, s.drivingState) && s.groupId != null) { vm.loadGarden(); vm.go(Screen.GARDEN) }
+                if (BuildConfig.DEMO_TOOLS && s.isAdmin) TextAction("개발자 도구") { vm.go(Screen.DEBUG) }
+            }
+            if (showGroups && parked) GroupTable(s, selectable = s.groupId != null, onSelect = { showGroups = false; vm.selectGroup(it) }, onNew = { vm.go(Screen.GROUPS) })
+        }
+    }
+}
+
+
+@Composable
+private fun GroupTable(s: UiState, selectable: Boolean, onSelect: (String) -> Unit, onNew: () -> Unit) {
+    val cell = MaterialTheme.typography.titleMedium
+    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(Space.s)) {
+        Row(Modifier.fillMaxWidth().padding(horizontal = Space.m), verticalAlignment = Alignment.CenterVertically) {
+            Text("#", Modifier.weight(0.5f), style = MaterialTheme.typography.bodySmall, color = Muted)
+            Text("그룹명", Modifier.weight(2f), style = MaterialTheme.typography.bodySmall, color = Muted)
+            Text("인원 수", Modifier.weight(1f), style = MaterialTheme.typography.bodySmall, color = Muted)
+            Text("생성일", Modifier.weight(1.3f), style = MaterialTheme.typography.bodySmall, color = Muted)
+            if (selectable) Spacer(Modifier.weight(1.1f))
+        }
+        if (s.groups.isEmpty()) Text("아직 만든 그룹이 없어요.", Modifier.padding(horizontal = Space.m), style = MaterialTheme.typography.bodyMedium, color = Muted)
+        s.groups.forEachIndexed { i, g ->
+            Row(Modifier.fillMaxWidth().background(Surface1, RoundedCornerShape(24.dp)).padding(horizontal = Space.m, vertical = Space.s),
+                verticalAlignment = Alignment.CenterVertically) {
+                Text("${i + 1}", Modifier.weight(0.5f), style = cell, color = Muted)
+                Text(g.name, Modifier.weight(2f), style = cell, color = Paper, maxLines = 1)
+                Text("${g.members.count { it.status == "ACTIVE" }.coerceAtLeast(1)}명", Modifier.weight(1f), style = cell, color = Paper)
+                Text(g.createdAt.take(10).replace('-', '.').ifBlank { "-" }, Modifier.weight(1.3f), style = cell, color = Paper)
+                if (selectable) Box(Modifier.weight(1.1f), contentAlignment = Alignment.CenterEnd) {
+                    if (g.id == s.groupId) Pill("현재 그룹", Ink, TealText)
+                    else GhostButton("선택", Modifier.semantics { contentDescription = "${g.name} 선택" }) { onSelect(g.id) }
+                }
             }
         }
+        TextAction("새 그룹 만들기", onClick = onNew)
     }
 }
 
@@ -112,62 +147,25 @@ fun GroupsScreen(s: UiState, vm: AppViewModel) {
     }
 }
 
-private enum class Field { PRICE, EFFICIENCY }
 
 @Composable
 fun TripSetupScreen(s: UiState, vm: AppViewModel) {
     val f = s.form
-    val ev = f.vehicleType == "EV"
     val editing = s.trip != null
-    val manualEff = f.efficiencySource == "MANUAL"
-    var focus by remember { mutableStateOf(Field.PRICE) }
-    var advanced by remember { mutableStateOf(false) }
-    val target = if (focus == Field.EFFICIENCY && manualEff) Field.EFFICIENCY else Field.PRICE
-    val current = if (target == Field.PRICE) f.unitPrice else f.efficiencyValue
-    val ready = f.unitPrice.toDoubleOrNull()?.let { it > 0 } == true && (!manualEff || f.efficiencyValue.toDoubleOrNull()?.let { it > 0 } == true)
-
-    Row(ScreenPad, horizontalArrangement = Arrangement.spacedBy(Space.xl)) {
-        Column(Modifier.weight(1.1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(Space.m)) {
-            Text(if (editing) "비용 규칙 바꾸기" else "출발 전에 하나만 알려주세요", style = MaterialTheme.typography.headlineMedium, color = Paper)
-            Text(
-                if (manualEff) "연료비를 나누려면 ${if (ev) "전기요금" else "유가"}와 ${if (ev) "전비" else "연비"}가 필요해요."
-                else "연료비를 나누려면 ${if (ev) "전기요금" else "유가"}가 필요해요. 한 번 입력하면 기억해요. ${if (ev) "전비" else "연비"}는 도착 후 차량에서 읽고, 못 읽으면 그때 물어볼게요.",
-                style = MaterialTheme.typography.bodyMedium, color = Muted,
-            )
-            ValueCard(if (ev) "전기요금" else "오늘 유가", f.unitPrice, if (ev) "원/kWh" else "원/L", target == Field.PRICE) { focus = Field.PRICE }
-            if (manualEff) ValueCard(if (ev) "전비" else "연비", f.efficiencyValue, f.efficiencyUnit, target == Field.EFFICIENCY) { focus = Field.EFFICIENCY }
-            ExpandAction(if (advanced) "나누는 방법·차량 설정 접기" else "나누는 방법·차량 설정", advanced) { advanced = !advanced }
-            if (advanced) Section {
-                if (!editing) {
-                    Text("차량 종류", style = MaterialTheme.typography.bodySmall, color = Muted)
-                    Choice(listOf("ICE" to "내연기관", "EV" to "전기차"), f.vehicleType,
-                        { vm.setForm(f.copy(vehicleType = it, efficiencyUnit = if (it == "EV") "km/kWh" else "km/L", unitPrice = "", efficiencyValue = "")) })
-                    Text("주행거리", style = MaterialTheme.typography.bodySmall, color = Muted)
-                    Choice(buildList {
-                        add("PLEOS" to "차량에서 읽기"); add("MANUAL" to "직접 입력")
-                        if (BuildConfig.DEMO_TOOLS) add("DEMO" to "DEMO (가상)")
-                    }, f.dataMode, { vm.setDataMode(it); vm.setForm(f.copy(dataMode = it)) })
-                    if (f.dataMode == "DEMO") Text("DEMO는 가상 데이터예요. 화면 위쪽에 항상 표시돼요.", color = CoralText, style = MaterialTheme.typography.bodySmall)
-                }
-                Text(if (ev) "전비" else "연비", style = MaterialTheme.typography.bodySmall, color = Muted)
-                Choice(listOf("PLEOS" to "도착 후 차량에서 읽기", "MANUAL" to "지금 입력"), f.efficiencySource, { vm.setForm(f.copy(efficiencySource = it)) })
-                if (manualEff) Choice(if (ev) listOf("km/kWh" to "km/kWh", "Wh/km" to "Wh/km") else listOf("km/L" to "km/L", "L/100km" to "L/100km"), f.efficiencyUnit, { vm.setForm(f.copy(efficiencyUnit = it)) })
-                Text("운전자", style = MaterialTheme.typography.bodySmall, color = Muted)
-                Choice(listOf(true to "함께 부담", false to "제외"), f.driverIncluded, { vm.setForm(f.copy(driverIncluded = it)) })
-                Text("나누는 방법", style = MaterialTheme.typography.bodySmall, color = Muted)
-                Choice(listOf(false to "탄 거리만큼", true to "똑같이"), f.equalSplit, { vm.setForm(f.copy(equalSplit = it)) })
-            }
-            Row(horizontalArrangement = Arrangement.spacedBy(Space.m), verticalAlignment = Alignment.CenterVertically) {
-                BigButton(if (editing) "저장" else "QR 만들기", enabled = ready && !s.busy && UxPolicy.isAllowed(Feature.TRIP_SETUP, s.drivingState)) {
-                    if (editing) vm.updateRule(f) else vm.createTripAndInvite(f)
-                }
-                TextAction("돌아가기", leading = MoaIcons.Back) { vm.go(if (editing) Screen.INVITE else Screen.HOME) }
-            }
+    Column(ScreenPad.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(Space.m)) {
+        Text("정산 규칙", style = MaterialTheme.typography.headlineMedium, color = Paper, modifier = Modifier.asHeading())
+        Text("운전자도 나눠 낼지, 연료비를 어떻게 나눌지 정해요.", style = MaterialTheme.typography.bodyMedium, color = Muted)
+        Section {
+            Text("운전자", style = MaterialTheme.typography.bodySmall, color = Muted)
+            Choice(listOf(true to "함께 부담", false to "제외"), f.driverIncluded, { vm.setForm(f.copy(driverIncluded = it)) })
+            Text("나누는 방법", style = MaterialTheme.typography.bodySmall, color = Muted)
+            Choice(listOf(false to "탄 거리만큼", true to "똑같이"), f.equalSplit, { vm.setForm(f.copy(equalSplit = it)) })
         }
-        NumberPad(
-            current, { v -> vm.setForm(if (target == Field.PRICE) f.copy(unitPrice = v) else f.copy(efficiencyValue = v)) },
-            Modifier.weight(0.85f).padding(top = Space.xl), decimal = target == Field.EFFICIENCY, maxLen = 7,
-        )
+        Text("정산은 추정치예요. 결제·송금은 하지 않고, 모두가 확인해야 확정돼요.", style = MaterialTheme.typography.bodySmall, color = Muted)
+        Row(horizontalArrangement = Arrangement.spacedBy(Space.m), verticalAlignment = Alignment.CenterVertically) {
+            if (editing) BigButton("저장", enabled = !s.busy && UxPolicy.isAllowed(Feature.TRIP_SETUP, s.drivingState)) { vm.updateRule(f) }
+            TextAction("돌아가기", leading = MoaIcons.Back) { vm.go(if (editing) Screen.INVITE else Screen.HOME) }
+        }
     }
 }
 
@@ -177,8 +175,7 @@ fun InviteScreen(s: UiState, vm: AppViewModel) {
     val people = s.summary?.participants.orEmpty().filter { !it.isDriver }
     val ready = people.any { it.memberStatus == "ACTIVE" }
     val notBoarded = people.filter { it.memberStatus == "ACTIVE" && !it.onBoard }
-    var rules by remember { mutableStateOf(false) }
-    var departing by remember { mutableStateOf<List<io.moata.pleos.data.remote.ParticipantOut>?>(null) }   // frozen when asked
+    var departing by remember { mutableStateOf<List<io.moata.pleos.data.remote.ParticipantOut>?>(null) }
     var cancelling by remember { mutableStateOf(false) }
     var rejecting by remember { mutableStateOf<io.moata.pleos.data.remote.ParticipantOut?>(null) }
     Row(ScreenPad, horizontalArrangement = Arrangement.spacedBy(Space.xl)) {
@@ -205,7 +202,7 @@ fun InviteScreen(s: UiState, vm: AppViewModel) {
                 val waiting = people.count { it.memberStatus == "PENDING" }
                 val active = people.count { it.memberStatus == "ACTIVE" }
                 if (waiting > 0) Pill("승인 대기 ${waiting}명", Ink, MoaYellow, Modifier.semantics { liveRegion = LiveRegionMode.Polite })
-                else if (active > 0) Pill("탔어요 ${active - notBoarded.size}/${active}명", Ink, TealText, Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+                else if (active > 0) Pill("승객 : ${active}명", Ink, TealText, Modifier.semantics { liveRegion = LiveRegionMode.Polite })
             }
             Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(Space.s)) {
                 if (people.isEmpty()) {
@@ -228,34 +225,38 @@ fun InviteScreen(s: UiState, vm: AppViewModel) {
                                 BigButton("승인", Modifier.semantics { contentDescription = "${p.nickname} 승인" }, enabled = allowed) { vm.decideMember(p.userId, true) }
                                 GhostButton("거절", Modifier.semantics { contentDescription = "${p.nickname} 거절" }, enabled = allowed) { rejecting = p }
                             }
-                            "ACTIVE" -> if (p.onBoard) Pill("탔어요", Ink, TealText, icon = MoaIcons.Check) else {
-                                Pill("아직 안 탔어요", Paper, SurfaceHi)
-                                // for a passenger without their phone at hand; recorded as "운전자가 기록"
-                                TextAction("탔어요로 표시", Modifier.semantics { contentDescription = "${p.nickname} 탔어요로 표시" }, enabled = allowed && !s.busy) { vm.markBoarded(p.userId) }
-                            }
+
+                            "ACTIVE" -> Choice(listOf(true to "탔어요", false to "안 탔어요"), p.onBoard, { on ->
+                                if (allowed && !s.busy && on != p.onBoard) vm.setBoarded(p.userId, on)
+                            }, Modifier.semantics { contentDescription = "${p.nickname} 탑승 여부" })
                             else -> Pill(p.memberStatus, Paper, SurfaceHi)
                         }
                     }
                 }
             }
             val r = s.summary?.costRule
-            Row(Modifier.fillMaxWidth().background(Surface1, RoundedCornerShape(28.dp)).padding(horizontal = Space.m, vertical = Space.s), verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    Text(ruleLine(r, s.form), style = MaterialTheme.typography.bodyMedium, color = Paper)
-                    if (rules) Text("정산은 추정치예요. 결제·송금은 하지 않고, 모두가 확인해야 확정돼요.", style = MaterialTheme.typography.bodySmall, color = Muted)
+            Column(
+                Modifier.fillMaxWidth().background(Surface1, RoundedCornerShape(28.dp)).padding(horizontal = Space.l, vertical = Space.l),
+                verticalArrangement = Arrangement.spacedBy(Space.l),
+            ) {
+                priceLines(r, s.form).forEachIndexed { i, (label, value) ->
+                    if (i > 0) androidx.compose.material3.HorizontalDivider(color = SurfaceHi, thickness = 2.dp)
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Text(label, style = MaterialTheme.typography.titleLarge, color = Muted)
+                        Text(value, style = MaterialTheme.typography.headlineMedium, color = Paper)
+                    }
                 }
-                TextAction("바꾸기", Modifier.semantics { contentDescription = "비용 규칙 바꾸기" }, enabled = allowed) { vm.go(Screen.TRIP_SETUP) }
             }
             BigButton("출발하기", Modifier.fillMaxWidth(), enabled = ready && allowed && !s.busy) { if (notBoarded.isEmpty()) vm.startTrip() else departing = notBoarded }
             if (!ready) Text("승인된 동승자가 1명 이상 있어야 출발할 수 있어요.", style = MaterialTheme.typography.bodySmall, color = Muted)
             Row(horizontalArrangement = Arrangement.spacedBy(Space.m)) {
-                TextAction(if (rules) "안내 접기" else "정산 안내") { rules = !rules }
+                TextAction("정산 안내", enabled = allowed) { vm.go(Screen.TRIP_SETUP) }
                 TextAction("운행 취소", enabled = allowed) { cancelling = true }
             }
         }
     }
-    if (!allowed) return   // nothing may cover the screen while driving
-    departing?.let { asked ->   // snapshot, so the 4 s poll can't change the list under the driver's finger
+    if (!allowed) return
+    departing?.let { asked ->
         DepartureCheck(asked.map { it.nickname }, onAllAboard = { departing = null; vm.startTrip(boardFor = asked.map { it.userId }) },
             onWithout = { departing = null; vm.startTrip() }, onWait = { departing = null })
     }
@@ -267,7 +268,7 @@ fun InviteScreen(s: UiState, vm: AppViewModel) {
     }
 }
 
-/** Approved passengers who haven't tapped '탔어요'; ask so nobody silently drops off the bill. */
+
 @Composable
 private fun DepartureCheck(names: List<String>, onAllAboard: () -> Unit, onWithout: () -> Unit, onWait: () -> Unit) {
     val who = names.joinToString(", ") { "${it}님" }
@@ -282,13 +283,14 @@ private fun DepartureCheck(names: List<String>, onAllAboard: () -> Unit, onWitho
     }
 }
 
-private fun ruleLine(r: io.moata.pleos.data.remote.CostRuleOut?, f: TripForm): String {
+
+private fun priceLines(r: io.moata.pleos.data.remote.CostRuleOut?, f: TripForm): List<Pair<String, String>> {
     val ev = (r?.vehicleType ?: f.vehicleType) == "EV"
-    val price = r?.unitPriceKrw ?: f.unitPrice
-    val driver = r?.driverIncluded ?: f.driverIncluded
-    val equal = (r?.energyPolicy ?: if (f.equalSplit) "EQUAL_SPLIT" else "SEGMENT_SHARED") == "EQUAL_SPLIT"
-    val eff = if (r?.efficiencyValue != null) "${if (ev) "전비" else "연비"} ${r.efficiencyValue} ${r.efficiencyUnit.orEmpty()}" else "${if (ev) "전비" else "연비"}는 도착 후 확인"
-    return "${if (ev) "전기요금" else "유가"} ${grouped(price.toString().removeSuffix(".0"))}원/${if (ev) "kWh" else "L"}(MANUAL) · $eff · ${if (driver) "운전자도 부담" else "운전자 제외"} · ${if (equal) "똑같이" else "탄 거리만큼"}"
+    val price = (r?.unitPriceKrw ?: f.unitPrice).toBigDecimalOrNull()?.stripTrailingZeros()?.toPlainString()
+    return listOfNotNull(
+        price?.let { (if (ev) "전기요금" else "유가") to "${grouped(it)}원/${if (ev) "kWh" else "L"}" },
+        EfficiencyRules.plainValue(r)?.let { EfficiencyRules.label(ev) to it },
+    )
 }
 
 @Composable
@@ -297,10 +299,11 @@ fun DrivingScreen(s: UiState, vm: AppViewModel) {
     val inProgress = t?.state == "IN_PROGRESS"
     val onBoard = s.summary?.participants?.filter { !it.isDriver && it.onBoard }.orEmpty()
     val live = s.live
-    val km = if (inProgress && t?.odometerStartKm != null && live?.usable == true) (live.value!! - t.odometerStartKm) else null
+    val startOdometerKm = t?.odometerStartKm
+    val km = if (inProgress && startOdometerKm != null) live?.usableValue?.minus(startOdometerKm) else null
     var confirmEnd by remember { mutableStateOf(false) }
     Column(ScreenPad, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-        // never animated on the driving screen
+
         Moa(size = 180.dp, mood = if (inProgress) MoaMood.HAPPY else MoaMood.SLEEPY, animate = false)
         if (!inProgress) {
             Text(if (s.restricted) "정차 후에 이용할 수 있어요" else "대기 중", style = MaterialTheme.typography.headlineLarge, color = Paper, textAlign = TextAlign.Center)
@@ -309,7 +312,7 @@ fun DrivingScreen(s: UiState, vm: AppViewModel) {
                 when { km != null -> "%.1f".format(km); live == null -> "읽는 중…"; else -> "읽을 수 없어요" },
                 style = MaterialTheme.typography.displayLarge, color = if (km != null) Paper else CoralText, textAlign = TextAlign.Center,
             )
-            Text(if (km != null) "km · 함께 이동한 거리 · ${t?.dataMode.orEmpty()}" else "주행거리", style = MaterialTheme.typography.titleLarge, color = Muted)
+            Text(if (km != null) "km · 함께 이동한 거리 · ${t.dataMode}" else "주행거리", style = MaterialTheme.typography.titleLarge, color = Muted)
             Spacer(Modifier.height(Space.m))
             Text(
                 if (onBoard.isEmpty()) "아직 탄 사람이 없어요" else "함께 탄 사람  " + onBoard.joinToString(" · ") { it.nickname },

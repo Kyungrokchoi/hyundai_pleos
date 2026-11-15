@@ -39,7 +39,7 @@ export default function GroupPage() {
   const span = c.next_level_xp === null ? null : c.next_level_xp - c.level_xp_start;
   const pct = span && span > 0 ? Math.min(100, Math.max(0, Math.round(((c.xp - c.level_xp_start) / span) * 100))) : 100;
 
-  // show the DEMO bar if any trip in the history is simulated
+
   const demo = Boolean(hi.data?.some((h) => h.data_mode === "DEMO"));
   return (
     <Frame demo={demo}>

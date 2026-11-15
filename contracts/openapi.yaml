@@ -46,7 +46,6 @@ paths:
       tags:
       - auth
       summary: Logout
-      description: Revokes the token presented on this request.
       operationId: logout_api_v1_auth_logout_post
       parameters:
       - name: authorization
@@ -135,8 +134,6 @@ paths:
       tags:
       - groups
       summary: My Membership
-      description: Only the caller's own row, in any status, so a waiting or rejected
-        passenger can be told apart.
       operationId: my_membership_api_v1_groups__group_id__me_get
       parameters:
       - name: group_id
@@ -274,7 +271,6 @@ paths:
       tags:
       - invites
       summary: Revoke Invite
-      description: A leaked QR can be killed immediately.
       operationId: revoke_invite_api_v1_groups__group_id__invites__invite_id__delete
       parameters:
       - name: group_id
@@ -997,6 +993,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/tolls/estimate:
+    post:
+      tags:
+      - trips
+      summary: Estimate Tolls
+      operationId: estimate_tolls_api_v1_trips__trip_id__tolls_estimate_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Trip Id
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TollEstimateIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TollEstimateOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
   /api/v1/trips/{trip_id}/cost-items/{item_id}:
     delete:
       tags:
@@ -1042,8 +1078,6 @@ paths:
       tags:
       - trips
       summary: Void Reading
-      description: The driver removes a mistyped reading from every computation (kept,
-        flagged and audited).
       operationId: void_reading_api_v1_trips__trip_id__readings__event_id__delete
       parameters:
       - name: trip_id
@@ -1153,6 +1187,101 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/fuel-price:
+    get:
+      tags:
+      - fuel
+      summary: Fuel Price Now
+      operationId: fuel_price_now_api_v1_fuel_price_get
+      parameters:
+      - name: fuel
+        in: query
+        required: false
+        schema:
+          enum:
+          - GASOLINE
+          - PREMIUM
+          - DIESEL
+          - LPG
+          type: string
+          default: GASOLINE
+          title: Fuel
+      - name: region
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 10
+          - type: 'null'
+          description: '시·도 이름(예: 서울). 비우면 전국 평균.'
+          title: Region
+        description: '시·도 이름(예: 서울). 비우면 전국 평균.'
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FuelPriceOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/places/region:
+    get:
+      tags:
+      - places
+      summary: Region Name
+      operationId: region_name_api_v1_places_region_get
+      parameters:
+      - name: lat
+        in: query
+        required: true
+        schema:
+          type: number
+          maximum: 39.0
+          minimum: 33.0
+          title: Lat
+      - name: lon
+        in: query
+        required: true
+        schema:
+          type: number
+          maximum: 132.0
+          minimum: 124.0
+          title: Lon
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
     Allocation:
@@ -1230,6 +1359,34 @@ components:
       - description_ko
       - earned_at
       title: BadgeOut
+    BadgeStatusOut:
+      properties:
+        id:
+          type: string
+          title: Id
+        name_ko:
+          type: string
+          title: Name Ko
+        description_ko:
+          type: string
+          title: Description Ko
+        earned:
+          type: boolean
+          title: Earned
+        earned_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Earned At
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - name_ko
+      - description_ko
+      - earned
+      title: BadgeStatusOut
     BoardingIn:
       properties:
         odometer_km:
@@ -1293,6 +1450,14 @@ components:
             $ref: '#/components/schemas/BadgeOut'
           type: array
           title: Badges
+          description: Earned badges only, oldest first.
+        all_badges:
+          items:
+            $ref: '#/components/schemas/BadgeStatusOut'
+          type: array
+          title: All Badges
+          description: Every badge in catalogue order with whether the group earned
+            it.
         completed_trips:
           type: integer
           title: Completed Trips
@@ -1336,6 +1501,18 @@ components:
           maxLength: 60
           title: Note
           default: ''
+        road_name:
+          type: string
+          maxLength: 40
+          title: Road Name
+          description: Road / tunnel the charge belongs to, e.g. `서울→수원`.
+          default: ''
+        estimated:
+          type: boolean
+          title: Estimated
+          description: True when the amount was computed (toll estimate), not read
+            off a receipt.
+          default: false
       additionalProperties: false
       type: object
       required:
@@ -1358,9 +1535,19 @@ components:
         note:
           type: string
           title: Note
+        road_name:
+          type: string
+          title: Road Name
+          default: ''
+        estimated:
+          type: boolean
+          title: Estimated
+          default: false
         input_source:
           type: string
-          const: MANUAL
+          enum:
+          - MANUAL
+          - ESTIMATE
           title: Input Source
           default: MANUAL
         created_by:
@@ -1388,7 +1575,7 @@ components:
           - type: string
           - type: 'null'
           title: Efficiency Value
-          description: Number in `efficiency_unit`.
+          description: Number in `efficiency_unit`. Only for MANUAL.
         efficiency_unit:
           anyOf:
           - type: string
@@ -1401,8 +1588,23 @@ components:
           - type: 'null'
           title: Efficiency Unit
         efficiency_source:
-          $ref: '#/components/schemas/DataSource'
+          $ref: '#/components/schemas/EfficiencySource'
+          description: 'ESTIMATE = nothing is typed in: the car''s own reading is
+            used if it reports one, otherwise the rated average for `fuel_type`. PLEOS/DEMO
+            = readings only. MANUAL = `efficiency_value` is required.'
           default: MANUAL
+        fuel_type:
+          anyOf:
+          - type: string
+            enum:
+            - GASOLINE
+            - DIESEL
+            - LPG
+            - ELECTRIC
+          - type: 'null'
+          title: Fuel Type
+          description: Required for ESTIMATE; ELECTRIC if and only if vehicle_type
+            is EV.
         unit_price_krw:
           anyOf:
           - type: number
@@ -1412,6 +1614,14 @@ components:
           - type: 'null'
           title: Unit Price Krw
           description: KRW per litre (ICE) or per kWh (EV).
+        unit_price_source:
+          type: string
+          enum:
+          - MANUAL
+          - OPINET
+          title: Unit Price Source
+          description: OPINET = filled from GET /fuel-price, MANUAL = typed in.
+          default: MANUAL
         driver_included:
           type: boolean
           title: Driver Included
@@ -1445,12 +1655,31 @@ components:
           title: Efficiency Km Per Unit
           description: Normalised km/L (ICE) or km/kWh (EV) actually used.
         efficiency_source:
-          $ref: '#/components/schemas/DataSource'
+          $ref: '#/components/schemas/EfficiencySource'
+          description: Source of the figure actually used (a reading from the car
+            wins over the rated average).
+        fuel_type:
+          anyOf:
+          - type: string
+            enum:
+            - GASOLINE
+            - DIESEL
+            - LPG
+            - ELECTRIC
+          - type: 'null'
+          title: Fuel Type
         unit_price_krw:
           anyOf:
           - type: string
           - type: 'null'
           title: Unit Price Krw
+        unit_price_source:
+          type: string
+          enum:
+          - MANUAL
+          - OPINET
+          title: Unit Price Source
+          default: MANUAL
         driver_included:
           type: boolean
           title: Driver Included
@@ -1509,12 +1738,66 @@ components:
       - APPROVE
       - DISPUTE
       title: Decision
+    EfficiencySource:
+      type: string
+      enum:
+      - PLEOS
+      - MANUAL
+      - DEMO
+      - ESTIMATE
+      title: EfficiencySource
     EnergyPolicy:
       type: string
       enum:
       - SEGMENT_SHARED
       - EQUAL_SPLIT
       title: EnergyPolicy
+    FuelPriceOut:
+      properties:
+        fuel:
+          type: string
+          enum:
+          - GASOLINE
+          - PREMIUM
+          - DIESEL
+          - LPG
+          title: Fuel
+        region:
+          type: string
+          title: Region
+        price_krw:
+          type: integer
+          title: Price Krw
+        diff_krw:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Diff Krw
+        fetched_at:
+          type: string
+          format: date-time
+          title: Fetched At
+        cached:
+          type: boolean
+          title: Cached
+        source:
+          type: string
+          const: OPINET
+          title: Source
+          default: OPINET
+        attribution:
+          type: string
+          title: Attribution
+          default: '유가 정보: 한국석유공사 오피넷'
+      additionalProperties: false
+      type: object
+      required:
+      - fuel
+      - region
+      - price_krw
+      - fetched_at
+      - cached
+      title: FuelPriceOut
     GroupCreateIn:
       properties:
         id:
@@ -2043,6 +2326,20 @@ components:
       - on_board
       - intervals
       title: ParticipantOut
+    PlaceOut:
+      properties:
+        address:
+          type: string
+          title: Address
+        short:
+          type: string
+          title: Short
+      additionalProperties: false
+      type: object
+      required:
+      - address
+      - short
+      title: PlaceOut
     Quality:
       type: string
       enum:
@@ -2233,7 +2530,7 @@ components:
           type: string
           title: Equation
         efficiency_source:
-          $ref: '#/components/schemas/DataSource'
+          $ref: '#/components/schemas/EfficiencySource'
         driver_included:
           type: boolean
           title: Driver Included
@@ -2364,6 +2661,151 @@ components:
       - owed_to_driver_krw
       - approval
       title: ShareOut
+    TollEstimateIn:
+      properties:
+        points:
+          items:
+            $ref: '#/components/schemas/TollPointIn'
+          type: array
+          maxItems: 5000
+          minItems: 1
+          title: Points
+          description: GPS track in time order.
+        vehicle_class:
+          type: integer
+          maximum: 8.0
+          minimum: 1.0
+          title: Vehicle Class
+          description: 'Korea Expressway Corp class: 1 = passenger car.'
+          default: 1
+        occupants:
+          anyOf:
+          - type: integer
+            maximum: 20.0
+            minimum: 1.0
+          - type: 'null'
+          title: Occupants
+          description: People in the car; used for occupancy-exempt city zones.
+      additionalProperties: false
+      type: object
+      required:
+      - points
+      title: TollEstimateIn
+    TollEstimateOut:
+      properties:
+        segments:
+          items:
+            $ref: '#/components/schemas/TollSegmentOut'
+          type: array
+          title: Segments
+        passes:
+          items:
+            $ref: '#/components/schemas/TollPassOut'
+          type: array
+          title: Passes
+          description: Toll gates the track went through, in order (public gate data,
+            not the driver's own points).
+        total_krw:
+          type: integer
+          title: Total Krw
+        unmatched_gates:
+          items:
+            type: string
+          type: array
+          title: Unmatched Gates
+          description: Gates the track passed that could not be paired with a known
+            fare.
+        data_available:
+          type: boolean
+          title: Data Available
+          description: False when no gate data or fare API key is configured on the
+            server.
+        incomplete:
+          type: boolean
+          title: Incomplete
+          description: 'True when a fare lookup failed or hit the per-request limit:
+            the total may be too low.'
+          default: false
+        estimated:
+          type: boolean
+          const: true
+          title: Estimated
+          default: true
+        attribution:
+          type: string
+          title: Attribution
+      additionalProperties: false
+      type: object
+      required:
+      - segments
+      - passes
+      - total_krw
+      - unmatched_gates
+      - data_available
+      - attribution
+      title: TollEstimateOut
+    TollPassOut:
+      properties:
+        name:
+          type: string
+          title: Name
+        lat:
+          type: number
+          title: Lat
+        lon:
+          type: number
+          title: Lon
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - lat
+      - lon
+      title: TollPassOut
+    TollPointIn:
+      properties:
+        lat:
+          type: number
+          maximum: 90.0
+          minimum: -90.0
+          title: Lat
+        lon:
+          type: number
+          maximum: 180.0
+          minimum: -180.0
+          title: Lon
+        captured_at:
+          type: string
+          format: date-time
+          title: Captured At
+      additionalProperties: false
+      type: object
+      required:
+      - lat
+      - lon
+      - captured_at
+      title: TollPointIn
+    TollSegmentOut:
+      properties:
+        kind:
+          type: string
+          enum:
+          - HIGHWAY
+          - ZONE
+          title: Kind
+        road_name:
+          type: string
+          title: Road Name
+        amount_krw:
+          type: integer
+          title: Amount Krw
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - road_name
+      - amount_krw
+      title: TollSegmentOut
     TripCreateIn:
       properties:
         id:

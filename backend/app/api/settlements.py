@@ -26,9 +26,9 @@ def approve(settlement_id: str, body: s.ApprovalIn, user: m.User = Depends(curre
     if st is None:
         raise not_found()
     trip = db.get(m.Trip, st.trip_id)
-    active_member(db, trip.group_id, user.id)  # 404 for outsiders: don't reveal the settlement exists
+    active_member(db, trip.group_id, user.id)
     lock_trip(db, trip.id)
-    db.refresh(st)  # may have changed while waiting for the lock
+    db.refresh(st)
     svc.decide(db, st, user, body.decision, body.comment, m.utcnow())
     db.commit()
     return svc.to_out(st)

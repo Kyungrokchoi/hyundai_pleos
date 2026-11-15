@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.vector.PathBuilder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-/** Line icons: 2.5-unit round stroke on a 24-unit grid, tinted by the caller. */
+
 object MoaIcons {
     val Back = line("back") { moveTo(19f, 12f); lineTo(5f, 12f); moveTo(11f, 6f); lineTo(5f, 12f); lineTo(11f, 18f) }
     val ChevronDown = line("chevron-down") { moveTo(6f, 9f); lineTo(12f, 15f); lineTo(18f, 9f) }

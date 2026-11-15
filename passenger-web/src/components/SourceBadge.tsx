@@ -1,8 +1,9 @@
 import type { DataSource } from "@/api/types";
 import { DATA_SOURCE } from "@/lib/labels";
 
-// Data source: literal code plus Korean label, e.g. "PLEOS · 차량에서 읽은 값".
+
 export function SourceBadge({ source, testId = "source-badge" }: { source: DataSource; testId?: string }) {
+  if (source === "PLEOS") return null;
   const d = DATA_SOURCE[source];
   return (
     <span className={`badge${source === "DEMO" ? " badge--demo" : ""}`} data-testid={testId} data-source={source}>
@@ -11,7 +12,7 @@ export function SourceBadge({ source, testId = "source-badge" }: { source: DataS
   );
 }
 
-// Sticky so simulated data stays labelled while scrolling.
+
 export function DemoBar() {
   return (
     <div className="demo-bar" role="note" data-testid="demo-bar">

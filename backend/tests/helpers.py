@@ -1,4 +1,3 @@
-"""Test actors that drive the API as the car app and passenger phones."""
 import uuid
 P = "/api/v1"
 
@@ -35,7 +34,7 @@ class Actor:
 
 
 def reading(rtype, value, unit, source="MANUAL", quality="VERIFIED", captured_at=None, event_id=None, error=None):
-    from app.db import models as m  # server clock, which tests may patch
+    from app.db import models as m
     return {"event_id": event_id or uid(), "type": rtype, "value": value, "unit": unit,
             "captured_at": (captured_at or m.utcnow()).isoformat(), "source": source, "quality": quality,
             "sdk_version": "2.3.2" if source == "PLEOS" else None, "error": error}
@@ -50,7 +49,6 @@ MANUAL_ICE_RULE = {"vehicle_type": "ICE", "efficiency_value": 12, "efficiency_un
 
 
 class Trip:
-    """Drives one group + trip through the real endpoints."""
 
     def __init__(self, client, data_mode="MANUAL", rule=None, passengers=("B", "C")):
         self.c = client

@@ -6,9 +6,9 @@ import { NetworkError } from "./errors";
 export interface PollState<T> {
   data: T | null;
   error: unknown;
-  /** true until the first response (or error) arrives */
+
   loading: boolean;
-  /** last attempt failed; data is from an earlier poll */
+
   stale: boolean;
   offline: boolean;
   lastUpdated: number | null;
@@ -21,8 +21,8 @@ interface Opts {
   maxBackoffMs?: number;
 }
 
-// Conditional polling: pauses while the tab is hidden, backs off after errors, keeps the last good data.
-// Uses the ETag header when the browser exposes it, otherwise `etagOf(data)`.
+
+
 export function usePolling<T>(
   fetcher: (etag: string | null, signal: AbortSignal) => Promise<Result<T>>,
   { intervalMs, enabled = true, maxBackoffMs = 30_000 }: Opts,

@@ -15,7 +15,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.moata.pleos.BuildConfig
 import io.moata.pleos.domain.DrivingState
 
-/** Developer controls; only routed to when BuildConfig.DEMO_TOOLS is set. */
+
 @Composable
 fun DebugScreen(s: UiState, vm: AppViewModel) {
     val probe by vm.probeResult.collectAsStateWithLifecycle()

@@ -1,4 +1,3 @@
-"""Input limits, abuse cases and data-deletion regressions."""
 from datetime import timedelta
 
 import pytest
@@ -19,7 +18,7 @@ def started(passengers=("B",), **kw):
 def test_chunked_body_over_limit_is_413_not_parsed(client):
     def chunks():
         for _ in range(40):
-            yield b"x" * 8192                       # 320 KB, no Content-Length header
+            yield b"x" * 8192
     r = client.post(f"{P}/auth/guest", content=chunks(), headers={"Content-Type": "application/json"})
     assert r.status_code == 413 and r.json()["code"] == "PAYLOAD_TOO_LARGE"
 
@@ -27,7 +26,7 @@ def test_chunked_body_over_limit_is_413_not_parsed(client):
 def test_naive_timestamp_never_500s_and_does_not_poison_the_batch(client):
     t = started(client=client)
     good = odo(1005, "MANUAL", event_id="good-event-001")
-    bad = {**odo(1006, "MANUAL", event_id="bad-event-0001"), "captured_at": "2026-11-02T09:00:00"}   # no timezone
+    bad = {**odo(1006, "MANUAL", event_id="bad-event-0001"), "captured_at": "2026-11-02T09:00:00"}
     r = t.driver.post(f"/trips/{t.trip_id}/readings/batch", {"readings": [bad, good]})
     assert r.status_code == 200
     assert r.json()["accepted"] == 1 and r.json()["rejected"][0]["code"] == "TIMESTAMP_INVALID"
@@ -40,7 +39,7 @@ def test_sensor_glitches_are_rejected_not_stored(client, rtype, value, unit):
     t = started(client=client)
     r = t.driver.post(f"/trips/{t.trip_id}/readings/batch", {"readings": [reading(rtype, value, unit, event_id=f"glitch-{rtype}")]})
     assert r.json()["rejected"][0]["code"] == "VALUE_IMPLAUSIBLE"
-    assert t.summary()["state"] == "IN_PROGRESS"          # the summary still renders
+    assert t.summary()["state"] == "IN_PROGRESS"
 
 
 def test_absurd_numbers_in_requests_are_422(client):
@@ -76,17 +75,17 @@ def test_cost_item_ids_do_not_collide_across_groups(client):
         assert t.driver.post(f"/trips/{t.trip_id}/cost-items", {"id": "shared-item-id", "kind": "TOLL", "amount_krw": 700, "allocation": "EQUAL"}).status_code == 201
     assert len(a.summary()["cost_items"]) == 1 and len(b.summary()["cost_items"]) == 1
     assert a.driver.delete(f"/trips/{a.trip_id}/cost-items/shared-item-id").status_code == 200
-    assert len(a.summary()["cost_items"]) == 0 and len(b.summary()["cost_items"]) == 1   # the other group's item is untouched
+    assert len(a.summary()["cost_items"]) == 0 and len(b.summary()["cost_items"]) == 1
 
 
 def test_member_decisions_only_apply_to_pending_people(client):
     t = Trip(client, passengers=("B",))
     bid = t.riders["B"].id
     again = t.driver.post(f"/groups/{t.group_id}/members/{bid}/decision", {"decision": "REJECT"})
-    assert again.status_code == 409 and again.json()["code"] == "MEMBER_NOT_PENDING"      # cannot evict an active rider
+    assert again.status_code == 409 and again.json()["code"] == "MEMBER_NOT_PENDING"
     p = t.join("P", approve=False)
     assert t.driver.post(f"/groups/{t.group_id}/members/{p.id}/decision", {"decision": "REJECT"}).status_code == 200
-    assert t.driver.post(f"/groups/{t.group_id}/members/{p.id}/decision", {"decision": "APPROVE"}).status_code == 409   # no silent re-admission
+    assert t.driver.post(f"/groups/{t.group_id}/members/{p.id}/decision", {"decision": "APPROVE"}).status_code == 409
 
 
 def test_pending_applicants_are_visible_to_driver_and_self_only(client):
@@ -105,9 +104,9 @@ def test_invite_can_be_revoked_and_session_can_be_ended(client):
     assert t.driver.delete(f"/groups/{t.group_id}/invites/{inv['invite_id']}").status_code == 204
     assert client.post(f"{P}/invites/preview", json={"token": inv["token"]}).status_code == 410
     eve = Actor(client, "Eve")
-    assert eve.delete(f"/groups/{t.group_id}/invites/{inv['invite_id']}").status_code == 404      # not even visible to outsiders
+    assert eve.delete(f"/groups/{t.group_id}/invites/{inv['invite_id']}").status_code == 404
     assert eve.post("/auth/logout").status_code == 204
-    assert eve.get("/groups").status_code == 401                                                  # the token no longer works
+    assert eve.get("/groups").status_code == 401
 
 
 def test_missing_and_foreign_ids_look_identical(client):
@@ -125,7 +124,7 @@ def test_hostile_nicknames_are_refused(client, nick):
 
 
 def test_nicknames_are_normalised(client):
-    r = client.post(f"{P}/auth/guest", json={"nickname": "ＡＢＣ서연", "consent_version": "v1"})   # full-width letters
+    r = client.post(f"{P}/auth/guest", json={"nickname": "ＡＢＣ서연", "consent_version": "v1"})
     assert r.status_code == 201 and r.json()["nickname"] == "ABC서연"
     assert client.post(f"{P}/auth/guest", json={"nickname": "지호 🚗", "consent_version": "v1"}).status_code == 201
 
@@ -142,7 +141,7 @@ def test_reading_count_per_trip_is_capped(client, monkeypatch):
     t = started(client=client)
     monkeypatch.setattr(trips_svc, "MAX_READINGS_PER_TRIP", 3)
     r = t.driver.post(f"/trips/{t.trip_id}/readings/batch", {"readings": [odo(1001 + i, "MANUAL", event_id=f"cap-event-{i:03d}") for i in range(5)]}).json()
-    assert r["accepted"] == 2 and {x["code"] for x in r["rejected"]} == {"TRIP_READING_LIMIT"}      # start snapshot + 2 = 3
+    assert r["accepted"] == 2 and {x["code"] for x in r["rejected"]} == {"TRIP_READING_LIMIT"}
 
 
 def test_pleos_provenance_is_described_as_reported_by_the_vehicle_app(client):
@@ -185,13 +184,13 @@ def test_group_delete_also_removes_correction_and_cost_item_audit_trails(client)
         assert db.scalar(select(func.count()).select_from(m.AuditEvent)) > 0
     assert t.driver.delete(f"/groups/{t.group_id}").status_code == 204
     with SessionLocal() as db:
-        assert db.scalar(select(func.count()).select_from(m.AuditEvent)) == 0     # free-text reasons included
+        assert db.scalar(select(func.count()).select_from(m.AuditEvent)) == 0
 
 
 def test_retention_removes_idle_groups_expired_tokens_and_unjoined_guests(client, clock):
     from app.services.privacy import purge_expired
     old = Trip(client, passengers=("B",))
-    loner = Actor(client, "Loner")                    # a guest that never joined anything
+    loner = Actor(client, "Loner")
     with SessionLocal() as db:
         db.get(m.Trip, old.trip_id).created_at = clock.now - timedelta(days=100)
         db.get(m.Group, old.group_id).created_at = clock.now - timedelta(days=100)

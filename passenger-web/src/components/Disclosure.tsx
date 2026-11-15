@@ -4,7 +4,7 @@ import { rememberNotices } from "@/lib/notices";
 import { useRecalledNotices } from "@/lib/useNotices";
 import { IconChevron } from "./icons";
 
-// Native <details>, so keyboard and screen-reader support come from the platform.
+
 export function Accordion({ title, children, testId }: { title: string; children: ReactNode; testId?: string }) {
   return (
     <details className="acc" data-testid={testId}>
@@ -17,8 +17,8 @@ export function Accordion({ title, children, testId }: { title: string; children
   );
 }
 
-// One-line toggle for the server's notice text, shown verbatim.
-export function FineLine({ texts, remember = false, summary = "추정 금액이에요 · 결제·송금은 하지 않아요" }: {
+
+export function FineLine({ texts, remember = false, summary = "결제·송금은 하지 않아요" }: {
   texts: readonly string[]; remember?: boolean; summary?: string;
 }) {
   const key = texts.join("\u0001");
@@ -36,7 +36,7 @@ export function FineLine({ texts, remember = false, summary = "추정 금액이�
   );
 }
 
-// Without `texts` (e.g. the group page) it falls back to the last notices this device saw.
+
 export function FooterNotice({ texts, remember = false }: { texts?: readonly string[]; remember?: boolean }) {
   const recalled = useRecalledNotices();
   const key = texts?.join("\u0001") ?? "";

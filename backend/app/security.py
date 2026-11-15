@@ -3,7 +3,7 @@ import secrets
 
 
 def new_token() -> str:
-    return secrets.token_urlsafe(32)  # 256 bits
+    return secrets.token_urlsafe(32)
 
 
 def hash_token(token: str) -> str:

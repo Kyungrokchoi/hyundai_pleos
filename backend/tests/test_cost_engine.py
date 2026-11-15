@@ -1,4 +1,3 @@
-"""Cost engine tests, including hypothesis invariants."""
 from decimal import Decimal as D
 from fractions import Fraction
 
@@ -52,7 +51,7 @@ def test_set03_midway_leave_plus_equal_toll():
 
 
 def test_set04_ev_energy_cost():
-    res = compute_split(req(FULL, energy=EV))  # 24 km / 5 km/kWh * 250
+    res = compute_split(req(FULL, energy=EV))
     assert res.energy_total_krw == 1200
     res60 = compute_split(req([("B", "0", "60")], energy=EV, end="60"))
     assert res60.energy_total_krw == 3000 and res60.consumption_unit == "kWh"
@@ -66,7 +65,7 @@ def test_set05_remainder_conserves_total_and_is_deterministic():
 
 
 @pytest.mark.parametrize("bad", [
-    dict(start="10", end="5"),  # distance going backwards
+    dict(start="10", end="5"),
     dict(start="-1", end="5"),
 ])
 def test_set06_distance_rejected(bad):
@@ -94,7 +93,7 @@ def test_set06_negative_price_and_amounts_rejected():
         compute_split(req(FULL, items=[CostItemInput("x", "TOLL", -5, Allocation.EQUAL)]))
     assert e.value.code == "AMOUNT_INVALID"
     with pytest.raises(CostInputError):
-        compute_split(req(FULL, items=[CostItemInput("x", "TOLL", True, Allocation.EQUAL)]))  # bool is not money
+        compute_split(req(FULL, items=[CostItemInput("x", "TOLL", True, Allocation.EQUAL)]))
 
 
 def test_set07_driver_included_vs_excluded():
@@ -106,7 +105,7 @@ def test_set07_driver_included_vs_excluded():
 
 
 def test_set07_driver_alone_segment_always_charged_to_driver():
-    # B rides 10..24 only, driver excluded -> the empty-car first 10 km is the driver's
+
     res = compute_split(req([("B", "10", "24")], driver_included=False))
     assert totals(res)["A"] == 1500 and totals(res)["B"] == 2100
 
@@ -143,7 +142,7 @@ def test_toll_policies_are_explicit():
     weighted = compute_split(req(base, items=[CostItemInput("t", "TOLL", 2400, Allocation.DISTANCE_WEIGHTED)]))
     assert sum(s.items_krw["t"] for s in weighted.shares) == 2400
     by = {s.user_id: s.items_krw["t"] for s in weighted.shares}
-    assert by["A"] == by["B"] > by["C"]  # 24 : 24 : 10 km
+    assert by["A"] == by["B"] > by["C"]
 
 
 def test_distance_weighted_item_with_zero_distance_warns():
@@ -159,7 +158,7 @@ def test_equal_split_policy_ignores_ride_distance():
 
 def test_set10_hash_is_stable_and_order_independent():
     a = req([("B", "0", "24"), ("C", "0", "10")], items=[TOLL])
-    b = req([("C", "0", "10"), ("B", "0", "24.0")], items=[TOLL])  # reordered, 24 vs 24.0
+    b = req([("C", "0", "10"), ("B", "0", "24.0")], items=[TOLL])
     assert request_hash(a) == request_hash(b)
     assert compute_split(a) == compute_split(b)
     c = req([("B", "0", "24"), ("C", "0", "11")], items=[TOLL])
@@ -167,7 +166,7 @@ def test_set10_hash_is_stable_and_order_independent():
 
 
 def test_unit_conversions_match_pleos_sdk_units():
-    # Vehicle SDK 2.3.2 reports fuel economy in L/100 km and EV efficiency in km/kWh
+
     assert fuel_economy_to_km_per_l(D("8.333333333"), "L/100km").quantize(D("0.01")) == D("12.00")
     assert fuel_economy_to_km_per_l("12", "km/L") == D("12")
     assert ev_efficiency_to_km_per_kwh("5", "km/kWh") == D("5")
@@ -227,7 +226,6 @@ def test_property_input_order_does_not_change_result(r):
 @settings(max_examples=150, deadline=None)
 @given(scenarios())
 def test_property_energy_share_is_close_to_exact(r):
-    """Rounding never moves a person more than (segments + 1) KRW from the exact share."""
     res = compute_split(r)
     if r.energy_policy != EnergyPolicy.SEGMENT_SHARED or res.energy_total_krw == 0:
         return

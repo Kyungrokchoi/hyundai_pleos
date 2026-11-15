@@ -12,7 +12,7 @@ export class ApiError extends Error {
   }
 }
 
-// fetch() itself failed (offline, DNS, CORS, server down).
+
 export class NetworkError extends Error {
   constructor(cause?: unknown) {
     super("network");
@@ -62,12 +62,12 @@ export function describeError(err: unknown, opts: { invite?: boolean } = {}): Er
   }
 
   const base = COPY[kind];
-  // The server's message is specific enough to show only for validation and conflict.
+
   const body = serverMessage && (kind === "validation" || kind === "conflict") ? serverMessage : base.body;
   return { kind, title: base.title, body, retryable: base.retryable };
 }
 
-// Handles both `{code, message_ko}` and FastAPI's default `{detail: ...}` bodies.
+
 export function parseErrorBody(status: number, body: unknown): ApiError {
   if (body && typeof body === "object") {
     const b = body as Record<string, unknown>;

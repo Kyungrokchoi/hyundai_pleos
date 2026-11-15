@@ -1,9 +1,3 @@
-"""API v1 models shared by the car app and passenger web.
-
-ids are opaque strings, timestamps ISO-8601 UTC, money integer KRW. Decimals (km, unit prices,
-litres/kWh) go out as strings ("24", "1800.5") and come in as numbers or strings.
-User-facing text (message_ko, equation, disclaimers) is Korean.
-"""
 from __future__ import annotations
 
 from datetime import datetime
@@ -14,14 +8,13 @@ from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, PlainSerializer, StringConstraints
 
-from app.services.cost_engine import Allocation, DataSource, EnergyPolicy, VehicleType  # noqa: F401  (re-exported)
+from app.services.cost_engine import Allocation, DataSource, EfficiencySource, EnergyPolicy, VehicleType  # noqa: F401
 
 Dec = Annotated[Decimal, PlainSerializer(lambda d: format(d, "f"), return_type=str, when_used="json")]
 Id = Annotated[str, StringConstraints(min_length=8, max_length=64, pattern=r"^[A-Za-z0-9_-]+$")]
 
 
 def _clean_nickname(v: str) -> str:
-    """NFKC-normalise and refuse control / format / private-use characters (bidi overrides, zero-width, NUL)."""
     v = unicodedata.normalize("NFKC", v).strip()
     if any(unicodedata.category(c) in {"Cc", "Cf", "Cs", "Co", "Cn", "Zl", "Zp"} for c in v) or not any(c.isalnum() for c in v):
         raise ValueError("nickname has invalid characters")
@@ -44,7 +37,7 @@ class TripState(str, Enum):
     ENDED = "ENDED"
     REVIEW = "REVIEW"
     CONFIRMED = "CONFIRMED"
-    INTERRUPTED = "INTERRUPTED"  # reserved; the server never sets it
+    INTERRUPTED = "INTERRUPTED"
     CANCELLED = "CANCELLED"
     DISPUTED = "DISPUTED"
 
@@ -57,10 +50,10 @@ class MemberStatus(str, Enum):
 
 
 class ReadingType(str, Enum):
-    ODOMETER = "ODOMETER"  # unit: km (Pleos Odometer.getCurrentDistanceDriven)
-    FUEL_ECONOMY = "FUEL_ECONOMY"  # unit: L/100km (Pleos) or km/L (manual)
-    EV_EFFICIENCY = "EV_EFFICIENCY"  # unit: km/kWh
-    EV_SOC = "EV_SOC"  # unit: %
+    ODOMETER = "ODOMETER"
+    FUEL_ECONOMY = "FUEL_ECONOMY"
+    EV_EFFICIENCY = "EV_EFFICIENCY"
+    EV_SOC = "EV_SOC"
 
 
 class Quality(str, Enum):
@@ -179,12 +172,19 @@ class MemberDecisionIn(Api):
     decision: Literal["APPROVE", "REJECT"]
 
 
+FuelType = Literal["GASOLINE", "DIESEL", "LPG", "ELECTRIC"]
+
+
 class CostRuleIn(Api):
     vehicle_type: VehicleType
-    efficiency_value: Dec | None = Field(None, gt=0, le=100_000, description="Number in `efficiency_unit`.")
+    efficiency_value: Dec | None = Field(None, gt=0, le=100_000, description="Number in `efficiency_unit`. Only for MANUAL.")
     efficiency_unit: Literal["km/L", "L/100km", "km/kWh", "Wh/km", "kWh/100km"] | None = None
-    efficiency_source: DataSource = DataSource.MANUAL
+    efficiency_source: EfficiencySource = Field(
+        EfficiencySource.MANUAL, description="ESTIMATE = nothing is typed in: the car's own reading is used if it reports one, otherwise the rated "
+                                            "average for `fuel_type`. PLEOS/DEMO = readings only. MANUAL = `efficiency_value` is required.")
+    fuel_type: FuelType | None = Field(None, description="Required for ESTIMATE; ELECTRIC if and only if vehicle_type is EV.")
     unit_price_krw: Dec | None = Field(None, ge=0, le=100_000, description="KRW per litre (ICE) or per kWh (EV).")
+    unit_price_source: Literal["MANUAL", "OPINET"] = Field("MANUAL", description="OPINET = filled from GET /fuel-price, MANUAL = typed in.")
     driver_included: bool = True
     energy_policy: EnergyPolicy = EnergyPolicy.SEGMENT_SHARED
 
@@ -194,8 +194,10 @@ class CostRuleOut(Api):
     efficiency_value: Dec | None
     efficiency_unit: str | None
     efficiency_km_per_unit: Dec | None = Field(description="Normalised km/L (ICE) or km/kWh (EV) actually used.")
-    efficiency_source: DataSource
+    efficiency_source: EfficiencySource = Field(description="Source of the figure actually used (a reading from the car wins over the rated average).")
+    fuel_type: FuelType | None = None
     unit_price_krw: Dec | None
+    unit_price_source: Literal["MANUAL", "OPINET"] = "MANUAL"
     driver_included: bool
     energy_policy: EnergyPolicy
 
@@ -206,6 +208,8 @@ class CostItemIn(Api):
     amount_krw: Krw
     allocation: Allocation = Allocation.EQUAL
     note: Annotated[str, StringConstraints(max_length=60)] = ""
+    road_name: Annotated[str, StringConstraints(max_length=40)] = Field("", description="Road / tunnel the charge belongs to, e.g. `서울→수원`.")
+    estimated: bool = Field(False, description="True when the amount was computed (toll estimate), not read off a receipt.")
 
 
 class CostItemOut(Api):
@@ -214,8 +218,45 @@ class CostItemOut(Api):
     amount_krw: int
     allocation: Allocation
     note: str
-    input_source: Literal["MANUAL"] = "MANUAL"
+    road_name: str = ""
+    estimated: bool = False
+    input_source: Literal["MANUAL", "ESTIMATE"] = "MANUAL"
     created_by: str
+
+
+class TollPointIn(Api):
+    lat: float = Field(ge=-90, le=90)
+    lon: float = Field(ge=-180, le=180)
+    captured_at: datetime
+
+
+class TollEstimateIn(Api):
+    points: list[TollPointIn] = Field(min_length=1, max_length=5000, description="GPS track in time order.")
+    vehicle_class: int = Field(1, ge=1, le=8, description="Korea Expressway Corp class: 1 = passenger car.")
+    occupants: int | None = Field(None, ge=1, le=20, description="People in the car; used for occupancy-exempt city zones.")
+
+
+class TollSegmentOut(Api):
+    kind: Literal["HIGHWAY", "ZONE"]
+    road_name: str
+    amount_krw: int
+
+
+class TollPassOut(Api):
+    name: str
+    lat: float
+    lon: float
+
+
+class TollEstimateOut(Api):
+    segments: list[TollSegmentOut]
+    passes: list[TollPassOut] = Field(description="Toll gates the track went through, in order (public gate data, not the driver's own points).")
+    total_krw: int
+    unmatched_gates: list[str] = Field(description="Gates the track passed that could not be paired with a known fare.")
+    data_available: bool = Field(description="False when no gate data or fare API key is configured on the server.")
+    incomplete: bool = Field(False, description="True when a fare lookup failed or hit the per-request limit: the total may be too low.")
+    estimated: Literal[True] = True
+    attribution: str
 
 
 class TripCreateIn(Api):
@@ -348,7 +389,7 @@ class SettlementOut(Api):
     consumption: str
     consumption_unit: Literal["L", "kWh"]
     equation: str
-    efficiency_source: DataSource
+    efficiency_source: EfficiencySource
     driver_included: bool
     energy_policy: EnergyPolicy
     segments: list[SegmentOut]
@@ -394,6 +435,14 @@ class BadgeOut(Api):
     earned_at: datetime
 
 
+class BadgeStatusOut(Api):
+    id: str
+    name_ko: str
+    description_ko: str
+    earned: bool
+    earned_at: datetime | None = None
+
+
 class CharacterOut(Api):
     group_id: str
     name: str = "모아"
@@ -403,7 +452,8 @@ class CharacterOut(Api):
     next_level_xp: int | None
     skin_id: str
     mood: Literal["SLEEPY", "HAPPY", "PROUD"]
-    badges: list[BadgeOut]
+    badges: list[BadgeOut] = Field(description="Earned badges only, oldest first.")
+    all_badges: list[BadgeStatusOut] = Field(default_factory=list, description="Every badge in catalogue order with whether the group earned it.")
     completed_trips: int
     note_ko: str = "모아는 함께 정산을 마친 이동 기록으로만 자랍니다. 거리·속도와는 관계없어요."
 

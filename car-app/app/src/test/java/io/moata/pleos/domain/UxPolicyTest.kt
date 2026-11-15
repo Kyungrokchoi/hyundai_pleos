@@ -7,7 +7,7 @@ import org.junit.Test
 
 class UxPolicyTest {
     @Test fun stateMappingFailsSafe() {
-        assertEquals(DrivingState.UNKNOWN, UxPolicy.stateFrom(null))       // no answer from the car => not parked
+        assertEquals(DrivingState.UNKNOWN, UxPolicy.stateFrom(null))
         assertEquals(DrivingState.DRIVING, UxPolicy.stateFrom(true))
         assertEquals(DrivingState.PARKED, UxPolicy.stateFrom(false))
     }

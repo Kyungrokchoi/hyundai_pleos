@@ -1,9 +1,3 @@
-"""Cost engine: pure and deterministic.
-
-Amounts are integer KRW and intermediate math uses Fraction, never float. Remainders are
-assigned by largest remainder (ties to the lower user_id), so shares always sum to the total.
-The driver pays every cost up front; a passenger's share is what they owe the driver.
-"""
 from __future__ import annotations
 
 import hashlib
@@ -15,10 +9,10 @@ from fractions import Fraction
 from typing import Sequence
 
 ENGINE_VERSION = "1"
-SUSPICIOUS_TRIP_KM = Decimal("3000")  # flagged with a warning
-MAX_TRIP_KM = Decimal("5000")  # rejected as a data error
+SUSPICIOUS_TRIP_KM = Decimal("3000")
+MAX_TRIP_KM = Decimal("5000")
 
-# plausible km/L and km/kWh; outside is an input error
+
 ICE_EFFICIENCY_RANGE = (Decimal("1"), Decimal("60"))
 EV_EFFICIENCY_RANGE = (Decimal("0.5"), Decimal("20"))
 
@@ -29,13 +23,13 @@ class VehicleType(str, Enum):
 
 
 class EnergyPolicy(str, Enum):
-    SEGMENT_SHARED = "SEGMENT_SHARED"  # distance-weighted: each segment split among its riders
-    EQUAL_SPLIT = "EQUAL_SPLIT"  # ridden energy split equally among all participants
+    SEGMENT_SHARED = "SEGMENT_SHARED"
+    EQUAL_SPLIT = "EQUAL_SPLIT"
 
 
 class Allocation(str, Enum):
-    EQUAL = "EQUAL"  # all participants equally
-    DISTANCE_WEIGHTED = "DISTANCE_WEIGHTED"  # by kilometres each person paid for
+    EQUAL = "EQUAL"
+    DISTANCE_WEIGHTED = "DISTANCE_WEIGHTED"
     DRIVER_ONLY = "DRIVER_ONLY"
 
 
@@ -43,6 +37,13 @@ class DataSource(str, Enum):
     PLEOS = "PLEOS"
     MANUAL = "MANUAL"
     DEMO = "DEMO"
+
+
+class EfficiencySource(str, Enum):
+    PLEOS = "PLEOS"
+    MANUAL = "MANUAL"
+    DEMO = "DEMO"
+    ESTIMATE = "ESTIMATE"
 
 
 MESSAGES_KO = {
@@ -72,7 +73,6 @@ class CostInputError(ValueError):
 
 
 def to_decimal(value: object) -> Decimal:
-    """Parse a user/sensor number. Rejects bool, NaN, Infinity and garbage."""
     if isinstance(value, bool):
         raise CostInputError("NUMBER_INVALID")
     try:
@@ -104,7 +104,7 @@ def fuel_economy_to_km_per_l(value: object, unit: str) -> Decimal:
         raise CostInputError("EFFICIENCY_INVALID")
     if unit == "km/L":
         return d
-    if unit == "L/100km":  # the Pleos Vehicle SDK reports this unit
+    if unit == "L/100km":
         return Decimal(100) / d
     raise CostInputError("UNIT_UNKNOWN", unit)
 
@@ -113,7 +113,7 @@ def ev_efficiency_to_km_per_kwh(value: object, unit: str) -> Decimal:
     d = to_decimal(value)
     if d <= 0:
         raise CostInputError("EFFICIENCY_INVALID")
-    if unit == "km/kWh":  # the Pleos Vehicle SDK reports this unit
+    if unit == "km/kWh":
         return d
     if unit == "Wh/km":
         return Decimal(1000) / d
@@ -124,7 +124,6 @@ def ev_efficiency_to_km_per_kwh(value: object, unit: str) -> Decimal:
 
 @dataclass(frozen=True)
 class RideInterval:
-    """One continuous ride, expressed as odometer km at boarding and alighting."""
     user_id: str
     on_km: Decimal
     off_km: Decimal
@@ -133,7 +132,7 @@ class RideInterval:
 @dataclass(frozen=True)
 class CostItemInput:
     item_id: str
-    kind: str  # TOLL | PARKING | OTHER
+    kind: str
     amount_krw: int
     allocation: Allocation
     label: str = ""
@@ -142,9 +141,9 @@ class CostItemInput:
 @dataclass(frozen=True)
 class EnergyInput:
     vehicle_type: VehicleType
-    efficiency: Decimal  # km/L (ICE) or km/kWh (EV), already normalised
-    unit_price_krw: Decimal  # KRW per litre (ICE) or per kWh (EV)
-    efficiency_source: DataSource
+    efficiency: Decimal
+    unit_price_krw: Decimal
+    efficiency_source: EfficiencySource
     price_source: DataSource = DataSource.MANUAL
 
 
@@ -178,7 +177,7 @@ class UserShare:
     total_krw: int
     energy_krw: int
     items_krw: dict[str, int]
-    ridden_km: str  # kilometres this person is charged for (energy basis)
+    ridden_km: str
     owed_to_driver_krw: int
 
 
@@ -188,9 +187,9 @@ class SplitResult:
     energy_total_krw: int
     items_total_krw: int
     distance_km: str
-    consumption: str  # litres or kWh, decimal string
-    consumption_unit: str  # "L" | "kWh"
-    equation: str  # Korean, human readable
+    consumption: str
+    consumption_unit: str
+    equation: str
     segments: tuple[SegmentResult, ...]
     shares: tuple[UserShare, ...]
     warnings: tuple[str, ...]
@@ -204,7 +203,6 @@ def _round_half_up(f: Fraction) -> int:
 
 
 def allocate(total: int, weights: dict[str, Fraction]) -> dict[str, int]:
-    """Largest-remainder allocation: sum(result) == total. Remainder ties go to the lower key."""
     if total < 0:
         raise CostInputError("AMOUNT_INVALID", str(total))
     if not weights:
@@ -266,7 +264,7 @@ def _validate(req: SplitRequest) -> list[str]:
 def _fmt_num(f: Fraction | Decimal, places: int = 2) -> str:
     q = Decimal(f.numerator) / Decimal(f.denominator) if isinstance(f, Fraction) else f
     s = f"{q:.{places}f}"
-    if "." in s:  # never strip zeros from an integer such as "1800"
+    if "." in s:
         s = s.rstrip("0").rstrip(".")
     return s or "0"
 
@@ -288,7 +286,7 @@ def compute_split(req: SplitRequest) -> SplitResult:
     price = Fraction(to_decimal(req.energy.unit_price_krw))
     driver = req.driver_id
 
-    # rounded once to whole KRW
+
     consumption = distance / eff
     energy_total = _round_half_up(consumption * price)
 
@@ -303,7 +301,7 @@ def compute_split(req: SplitRequest) -> SplitResult:
         riders = riders_in(a, b)
         if riders:
             return ([driver] if req.driver_included else []) + riders
-        return [driver]  # driver alone always pays the empty-car segment
+        return [driver]
 
     participants = sorted({u for u, _, _ in ivs})
     everyone = ([driver] if (req.driver_included or not participants) else []) + participants
@@ -312,10 +310,10 @@ def compute_split(req: SplitRequest) -> SplitResult:
     energy_by_user: dict[str, int] = {u: 0 for u in [driver, *participants]}
     km_by_user: dict[str, Fraction] = {u: Fraction(0) for u in energy_by_user}
 
-    # spread energy over segments by length, then apply the policy
+
     seg_energy = allocate(energy_total, {f"{i:06d}": b - a for i, (a, b) in enumerate(spans)}) if spans else {}
     if req.energy_policy == EnergyPolicy.EQUAL_SPLIT:
-        # empty-car segments stay with the driver; only ridden energy is pooled and split equally
+
         pool = 0
         for i, (a, b) in enumerate(spans):
             e = seg_energy[f"{i:06d}"]
@@ -390,7 +388,6 @@ def _canon(d: object) -> str:
 
 
 def request_hash(req: SplitRequest) -> str:
-    """Stable hash of everything that influences the result (order-independent)."""
     payload = {
         "v": ENGINE_VERSION, "driver": req.driver_id,
         "start": _canon(req.start_km), "end": _canon(req.end_km),

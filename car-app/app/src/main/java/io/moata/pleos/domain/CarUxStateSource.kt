@@ -8,10 +8,10 @@ import android.os.Looper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-/**
- * Driving state from CarUxRestrictions. Starts UNKNOWN (treated as restricted) and stays UNKNOWN if the car
- * service is missing or anything throws.
- */
+
+
+
+
 class CarUxStateSource(private val context: Context) {
     private val _state = MutableStateFlow(DrivingState.UNKNOWN)
     val state: StateFlow<DrivingState> = _state
@@ -30,7 +30,7 @@ class CarUxStateSource(private val context: Context) {
                     _state.value = DrivingState.UNKNOWN
                 }
             }
-        } catch (t: Throwable) { // no android.car on this device (non-automotive image)
+        } catch (t: Throwable) {
             _state.value = DrivingState.UNKNOWN
         }
     }

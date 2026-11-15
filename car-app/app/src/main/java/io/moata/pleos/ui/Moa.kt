@@ -27,14 +27,14 @@ import androidx.compose.ui.unit.dp
 
 enum class MoaMood { HAPPY, SLEEPY, PROUD, WORRIED }
 
-/** Group mascot. `animate` adds a slow bob and must be false while driving restrictions apply. */
+
 @Composable
 fun Moa(
     modifier: Modifier = Modifier,
     size: Dp = 160.dp,
     mood: MoaMood = MoaMood.HAPPY,
     animate: Boolean = false,
-    description: String? = null,      // null = decorative; nearby text carries the meaning
+    description: String? = null,
 ) {
     val bob = if (animate) {
         val t = rememberInfiniteTransition(label = "moa-bob")
@@ -45,23 +45,23 @@ fun Moa(
         Canvas(Modifier.size(size)) {
             val w = this.size.width
             val lift = -bob * w * 0.02f
-            // wheels
+
             for (cx in listOf(0.30f, 0.70f)) {
                 val c = Offset(w * cx, w * 0.90f)
-                drawCircle(Muted, w * 0.085f, c)      // not Ink, or the tyres vanish on the dark background
+                drawCircle(Muted, w * 0.085f, c)
                 drawCircle(SurfaceHi, w * 0.032f, c)
             }
-            // body
+
             drawRoundRect(MoaYellow, Offset(w * 0.08f, w * 0.18f + lift), Size(w * 0.84f, w * 0.68f), CornerRadius(w * 0.34f))
             drawRoundRect(Color(0x33FFFFFF), Offset(w * 0.16f, w * 0.24f + lift), Size(w * 0.36f, w * 0.14f), CornerRadius(w * 0.07f))
-            // route-pin tuft
+
             val pin = Path().apply {
                 moveTo(w * 0.50f, w * 0.20f + lift)
                 cubicTo(w * 0.40f, w * 0.12f + lift, w * 0.42f, w * 0.02f + lift, w * 0.50f, w * 0.02f + lift)
                 cubicTo(w * 0.58f, w * 0.02f + lift, w * 0.60f, w * 0.12f + lift, w * 0.50f, w * 0.20f + lift)
             }
             drawPath(pin, RouteTeal)
-            // eyes
+
             val eyeY = w * 0.46f + lift
             val eyes = listOf(Offset(w * 0.36f, eyeY), Offset(w * 0.64f, eyeY))
             val line = Stroke(w * 0.028f, cap = StrokeCap.Round)
@@ -69,7 +69,7 @@ fun Moa(
                 MoaMood.SLEEPY -> eyes.forEach { drawLine(Ink, it + Offset(-w * 0.04f, 0f), it + Offset(w * 0.04f, 0f), w * 0.028f, StrokeCap.Round) }
                 else -> eyes.forEach { drawCircle(Ink, w * 0.04f, it); drawCircle(Paper, w * 0.012f, it + Offset(w * 0.012f, -w * 0.012f)) }
             }
-            // mouth
+
             val my = w * 0.60f + lift
             val mouth = Path().apply {
                 when (mood) {

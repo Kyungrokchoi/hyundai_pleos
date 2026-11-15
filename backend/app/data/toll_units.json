@@ -1,0 +1,2864 @@
+[
+ {
+  "code": "002",
+  "name": "하남감북4",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "003",
+  "name": "강동고덕",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "011",
+  "name": "인천",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "012",
+  "name": "서영암(개)",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "013",
+  "name": "순천만",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "025",
+  "name": "동부산",
+  "operator": "민자",
+  "open": "개방"
+ },
+ {
+  "code": "029",
+  "name": "가락(개)",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "053",
+  "name": "남인천",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "056",
+  "name": "일로",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "057",
+  "name": "다사",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "058",
+  "name": "지천",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "059",
+  "name": "하남감북3",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "061",
+  "name": "성남",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "062",
+  "name": "구리남양주",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "063",
+  "name": "토평",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "064",
+  "name": "청계",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "065",
+  "name": "판교",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "066",
+  "name": "하남",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "067",
+  "name": "시흥",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "068",
+  "name": "김포",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "069",
+  "name": "대왕판교",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "073",
+  "name": "초이(개)",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "074",
+  "name": "덕소삼패",
+  "operator": "민자",
+  "open": "개방"
+ },
+ {
+  "code": "091",
+  "name": "대동(개)",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "092",
+  "name": "내서",
+  "operator": "도공",
+  "open": "개방"
+ },
+ {
+  "code": "101",
+  "name": "서울",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "102",
+  "name": "동수원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "103",
+  "name": "수원신갈",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "104",
+  "name": "지곡",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "105",
+  "name": "기흥",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "106",
+  "name": "오산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "107",
+  "name": "안성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "108",
+  "name": "천안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "109",
+  "name": "계룡",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "110",
+  "name": "독립기념관",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "111",
+  "name": "청주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "112",
+  "name": "남청주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "113",
+  "name": "신탄진",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "114",
+  "name": "남대전",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "115",
+  "name": "대전",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "116",
+  "name": "옥천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "117",
+  "name": "금강",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "118",
+  "name": "영동",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "119",
+  "name": "판암",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "120",
+  "name": "황간",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "121",
+  "name": "추풍령",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "122",
+  "name": "김천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "123",
+  "name": "구미",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "124",
+  "name": "상주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "125",
+  "name": "남구미",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "126",
+  "name": "왜관",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "127",
+  "name": "서대구",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "128",
+  "name": "금왕꽃동네",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "129",
+  "name": "북대구",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "130",
+  "name": "동김천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "131",
+  "name": "경산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "132",
+  "name": "영천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "133",
+  "name": "서경주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "134",
+  "name": "선산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "135",
+  "name": "경주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "136",
+  "name": "음성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "137",
+  "name": "통도사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "138",
+  "name": "양산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "139",
+  "name": "서울산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "140",
+  "name": "부산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "142",
+  "name": "군북",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "143",
+  "name": "장지",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "144",
+  "name": "함안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "145",
+  "name": "산인",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "146",
+  "name": "동창원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "147",
+  "name": "진례",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "148",
+  "name": "서김해",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "149",
+  "name": "동김해",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "150",
+  "name": "북부산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "151",
+  "name": "북대전",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "152",
+  "name": "유성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "153",
+  "name": "서대전",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "154",
+  "name": "안영",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "155",
+  "name": "논산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "156",
+  "name": "익산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "157",
+  "name": "삼례",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "158",
+  "name": "전주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "159",
+  "name": "서전주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "160",
+  "name": "김제",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "161",
+  "name": "금산사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "162",
+  "name": "태인",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "163",
+  "name": "정읍",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "164",
+  "name": "무주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "165",
+  "name": "백양사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "166",
+  "name": "장성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "167",
+  "name": "광주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "168",
+  "name": "덕유산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "169",
+  "name": "장수",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "170",
+  "name": "서상",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "171",
+  "name": "마성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "172",
+  "name": "용인",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "173",
+  "name": "양지",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "174",
+  "name": "춘천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "175",
+  "name": "덕평",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "176",
+  "name": "이천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "177",
+  "name": "여주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "178",
+  "name": "문막",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "179",
+  "name": "홍천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "180",
+  "name": "원주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "181",
+  "name": "새말",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "182",
+  "name": "둔내",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "183",
+  "name": "면온",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "184",
+  "name": "대관령",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "185",
+  "name": "평창",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "186",
+  "name": "속사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "187",
+  "name": "진부",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "188",
+  "name": "서충주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "189",
+  "name": "강릉",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "190",
+  "name": "동서울",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "191",
+  "name": "경기광주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "192",
+  "name": "곤지암",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "193",
+  "name": "일죽",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "194",
+  "name": "서이천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "195",
+  "name": "대소",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "196",
+  "name": "진천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "197",
+  "name": "증평",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "198",
+  "name": "서청주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "199",
+  "name": "오창",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "200",
+  "name": "금산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "201",
+  "name": "칠곡",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "202",
+  "name": "다부",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "203",
+  "name": "가산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "204",
+  "name": "추부",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "205",
+  "name": "군위",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "206",
+  "name": "의성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "207",
+  "name": "남안동",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "208",
+  "name": "서안동",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "209",
+  "name": "예천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "210",
+  "name": "영주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "211",
+  "name": "풍기",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "212",
+  "name": "북수원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "213",
+  "name": "부곡",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "214",
+  "name": "동군포",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "215",
+  "name": "군포",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "216",
+  "name": "횡성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "217",
+  "name": "북원주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "218",
+  "name": "남원주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "219",
+  "name": "신림",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "220",
+  "name": "덕평휴게소",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "221",
+  "name": "생초",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "222",
+  "name": "산청",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "223",
+  "name": "단성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "224",
+  "name": "함양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "225",
+  "name": "서진주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "226",
+  "name": "금강휴게소",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "227",
+  "name": "군산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "228",
+  "name": "동군산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "229",
+  "name": "북천안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "230",
+  "name": "팔공산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "231",
+  "name": "화원옥포",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "232",
+  "name": "달성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "233",
+  "name": "현풍",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "234",
+  "name": "서천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "235",
+  "name": "창녕",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "236",
+  "name": "영산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "237",
+  "name": "남지",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "238",
+  "name": "칠서",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "239",
+  "name": "칠원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "240",
+  "name": "제천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "241",
+  "name": "동고령",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "242",
+  "name": "고령",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "243",
+  "name": "해인사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "244",
+  "name": "서부산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "245",
+  "name": "장유",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "246",
+  "name": "가락",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "247",
+  "name": "남원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "248",
+  "name": "순창",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "249",
+  "name": "담양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "250",
+  "name": "남양산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "251",
+  "name": "물금",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "252",
+  "name": "대동",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "253",
+  "name": "서서울",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "254",
+  "name": "군자",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "255",
+  "name": "서안산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "256",
+  "name": "안산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "257",
+  "name": "홍성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "258",
+  "name": "광천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "259",
+  "name": "대천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "260",
+  "name": "춘장대",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "261",
+  "name": "동광주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "262",
+  "name": "창평",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "263",
+  "name": "옥과",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "264",
+  "name": "동남원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "265",
+  "name": "곡성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "266",
+  "name": "석곡",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "267",
+  "name": "주암송광사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "268",
+  "name": "승주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "269",
+  "name": "지리산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "270",
+  "name": "서순천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "271",
+  "name": "순천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "272",
+  "name": "광양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "273",
+  "name": "동광양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "274",
+  "name": "가조",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "275",
+  "name": "옥곡",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "276",
+  "name": "진월",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "277",
+  "name": "하동",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "278",
+  "name": "진교",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "279",
+  "name": "곤양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "280",
+  "name": "거창",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "281",
+  "name": "매송",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "282",
+  "name": "비봉",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "283",
+  "name": "발안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "284",
+  "name": "남양양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "285",
+  "name": "서평택",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "286",
+  "name": "통도사휴게소",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "287",
+  "name": "송악",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "288",
+  "name": "당진",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "289",
+  "name": "마산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "290",
+  "name": "축동",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "291",
+  "name": "사천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "292",
+  "name": "진주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "293",
+  "name": "문산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "294",
+  "name": "북창원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "295",
+  "name": "진성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "296",
+  "name": "지수",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "297",
+  "name": "동충주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "298",
+  "name": "서산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "299",
+  "name": "해미",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "324",
+  "name": "새만금",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "325",
+  "name": "북김제",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "326",
+  "name": "남전주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "327",
+  "name": "서영천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "331",
+  "name": "영일만",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "332",
+  "name": "북포항",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "333",
+  "name": "남영덕",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "500",
+  "name": "남여주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "501",
+  "name": "서김제",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "502",
+  "name": "부안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "503",
+  "name": "줄포",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "504",
+  "name": "선운산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "505",
+  "name": "고창",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "506",
+  "name": "영광",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "507",
+  "name": "함평",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "508",
+  "name": "무안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "509",
+  "name": "목포",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "510",
+  "name": "양양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "511",
+  "name": "무창포",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "512",
+  "name": "연화산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "513",
+  "name": "고성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "514",
+  "name": "동고성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "515",
+  "name": "북통영",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "516",
+  "name": "통영",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "517",
+  "name": "양평",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "518",
+  "name": "칠곡물류",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "519",
+  "name": "남대구",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "520",
+  "name": "평택",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "521",
+  "name": "단양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "522",
+  "name": "북단양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "523",
+  "name": "남제천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "524",
+  "name": "청통와촌",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "525",
+  "name": "북영천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "526",
+  "name": "서포항",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "527",
+  "name": "포항",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "528",
+  "name": "기흥동탄",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "529",
+  "name": "노포",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "530",
+  "name": "내장산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "531",
+  "name": "문의청남대",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "532",
+  "name": "회인",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "533",
+  "name": "보은",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "534",
+  "name": "속리산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "535",
+  "name": "화서",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "536",
+  "name": "남상주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "537",
+  "name": "남김천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "538",
+  "name": "성주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "539",
+  "name": "남성주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "540",
+  "name": "청북",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "541",
+  "name": "송탄",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "542",
+  "name": "서안성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "543",
+  "name": "남안성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "544",
+  "name": "완주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "545",
+  "name": "소양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "546",
+  "name": "진안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "547",
+  "name": "무안공항",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "548",
+  "name": "북무안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "549",
+  "name": "동함평",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "550",
+  "name": "문평",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "551",
+  "name": "나주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "552",
+  "name": "서광산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "553",
+  "name": "동광산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "554",
+  "name": "동홍천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "555",
+  "name": "북진천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "556",
+  "name": "동순천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "557",
+  "name": "황전",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "558",
+  "name": "구례화엄사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "559",
+  "name": "서남원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "560",
+  "name": "감곡",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "561",
+  "name": "북충주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "562",
+  "name": "충주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "563",
+  "name": "괴산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "564",
+  "name": "연풍",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "565",
+  "name": "문경새재",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "566",
+  "name": "점촌함창",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "567",
+  "name": "남고창",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "568",
+  "name": "장성물류",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "569",
+  "name": "북광주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "570",
+  "name": "북상주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "571",
+  "name": "면천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "572",
+  "name": "고덕",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "573",
+  "name": "예산수덕사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "574",
+  "name": "신양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "575",
+  "name": "유구",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "576",
+  "name": "마곡사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "577",
+  "name": "공주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "578",
+  "name": "서세종",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "579",
+  "name": "남세종",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "580",
+  "name": "북강릉",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "581",
+  "name": "옥계",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "582",
+  "name": "망상",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "583",
+  "name": "동해",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "584",
+  "name": "남강릉",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "585",
+  "name": "하조대",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "586",
+  "name": "북남원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "587",
+  "name": "오수",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "588",
+  "name": "임실",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "589",
+  "name": "상관",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "590",
+  "name": "동전주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "591",
+  "name": "동서천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "592",
+  "name": "서부여",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "593",
+  "name": "부여",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "594",
+  "name": "칠갑산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "595",
+  "name": "서공주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "596",
+  "name": "가락2",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "597",
+  "name": "서여주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "598",
+  "name": "북여주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "599",
+  "name": "양촌",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "601",
+  "name": "남천안",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "602",
+  "name": "풍세상",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "603",
+  "name": "정안",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "604",
+  "name": "남공주",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "605",
+  "name": "탄천",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "606",
+  "name": "서논산",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "607",
+  "name": "연무",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "608",
+  "name": "남논산하",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "612",
+  "name": "풍세하",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "613",
+  "name": "남풍세",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "618",
+  "name": "남논산상",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "621",
+  "name": "동대구",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "622",
+  "name": "대구",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "623",
+  "name": "수성",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "624",
+  "name": "청도",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "625",
+  "name": "밀양",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "626",
+  "name": "남밀양",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "627",
+  "name": "삼랑진",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "628",
+  "name": "상동",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "629",
+  "name": "김해부산",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "641",
+  "name": "울산",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "642",
+  "name": "문수",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "643",
+  "name": "청량",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "644",
+  "name": "온양",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "645",
+  "name": "장안",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "646",
+  "name": "기장일광",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "647",
+  "name": "해운대송정",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "648",
+  "name": "해운대",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "651",
+  "name": "남양주",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "652",
+  "name": "화도",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "653",
+  "name": "서종",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "654",
+  "name": "설악",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "655",
+  "name": "강촌",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "656",
+  "name": "남춘천",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "657",
+  "name": "동산",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "658",
+  "name": "조양",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "671",
+  "name": "봉담",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "672",
+  "name": "정남",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "673",
+  "name": "북오산",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "675",
+  "name": "서오산",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "676",
+  "name": "향남",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "677",
+  "name": "북평택",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "681",
+  "name": "장안본선",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "682",
+  "name": "조암",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "683",
+  "name": "송산마도",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "684",
+  "name": "남안산",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "685",
+  "name": "서시흥",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "700",
+  "name": "범서",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "701",
+  "name": "북양양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "702",
+  "name": "속초",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "703",
+  "name": "삼척",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "704",
+  "name": "근덕",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "705",
+  "name": "남이천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "706",
+  "name": "남경주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "707",
+  "name": "남포항",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "708",
+  "name": "동경주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "709",
+  "name": "서밀양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "710",
+  "name": "밀양출구JC",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "711",
+  "name": "불갑산(목포)",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "712",
+  "name": "동상주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "713",
+  "name": "서의성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "714",
+  "name": "북의성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "715",
+  "name": "동안동",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "716",
+  "name": "청송",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "717",
+  "name": "불갑산(서울)",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "718",
+  "name": "남광산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "719",
+  "name": "남장성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "720",
+  "name": "밀양입구JC",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "721",
+  "name": "북장성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "722",
+  "name": "활천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "723",
+  "name": "북구미",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "724",
+  "name": "서함양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "725",
+  "name": "임고",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "726",
+  "name": "아산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "727",
+  "name": "아산현충사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "728",
+  "name": "서천안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "729",
+  "name": "신둔",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "730",
+  "name": "유천",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "731",
+  "name": "북현풍",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "732",
+  "name": "행담도",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "733",
+  "name": "옥산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "734",
+  "name": "동둔내",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "735",
+  "name": "남양평",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "736",
+  "name": "삼성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "737",
+  "name": "북양주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "738",
+  "name": "서양주",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "739",
+  "name": "법원",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "740",
+  "name": "화도상JC",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "741",
+  "name": "평택고덕",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "742",
+  "name": "남사진위",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "743",
+  "name": "시화",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "746",
+  "name": "기장일광입구",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "747",
+  "name": "척과구룡",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "748",
+  "name": "동청송영양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "749",
+  "name": "영덕",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "750",
+  "name": "기장동JC",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "751",
+  "name": "기장일광(KEC)",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "752",
+  "name": "기장철마",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "753",
+  "name": "금정",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "754",
+  "name": "김해가야휴게소",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "755",
+  "name": "광재",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "756",
+  "name": "한림",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "757",
+  "name": "진영",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "758",
+  "name": "진영휴게소",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "759",
+  "name": "광암",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "760",
+  "name": "기장서JC",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "762",
+  "name": "중앙탑",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "763",
+  "name": "두물머리",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "764",
+  "name": "조안",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "765",
+  "name": "내촌",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "766",
+  "name": "인제",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "767",
+  "name": "구병산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "768",
+  "name": "서양양",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "770",
+  "name": "울주동JC",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "771",
+  "name": "배내골",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "772",
+  "name": "북달성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "773",
+  "name": "북다사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "774",
+  "name": "남칠곡",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "775",
+  "name": "동명동호",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "776",
+  "name": "연경",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "777",
+  "name": "파군재",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "778",
+  "name": "둔산",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "779",
+  "name": "율암",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "780",
+  "name": "울주서JC",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "781",
+  "name": "안성맞춤",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "782",
+  "name": "고삼",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "783",
+  "name": "남용인",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "785",
+  "name": "북용인",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "786",
+  "name": "오포(포천)",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "787",
+  "name": "오포(세종)",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "788",
+  "name": "광남",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "789",
+  "name": "하남감북1",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "790",
+  "name": "화도하JC",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "791",
+  "name": "남장유",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "795",
+  "name": "북용인상JC",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "796",
+  "name": "동김천(테스트)",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "797",
+  "name": "상서",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "798",
+  "name": "청주강서",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "799",
+  "name": "하남감북2",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "876",
+  "name": "양감",
+  "operator": "민자",
+  "open": "폐쇄"
+ },
+ {
+  "code": "981",
+  "name": "서영암",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "982",
+  "name": "강진무위사",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "983",
+  "name": "장흥",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "984",
+  "name": "보성",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "985",
+  "name": "벌교",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "986",
+  "name": "고흥",
+  "operator": "도공",
+  "open": "폐쇄"
+ },
+ {
+  "code": "987",
+  "name": "남순천",
+  "operator": "도공",
+  "open": "폐쇄"
+ }
+]

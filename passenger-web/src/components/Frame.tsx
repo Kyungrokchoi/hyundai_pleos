@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Moa } from "./Moa";
 import { DemoBar } from "./SourceBadge";
 
-// `bar` is pinned to the bottom of the screen (safe-area aware); keep one primary action in it.
+
 export function Frame({ children, bar, demo = false }: { children: ReactNode; bar?: ReactNode; demo?: boolean }) {
   return (
     <>

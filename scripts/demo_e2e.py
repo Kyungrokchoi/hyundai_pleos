@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""End-to-end demo check against a running backend (stdlib only).
-
-Drives the car app and two passengers through the HTTP API, from invite to a confirmed
-settlement. All vehicle values are DEMO data.
-
-    python3 scripts/demo_e2e.py [--base http://127.0.0.1:8000/api/v1]
-Exits non-zero if any check fails.
-"""
 import argparse
 import json
 import sys
@@ -65,7 +57,7 @@ def main():
     car.call("POST", "/groups", {"id": gid, "name": f"퇴근 카풀 {run}"})
     rule = {"vehicle_type": "ICE", "efficiency_source": "MANUAL", "efficiency_value": 12, "efficiency_unit": "km/L",
             "unit_price_krw": 1800, "driver_included": True, "energy_policy": "SEGMENT_SHARED"}
-    # DEMO odometer with a typed-in (MANUAL) efficiency
+
     car.call("POST", "/trips", {"id": tid, "group_id": gid, "data_mode": "DEMO", "cost_rule": {**rule, "efficiency_source": "MANUAL"}})
 
     print("2) QR 초대 → 승객 2명 참가 → 운전자 승인")

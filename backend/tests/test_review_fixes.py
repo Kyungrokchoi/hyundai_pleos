@@ -1,4 +1,3 @@
-"""Regression tests: energy policy, locking, readings, settlement and membership edge cases."""
 from datetime import timedelta
 from decimal import Decimal as D
 
@@ -18,16 +17,15 @@ def _req(policy, driver_included, ivs):
 
 
 def test_equal_split_never_makes_passengers_pay_for_empty_car_km():
-    """Trip 0..100 km (15,000 KRW of fuel), B rides 40..60 only. The 80 km of empty car are the driver's."""
     for included in (False, True):
         shared = ce.compute_split(_req(ce.EnergyPolicy.SEGMENT_SHARED, included, [("B", 40, 60)]))
         equal = ce.compute_split(_req(ce.EnergyPolicy.EQUAL_SPLIT, included, [("B", 40, 60)]))
         mine = {s.user_id: s.energy_krw for s in equal.shares}
-        assert mine["A"] >= 12000, (included, mine)                        # at least the 80 empty km (12,000 KRW)
+        assert mine["A"] >= 12000, (included, mine)
         assert sum(mine.values()) == equal.energy_total_krw == 15000
         assert equal.shares[0].energy_krw >= shared.shares[0].energy_krw - 1500
     exc = ce.compute_split(_req(ce.EnergyPolicy.EQUAL_SPLIT, False, [("B", 40, 60)]))
-    assert {s.user_id: s.total_krw for s in exc.shares} == {"A": 12000, "B": 3000}   # same as SEGMENT_SHARED here
+    assert {s.user_id: s.total_krw for s in exc.shares} == {"A": 12000, "B": 3000}
 
 
 def test_equation_shows_enough_digits_to_recompute():
@@ -37,7 +35,6 @@ def test_equation_shows_enough_digits_to_recompute():
 
 
 def test_second_session_sees_the_committed_state_after_taking_the_lock(client):
-    """lock_trip must reload the row, not return the stale identity-map copy."""
     t = Trip(client, passengers=("B",))
     with SessionLocal() as a, SessionLocal() as b:
         trip_a = a.get(m.Trip, t.trip_id)
@@ -49,7 +46,6 @@ def test_second_session_sees_the_committed_state_after_taking_the_lock(client):
 
 
 def test_two_trips_confirming_at_once_both_pay_xp(client):
-    """Lost-update on character_progress: xp must be 20 after two confirmed trips, not 10."""
     a = Trip(client, passengers=("B",))
     with SessionLocal() as db:
         t1 = db.get(m.Trip, a.trip_id)
@@ -59,7 +55,7 @@ def test_two_trips_confirming_at_once_both_pay_xp(client):
         db.flush()
         assert rewards.award_for_trip(db, t1, [D(10)]) == 10
         assert rewards.award_for_trip(db, t2, [D(10)]) == 10
-        assert rewards.award_for_trip(db, t1, [D(10)]) == 0           # same trip again: nothing
+        assert rewards.award_for_trip(db, t1, [D(10)]) == 0
         db.commit()
         assert db.get(m.CharacterProgress, a.group_id).xp == 20
 
@@ -68,7 +64,7 @@ def test_a_zero_km_boarding_earns_no_xp(client):
     t = Trip(client, passengers=("B",))
     t.ready_and_start(1000)
     t.board("B")
-    t.alight("B")                                                     # boarded and left at the same odometer
+    t.alight("B")
     t.end(1000)
     s = t.preview().json()
     t.approve_all(s["id"])
@@ -101,7 +97,7 @@ def test_only_one_trip_can_be_running_per_group(client):
     a.ready_and_start(1000)
     t2 = uid()
     assert a.driver.post("/trips", {"id": t2, "group_id": a.group_id, "data_mode": "MANUAL", "cost_rule": a.rule}).status_code == 409
-    # a second trip created earlier cannot start either
+
     with SessionLocal() as db:
         db.add(m.Trip(id=t2, group_id=a.group_id, driver_user_id=a.driver.id, data_mode="MANUAL", state="READY"))
         db.add(m.CostRule(trip_id=t2, vehicle_type="ICE", efficiency_value=12, efficiency_unit="km/L", efficiency_source="MANUAL", unit_price_krw=1800))
@@ -113,9 +109,9 @@ def test_only_one_trip_can_be_running_per_group(client):
 def test_a_typo_can_be_voided_so_the_trip_can_still_end(client):
     t = Trip(client, passengers=("B",))
     t.ready_and_start(1000)
-    t.driver.post(f"/trips/{t.trip_id}/readings/batch", {"readings": [odo(10240, "MANUAL", event_id="typo-reading-1")]})   # meant 1024.0
+    t.driver.post(f"/trips/{t.trip_id}/readings/batch", {"readings": [odo(10240, "MANUAL", event_id="typo-reading-1")]})
     stuck = t.driver.post(f"/trips/{t.trip_id}/end", {"odometer": odo(1024, "MANUAL", event_id="end-try-1")})
-    assert stuck.status_code == 422                                   # below the typo: odometer regression
+    assert stuck.status_code == 422
     assert t.driver.delete(f"/trips/{t.trip_id}/readings/typo-reading-1").status_code == 200
     assert t.driver.delete(f"/trips/{t.trip_id}/readings/does-not-exist-1").status_code == 404
     assert t.riders["B"].delete(f"/trips/{t.trip_id}/readings/typo-reading-1").status_code == 403
@@ -129,7 +125,7 @@ def test_alighting_inside_the_tolerance_does_not_reverse_the_interval(client):
     t.ready_and_start(1000)
     t.drive(1010)
     t.board("B")
-    with SessionLocal() as db:                                         # sensor jitter: the next reading is 0.3 km lower
+    with SessionLocal() as db:
         db.add(m.VehicleReading(trip_id=t.trip_id, event_id="jitter-0001", type="ODOMETER", captured_at=m.utcnow() + timedelta(seconds=1),
                                 raw_value=D("1009.7"), raw_unit="km", normalized_value=D("1009.7"), normalized_unit="km", source="MANUAL", quality="VERIFIED"))
         db.commit()
@@ -170,7 +166,7 @@ def test_disputed_settlement_can_be_reopened_without_changing_numbers(client):
     t.ready_and_start(1000); t.board("B"); t.end(1024)
     s1 = t.preview().json()
     t.riders["B"].post(f"/settlements/{s1['id']}/approvals", {"decision": "DISPUTE", "comment": "확인 부탁해요"})
-    s2 = t.preview().json()                                           # re-proposed with unchanged inputs
+    s2 = t.preview().json()
     assert s2["id"] == s1["id"] and s2["revision"] == 2 and s2["state"] == "PROPOSED"
     assert all(x["approval"] == "PENDING" for x in s2["shares"])
     assert t.approve_all(s2["id"])["state"] == "CONFIRMED"
@@ -198,7 +194,6 @@ def test_unexpected_errors_are_korean_json_without_details(client, monkeypatch):
 
 
 def test_put_cost_rule_answers_with_the_trip_summary_shape(client):
-    """The car app decodes the PUT /cost-rule response as a TripSummary."""
     t = Trip(client, passengers=("B",))
     put = t.driver.put(f"/trips/{t.trip_id}/cost-rule", {**t.rule, "efficiency_value": 11, "efficiency_unit": "km/L"})
     assert put.status_code == 200
@@ -213,7 +208,6 @@ def test_history_distance_is_tidy(client):
 
 
 def test_boarding_while_inviting_starts_at_the_first_snapshot(client):
-    """Riders, or the driver for them, can board while the trip is still INVITING."""
     t = Trip(client)
     assert t.summary()["state"] == "INVITING"
     t.board("B")
@@ -255,11 +249,10 @@ def test_cancelled_trip_has_nobody_on_board(client):
 
 
 def test_undo_that_lands_right_after_start_is_not_a_paid_ride(client):
-    """An undo that arrives after /start but still at the start km is not a ride."""
     t = Trip(client)
     t.board("B"); t.board("C")
     t.ready_and_start(1000)
-    r = t.riders["C"].post(f"/trips/{t.trip_id}/participants/me/alight", {"undo": True})   # odometer still at the start snapshot
+    r = t.riders["C"].post(f"/trips/{t.trip_id}/participants/me/alight", {"undo": True})
     assert r.status_code == 200, r.text
     t.drive(1012); t.toll(2400); t.end(1024)
     s = t.preview().json()
@@ -271,13 +264,13 @@ def test_undo_after_the_car_moved_is_a_normal_alight(client):
     t.board("B"); t.ready_and_start(1000); t.drive(1005)
     assert t.riders["B"].post(f"/trips/{t.trip_id}/participants/me/alight", {"undo": True}).status_code == 200
     t.end(1010)
-    assert t.totals(t.preview().json())["B"] > 0                     # rode 5 km
+    assert t.totals(t.preview().json())["B"] > 0
 
 
 def test_driver_mark_after_rider_tap_keeps_one_honest_record(client):
     t = Trip(client)
     t.board("B")
-    assert t.driver.post(f"/trips/{t.trip_id}/participants/{t.riders['B'].id}/board").status_code == 200   # duplicate mark from the driver
+    assert t.driver.post(f"/trips/{t.trip_id}/participants/{t.riders['B'].id}/board").status_code == 200
     assert t.driver.post(f"/trips/{t.trip_id}/participants/{t.riders['C'].id}/board").status_code == 200
     with SessionLocal() as db:
         rows = [a.diff for a in db.scalars(select(m.AuditEvent).where(m.AuditEvent.entity_id == t.trip_id, m.AuditEvent.action == "BOARD"))]
@@ -287,16 +280,15 @@ def test_driver_mark_after_rider_tap_keeps_one_honest_record(client):
 
 
 def test_returning_rider_is_pointed_at_todays_trip(client):
-    """/me points a returning rider at the group's new trip."""
     t = Trip(client, passengers=("B",))
     t.board("B"); t.ready_and_start(1000); t.end(1010)
     t.approve_all(t.preview().json()["id"])
     me = t.riders["B"].get(f"/groups/{t.group_id}/me").json()
-    assert me["status"] == "ACTIVE" and me["current_trip_id"] is None          # nothing open after CONFIRMED
+    assert me["status"] == "ACTIVE" and me["current_trip_id"] is None
     new_id = uid()
     assert t.driver.post("/trips", {"id": new_id, "group_id": t.group_id, "data_mode": "MANUAL", "cost_rule": t.rule}).status_code == 201
     assert t.riders["B"].get(f"/groups/{t.group_id}/me").json()["current_trip_id"] == new_id
-    assert t.riders["B"].post(f"/trips/{new_id}/participants/me/board").status_code == 200   # and can board it without re-joining
+    assert t.riders["B"].post(f"/trips/{new_id}/participants/me/board").status_code == 200
 
 
 def test_pending_member_is_not_told_about_trips(client):

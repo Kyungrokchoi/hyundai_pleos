@@ -183,7 +183,7 @@ function Waiting() {
 
   useSessionGuard(poll.error);
   const status = poll.data?.status;
-  const target = poll.data?.current_trip_id ?? session?.tripId ?? null;   // prefer today's trip over the one saved on this phone
+  const target = poll.data?.current_trip_id ?? session?.tripId ?? null;
   const declined = status === "REJECTED" || status === "LEFT";
   useEffect(() => {
     if (status !== "ACTIVE" || !session) return;

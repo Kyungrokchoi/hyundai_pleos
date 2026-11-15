@@ -42,7 +42,7 @@ class PleosVehicleDataSourceTest {
         sdk.complete("getCurrentDistanceDriven", 12345.68f)
         ds.connect().getOrThrow()
         val s = ds.read(SignalType.ODOMETER)
-        assertEquals(12345.68, s.value!!, 0.0)               // not 12345.6796875
+        assertEquals(12345.68, s.value!!, 0.0)
         assertEquals("km", s.unit); assertEquals(DataSource.PLEOS, s.source); assertEquals(Quality.VERIFIED, s.quality)
         assertEquals("2.3.2", s.sdkVersion); assertNull(s.error)
     }
@@ -52,7 +52,7 @@ class PleosVehicleDataSourceTest {
         sdk.complete("getCurrentFuelEconomy", 6.2f)
         ds.connect()
         val s = ds.read(SignalType.FUEL_ECONOMY)
-        assertEquals(6.2, s.value!!, 0.0)                    // raw L/100km, not converted on the device
+        assertEquals(6.2, s.value!!, 0.0)
         assertEquals("L/100km", s.unit)
         assertEquals("L/100km", TripRepository.toReading(s, "e1").unit)
     }
@@ -74,7 +74,7 @@ class PleosVehicleDataSourceTest {
         val s = ds.read(SignalType.FUEL_ECONOMY)
         assertNull(s.value); assertEquals(Quality.UNAVAILABLE, s.quality); assertTrue(s.error!!.contains("CAPABILITY_NONE"))
         assertFalse("getCurrentFuelEconomy" in sdk.calls)
-        assertEquals(DataSource.PLEOS, s.source)             // still PLEOS, never swapped for DEMO
+        assertEquals(DataSource.PLEOS, s.source)
     }
 
     @Test fun onFailedKeepsTheExactSdkErrorText() = runTest {
@@ -114,7 +114,7 @@ class PleosVehicleDataSourceTest {
 
     @Test fun noCallbackIsATimeoutDistinctFromOnFailed() = runTest {
         val (ds, sdk) = source().also { it.second.readable() }
-        ds.connect()                                          // getCurrentDistanceDriven never calls back
+        ds.connect()
         val s = ds.read(SignalType.ODOMETER)
         assertNull(s.value); assertTrue(s.error!!.startsWith("TIMEOUT")); assertFalse(s.error!!.startsWith("FAILED"))
     }
@@ -176,10 +176,10 @@ class DemoAndManualSourceTest {
         suspend fun run() = DemoVehicleDataSource(DemoFixture(), now = { 5L }, tickMs = 0).observeOdometer().toList().map { it.value }
         val a = run(); val b = run()
         assertEquals(a, b)
-        assertEquals(12_345.0, a.first()!!, 0.0); assertEquals(12_369.0, a.last()!!, 1e-9)   // exactly 24 km
+        assertEquals(12_345.0, a.first()!!, 0.0); assertEquals(12_369.0, a.last()!!, 1e-9)
         val d = DemoVehicleDataSource(now = { 5L })
         for (t in SignalType.values()) assertEquals(DataSource.DEMO, d.read(t).source)
-        assertTrue(DemoVehicleDataSource().read(SignalType.ODOMETER).quality != Quality.VERIFIED)  // simulated, so never VERIFIED
+        assertTrue(DemoVehicleDataSource().read(SignalType.ODOMETER).quality != Quality.VERIFIED)
         assertEquals("km/L", d.read(SignalType.FUEL_ECONOMY).unit)
     }
 

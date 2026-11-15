@@ -26,7 +26,7 @@ describe("usePolling", () => {
     expect(result.current.loading).toBe(false);
 
     await advance(1000);
-    expect(result.current.data).toEqual({ revision: 1 }); // 304: unchanged
+    expect(result.current.data).toEqual({ revision: 1 });
     await advance(1000);
     expect(result.current.data).toEqual({ revision: 2 });
     expect(seen).toEqual([null, '"1"', '"1"']);
@@ -52,7 +52,7 @@ describe("usePolling", () => {
     expect(result.current.offline).toBe(true);
     expect(result.current.error).toBeInstanceOf(NetworkError);
 
-    await advance(2000); // backed off to 2s
+    await advance(2000);
     expect(result.current.data).toEqual({ revision: 2 });
     expect(result.current.stale).toBe(false);
     expect(result.current.error).toBeNull();

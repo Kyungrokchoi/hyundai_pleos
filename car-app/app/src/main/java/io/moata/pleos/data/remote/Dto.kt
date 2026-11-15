@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
 
-/** Mirrors backend/app/schemas.py. camelCase properties map to snake_case JSON. */
+
 @OptIn(ExperimentalSerializationApi::class)
 val ApiJson = Json {
     namingStrategy = JsonNamingStrategy.SnakeCase
-    ignoreUnknownKeys = true   // tolerate additive server changes; ContractTest is strict
+    ignoreUnknownKeys = true
     explicitNulls = false
     encodeDefaults = true
 }
@@ -18,14 +18,15 @@ val ApiJson = Json {
 @Serializable data class GroupCreateIn(val id: String, val name: String)
 @Serializable data class InviteCreateIn(val tripId: String? = null, val ttlMinutes: Int = 30, val maxUses: Int = 5)
 @Serializable data class MemberDecisionIn(val decision: String)
+
 @Serializable data class CostRuleIn(
     val vehicleType: String,
-    val efficiencyValue: String? = null,
-    val efficiencyUnit: String? = null,
-    val efficiencySource: String = "MANUAL",
+    val fuelType: String,
+    val efficiencySource: String = "ESTIMATE",
     val unitPriceKrw: String? = null,
     val driverIncluded: Boolean = true,
     val energyPolicy: String = "SEGMENT_SHARED",
+    val unitPriceSource: String = "MANUAL",
 )
 @Serializable data class TripCreateIn(
     val id: String, val groupId: String, val vehicleAlias: String = "", val dataMode: String, val costRule: CostRuleIn,
@@ -38,7 +39,12 @@ val ApiJson = Json {
 @Serializable data class TripStartIn(val odometer: ReadingIn)
 @Serializable data class TripEndIn(val odometer: ReadingIn)
 @Serializable data class BoardingIn(val odometerKm: String? = null, val reason: String = "")
-@Serializable data class CostItemIn(val id: String, val kind: String, val amountKrw: Int, val allocation: String = "EQUAL", val note: String = "")
+@Serializable data class CostItemIn(
+    val id: String, val kind: String, val amountKrw: Int, val allocation: String = "EQUAL", val note: String = "",
+    val roadName: String = "", val estimated: Boolean = false,
+)
+@Serializable data class TollPointIn(val lat: Double, val lon: Double, val capturedAt: String)
+@Serializable data class TollEstimateIn(val points: List<TollPointIn>, val vehicleClass: Int = 1, val occupants: Int? = null)
 @Serializable data class ApprovalIn(val decision: String, val comment: String = "")
 
 @Serializable data class AuthOut(val userId: String, val nickname: String, val token: String, val expiresAt: String)
@@ -52,7 +58,7 @@ val ApiJson = Json {
 @Serializable data class IntervalOut(
     val id: String, val userId: String, val onboardAt: String? = null, val offboardAt: String? = null,
     val odometerOnKm: String? = null, val odometerOffKm: String? = null, val boundaryQuality: String, val closedBy: String? = null,
-    val openedBy: String? = null,   // USER | DRIVER: who said "on board"
+    val openedBy: String? = null,
 )
 @Serializable data class ParticipantOut(
     val userId: String, val nickname: String, val isDriver: Boolean, val memberStatus: String, val onBoard: Boolean,
@@ -61,10 +67,26 @@ val ApiJson = Json {
 @Serializable data class LatestOdometerOut(val km: String, val capturedAt: String, val source: String, val quality: String, val ageSeconds: Int)
 @Serializable data class CostRuleOut(
     val vehicleType: String, val efficiencyValue: String? = null, val efficiencyUnit: String? = null,
-    val efficiencyKmPerUnit: String? = null, val efficiencySource: String, val unitPriceKrw: String? = null,
+    val efficiencyKmPerUnit: String? = null, val efficiencySource: String, val fuelType: String? = null, val unitPriceKrw: String? = null,
+    val unitPriceSource: String = "MANUAL",
     val driverIncluded: Boolean, val energyPolicy: String,
 )
-@Serializable data class CostItemOut(val id: String, val kind: String, val amountKrw: Int, val allocation: String, val note: String, val inputSource: String = "MANUAL", val createdBy: String)
+@Serializable data class CostItemOut(
+    val id: String, val kind: String, val amountKrw: Int, val allocation: String, val note: String,
+    val roadName: String = "", val estimated: Boolean = false, val inputSource: String = "MANUAL", val createdBy: String,
+)
+@Serializable data class FuelPriceOut(
+    val fuel: String, val region: String, val priceKrw: Int, val diffKrw: Double? = null, val fetchedAt: String,
+    val cached: Boolean = false, val source: String = "OPINET", val attribution: String = "",
+)
+@Serializable data class PlaceOut(val address: String, val short: String)
+@Serializable data class TollSegmentOut(val kind: String, val roadName: String, val amountKrw: Int)
+@Serializable data class TollPassOut(val name: String, val lat: Double, val lon: Double)
+@Serializable data class TollEstimateOut(
+    val segments: List<TollSegmentOut> = emptyList(), val passes: List<TollPassOut> = emptyList(),
+    val totalKrw: Int = 0, val unmatchedGates: List<String> = emptyList(),
+    val dataAvailable: Boolean = false, val incomplete: Boolean = false, val estimated: Boolean = true, val attribution: String = "",
+)
 @Serializable data class ShareLineOut(val itemId: String, val label: String, val amountKrw: Int)
 @Serializable data class SegmentOut(val index: Int, val startKm: String, val endKm: String, val lengthKm: String, val payers: List<String>, val energyKrw: Int)
 @Serializable data class ShareOut(
@@ -87,9 +109,12 @@ val ApiJson = Json {
     val settlement: SettlementOut? = null, val issues: List<Issue> = emptyList(), val disclaimers: List<String> = emptyList(),
 )
 @Serializable data class BadgeOut(val id: String, val nameKo: String, val descriptionKo: String, val earnedAt: String)
+
+@Serializable data class BadgeStatusOut(val id: String, val nameKo: String, val descriptionKo: String, val earned: Boolean, val earnedAt: String? = null)
 @Serializable data class CharacterOut(
     val groupId: String, val name: String = "모아", val xp: Int, val level: Int, val levelXpStart: Int, val nextLevelXp: Int? = null,
-    val skinId: String, val mood: String, val badges: List<BadgeOut> = emptyList(), val completedTrips: Int, val noteKo: String = "",
+    val skinId: String, val mood: String, val badges: List<BadgeOut> = emptyList(), val allBadges: List<BadgeStatusOut> = emptyList(),
+    val completedTrips: Int, val noteKo: String = "",
 )
 @Serializable data class HistoryItem(
     val tripId: String, val startedAt: String? = null, val state: String, val dataMode: String, val distanceKm: String? = null,

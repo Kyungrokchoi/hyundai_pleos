@@ -1,4 +1,4 @@
-// All icons are aria-hidden; adjacent text carries the meaning.
+
 type P = { size?: number; className?: string };
 const base = (size: number, className?: string) => ({
   className, width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2.4,

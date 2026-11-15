@@ -3,9 +3,9 @@ import { test, type Page } from "@playwright/test";
 import { Driver } from "./driver";
 import { joinApproved, myUserId } from "./helpers";
 
-// Optional screenshot capture, not a test gate:
-//   E2E_SHOTS=1 E2E_SHOTS_DIR=/some/dir npx playwright test e2e/screens.spec.ts
-// Also writes heights.json (document height in CSS px at 412px width).
+
+
+
 const OUT = process.env.E2E_SHOTS_DIR ?? "test-results/screens";
 test.skip(!process.env.E2E_SHOTS, "set E2E_SHOTS=1 to capture screenshots");
 
@@ -13,7 +13,7 @@ test("capture the main screens at phone size", async ({ browser, page: home }) =
   mkdirSync(OUT, { recursive: true });
   const heights: Record<string, number> = {};
   const shot = async (p: Page, name: string, opts: { full?: boolean } = {}) => {
-    await p.waitForTimeout(350); // let entrance transitions settle
+    await p.waitForTimeout(350);
     heights[name] = await p.evaluate(() => document.documentElement.scrollHeight);
     await p.screenshot({ path: `${OUT}/${name}.png`, fullPage: opts.full ?? true });
   };
@@ -21,7 +21,7 @@ test("capture the main screens at phone size", async ({ browser, page: home }) =
   await home.goto("/");
   await shot(home, "01-home");
 
-  // values are typed in by the test driver, so MANUAL rather than PLEOS
+
   const driver = await new Driver("MANUAL").setup();
   const phone = { locale: "ko-KR", viewport: { width: 412, height: 915 }, deviceScaleFactor: 2 };
   const ctx = await browser.newContext({ ...phone, permissions: ["clipboard-read", "clipboard-write"] });
@@ -37,7 +37,7 @@ test("capture the main screens at phone size", async ({ browser, page: home }) =
   await driver.approveMember(await myUserId(p));
   await p.waitForURL(new RegExp(`/trip/${driver.tripId}$`));
 
-  // a second passenger so the strip has three lanes
+
   const ctx2 = await browser.newContext(phone);
   const q = await ctx2.newPage();
   await joinApproved(q, driver, "달이");

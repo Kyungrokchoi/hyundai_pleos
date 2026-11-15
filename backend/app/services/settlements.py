@@ -1,4 +1,3 @@
-"""Settlement revisions, approvals and confirmation."""
 from __future__ import annotations
 
 from dataclasses import asdict
@@ -18,12 +17,16 @@ PROPOSABLE = {"ENDED", "REVIEW", "DISPUTED"}
 ITEM_LABEL = {"TOLL": "통행료", "PARKING": "주차비", "OTHER": "기타"}
 
 
+def _item_label(i: m.CostItem) -> str:
+    base = i.note or (f"{ITEM_LABEL[i.kind]} ({i.road_name})" if i.road_name else ITEM_LABEL[i.kind])
+    return f"{base} · 추정" if i.estimated else base
+
+
 def participant_ids(trip: m.Trip) -> list[str]:
     return [trip.driver_user_id, *sorted({iv.user_id for iv in trip.intervals if iv.onboard_at})]
 
 
 def build_request(db: Session, trip: m.Trip) -> tuple[ce.SplitRequest | None, list[s.Issue]]:
-    """Engine input from stored data, or the issues blocking it."""
     blocking: list[s.Issue] = []
 
     def block(code: str, msg: str):
@@ -36,7 +39,7 @@ def build_request(db: Session, trip: m.Trip) -> tuple[ce.SplitRequest | None, li
         block("PRICE_MISSING", "연료/전기 단가가 입력되지 않았습니다.")
     eff, eff_source = effective_efficiency(db, trip) if cr else (None, None)
     if cr is not None and eff is None:
-        block("EFFICIENCY_MISSING", "연비/전비를 확인할 수 없습니다. 차량 값을 읽지 못했다면 직접 입력해 주세요.")
+        block("EFFICIENCY_MISSING", "연비/전비를 확인할 수 없습니다. 차량 값이 없고 연료 종류도 정해지지 않았습니다.")
     ivs: list[ce.RideInterval] = []
     for iv in trip.intervals:
         if not iv.onboard_at:
@@ -52,7 +55,7 @@ def build_request(db: Session, trip: m.Trip) -> tuple[ce.SplitRequest | None, li
         intervals=ivs,
         energy=ce.EnergyInput(ce.VehicleType(cr.vehicle_type), eff, Decimal(cr.unit_price_krw), eff_source, ce.DataSource.MANUAL),
         driver_included=cr.driver_included, energy_policy=ce.EnergyPolicy(cr.energy_policy),
-        items=[ce.CostItemInput(i.id, i.kind, i.amount_krw, ce.Allocation(i.allocation), i.note or ITEM_LABEL[i.kind]) for i in trip.items],
+        items=[ce.CostItemInput(i.id, i.kind, i.amount_krw, ce.Allocation(i.allocation), _item_label(i)) for i in trip.items],
     )
     return req, []
 
@@ -83,8 +86,8 @@ def propose(db: Session, trip: m.Trip, actor: m.User) -> m.Settlement:
     top = db.scalar(select(func.max(m.Settlement.revision)).where(m.Settlement.trip_id == trip.id)) or 0
     if existing is not None and latest is not None and existing.id == latest.id:
         if existing.state != "DISPUTED":
-            return existing  # same input: keep revision and approvals
-        # disputed but inputs unchanged: reopen so everyone approves again
+            return existing
+
         existing.revision, existing.state = top + 1, "PROPOSED"
         existing.approvals.clear()
         trip.state = "REVIEW"
@@ -93,11 +96,11 @@ def propose(db: Session, trip: m.Trip, actor: m.User) -> m.Settlement:
         return existing
     for old in db.scalars(select(m.Settlement).where(m.Settlement.trip_id == trip.id, m.Settlement.state != "SUPERSEDED")):
         old.state = "SUPERSEDED"
-    labels = {i.id: (i.note or ITEM_LABEL[i.kind]) for i in trip.items}
+    labels = {i.id: _item_label(i) for i in trip.items}
     nick = {u.id: u.nickname for u in db.scalars(select(m.User).where(m.User.id.in_(participant_ids(trip))))}
     payload = {"engine": asdict(res), "nicknames": nick, "item_labels": labels, "driver_included": req.driver_included,
                "energy_policy": req.energy_policy.value, "vehicle_type": req.energy.vehicle_type.value}
-    if existing is not None:  # input matches an older revision (input_hash is unique): reuse that row
+    if existing is not None:
         existing.revision, existing.state, existing.result = top + 1, "PROPOSED", payload
         existing.approvals.clear()
         st = existing
@@ -173,7 +176,7 @@ def to_out(st: m.Settlement) -> s.SettlementOut:
         id=st.id, trip_id=st.trip_id, revision=st.revision, state=s.SettlementState(st.state), total_krw=eng["total_krw"],
         energy_total_krw=eng["energy_total_krw"], items_total_krw=eng["items_total_krw"], distance_km=eng["distance_km"],
         consumption=eng["consumption"], consumption_unit=eng["consumption_unit"], equation=eng["equation"],
-        efficiency_source=ce.DataSource(eng["efficiency_source"]), driver_included=st.result["driver_included"],
+        efficiency_source=ce.EfficiencySource(eng["efficiency_source"]), driver_included=st.result["driver_included"],
         energy_policy=ce.EnergyPolicy(st.result["energy_policy"]),
         segments=[s.SegmentOut(index=g["index"], start_km=g["start_km"], end_km=g["end_km"], length_km=g["length_km"],
                                payers=list(g["payers"]), energy_krw=g["energy_krw"]) for g in eng["segments"]],

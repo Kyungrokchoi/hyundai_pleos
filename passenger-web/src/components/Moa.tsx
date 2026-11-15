@@ -4,7 +4,7 @@ type Mood = CharacterOut["mood"];
 
 const MOOD_KO: Record<Mood, string> = { SLEEPY: "졸린 표정", HAPPY: "기분 좋은 표정", PROUD: "뿌듯한 표정" };
 
-// Accessories mark the group level. `live` animation is off under prefers-reduced-motion.
+
 export function Moa({ mood = "HAPPY", level = 1, size = 120, live = false, grow = false, label }: {
   mood?: Mood; level?: number; size?: number; live?: boolean; grow?: boolean; label?: string;
 }) {
@@ -16,7 +16,7 @@ export function Moa({ mood = "HAPPY", level = 1, size = 120, live = false, grow 
       viewBox="0 -8 120 130" width={size} height={size * (130 / 120)}
       role={decorative ? undefined : "img"} aria-hidden={decorative ? true : undefined} aria-label={decorative ? undefined : aria}
     >
-      {/* wheels, drawn first so the body overlaps them */}
+
       {[36, 84].map((cx) => (
         <g key={cx}>
           <circle cx={cx} cy={103} r={12} fill="#14213d" />

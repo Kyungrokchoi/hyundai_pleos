@@ -1,4 +1,3 @@
-"""Group deletion and data retention."""
 from datetime import datetime, timedelta
 
 from sqlalchemy import delete, func, select
@@ -18,16 +17,15 @@ def purge_trips(db: Session, trip_ids: list[str]) -> None:
     settlement_ids = list(db.scalars(select(m.Settlement.id).where(m.Settlement.trip_id.in_(trip_ids))))
     interval_ids = list(db.scalars(select(m.ParticipantInterval.id).where(m.ParticipantInterval.trip_id.in_(trip_ids))))
     item_keys = [f"{t}:{i}" for t, i in db.execute(select(m.CostItem.trip_id, m.CostItem.id).where(m.CostItem.trip_id.in_(trip_ids)))]
-    # audit rows carry free-text reasons and amounts, so they go too
+
     _purge_audit(db, [*trip_ids, *settlement_ids, *interval_ids, *item_keys])
     db.execute(delete(m.RewardEvent).where(m.RewardEvent.trip_id.in_(trip_ids)))
     for t in db.scalars(select(m.Trip).where(m.Trip.id.in_(trip_ids))):
-        db.delete(t)  # readings, settlements and approvals cascade
+        db.delete(t)
     db.flush()
 
 
 def _drop_orphan_users(db: Session, user_ids: list[str]) -> int:
-    """Delete users left in no group, with their tokens and audit rows."""
     n = 0
     for uid in user_ids:
         if db.scalar(select(func.count()).select_from(m.GroupMember).where(m.GroupMember.user_id == uid)):
@@ -55,7 +53,6 @@ def purge_group(db: Session, group_id: str) -> None:
 
 
 def purge_expired(db: Session, now: datetime, retention_days: int) -> dict[str, int]:
-    """Delete expired trips, idle groups, expired tokens and users in no group."""
     cutoff = now - timedelta(days=retention_days)
     trip_ids = list(db.scalars(select(m.Trip.id).where(m.Trip.created_at < cutoff)))
     purge_trips(db, trip_ids)

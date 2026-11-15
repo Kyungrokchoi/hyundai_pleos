@@ -7,23 +7,23 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-// Override with -Pmoata.apiBaseUrl=http://192.168.0.10:8000/ or local.properties.
-// 10.0.2.2 is the host machine as seen from the emulator.
+
+
 val localProps = Properties().apply {
     rootProject.file("local.properties").takeIf { it.exists() }?.inputStream()?.use { load(it) }
 }
 val apiBaseUrl: String = (findProperty("moata.apiBaseUrl") as String?)
     ?: localProps.getProperty("moata.apiBaseUrl")
     ?: "http://10.0.2.2:8000/"
-// The QR encodes WEB_BASE_URL/join#token. Phones can't reach 10.0.2.2, so pass a LAN address,
-// e.g. -Pmoata.webBaseUrl=http://192.168.0.10:3000
+
+
 val webBaseUrl: String = (findProperty("moata.webBaseUrl") as String?)
     ?: localProps.getProperty("moata.webBaseUrl")
     ?: "http://10.0.2.2:3000"
 
 android {
     namespace = "io.moata.pleos"
-    // Current AndroidX/OkHttp need compileSdk 37; targetSdk stays at 34.
+
     compileSdk = 37
 
     defaultConfig {
@@ -42,7 +42,7 @@ android {
             buildConfigField("boolean", "DEMO_TOOLS", "true")
         }
         release {
-            // HTTPS only, no demo tools. Signing is not configured here.
+
             val releaseUrl = (findProperty("moata.apiBaseUrl") as String?)?.takeIf { it.startsWith("https://") }
                 ?: "https://api.invalid/"
             buildConfigField("String", "API_BASE_URL", "\"$releaseUrl\"")
@@ -52,7 +52,7 @@ android {
         }
     }
 
-    // android.car stubs (CarUxRestrictions) from platforms/android-NN/optional
+
     useLibrary("android.car")
 
     buildFeatures {

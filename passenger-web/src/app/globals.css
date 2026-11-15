@@ -1,4 +1,4 @@
-/* Token contrast ratios: docs/design-tokens.md. Yellow is reserved for the single primary action on a screen. */
+
 
 :root {
   --ink: #14213d;
@@ -6,18 +6,18 @@
   --ink-3: #5d6580;
   --paper: #f3f6f8;
   --paper-2: #e6ecf0;
-  --rule: #cbd5dc; /* decorative hairlines only */
-  --edge: #6f7b86; /* control borders (>= 3:1) */
-  --moa: #ffc83d; /* primary action and mascot only */
-  --route: #09695e; /* safe for text */
-  --route-line: #0e9283; /* fills and graphics (>= 3:1) */
+  --rule: #cbd5dc;
+  --edge: #6f7b86;
+  --moa: #ffc83d;
+  --route: #09695e;
+  --route-line: #0e9283;
   --route-bg: #e2f4f1;
   --alert: #c62b30;
   --alert-bg: #fdebec;
 
   --font: "Pretendard Variable", Pretendard, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
-  --t-xs: 0.875rem; /* captions only (timestamps) */
-  --t-sm: 1rem; /* secondary text, still 16px */
+  --t-xs: 0.875rem;
+  --t-sm: 1rem;
   --t-md: 1.0625rem;
   --t-lg: 1.25rem;
   --t-xl: 1.625rem;
@@ -37,17 +37,17 @@
   --r-sm: 0.75rem;
   --r-md: 1rem;
   --r-pill: 999px;
-  --elev: 0 -1px 0 rgb(20 33 61 / 0.08), 0 -12px 28px rgb(20 33 61 / 0.07); /* sticky action bar only */
+  --elev: 0 -1px 0 rgb(20 33 61 / 0.08), 0 -12px 28px rgb(20 33 61 / 0.07);
   --d-fast: 120ms;
   --d-base: 200ms;
   --d-slow: 320ms;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --target: 3rem; /* 48px minimum hit area */
-  --target-lg: 3.5rem; /* 56px primary action */
+  --target: 3rem;
+  --target-lg: 3.5rem;
 }
 
 * { box-sizing: border-box; }
-/* keep focused controls clear of the sticky DEMO bar and action bar (WCAG 2.4.11) */
+
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: 3rem; scroll-padding-bottom: 7rem; }
 ::selection { background: var(--route-bg); color: var(--ink); }
 input, textarea { caret-color: var(--route); }
@@ -82,7 +82,7 @@ img, svg { display: block; max-width: 100%; }
 }
 .skip-link:focus { top: var(--s-3); }
 
-/* at least one screen tall so the action bar rests at the bottom */
+
 .shell { max-width: 32rem; margin: 0 auto; padding: 0 var(--s-4); min-height: 100dvh; display: flex; flex-direction: column; }
 .shell > main { flex: 1; padding-bottom: var(--s-6); }
 .site-header { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-3) 0; }
@@ -119,7 +119,7 @@ img, svg { display: block; max-width: 100%; }
 .btn--primary:hover:not(:disabled) { background: #f5bc26; }
 .btn--primary:disabled { background: var(--paper-2); }
 .btn--danger { background: var(--alert-bg); color: var(--alert); }
-.btn--text { width: auto; min-height: var(--target); padding: 0; /* flush with the column */ background: transparent; color: var(--route); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1.5px; }
+.btn--text { width: auto; min-height: var(--target); padding: 0;  background: transparent; color: var(--route); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1.5px; }
 .btn--text:hover:not(:disabled) { background: transparent; color: var(--ink); }
 .btn--text svg { flex: none; }
 .btn-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
@@ -165,7 +165,7 @@ details[open] > summary .chev { rotate: 180deg; }
 .acc > summary { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); min-height: var(--target-lg); font-size: var(--t-lg); font-weight: 700; }
 .acc__body { padding: 0 0 var(--s-5); }
 
-/* the whole row is the toggle, so it is a big target */
+
 .fine > summary { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s-2); min-height: var(--target); color: var(--ink-2); font-size: var(--t-sm); }
 .fine .more { display: inline-flex; align-items: center; gap: var(--s-1); color: var(--route); font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; }
 .fine__body { padding: var(--s-1) 0 var(--s-3); color: var(--ink-2); font-size: var(--t-sm); }
@@ -230,13 +230,15 @@ dialog::backdrop { background: rgb(20 33 61 / 0.55); }
 }
 .strip__lane--me .strip__span { background: var(--route-line); }
 .strip__lane--me .strip__name { color: var(--route); }
-.strip__span--open { border-top-right-radius: 0; border-bottom-right-radius: 0; } /* still riding: no end cap yet */
+.strip__span--open { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 .strip__pin { position: absolute; right: -0.125rem; top: -0.3125rem; bottom: -0.3125rem; width: 0.25rem; border-radius: var(--r-pill); background: var(--ink); }
 .strip__tick { position: absolute; top: -0.25rem; bottom: -0.25rem; width: 1px; background: var(--ink-3); }
 .strip__axis { display: flex; justify-content: space-between; margin-top: var(--s-2); color: var(--ink-2); }
 
-.sources { display: grid; gap: var(--s-2); }
-.sources > li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-1) var(--s-2); font-size: var(--t-sm); color: var(--ink-2); }
+.facts { display: grid; gap: var(--s-1); margin: 0; }
+.facts > div { display: flex; gap: var(--s-2); font-size: var(--t-sm); color: var(--ink-2); }
+.facts dt::after { content: " :"; }
+.facts dd { margin: 0; color: var(--ink); font-weight: 600; }
 .badge__code { font-weight: 800; letter-spacing: 0.02em; }
 
 .ledger--tight > div { padding: var(--s-1) 0; }

@@ -13,8 +13,8 @@ export const TRIP_STATE: Record<TripState, { label: string; hint: string }> = {
   DISPUTED: { label: "이의 제기됨", hint: "운전자가 정산안을 다시 만들 거예요." },
 };
 
-// The literal code (PLEOS | MANUAL | DEMO) is always shown next to the Korean label.
-// `explain` is shown once, where the numbers are explained.
+
+
 export const DATA_SOURCE: Record<DataSource, { code: DataSource; label: string; explain: string }> = {
   PLEOS: { code: "PLEOS", label: "차량에서 읽은 값", explain: "차량이 알려 준 주행거리를 그대로 기록했어요." },
   MANUAL: { code: "MANUAL", label: "직접 입력", explain: "운전자가 직접 적은 값이에요." },

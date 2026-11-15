@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { itemLabel, itemReason, payersOf, ridingSentence, sinceStart, splitIssues } from "@/lib/bill";
+import { billFacts, itemLabel, itemReason, payersOf, ridingSentence, sinceStart, splitIssues, stripEstimate } from "@/lib/bill";
 import { mergeNotices, parseNotices } from "@/lib/notices";
 
 describe("ridingSentence (one plain sentence from the server's distances)", () => {
@@ -42,6 +42,33 @@ describe("notice helpers", () => {
     expect(parseNotices("not json")).toEqual([]);
     expect(parseNotices('{"a":1}')).toEqual([]);
     expect(parseNotices('["x",1,"y"]')).toEqual(["x", "y"]);
+  });
+});
+
+describe("itemLabel shows the road a toll belongs to", () => {
+  it("kind · road · note, skipping empty parts", () => {
+    expect(itemLabel({ kind: "TOLL", note: "", road_name: "서울TG→수원IC" }, "")).toBe("통행료 · 서울TG→수원IC");
+    expect(itemLabel({ kind: "TOLL", note: "퇴근길", road_name: "남산터널" }, "")).toBe("통행료 · 남산터널 · 퇴근길");
+  });
+  it("old items without a road keep the previous wording and never break", () => {
+    expect(itemLabel({ kind: "TOLL", note: "고속도로", road_name: "" }, "")).toBe("통행료 · 고속도로");
+    expect(itemLabel({ kind: "PARKING", note: "" }, "")).toBe("주차비");
+    expect(itemLabel(undefined, "")).toBe("추가 비용");
+  });
+  it("stripEstimate removes a trailing ' · 추정' from server labels and nothing else", () => {
+    expect(stripEstimate("통행료 (동수원→서울) · 추정")).toBe("통행료 (동수원→서울)");
+    expect(stripEstimate("통행료 · 추정 구간 안내")).toBe("통행료 · 추정 구간 안내");
+    expect(itemLabel(undefined, "통행료 (동수원→서울) · 추정")).toBe("통행료 (동수원→서울)");
+  });
+  it("billFacts: 거리, 연비, 유가, 통행료 as plain values", () => {
+    const facts = (over: Partial<Parameters<typeof billFacts>[0]> = {}) =>
+      billFacts({ distanceKm: "24", ev: false, efficiencyKmPerUnit: "10.4", unitPriceKrw: "1855", items: [{ kind: "TOLL", amount_krw: 1900 }, { kind: "PARKING", amount_krw: 500 }], ...over });
+    expect(facts().map((f) => `${f.label} : ${f.value}`)).toEqual(["거리 : 24km", "연비 : 10.4 km/L", "유가 : 1,855원/L", "통행료 : 1,900원"]);
+    expect(facts({ items: [{ kind: "PARKING", amount_krw: 500 }] })[3]!.value).toBe("없음");
+    expect(facts({ items: [{ kind: "TOLL", amount_krw: 1000 }, { kind: "TOLL", amount_krw: 900 }] })[3]!.value).toBe("1,900원");
+    expect(facts({ ev: true, efficiencyKmPerUnit: "5", unitPriceKrw: "300" }).map((f) => f.value).slice(1, 3)).toEqual(["5 km/kWh", "300원/kWh"]);
+    expect(facts({ efficiencyKmPerUnit: null, unitPriceKrw: undefined, distanceKm: null }).slice(0, 3).map((f) => f.value)).toEqual(["-", "-", "-"]);
+    expect(JSON.stringify(facts())).not.toMatch(/오피넷|OPINET|ESTIMATE|표시연비|PLEOS|추정/);
   });
 });
 

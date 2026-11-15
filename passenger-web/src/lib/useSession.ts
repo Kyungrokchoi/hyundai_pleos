@@ -13,9 +13,9 @@ function subscribe(cb: () => void) {
 const read = () => {
   try { return window.localStorage.getItem(SESSION_KEY) ?? ""; } catch { return ""; }
 };
-const READING = "\u0000"; // server render / first hydration pass
+const READING = "\u0000";
 
-// undefined = not read yet, null = signed out. The object identity only changes when storage does.
+
 export function useSession(): Session | null | undefined {
   const raw = useSyncExternalStore(subscribe, read, () => READING);
   return useMemo(() => {

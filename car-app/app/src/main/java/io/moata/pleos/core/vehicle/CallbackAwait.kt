@@ -5,7 +5,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlin.coroutines.resume
 
-/** How an SDK callback call ended. */
+
 sealed interface CallbackOutcome<out T> {
     data class Complete<T>(val value: T) : CallbackOutcome<T>
     data class Failed(val error: Exception) : CallbackOutcome<Nothing>
@@ -20,7 +20,7 @@ fun CallbackOutcome<*>.describe(): String = when (this) {
     is CallbackOutcome.Threw -> "THREW: ${error::class.java.name}: ${error.message}"
 }
 
-/** Resumes at most once and returns from the SDK callback immediately, so `release()` never runs inside one. */
+
 suspend fun <T> awaitCallback(
     timeoutMs: Long,
     call: (onComplete: (T) -> Unit, onFailed: (Exception) -> Unit) -> Unit,

@@ -1,11 +1,10 @@
-"""SQLAlchemy models, portable between SQLite (tests) and PostgreSQL (runtime)."""
 from __future__ import annotations
 
 import uuid
 from datetime import datetime, timezone
 
 from sqlalchemy import (JSON, BigInteger, Boolean, DateTime, ForeignKey, Index, Integer, Numeric, String, UniqueConstraint,
-                        text)
+                        false, text)
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.types import TypeDecorator
 
@@ -19,7 +18,6 @@ def new_id() -> str:
 
 
 class UTCDateTime(TypeDecorator):
-    """Always timezone-aware UTC in Python, regardless of backend (SQLite drops tzinfo)."""
     impl = DateTime(timezone=True)
     cache_ok = True
 
@@ -123,7 +121,9 @@ class CostRule(Base):
     efficiency_value: Mapped[object | None] = mapped_column(RATE, default=None)
     efficiency_unit: Mapped[str | None] = mapped_column(String(12), default=None)
     efficiency_source: Mapped[str] = mapped_column(String(8), default="MANUAL")
+    fuel_type: Mapped[str | None] = mapped_column(String(8), default=None)
     unit_price_krw: Mapped[object | None] = mapped_column(RATE, default=None)
+    unit_price_source: Mapped[str] = mapped_column(String(8), default="MANUAL", server_default="MANUAL")
     driver_included: Mapped[bool] = mapped_column(Boolean, default=True)
     energy_policy: Mapped[str] = mapped_column(String(16), default="SEGMENT_SHARED")
 
@@ -139,7 +139,7 @@ class ParticipantInterval(Base):
     odometer_off_km: Mapped[object | None] = mapped_column(KM, default=None)
     boundary_quality: Mapped[str] = mapped_column(String(12), default="VERIFIED")
     closed_by: Mapped[str | None] = mapped_column(String(10), default=None)
-    opened_by: Mapped[str | None] = mapped_column(String(10), default=None)   # USER | DRIVER: who marked the boarding
+    opened_by: Mapped[str | None] = mapped_column(String(10), default=None)
     created_at: Mapped[datetime] = mapped_column(default=utcnow)
 
 
@@ -164,15 +164,26 @@ class VehicleReading(Base):
 
 class CostItem(Base):
     __tablename__ = "cost_items"
-    # PK (trip_id, id): client ids only need to be unique within a trip
+
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     trip_id: Mapped[str] = mapped_column(ForeignKey("trips.id", ondelete="CASCADE"), primary_key=True)
     kind: Mapped[str] = mapped_column(String(8))
     amount_krw: Mapped[int] = mapped_column(Integer)
     allocation: Mapped[str] = mapped_column(String(20))
     note: Mapped[str] = mapped_column(String(60), default="")
+    road_name: Mapped[str] = mapped_column(String(40), default="", server_default="")
+    estimated: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
     created_by: Mapped[str] = mapped_column(ForeignKey("users.id"))
     created_at: Mapped[datetime] = mapped_column(default=utcnow)
+
+
+class TollFareCache(Base):
+    __tablename__ = "toll_fare_cache"
+    dep_code: Mapped[str] = mapped_column(String(8), primary_key=True)
+    arr_code: Mapped[str] = mapped_column(String(8), primary_key=True)
+    vehicle_class: Mapped[int] = mapped_column(Integer, primary_key=True)
+    amount_krw: Mapped[int | None] = mapped_column(Integer, default=None)
+    fetched_at: Mapped[datetime] = mapped_column(default=utcnow)
 
 
 class Settlement(Base):
@@ -184,7 +195,7 @@ class Settlement(Base):
     state: Mapped[str] = mapped_column(String(12), default="PROPOSED")
     input_hash: Mapped[str] = mapped_column(String(64))
     total_krw: Mapped[int] = mapped_column(BigInteger)
-    result: Mapped[dict] = mapped_column(JSON)  # full breakdown shown to clients
+    result: Mapped[dict] = mapped_column(JSON)
     created_by: Mapped[str] = mapped_column(ForeignKey("users.id"))
     created_at: Mapped[datetime] = mapped_column(default=utcnow)
     approvals: Mapped[list["SettlementApproval"]] = relationship(cascade="all, delete-orphan")
@@ -211,7 +222,7 @@ class CharacterProgress(Base):
 
 class RewardEvent(Base):
     __tablename__ = "reward_events"
-    __table_args__ = (UniqueConstraint("trip_id", "rule_id"),)  # one award per trip and rule
+    __table_args__ = (UniqueConstraint("trip_id", "rule_id"),)
     id: Mapped[str] = mapped_column(String(32), primary_key=True, default=new_id)
     group_id: Mapped[str] = mapped_column(ForeignKey("groups.id", ondelete="CASCADE"), index=True)
     trip_id: Mapped[str] = mapped_column(String(64))
@@ -245,7 +256,7 @@ class AuditEvent(Base):
     id: Mapped[str] = mapped_column(String(32), primary_key=True, default=new_id)
     actor_id: Mapped[str | None] = mapped_column(String(32), index=True)
     entity_type: Mapped[str] = mapped_column(String(20))
-    entity_id: Mapped[str] = mapped_column(String(140), index=True)  # "<trip_id>:<item_id>" for cost items
+    entity_id: Mapped[str] = mapped_column(String(140), index=True)
     action: Mapped[str] = mapped_column(String(40))
     at: Mapped[datetime] = mapped_column(default=utcnow)
     diff: Mapped[dict | None] = mapped_column(JSON, default=None)

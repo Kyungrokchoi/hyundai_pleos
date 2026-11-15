@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app.api import groups, settlements, trips
+from app.api import fuel, groups, places, settlements, trips
 from app.config import get_settings
 from app.db.session import init_db
 from app.errors import ApiError
@@ -19,7 +19,6 @@ PREFIX = "/api/v1"
 
 
 class BodyLimit:
-    """ASGI request size cap. Counts streamed bytes, so chunked bodies without Content-Length are capped too."""
 
     def __init__(self, app, max_bytes: int):
         self.app, self.max = app, max_bytes
@@ -44,7 +43,7 @@ class BodyLimit:
             return msg
 
         async def guarded(msg):
-            if over:  # handler got a truncated body: answer 413 instead
+            if over:
                 if msg["type"] == "http.response.start":
                     await self._reject(send)
                 return
@@ -60,7 +59,7 @@ class BodyLimit:
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    init_db()  # dev/test convenience; production uses `alembic upgrade head`
+    init_db()
     yield
 
 
@@ -77,7 +76,7 @@ def create_app() -> FastAPI:
     async def security_headers(request: Request, call_next):
         resp = await call_next(request)
         resp.headers.setdefault("X-Content-Type-Options", "nosniff")
-        resp.headers.setdefault("Cache-Control", "no-store")  # token-bearing and per-user responses are never cached
+        resp.headers.setdefault("Cache-Control", "no-store")
         return resp
 
     @app.exception_handler(StarletteHTTPException)
@@ -97,14 +96,14 @@ def create_app() -> FastAPI:
 
     @app.exception_handler(Exception)
     async def unexpected(_: Request, exc: Exception):
-        log.exception("unhandled error")  # details go to the server log only
+        log.exception("unhandled error")
         return JSONResponse({"code": "INTERNAL_ERROR", "message_ko": "서버에 문제가 생겼어요. 잠시 후 다시 시도해 주세요.", "detail": None}, status_code=500)
 
     @app.get(f"{PREFIX}/health", tags=["health"])
     def health():
         return {"status": "ok", "service": "moata-api", "version": app.version}
 
-    for r in (groups.router, trips.router, settlements.router):
+    for r in (groups.router, trips.router, settlements.router, fuel.router, places.router):
         app.include_router(r, prefix=PREFIX)
 
     app.add_middleware(BodyLimit, max_bytes=settings.max_body_bytes)

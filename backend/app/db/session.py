@@ -17,7 +17,7 @@ def make_engine(url: str):
     engine = create_engine(url, **kwargs)
     if url.startswith("sqlite"):
         @event.listens_for(engine, "connect")
-        def _fk_on(dbapi_conn, _):  # SQLite ignores FK/cascade rules unless asked
+        def _fk_on(dbapi_conn, _):
             dbapi_conn.execute("PRAGMA foreign_keys=ON")
     return engine
 
@@ -27,7 +27,6 @@ SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
 
 
 def init_db() -> None:
-    """Dev/test only; the production schema comes from Alembic."""
     Base.metadata.create_all(engine)
 
 

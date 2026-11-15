@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 
-/** The one main action of a screen. */
+
 @Composable
 fun BigButton(text: String, modifier: Modifier = Modifier, enabled: Boolean = true, danger: Boolean = false, onClick: () -> Unit) {
     Button(
@@ -60,7 +60,7 @@ fun BigButton(text: String, modifier: Modifier = Modifier, enabled: Boolean = tr
     ) { Text(text, style = MaterialTheme.typography.labelLarge) }
 }
 
-/** Full-width action for screens with nothing else to decide (home, driving). */
+
 @Composable
 fun HeroButton(text: String, modifier: Modifier = Modifier, enabled: Boolean = true, onClick: () -> Unit) {
     Button(
@@ -71,7 +71,7 @@ fun HeroButton(text: String, modifier: Modifier = Modifier, enabled: Boolean = t
     ) { Text(text, style = MaterialTheme.typography.headlineMedium) }
 }
 
-/** Secondary action. On a coloured bar pass Ink for both colours. */
+
 @Composable
 fun GhostButton(text: String, modifier: Modifier = Modifier, enabled: Boolean = true, content: Color = Paper, outline: Color = Muted, onClick: () -> Unit) {
     OutlinedButton(
@@ -82,7 +82,7 @@ fun GhostButton(text: String, modifier: Modifier = Modifier, enabled: Boolean = 
     ) { Text(text, style = MaterialTheme.typography.labelMedium) }
 }
 
-/** Lowest-emphasis action. Icons are silent for TalkBack; the text names the action. */
+
 @Composable
 fun TextAction(text: String, modifier: Modifier = Modifier, enabled: Boolean = true, leading: ImageVector? = null, trailing: ImageVector? = null, onClick: () -> Unit) {
     val tint = if (enabled) TealText else Muted
@@ -96,14 +96,14 @@ fun TextAction(text: String, modifier: Modifier = Modifier, enabled: Boolean = t
     }
 }
 
-/** Show/hide toggle; TalkBack hears "펼쳐짐/접힘" instead of an arrow. */
+
 @Composable
 fun ExpandAction(label: String, expanded: Boolean, modifier: Modifier = Modifier, onToggle: () -> Unit) =
     TextAction(label, modifier.semantics { stateDescription = if (expanded) "펼쳐짐" else "접힘" }, trailing = if (expanded) MoaIcons.ChevronUp else MoaIcons.ChevronDown, onClick = onToggle)
 
 fun Modifier.asHeading(): Modifier = semantics { heading() }
 
-/** Always text, never colour alone. */
+
 @Composable
 fun Pill(text: String, fg: Color = Ink, bg: Color = MoaYellow, modifier: Modifier = Modifier, icon: ImageVector? = null) {
     Row(
@@ -136,7 +136,7 @@ fun TextInput(label: String, value: String, onChange: (String) -> Unit, modifier
     OutlinedTextField(value = value, onValueChange = onChange, label = { Text(label, style = MaterialTheme.typography.bodySmall) }, singleLine = true, modifier = modifier, textStyle = MaterialTheme.typography.bodyLarge)
 }
 
-/** Radio chip row. The selected chip has a check mark so the choice is never colour-only. */
+
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun <T> Choice(options: List<Pair<T, String>>, selected: T, onSelect: (T) -> Unit, modifier: Modifier = Modifier) {
@@ -158,7 +158,7 @@ fun <T> Choice(options: List<Pair<T, String>>, selected: T, onSelect: (T) -> Uni
     }
 }
 
-/** Adds thousands separators to a typed value, e.g. "12345.5" -> "12,345.5". */
+
 fun grouped(raw: String): String {
     if (raw.isEmpty()) return "0"
     val (whole, frac) = raw.substringBefore('.') to raw.substringAfter('.', "").takeIf { raw.contains('.') }
@@ -166,7 +166,7 @@ fun grouped(raw: String): String {
     return if (frac != null) "$w.$frac" else w
 }
 
-/** Key token for delete; drawn as [MoaIcons.Backspace], announced as "지우기". */
+
 const val BACKSPACE = "⌫"
 
 fun pressKey(value: String, key: String, decimal: Boolean, maxLen: Int = 9): String = when (key) {
@@ -175,7 +175,7 @@ fun pressKey(value: String, key: String, decimal: Boolean, maxLen: Int = 9): Str
     else -> if (value.length >= maxLen) value else if (value == "0") key else value + key
 }
 
-/** On-screen keypad; the system keyboard is too small to use in the car. */
+
 @Composable
 fun NumberPad(value: String, onChange: (String) -> Unit, modifier: Modifier = Modifier, decimal: Boolean = false, maxLen: Int = 9) {
     val rows = listOf(listOf("1", "2", "3"), listOf("4", "5", "6"), listOf("7", "8", "9"), listOf(if (decimal) "." else "", "0", BACKSPACE))
@@ -199,7 +199,7 @@ fun NumberPad(value: String, onChange: (String) -> Unit, modifier: Modifier = Mo
     }
 }
 
-/** Tapping selects it for the number pad; without [onClick] it is a plain readout. */
+
 @Composable
 fun ValueCard(label: String, value: String, unit: String, selected: Boolean, modifier: Modifier = Modifier, onClick: (() -> Unit)? = null) {
     Column(
@@ -217,11 +217,11 @@ fun ValueCard(label: String, value: String, unit: String, selected: Boolean, mod
     }
 }
 
-/** The default dialog width is phone-sized; this one fits the 2560 px screen. Only shown while parked. */
+
 @Composable
 fun BigDialog(onDismiss: () -> Unit, content: @Composable () -> Unit) {
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false)) {
-        Column(   // scrolls so the buttons stay reachable at a large font scale
+        Column(
             Modifier.widthIn(max = 1040.dp).fillMaxWidth(0.82f).background(Surface1, RoundedCornerShape(40.dp)).verticalScroll(rememberScrollState()).padding(Space.l),
             verticalArrangement = Arrangement.spacedBy(Space.m),
         ) { content() }

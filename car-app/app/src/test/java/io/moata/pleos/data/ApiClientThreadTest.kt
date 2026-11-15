@@ -19,7 +19,7 @@ import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-/** The JVM never throws NetworkOnMainThreadException, so assert directly that the body is read off the calling thread. */
+
 class ApiClientThreadTest {
     @Test
     fun responseBodyIsNeverReadOnTheCallingThread() {

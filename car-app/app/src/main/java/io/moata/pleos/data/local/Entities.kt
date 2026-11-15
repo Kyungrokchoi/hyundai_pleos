@@ -4,18 +4,18 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-/**
- * One row per HTTP request or reading, replayed in `seq` order. `eventId` is unique, so enqueueing twice is a
- * no-op; the server is idempotent on the same client-generated ids.
- */
+
+
+
+
 @Entity(tableName = "outbox", indices = [Index(value = ["eventId"], unique = true), Index("state", "seq")])
 data class OutboxEvent(
     @PrimaryKey(autoGenerate = true) val seq: Long = 0,
     val eventId: String,
-    val kind: String,          // READING | REQUEST
+    val kind: String,
     val tripId: String?,
     val method: String,
-    val path: String,          // relative to /api/v1
+    val path: String,
     val body: String?,
     val createdAt: Long,
     val state: String = STATE_PENDING,
@@ -26,7 +26,7 @@ data class OutboxEvent(
     companion object {
         const val STATE_PENDING = "PENDING"
         const val STATE_DONE = "DONE"
-        const val STATE_FAILED = "FAILED"   // rejected by the server (4xx); kept for inspection
+        const val STATE_FAILED = "FAILED"
         const val KIND_READING = "READING"
         const val KIND_REQUEST = "REQUEST"
     }
@@ -36,9 +36,9 @@ data class OutboxEvent(
 data class LocalTrip(
     @PrimaryKey val id: String,
     val groupId: String,
-    val state: String,         // INVITING | READY | IN_PROGRESS | ENDED | REVIEW | CONFIRMED | CANCELLED
-    val dataMode: String,      // PLEOS | MANUAL | DEMO
-    val vehicleType: String,   // ICE | EV
+    val state: String,
+    val dataMode: String,
+    val vehicleType: String,
     val createdAt: Long,
     val startedAt: Long? = null,
     val endedAt: Long? = null,

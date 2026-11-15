@@ -73,7 +73,7 @@ function TripBody({ trip, session, stale, offline, lastUpdated, refresh }: {
   const exits = me?.intervals.filter((i) => i.offboard_at) ?? [];
   const alighted = active && !me?.on_board && exits.length > 0;
   const parked = PRE_DEPARTURE.includes(trip.state);
-  // board while parked; a first tap after departure still counts from that point
+
   const canBoard = active && !me?.on_board && (parked || (trip.state === "IN_PROGRESS" && me?.intervals.length === 0));
   const canAlight = active && Boolean(me?.on_board) && trip.state === "IN_PROGRESS";
   const canReboard = alighted && trip.state === "IN_PROGRESS";
@@ -110,7 +110,7 @@ function TripBody({ trip, session, stale, offline, lastUpdated, refresh }: {
   const notices = mergeNotices(trip.disclaimers, infoIssues.map((i) => i.message_ko));
   const strip = rideStrip(trip, session.userId);
   const myLane = strip?.lanes.find((l) => l.mine);
-  // after getting off, show my own distance instead of the car's
+
   const showMine = alighted && myLane !== undefined;
 
   return (

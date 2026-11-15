@@ -1,4 +1,3 @@
-"""Daily retention job: `python -m app.purge` deletes data older than MOATA_RETENTION_DAYS."""
 from app.config import get_settings
 from app.db import models as m
 from app.db.session import SessionLocal

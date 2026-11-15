@@ -3,8 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 
 interface State<T> { key: string | null; data: T | null; error: unknown }
 
-// Keeps the previous data while reloading, so show a skeleton only for `loading && !data`.
-// `deps` must be primitives; they form the cache key.
+
+
 export function useLoad<T>(fn: ((signal: AbortSignal) => Promise<T>) | null, deps: Array<string | number | null>) {
   const [nonce, setNonce] = useState(0);
   const [state, setState] = useState<State<T>>({ key: null, data: null, error: null });
@@ -20,7 +20,7 @@ export function useLoad<T>(fn: ((signal: AbortSignal) => Promise<T>) | null, dep
         setState((prev) => ({ key, data: prev.data, error }));
       });
     return () => ctrl.abort();
-    // `fn` changes every render; the primitive deps in `key` decide when to reload.
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 

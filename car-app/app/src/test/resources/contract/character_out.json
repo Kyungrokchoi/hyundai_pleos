@@ -1,3 +1,8 @@
 {"group_id":"22222222-2222-4222-8222-222222222222","name":"모아","xp":40,"level":2,"level_xp_start":30,"next_level_xp":70,"skin_id":"default","mood":"PROUD",
- "badges":[{"id":"first-ride","name_ko":"첫 동행","description_ko":"처음으로 함께 정산을 마쳤어요.","earned_at":"2026-11-02T03:00:00Z"}],
+ "badges":[{"id":"FIRST_RIDE","name_ko":"첫 동행","description_ko":"처음으로 함께 탄 이동을 마쳤어요.","earned_at":"2026-11-02T03:00:00Z"}],
+ "all_badges":[
+  {"id":"FIRST_RIDE","name_ko":"첫 동행","description_ko":"처음으로 함께 탄 이동을 마쳤어요.","earned":true,"earned_at":"2026-11-02T03:00:00Z"},
+  {"id":"TRIO","name_ko":"셋이 함께","description_ko":"세 명 이상이 한 차에서 정산을 마쳤어요.","earned":false,"earned_at":null},
+  {"id":"FIVE_TRIPS","name_ko":"다섯 번의 동행","description_ko":"함께한 이동 기록이 5번 쌓였어요.","earned":false,"earned_at":null},
+  {"id":"CLEAN_SPLIT","name_ko":"한 번에 합의","description_ko":"이의 없이 한 번에 정산에 합의했어요.","earned":false,"earned_at":null}],
  "completed_trips":4,"note_ko":"모아는 함께 정산을 마친 이동 기록으로만 자랍니다. 거리·속도와는 관계없어요."}

@@ -11,14 +11,12 @@ import { IconAlert, IconArrowLeft, IconCheck, IconClock, IconCopy } from "@/comp
 import { Moa } from "@/components/Moa";
 import { Notice } from "@/components/Notice";
 import { RideStrip } from "@/components/RideStrip";
-import { SourceBadge } from "@/components/SourceBadge";
 import { Empty, ErrorState, Loading, StaleNotice } from "@/components/StateViews";
-import { itemLabel, itemReason, payersOf, ridingSentence, sinceStart, splitIssues } from "@/lib/bill";
-import { formatInt, formatKm, formatKrw } from "@/lib/format";
-import { ALLOCATION, APPROVAL, DATA_SOURCE, ENERGY_POLICY, ITEM_KIND } from "@/lib/labels";
+import { billFacts, itemLabel, itemReason, payersOf, ridingSentence, sinceStart, splitIssues } from "@/lib/bill";
+import { formatInt, formatKm, formatKrw, kmBetween } from "@/lib/format";
+import { ALLOCATION, APPROVAL, ENERGY_POLICY } from "@/lib/labels";
 import { mergeNotices } from "@/lib/notices";
 import { mySegments, rideStrip, segmentTicks } from "@/lib/ride";
-import { groupSources } from "@/lib/sources";
 import type { Session } from "@/lib/session";
 import { buildShareText } from "@/lib/share";
 import { useLoad } from "@/lib/useLoad";
@@ -115,7 +113,7 @@ function Bill({ trip, s, session, live }: { trip: TripSummary; s: SettlementOut;
   async function copyAmount() {
     try {
       if (!navigator.clipboard) throw new Error("no clipboard");
-      await navigator.clipboard.writeText(String(owed)); // digits only: banking apps paste it as an amount
+      await navigator.clipboard.writeText(String(owed));
       setAmountCopied(`${formatInt(owed)}원을 복사했어요. 송금 앱에 붙여 넣으세요.`);
     } catch {
       setAmountCopied(`복사할 수 없었어요. 위의 ${formatInt(owed)}원을 길게 눌러 직접 복사해 주세요.`);
@@ -128,7 +126,7 @@ function Bill({ trip, s, session, live }: { trip: TripSummary; s: SettlementOut;
       if (typeof navigator.share === "function") await navigator.share({ text });
       else { await navigator.clipboard.writeText(text); setCopied("복사했어요. 단체 대화방에 붙여 넣어 보세요."); }
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") return; // user closed the share sheet
+      if (e instanceof DOMException && e.name === "AbortError") return;
       setCopied("복사할 수 없었어요. 아래 내용을 길게 눌러 직접 복사해 주세요.");
     }
   }
@@ -136,7 +134,7 @@ function Bill({ trip, s, session, live }: { trip: TripSummary; s: SettlementOut;
   const openDispute = () => dispute.current?.showModal();
   let bar: ReactNode = null;
   if (confirmed) {
-    // once confirmed, the only job left is paying the driver outside the app
+
     bar = owed > 0 ? (
       <div className="action-bar__inner">
         <button className="btn btn--primary" type="button" onClick={copyAmount} data-testid="copy-amount"><IconCopy /> {formatInt(owed)}원 복사</button>
@@ -171,18 +169,14 @@ function Bill({ trip, s, session, live }: { trip: TripSummary; s: SettlementOut;
     }
   }
 
-  const sourceLine = DATA_SOURCE[s.efficiency_source];
   const ev = s.consumption_unit === "kWh";
   const strip = rideStrip(trip, session.userId);
   const segs = mine ? mySegments(s.segments, trip.odometer_start_km, mine.user_id) : [];
   const itemById = new Map(trip.cost_items.map((c) => [c.id, c]));
-  // The unit price and cost items are always typed by the driver, so they are always MANUAL.
-  const sourceGroups = groupSources([
-    ["거리", trip.data_mode],
-    [ev ? "전비" : "연비", s.efficiency_source],
-    [ev ? "전기요금" : "유가", "MANUAL"],
-    ...(trip.cost_items.length > 0 ? [["통행료·주차비", "MANUAL"] as const] : []),
-  ]);
+  const facts = billFacts({
+    distanceKm: s.distance_km, ev, efficiencyKmPerUnit: trip.cost_rule?.efficiency_km_per_unit,
+    unitPriceKrw: trip.cost_rule?.unit_price_krw, items: trip.cost_items,
+  });
   const leadSentence = s.energy_policy === "SEGMENT_SHARED"
     ? "같은 구간을 함께 탄 사람끼리 그 구간의 연료·전기 비용을 똑같이 나눠요. 내린 뒤의 구간은 내 몫에 들어가지 않아요."
     : "연료·전기 비용 전체를 함께한 사람이 똑같이 나눠요.";
@@ -207,11 +201,9 @@ function Bill({ trip, s, session, live }: { trip: TripSummary; s: SettlementOut;
             {formatInt(mine ? (mine.is_driver ? mine.total_krw : mine.owed_to_driver_krw) : s.total_krw)}<span className="unit">원</span>
           </p>
           {mine && <p className="lede" data-testid="riding-sentence">{ridingSentence(s.distance_km, mine.ridden_km, mine.is_driver)}</p>}
-          <ul className="sources" aria-label="숫자의 출처" data-testid="source-line">
-            {sourceGroups.map((g) => (
-              <li key={g.source} data-testid={`source-${g.source.toLowerCase()}`}><SourceBadge source={g.source} testId="source-badge" /> {g.what.join(" · ")}</li>
-            ))}
-          </ul>
+          <dl className="facts" aria-label="이 정산의 기준" data-testid="source-line">
+            {facts.map((f) => <div key={f.id} data-testid={`fact-${f.id}`}><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+          </dl>
           {confirmed && owed > 0 && (
             <p className="small" data-testid="pay-note">송금은 평소 쓰는 앱으로 {driverName}님께 직접 보내 주세요. 모아타는 돈을 옮기지 않아요.</p>
           )}
@@ -223,7 +215,7 @@ function Bill({ trip, s, session, live }: { trip: TripSummary; s: SettlementOut;
           <section className="stack" aria-labelledby="why-mine">
             <h2 id="why-mine" className="subtitle">내 몫은 이렇게 나왔어요</h2>
             {strip && <RideStrip strip={strip} ticks={segmentTicks(s.segments, trip.odometer_start_km)} />}
-            {/* only addends of 합계 go in the amount column; the working sits under each label */}
+
             <dl className="ledger ledger--tight" data-testid="my-basis">
               <div data-testid="my-energy">
                 <dt>
@@ -232,7 +224,7 @@ function Bill({ trip, s, session, live }: { trip: TripSummary; s: SettlementOut;
                     <ul className="ledger__calc">
                       {segs.map((g) => (
                         <li key={g.from + g.to} data-testid="my-segment">
-                          <span className="num">{formatKm(g.from)}–{formatKm(g.to)}</span>km 구간 · {formatKrw(g.energyKrw)} ÷ {g.payers}명
+                          <span className="num">{formatKm(kmBetween(String(g.from), String(g.to)))}</span>km 구간 ·{formatKrw(g.energyKrw)} ÷ {g.payers}명
                           {segs.length > 1 ? <> = {g.exact ? "" : "약 "}{formatKrw(g.each)}</> : null}
                         </li>
                       ))}
@@ -301,16 +293,14 @@ function Bill({ trip, s, session, live }: { trip: TripSummary; s: SettlementOut;
 
               <dl className="ledger">
                 <div><dt>총 이동비</dt><dd data-testid="total">{formatKrw(s.total_krw)}</dd></div>
-                <div><dt>{s.consumption_unit === "L" ? "추정 연료 사용량" : "추정 전기 사용량"}</dt><dd>{formatKm(s.consumption, 2)} {s.consumption_unit}</dd></div>
-                <div><dt>연비·전비는</dt><dd><SourceBadge source={s.efficiency_source} /></dd></div>
+                <div><dt>{s.consumption_unit === "L" ? "연료 사용량" : "전기 사용량"}</dt><dd>{formatKm(s.consumption, 2)} {s.consumption_unit}</dd></div>
                 <div><dt>운전자 비용</dt><dd>{s.driver_included ? "함께 나눠요" : "나누지 않아요"}</dd></div>
                 <div><dt>나누는 방법</dt><dd style={{ maxWidth: "62%" }}>{ENERGY_POLICY[s.energy_policy]}</dd></div>
               </dl>
-              <p className="small muted">{sourceLine.explain}</p>
               {trip.cost_items.length > 0 && (
                 <ul className="stack-sm small muted">
                   {trip.cost_items.map((c) => (
-                    <li key={c.id}>{ITEM_KIND[c.kind]}{c.note ? ` (${c.note})` : ""} {formatKrw(c.amount_krw)} · {ALLOCATION[c.allocation]}</li>
+                    <li key={c.id}>{itemLabel(c, "")} {formatKrw(c.amount_krw)} · {ALLOCATION[c.allocation]}</li>
                   ))}
                 </ul>
               )}
@@ -368,7 +358,7 @@ function Bill({ trip, s, session, live }: { trip: TripSummary; s: SettlementOut;
 }
 
 function Celebrate({ trip, session }: { trip: TripSummary; session: Session }) {
-  // A failed history load only drops the XP line; it must never hide the confirmed bill.
+
   const hist = useLoad((signal) => api.history(session.token, trip.group_id, signal), [trip.group_id, session.token]);
   const xp = hist.data?.find((h) => h.trip_id === trip.id)?.xp_gained ?? null;
   return (

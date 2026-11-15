@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-/** Records throttled odometer readings while a trip is IN_PROGRESS. stop() also unregisters the SDK listener. */
+
 class TripRecorder(
     private val repo: TripRepository,
     private val scope: CoroutineScope,
@@ -25,7 +25,7 @@ class TripRecorder(
     val running: Boolean get() = job?.isActive == true
 
     fun start(tripId: String, source: VehicleDataSource) {
-        if (running) return                                   // restart / recomposition must not double-subscribe
+        if (running) return
         val throttle = Throttle(minIntervalMs)
         job = scope.launch {
             source.observeOdometer().collect { sample ->
@@ -33,7 +33,7 @@ class TripRecorder(
                 if (throttle.shouldRecord(now())) repo.recordReading(tripId, sample)
             }
         }
-        // The listener fires only on change; poll too so board/alight boundaries never use a stale reading.
+
         beat = scope.launch {
             while (true) {
                 delay(heartbeatMs)

@@ -41,7 +41,7 @@ export function ErrorState({ error, onRetry, invite = false }: { error: unknown;
   );
 }
 
-// Shown above cached data when the latest refresh failed.
+
 export function StaleNotice({ offline, lastUpdated, onRetry }: { offline: boolean; lastUpdated: number | null; onRetry: () => void }) {
   const when = lastUpdated ? new Date(lastUpdated).toLocaleTimeString("ko-KR", { hour: "numeric", minute: "2-digit", second: "2-digit" }) : null;
   return (

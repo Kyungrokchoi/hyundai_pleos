@@ -18,10 +18,10 @@ import java.time.Instant
 import java.util.UUID
 import kotlinx.serialization.encodeToString
 
-/**
- * Updates Room and appends to the outbox together. Event ids are deterministic, so a double tap or restart
- * cannot create a second trip, start or end.
- */
+
+
+
+
 class TripRepository(
     private val trips: TripDao,
     private val outbox: OutboxDao,
@@ -32,10 +32,10 @@ class TripRepository(
 
     suspend fun open(): LocalTrip? = trips.open()
 
-    /** Local only; the server record is untouched. */
+
     suspend fun close(tripId: String, confirmed: Boolean) = update(tripId) { it.copy(state = if (confirmed) "CONFIRMED" else "CLOSED") }
 
-    /** Idempotent on id. While another trip is active, returns that one instead. */
+
     suspend fun createTrip(id: String, groupId: String, dataMode: String, vehicleType: String, rule: CostRuleIn): LocalTrip {
         trips.get(id)?.let { return it }
         trips.active()?.let { return it }
@@ -45,12 +45,12 @@ class TripRepository(
         return trip
     }
 
-    /** Called after the server accepted `ready`. */
+
     suspend fun markReady(tripId: String) = update(tripId) { if (it.state == "INVITING") it.copy(state = "READY") else it }
 
     suspend fun start(tripId: String, odometer: VehicleSample): LocalTrip? {
         val t = trips.get(tripId) ?: return null
-        if (t.state == "IN_PROGRESS") return t                       // repeated tap / restart: no second start
+        if (t.state == "IN_PROGRESS") return t
         if (t.state != "READY") return t
         val updated = t.copy(state = "IN_PROGRESS", startedAt = now(), odometerStartKm = odometer.value, lastOdometerKm = odometer.value, lastOdometerAt = odometer.capturedAtEpochMs)
         trips.upsert(updated)
@@ -60,7 +60,7 @@ class TripRepository(
 
     suspend fun end(tripId: String, odometer: VehicleSample): LocalTrip? {
         val t = trips.get(tripId) ?: return null
-        if (t.state != "IN_PROGRESS") return t                       // duplicate end: nothing new is queued
+        if (t.state != "IN_PROGRESS") return t
         val updated = t.copy(state = "ENDED", endedAt = now(), lastOdometerKm = odometer.value ?: t.lastOdometerKm)
         trips.upsert(updated)
         enqueue("trip-end:$tripId", tripId, "POST", "/trips/$tripId/end", ApiJson.encodeToString(TripEndIn(toReading(odometer, "end-$tripId"))))
@@ -75,7 +75,7 @@ class TripRepository(
         }
     }
 
-    /** Failed readings are queued too, so data quality is auditable server-side. */
+
     suspend fun recordReading(tripId: String, sample: VehicleSample) {
         val t = trips.get(tripId) ?: return
         if (t.state != "IN_PROGRESS") return
@@ -88,7 +88,7 @@ class TripRepository(
 
     suspend fun board(tripId: String, userId: String, alight: Boolean, odometerKm: String? = null, reason: String = "") {
         val verb = if (alight) "alight" else "board"
-        // one event per user/verb/minute stops double taps; the server also ignores repeats
+
         val key = "$verb:$tripId:$userId:${now() / 60_000}"
         enqueue(key, tripId, "POST", "/trips/$tripId/participants/$userId/$verb", ApiJson.encodeToString(BoardingIn(odometerKm, reason)))
     }
@@ -110,7 +110,7 @@ class TripRepository(
     }
 
     companion object {
-        /** Sends the raw SDK value and unit (e.g. 6.2 L/100km); the server normalises. */
+
         fun toReading(s: VehicleSample, eventId: String) = ReadingIn(
             eventId = eventId, type = s.type.name, value = s.value, unit = s.unit,
             capturedAt = Instant.ofEpochMilli(s.capturedAtEpochMs).toString(), source = s.source.name,
@@ -119,7 +119,7 @@ class TripRepository(
     }
 }
 
-/** At most one stored reading per `minIntervalMs`, so the outbox doesn't fill up. */
+
 class Throttle(private val minIntervalMs: Long) {
     private var last = Long.MIN_VALUE
     fun shouldRecord(nowMs: Long): Boolean {

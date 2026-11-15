@@ -23,14 +23,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import io.moata.pleos.data.remote.TripSummary
 
-/** Spans are km from the trip start. `complete` is false when a boundary is missing. */
+
 data class Lane(val name: String, val isDriver: Boolean, val spans: List<Pair<Double, Double>>, val complete: Boolean, val byDriver: Boolean = false) {
     val km: Double get() = spans.sumOf { (a, b) -> (b - a).coerceAtLeast(0.0) }
-    /** Where the last ride ended, when that was before the end of the trip. */
+
     fun exitBefore(total: Double): Double? = spans.lastOrNull()?.second?.takeIf { !isDriver && it < total - 0.05 }
 }
 
-/** Lanes on a shared 0..total axis. Null until both ends of the trip are known. */
+
 fun lanesFrom(sum: TripSummary): Pair<Double, List<Lane>>? {
     val start = sum.odometerStartKm?.toDoubleOrNull() ?: return null
     val total = sum.distanceKm?.toDoubleOrNull() ?: sum.odometerEndKm?.toDoubleOrNull()?.minus(start) ?: return null
@@ -51,10 +51,10 @@ fun lanesFrom(sum: TripSummary): Pair<Double, List<Lane>>? {
     return total to lanes
 }
 
-/**
- * Who rode which part of the trip. TalkBack reads one sentence per lane ("지호, 출발부터 16km까지 탔어요"),
- * so the bars are never the only carrier of the information.
- */
+
+
+
+
 @Composable
 fun RideLanes(sum: TripSummary, modifier: Modifier = Modifier) {
     val (total, lanes) = lanesFrom(sum) ?: run {
